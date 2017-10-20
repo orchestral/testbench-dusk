@@ -1,0 +1,6 @@
+# Composer
+composer.lock
+vendor/*
+tests/Browser/console
+tests/Browser/screenshots
+tmp/*
