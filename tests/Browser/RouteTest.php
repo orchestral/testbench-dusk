@@ -17,23 +17,41 @@ class RouteTest extends TestCase
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('app.url', 'http://localhost:8000');
+        $app['config']->set('app.url', 'http://127.0.0.1:8000');
 
         $app['router']->get('hello', ['as' => 'hi', 'uses' => function () {
             return 'hello world';
         }]);
     }
 
+    public static function setUpBeforeClass()
+    {
+        static::serve();
+    }
+
+    public static function tearDownAfterClass()
+    {
+        static::stopServing();
+    }
+
     /** @test */
     public function can_use_dusk()
     {
-        $this->serve();
-
         $this->browse(function (Browser $browser) {
             $browser->visit('hello')
                 ->assertSee('hello world');
         });
+    }
 
-        $this->stopServing();
+    /** @test */
+    public function can_use_mulitple_browsers()
+    {
+        $this->browse(function (Browser $browser, Browser $browserTwo) {
+            $browser->visit('hello')
+                ->assertSee('hello world');
+
+            $browserTwo->visit('hello')
+                ->assertSee('hello world');
+        });
     }
 }

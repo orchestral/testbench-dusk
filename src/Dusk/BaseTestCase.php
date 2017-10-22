@@ -258,7 +258,7 @@ abstract class BaseTestCase extends TestCase
      */
     protected function prepareDirectories()
     {
-        $tests = str_before(base_path(), '/vendor/orchestra') . '/tests/Browser';
+        $tests = realpath(__DIR__).'/../../tests/Browser';
 
         foreach (['/screenshots', '/console'] as $dir) {
             if (! is_dir($tests.$dir)) {

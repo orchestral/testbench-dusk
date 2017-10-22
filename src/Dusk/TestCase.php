@@ -39,11 +39,4 @@ abstract class TestCase extends BaseTestCase
             )
         );
     }
-
-    protected function getPackageProviders($app)
-    {
-        return array_merge([
-            ConsoleServiceProvider::class,
-        ], parent::getPackageProviders($app));
-    }
 }

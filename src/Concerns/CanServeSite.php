@@ -2,29 +2,36 @@
 
 namespace Orchestra\Testbench\Concerns;
 
+use Exception;
 use Orchestra\Testbench\ForkedServer;
 
 trait CanServeSite
 {
-    protected $forkedServers = [];
+    protected static $forkedServers = [];
 
-    public function serve($port = 8000)
+    /**
+    * Begin serving on a given host and port
+    */
+    public static function serve($host = '127.0.0.1', $port = 8000)
     {
-        $this->forkedServers[$port] = new ForkedServer($port);
-        $this->forkedServers[$port]->stash(static::class);
-        $this->forkedServers[$port]->start();
+        $server = new ForkedServer($host, $port);
+        $server->stash(static::class);
+        $server->start();
+
+        static::$forkedServers[$host.'__'.$port] = $server;
     }
 
-    public function stopServing($port = 8000)
+    /**
+    * Stop serving on a given host and port. As a safety net, we will
+    * shut down all servers if we
+    *
+    */
+    public static function stopServing($host = '127.0.0.1', $port = 8000)
     {
-        if (isset($this->forkedServers[$port])) {
-            $this->forkedServers[$port]->stop();
+        if (! isset(static::$forkedServers[$host.'__'.$port])) {
             return;
         }
 
-        foreach (array_keys($this->forkedServers) as $p) {
-            $this->stopServing($p);
-        }
-        throw new Exception("No server on port {$port}. We stopped them all.");
+        static::$forkedServers[$host.'__'.$port]->stop();
     }
 }
