@@ -7,6 +7,7 @@ use Symfony\Component\Process\PhpExecutableFinder;
 
 class OrchestraServer
 {
+    protected $pointer;
     protected $host;
     protected $port;
 
@@ -27,12 +28,24 @@ class OrchestraServer
     }
 
     /**
+    * Prepare the path of the temp file for a particular server
+    */
+    protected function temp()
+    {
+        return __DIR__.'/../tmp/'.$this->host.'__'.$this->port;
+    }
+
+    /**
     * Retrieve the contents of the relevant file
     */
     public function getStash()
     {
         return file_get_contents($this->temp());
     }
+
+    // Adapted from the artisan serve command. It means that we are not reliant
+    // on Laravel having been booted, so we can use the setUpBeforeClass and
+    // tearDownAfterClass static methods to start the server for tests.
 
     /**
     * Start a php server in a separate process
@@ -43,21 +56,36 @@ class OrchestraServer
         $this->startServer();
     }
 
-    // Adapted from the artisan serve command. It means that we are not reliant
-    // on Laravel having been booted, so we can use the setUpBeforeClass and
-    // tearDownAfterClass static methods to start the server for tests.
+    /**
+    * Stop the php server
+    */
+    public function stop()
+    {
+        if (! $this->pointer) {
+            return;
+        }
+        proc_terminate($this->pointer);
+    }
+
     protected function startServer()
     {
         $command = sprintf(
-            '%s -S %s:%s %s > /dev/null 2>&1 &',
+            '%s -S %s:%s %s',
             ProcessUtils::escapeArgument((new PhpExecutableFinder)->find(false)),
             $this->host,
             $this->port,
             ProcessUtils::escapeArgument(__DIR__.'/server.php')
         );
 
-        chdir($this->laravelPublicPath());
-        passthru($command);
+        // Execute the command and open a pointer to it.
+        // Tuck away the output as it's not relevant
+        // for us to show it during our testing
+        $this->pointer = proc_open(
+            $command,
+            [1 => ["pipe", "w"]],
+            $pipes,
+            $this->laravelPublicPath()
+        );
     }
 
     /**
@@ -75,33 +103,5 @@ class OrchestraServer
         }
 
         return  $root.'/testbench-core/laravel/public';
-    }
-
-    /**
-    * Stop the php server
-    */
-    public function stop()
-    {
-        posix_kill($this->getServerProcessId(), SIGKILL);
-    }
-
-    /**
-    * Prepare the path of the temp file for a particular server
-    */
-    protected function temp()
-    {
-        return __DIR__.'/../tmp/'.$this->host.'__'.$this->port;
-    }
-
-    /**
-    * Identify the process id for the server running on this
-    * host and port. So we can then shut it down after.
-    */
-    protected function getServerProcessId()
-    {
-        $output = null;
-        exec('ps | grep -S '.$this->host.':'.$this->port, $output);
-
-        return (int) explode(" ", trim($output[0]))[0];
     }
 }
