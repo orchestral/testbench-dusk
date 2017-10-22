@@ -32,7 +32,7 @@ class OrchestraServer
     */
     protected function temp()
     {
-        return __DIR__.'/../tmp/'.$this->host.'__'.$this->port;
+        return dirname(__DIR__).'/tmp/'.$this->host.'__'.$this->port;
     }
 
     /**
@@ -42,10 +42,6 @@ class OrchestraServer
     {
         return file_get_contents($this->temp());
     }
-
-    // Adapted from the artisan serve command. It means that we are not reliant
-    // on Laravel having been booted, so we can use the setUpBeforeClass and
-    // tearDownAfterClass static methods to start the server for tests.
 
     /**
     * Start a php server in a separate process
@@ -67,21 +63,15 @@ class OrchestraServer
         proc_terminate($this->pointer);
     }
 
+    /**
+     * Start the server. Execute the command and open a
+     * pointer to it. Tuck away the output as it's
+     * not relevant for us during our testing
+     */
     protected function startServer()
     {
-        $command = sprintf(
-            '%s -S %s:%s %s',
-            ProcessUtils::escapeArgument((new PhpExecutableFinder)->find(false)),
-            $this->host,
-            $this->port,
-            ProcessUtils::escapeArgument(__DIR__.'/server.php')
-        );
-
-        // Execute the command and open a pointer to it.
-        // Tuck away the output as it's not relevant
-        // for us to show it during our testing
         $this->pointer = proc_open(
-            $command,
+            $this->prepareCommand(),
             [1 => ["pipe", "w"]],
             $pipes,
             $this->laravelPublicPath()
@@ -89,17 +79,32 @@ class OrchestraServer
     }
 
     /**
+     * Prepare the command for starting the PHP server
+     */
+    protected function prepareCommand()
+    {
+        return sprintf(
+            '%s -S %s:%s %s',
+            ProcessUtils::escapeArgument((new PhpExecutableFinder)->find(false)),
+            $this->host,
+            $this->port,
+            ProcessUtils::escapeArgument(__DIR__ . '/server.php')
+        );
+    }
+
+
+    /**
     * Figure out the path to the laravel application
     * For testbench purposes, this exists in the
     * core package.
     */
-    protected function laravelPublicPath()
+    public function laravelPublicPath($root = null)
     {
-        $root = realpath(__DIR__.'/../..');
+        $root = dirname(dirname($root ?: __DIR__));
 
         // Check if we're working on this package. If we are, shimmy to the vendor dir.
-        if (! is_dir($root.'/testbench-core')) {
-            $root .= '/testbench-dusk/vendor/orchestra/';
+        if (! basename(dirname($root)) == 'vendor') {
+            $root .= '/testbench-dusk/vendor/orchestra';
         }
 
         return  $root.'/testbench-core/laravel/public';

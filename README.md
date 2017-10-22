@@ -14,7 +14,7 @@ This is a package developed by Konsulting Ltd to (we hope) be transferred to the
 
  Laravel  | Testbench Browser Kit
 :---------|:----------
- 5.5.x    | 3.5.x
+ 5.5.x    | 3.5
 
 ## Installation
 

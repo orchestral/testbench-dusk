@@ -6,7 +6,6 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Orchestra\Testbench\ConsoleServiceProvider;
-use Orchestra\Testbench\Dusk\BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
