@@ -5,9 +5,8 @@ namespace Orchestra\Testbench;
 use Symfony\Component\Process\ProcessUtils;
 use Symfony\Component\Process\PhpExecutableFinder;
 
-class ForkedServer
+class OrchestraServer
 {
-    protected $pid;
     protected $host;
     protected $port;
 
@@ -18,8 +17,10 @@ class ForkedServer
     }
 
     /**
-    * Store some temp contents in a file for later use
-    */
+     * Store some temp contents in a file for later use
+     *
+     * @param $content
+     */
     public function stash($content)
     {
         file_put_contents($this->temp(), $content);
@@ -39,17 +40,6 @@ class ForkedServer
     public function start()
     {
         $this->stop();
-
-        $this->pid = pcntl_fork();
-
-        if ($this->pid == -1) {
-            throw new \Exception('Failed creating serve process');
-        }
-
-        if ($this->pid) {
-            return;
-        }
-
         $this->startServer();
     }
 
@@ -59,11 +49,11 @@ class ForkedServer
     protected function startServer()
     {
         $command = sprintf(
-            '%s -S %s:%s %s/server.php',
+            '%s -S %s:%s %s > /dev/null 2>&1 &',
             ProcessUtils::escapeArgument((new PhpExecutableFinder)->find(false)),
             $this->host,
             $this->port,
-            ProcessUtils::escapeArgument(__DIR__)
+            ProcessUtils::escapeArgument(__DIR__.'/server.php')
         );
 
         chdir($this->laravelPublicPath());
@@ -88,22 +78,11 @@ class ForkedServer
     }
 
     /**
-    * Stop the php process that started the server and its
-    * related processes (including the server itself).
+    * Stop the php server
     */
     public function stop()
     {
-        if (! $this->pid) {
-            return;
-        }
-
-        // Kill php server that we spawned
-        posix_kill($this->getServerPid(), SIGKILL);
-
-        posix_kill($this->pid, SIGKILL);
-        pcntl_waitpid($this->pid, $status);
-
-        $this->pid = null;
+        posix_kill($this->getServerProcessId(), SIGKILL);
     }
 
     /**
@@ -118,7 +97,7 @@ class ForkedServer
     * Identify the process id for the server running on this
     * host and port. So we can then shut it down after.
     */
-    protected function getServerPid()
+    protected function getServerProcessId()
     {
         $output = null;
         exec('ps | grep -S '.$this->host.':'.$this->port, $output);

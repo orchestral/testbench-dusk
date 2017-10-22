@@ -1,6 +1,6 @@
 <?php
 
-use Orchestra\Testbench\ForkedServer;
+use Orchestra\Testbench\OrchestraServer;
 
 // Simple server script, which pulls in large part from the framework.
 // It has been adapted so we can reconstruct the application to the
@@ -27,7 +27,7 @@ require __DIR__.'/../vendor/autoload.php';
 // Identify the calling test class based on the content of the stash,
 // use it to retrieve the built application as specificed in all
 // the setup methods for the test class
-$originatingTestClass = (new ForkedServer($_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT']))->getStash();
+$originatingTestClass = (new OrchestraServer($_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT']))->getStash();
 $app = (new $originatingTestClass)->getFreshApplication();
 
 // Process the request as per a normal Laravel request
