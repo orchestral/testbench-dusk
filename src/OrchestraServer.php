@@ -8,6 +8,7 @@ use Symfony\Component\Process\PhpExecutableFinder;
 class OrchestraServer
 {
     protected $pointer;
+    protected $pipes;
     protected $host;
     protected $port;
 
@@ -24,7 +25,7 @@ class OrchestraServer
      */
     public function stash($content)
     {
-        file_put_contents($this->temp(), $content);
+        file_put_contents($this->temp(), json_encode($content));
     }
 
     /**
@@ -36,11 +37,15 @@ class OrchestraServer
     }
 
     /**
-    * Retrieve the contents of the relevant file
-    */
-    public function getStash()
+     * Retrieve the contents of the relevant file
+     *
+     * @param string $key
+     */
+    public function getStash($key = null)
     {
-        return file_get_contents($this->temp());
+        $content = json_decode(file_get_contents($this->temp()), true);
+
+        return $key ? ($content[$key] ?? null): $content;
     }
 
     /**
@@ -73,7 +78,7 @@ class OrchestraServer
         $this->pointer = proc_open(
             $this->prepareCommand(),
             [1 => ["pipe", "w"]],
-            $pipes,
+            $this->pipes,
             $this->laravelPublicPath()
         );
     }

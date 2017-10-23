@@ -56,3 +56,13 @@ You can also separate your tests in your `phpunit.xml` file by providing differe
 ```
 
 You can optionally set the default testsuite with the option `defaultTestSuite="Unit"`
+
+## Advanced usage
+
+This package sets up a separate process running the required web-server using PHP's built in web server, by default at 127.0.0.1:8000. We use the calling test class' to build up the application to be used when serving.
+
+Sometimes you will want to make a minor change to the application for a single test (e.g. changing a config item).
+
+This is made possible by using the `tweakApplication` method on the test, and passing in a closure to apply. At the end of the test, you need to call the `removeApplicationTweaks` method to stop the changes being applied to the server.
+
+An example test (`can_tweak_the_application_within_a_test`) is available in the `tests/Browser/RouteTest.php` test file.

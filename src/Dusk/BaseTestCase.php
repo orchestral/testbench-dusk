@@ -262,16 +262,11 @@ abstract class BaseTestCase extends TestCase
 
         foreach (['/screenshots', '/console'] as $dir) {
             if (! is_dir($tests.$dir)) {
-                mkdir($tests.$dir, 0777, true);
+                mkdir($tests . $dir, 0777, true);
             }
         }
 
         Browser::$storeScreenshotsAt = $tests . '/screenshots';
         Browser::$storeConsoleLogAt = $tests . '/console';
-    }
-
-    public function getFreshApplication()
-    {
-        return $this->createApplication();
     }
 }
