@@ -3,19 +3,23 @@ Laravel Dusk Kit Testing Helper for Packages Development
 
 Testbench Component is a simple package that is supposed to help you write tests for your Laravel package, especially when there is routing involved.
 
-This is a package developed by Konsulting Ltd to (we hope) be transferred to the original Orchestra namespace.
+The Dusk package is in early development and feedback is appreciated. Once we're happy it has stabilised, we will tag a stable version.
+
+The package has been developed by [Konsulting Ltd](https://github.com/konsulting) initially and will be transferred to the original Orchestra namespace where we will assist with supporting it in the future.
+
 *The package is not yet available on Packagist, so you will need to include as a vcs repo.*
 
 * [Version Compatibility](#version-compatibility)
 * [Installation](#installation)
 * [Usage](#usage)
+* [Advanced Usage](#advanced-usage)
 * [Changelog](https://github.com/orchestral/testbench-browser-kit/releases)
 
 ## Version Compatibility
 
  Laravel  | Testbench Dusk
 :---------|:----------
- 5.5.x    | 3.5
+ 5.5.x    | 3.5.x-dev
 
 ## Installation
 
@@ -39,9 +43,9 @@ Above installation can also be simplify by using the following command:
 
 ## Usage
 
-Use the `Orchestra\Testbench\Dusk\TestCase` as the parent class for your test. Optionally, extend that class to provide a custom base class for your project.
+Use the `Orchestra\Testbench\Dusk\TestCase` as the parent class for your test. Optionally, extend that class to provide a custom base class for your project - in there you can perform the application setup you require for your tests.
 
-You can also separate your tests in your `phpunit.xml` file by providing different testsuites. For example:
+Browser tests can take a while to run, so you could also separate your tests in your `phpunit.xml` file by providing different testsuites, allowing you to run your Browser tests on demand. For example:
 ```xml
     <testsuites>
         <testsuite name="Browser">
@@ -58,9 +62,9 @@ You can also separate your tests in your `phpunit.xml` file by providing differe
 
 You can optionally set the default testsuite with the option `defaultTestSuite="Unit"`
 
-## Advanced usage
+## Advanced Usage
 
-This package sets up a separate process running the required web-server using PHP's built in web server, by default at 127.0.0.1:8000. We use the calling test class' to build up the application to be used when serving.
+During a test run, this package sets up a separate process using PHP's built in web server, by default at 127.0.0.1:8000. We use the calling test class to build up the application to be used when serving the request.
 
 Sometimes you will want to make a minor change to the application for a single test (e.g. changing a config item).
 
