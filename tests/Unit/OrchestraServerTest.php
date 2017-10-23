@@ -2,8 +2,8 @@
 
 namespace Orchestra\Testbench\Tests;
 
-use Orchestra\Testbench\OrchestraServer;
 use PHPUnit\Framework\TestCase;
+use Orchestra\Testbench\OrchestraServer;
 
 class OrchestraServerTest extends TestCase
 {

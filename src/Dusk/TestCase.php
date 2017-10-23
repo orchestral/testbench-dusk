@@ -3,9 +3,8 @@
 namespace Orchestra\Testbench\Dusk;
 
 use Facebook\WebDriver\Chrome\ChromeOptions;
-use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
-use Orchestra\Testbench\ConsoleServiceProvider;
+use Facebook\WebDriver\Remote\DesiredCapabilities;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -29,12 +28,14 @@ abstract class TestCase extends BaseTestCase
     {
         $options = (new ChromeOptions)->addArguments([
             '--disable-gpu',
-            '--headless'
+            '--headless',
         ]);
 
         return RemoteWebDriver::create(
-            'http://localhost:9515', DesiredCapabilities::chrome()->setCapability(
-                ChromeOptions::CAPABILITY, $options
+            'http://localhost:9515',
+            DesiredCapabilities::chrome()->setCapability(
+                ChromeOptions::CAPABILITY,
+                $options
             )
         );
     }

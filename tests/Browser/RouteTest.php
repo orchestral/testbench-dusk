@@ -3,7 +3,6 @@
 namespace Orchestra\Testbench\Tests\Browser;
 
 use Laravel\Dusk\Browser;
-use Orchestra\Testbench\CanServeSite;
 use Orchestra\Testbench\Dusk\TestCase;
 
 class RouteTest extends TestCase
@@ -24,9 +23,8 @@ class RouteTest extends TestCase
         }]);
 
         $app['router']->get('config', ['as' => 'hi', 'uses' => function () {
-                return config('new_config_item');
-            }
-        ]);
+            return config('new_config_item');
+        }]);
     }
 
     public static function setUpBeforeClass()

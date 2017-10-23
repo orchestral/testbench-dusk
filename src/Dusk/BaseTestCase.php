@@ -7,12 +7,12 @@ use Exception;
 use Throwable;
 use ReflectionFunction;
 use Laravel\Dusk\Browser;
+use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Collection;
 use Laravel\Dusk\Chrome\SupportsChrome;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
-use Facebook\WebDriver\Remote\DesiredCapabilities;
-use Orchestra\Testbench\TestCase;
 use Orchestra\Testbench\Concerns\CanServeSite;
+use Facebook\WebDriver\Remote\DesiredCapabilities;
 
 abstract class BaseTestCase extends TestCase
 {
@@ -100,8 +100,7 @@ abstract class BaseTestCase extends TestCase
             $this->captureFailuresFor($browsers);
 
             throw $e;
-        }
-        finally {
+        } finally {
             $this->storeConsoleLogsFor($browsers);
 
             static::$browsers = $this->closeAllButPrimary($browsers);
@@ -228,7 +227,8 @@ abstract class BaseTestCase extends TestCase
     protected function driver()
     {
         return RemoteWebDriver::create(
-            'http://localhost:9515', DesiredCapabilities::chrome()
+            'http://localhost:9515',
+            DesiredCapabilities::chrome()
         );
     }
 
@@ -250,7 +250,7 @@ abstract class BaseTestCase extends TestCase
      */
     protected function user()
     {
-        throw new Exception("User resolver has not been set.");
+        throw new Exception('User resolver has not been set.');
     }
 
     /**

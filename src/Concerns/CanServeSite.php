@@ -3,8 +3,8 @@
 namespace Orchestra\Testbench\Concerns;
 
 use Closure;
-use Orchestra\Testbench\OrchestraServer;
 use SuperClosure\Serializer;
+use Orchestra\Testbench\OrchestraServer;
 
 trait CanServeSite
 {
