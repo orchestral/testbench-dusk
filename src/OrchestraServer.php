@@ -45,7 +45,7 @@ class OrchestraServer
     {
         $content = json_decode(file_get_contents($this->temp()), true);
 
-        return $key ? ($content[$key] ?? null) : $content;
+        return $key ? (isset($content[$key]) ? $content[$key] : null) : $content;
     }
 
     /**

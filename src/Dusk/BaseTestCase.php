@@ -7,9 +7,9 @@ use Exception;
 use Throwable;
 use ReflectionFunction;
 use Laravel\Dusk\Browser;
+use Laravel\Dusk\SupportsChrome;
 use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Collection;
-use Laravel\Dusk\Chrome\SupportsChrome;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Orchestra\Testbench\Concerns\CanServeSite;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
@@ -24,7 +24,6 @@ abstract class BaseTestCase extends TestCase
      * @var array
      */
     protected static $browsers = [];
-
     /**
      * The callbacks that should be run on class tear down.
      *
@@ -40,7 +39,6 @@ abstract class BaseTestCase extends TestCase
     protected function setUp()
     {
         parent::setUp();
-
         Browser::$baseUrl = $this->baseUrl();
 
         $this->prepareDirectories();
@@ -59,7 +57,6 @@ abstract class BaseTestCase extends TestCase
     public static function tearDownDuskClass()
     {
         static::closeAll();
-
         foreach (static::$afterClassCallbacks as $callback) {
             $callback();
         }
@@ -89,20 +86,17 @@ abstract class BaseTestCase extends TestCase
     public function browse(Closure $callback)
     {
         $browsers = $this->createBrowsersFor($callback);
-
         try {
             $callback(...$browsers->all());
         } catch (Exception $e) {
             $this->captureFailuresFor($browsers);
-
             throw $e;
         } catch (Throwable $e) {
             $this->captureFailuresFor($browsers);
-
             throw $e;
-        } finally {
+        }
+        finally {
             $this->storeConsoleLogsFor($browsers);
-
             static::$browsers = $this->closeAllButPrimary($browsers);
         }
     }
@@ -119,9 +113,7 @@ abstract class BaseTestCase extends TestCase
         if (count(static::$browsers) === 0) {
             static::$browsers = collect([$this->newBrowser($this->createWebDriver())]);
         }
-
         $additional = $this->browsersNeededFor($callback) - 1;
-
         for ($i = 0; $i < $additional; $i++) {
             static::$browsers->push($this->newBrowser($this->createWebDriver()));
         }
@@ -203,7 +195,6 @@ abstract class BaseTestCase extends TestCase
     public static function closeAll()
     {
         Collection::make(static::$browsers)->each->quit();
-
         static::$browsers = collect();
     }
 
@@ -227,8 +218,7 @@ abstract class BaseTestCase extends TestCase
     protected function driver()
     {
         return RemoteWebDriver::create(
-            'http://localhost:9515',
-            DesiredCapabilities::chrome()
+            'http://localhost:9515', DesiredCapabilities::chrome()
         );
     }
 
@@ -250,7 +240,7 @@ abstract class BaseTestCase extends TestCase
      */
     protected function user()
     {
-        throw new Exception('User resolver has not been set.');
+        throw new Exception("User resolver has not been set.");
     }
 
     /**
