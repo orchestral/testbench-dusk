@@ -23,7 +23,9 @@ if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
 
 define('LARAVEL_START', microtime(true));
 
-require __DIR__.'/../vendor/autoload.php';
+require is_file(__DIR__.'/../vendor/autoload.php')
+    ? __DIR__.'/../vendor/autoload.php'
+    : __DIR__.'/../../../autoload.php';
 
 // Identify the calling test class based on the content of the stash,
 // use it to retrieve the built application as specificed in all

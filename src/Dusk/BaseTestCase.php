@@ -258,7 +258,7 @@ abstract class BaseTestCase extends TestCase
      */
     protected function prepareDirectories()
     {
-        $tests = realpath(__DIR__).'/../../tests/Browser';
+        $tests = $this->resolveBrowserTestsPath();
 
         foreach (['/screenshots', '/console'] as $dir) {
             if (! is_dir($tests.$dir)) {
@@ -268,5 +268,19 @@ abstract class BaseTestCase extends TestCase
 
         Browser::$storeScreenshotsAt = $tests . '/screenshots';
         Browser::$storeConsoleLogAt = $tests . '/console';
+    }
+
+    /**
+     * Figure out where the test directory is, if we're an included package, or the root one
+     */
+    protected function resolveBrowserTestsPath()
+    {
+        $root = dirname(dirname(dirname(__DIR__)));
+
+        // If we're in 'vendor', we need to drop back two levels to project root
+        if (basename(dirname($root)) == 'vendor') {
+            $root = dirname(dirname($root));
+        }
+        return $root.'/tests/Browser';
     }
 }
