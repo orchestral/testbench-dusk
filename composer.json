@@ -1,5 +1,5 @@
 {
-    "name": "konsulting/testbench-dusk",
+    "name": "orchestra/testbench-dusk",
     "description": "Laravel Dusk Testing Helper for Packages Development",
     "type": "library",
     "license": "MIT",
