@@ -4,6 +4,7 @@ Laravel Dusk Kit Testing Helper for Packages Development
 Testbench Component is a simple package that is supposed to help you write tests for your Laravel package, especially when there is routing involved.
 
 This is a package developed by Konsulting Ltd to (we hope) be transferred to the original Orchestra namespace.
+*The package is not yet available on Packagist, so you will need to include as a vcs repo.*
 
 * [Version Compatibility](#version-compatibility)
 * [Installation](#installation)
@@ -12,7 +13,7 @@ This is a package developed by Konsulting Ltd to (we hope) be transferred to the
 
 ## Version Compatibility
 
- Laravel  | Testbench Browser Kit
+ Laravel  | Testbench Dusk
 :---------|:----------
  5.5.x    | 3.5
 
@@ -23,7 +24,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require-dev": {
-        "konsnulting/testbench-dusk": "~3.5"
+        "orchestra/testbench-dusk": "~3.5"
     }
 }
 ```
@@ -42,7 +43,7 @@ Use the `Orchestra\Testbench\Dusk\TestCase` as the parent class for your test. O
 
 You can also separate your tests in your `phpunit.xml` file by providing different testsuites. For example:
 ```xml
-<testsuites>
+    <testsuites>
         <testsuite name="Browser">
             <directory suffix="Test.php">./tests/Browser</directory>
         </testsuite>
