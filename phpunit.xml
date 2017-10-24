@@ -20,6 +20,7 @@
     </testsuites>
     <php>
         <env name="APP_ENV" value="testing"/>
+        <env name="APP_URL" value="http://127.0.0.1:8000"/>
     </php>
 
     <filter>
