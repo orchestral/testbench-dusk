@@ -16,8 +16,6 @@ class RouteTest extends TestCase
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('app.url', 'http://127.0.0.1:8000');
-
         $app['router']->get('hello', ['as' => 'hi', 'uses' => function () {
             return 'hello world';
         }]);
