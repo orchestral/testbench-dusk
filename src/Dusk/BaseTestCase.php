@@ -39,6 +39,7 @@ abstract class BaseTestCase extends TestCase
     protected function setUp()
     {
         parent::setUp();
+
         Browser::$baseUrl = $this->baseUrl();
 
         $this->prepareDirectories();
@@ -58,6 +59,7 @@ abstract class BaseTestCase extends TestCase
     public static function tearDownDuskClass()
     {
         static::closeAll();
+
         foreach (static::$afterClassCallbacks as $callback) {
             $callback();
         }
@@ -88,6 +90,7 @@ abstract class BaseTestCase extends TestCase
     public function browse(Closure $callback)
     {
         $browsers = $this->createBrowsersFor($callback);
+
         try {
             $callback(...$browsers->all());
         } catch (Exception $e) {
@@ -114,7 +117,9 @@ abstract class BaseTestCase extends TestCase
         if (count(static::$browsers) === 0) {
             static::$browsers = collect([$this->newBrowser($this->createWebDriver())]);
         }
+
         $additional = $this->browsersNeededFor($callback) - 1;
+
         for ($i = 0; $i < $additional; $i++) {
             static::$browsers->push($this->newBrowser($this->createWebDriver()));
         }
@@ -196,6 +201,7 @@ abstract class BaseTestCase extends TestCase
     public static function closeAll()
     {
         Collection::make(static::$browsers)->each->quit();
+
         static::$browsers = collect();
     }
 

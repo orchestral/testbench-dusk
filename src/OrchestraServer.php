@@ -7,11 +7,40 @@ use Symfony\Component\Process\PhpExecutableFinder;
 
 class OrchestraServer
 {
+    /**
+     * Process pointer reference.
+     *
+     * @var object
+     */
     protected $pointer;
+
+    /**
+     * Array of file pointers.
+     *
+     * @var array
+     */
     protected $pipes;
+
+    /**
+     * Server host.
+     *
+     * @var string
+     */
     protected $host;
+
+    /**
+     * Server port.
+     *
+     * @var int
+     */
     protected $port;
 
+    /**
+     * Construct a new server.
+     *
+     * @param string  $host
+     * @param int  $port
+     */
     public function __construct($host = '127.0.0.1', $port = 8000)
     {
         $this->host = $host;
@@ -21,7 +50,9 @@ class OrchestraServer
     /**
      * Store some temp contents in a file for later use.
      *
-     * @param $content
+     * @param  mixed  $content
+     *
+     * @return void
      */
     public function stash($content)
     {
@@ -30,6 +61,8 @@ class OrchestraServer
 
     /**
      * Prepare the path of the temp file for a particular server.
+     *
+     * @return string
      */
     protected function temp()
     {
@@ -39,7 +72,9 @@ class OrchestraServer
     /**
      * Retrieve the contents of the relevant file.
      *
-     * @param string $key
+     * @param  string|null  $key
+     *
+     * @return mixed
      */
     public function getStash($key = null)
     {
@@ -50,6 +85,8 @@ class OrchestraServer
 
     /**
      * Start a php server in a separate process.
+     *
+     * @return void
      */
     public function start()
     {
@@ -59,12 +96,15 @@ class OrchestraServer
 
     /**
      * Stop the php server.
+     *
+     * @return void
      */
     public function stop()
     {
         if (! $this->pointer) {
             return;
         }
+
         proc_terminate($this->pointer);
     }
 
@@ -72,6 +112,8 @@ class OrchestraServer
      * Start the server. Execute the command and open a
      * pointer to it. Tuck away the output as it's
      * not relevant for us during our testing.
+     *
+     * @return void
      */
     protected function startServer()
     {
@@ -85,6 +127,8 @@ class OrchestraServer
 
     /**
      * Prepare the command for starting the PHP server.
+     *
+     * @return string
      */
     protected function prepareCommand()
     {
@@ -101,6 +145,10 @@ class OrchestraServer
      * Figure out the path to the laravel application
      * For testbench purposes, this exists in the
      * core package.
+     *
+     * @param  string|null  $root
+     *
+     * @return string
      */
     public function laravelPublicPath($root = null)
     {
@@ -111,6 +159,6 @@ class OrchestraServer
             $root .= '/testbench-dusk/vendor/orchestra';
         }
 
-        return  $root.'/testbench-core/laravel/public';
+        return $root.'/testbench-core/laravel/public';
     }
 }

@@ -8,6 +8,11 @@ use Orchestra\Testbench\OrchestraServer;
 
 trait CanServeSite
 {
+    /**
+     * The server implementation.
+     *
+     * @var \Orchestra\Testbench\OrchestraServer
+     */
     protected static $server;
 
     /**
