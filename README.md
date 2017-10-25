@@ -7,6 +7,15 @@ The Dusk package is in early development and feedback is appreciated. Once we're
 
 The package has been developed by [Konsulting Ltd](https://github.com/konsulting) initially and will be transferred to the original Orchestra namespace where we will assist with supporting it in the future.
 
+<<<<<<< HEAD
+=======
+[![Build Status](https://travis-ci.org/orchestral/testbench-dusk.svg?branch=3.4)](https://travis-ci.org/orchestral/testbench-dusk)
+[![Latest Stable Version](https://poser.pugx.org/orchestra/testbench-dusk/v/stable)](https://packagist.org/packages/orchestra/testbench-dusk)
+[![Total Downloads](https://poser.pugx.org/orchestra/testbench-dusk/downloads)](https://packagist.org/packages/orchestra/testbench-dusk)
+[![Latest Unstable Version](https://poser.pugx.org/orchestra/testbench-dusk/v/unstable)](https://packagist.org/packages/orchestra/testbench-dusk)
+[![License](https://poser.pugx.org/orchestra/testbench-dusk/license)](https://packagist.org/packages/orchestra/testbench-dusk)
+
+>>>>>>> 3.4
 * [Version Compatibility](#version-compatibility)
 * [Installation](#installation)
 * [Usage](#usage)
@@ -16,8 +25,9 @@ The package has been developed by [Konsulting Ltd](https://github.com/konsulting
 ## Version Compatibility
 
  Laravel  | Testbench Dusk
- 5.4.x    | 3.4.x@dev
- 5.5.x    | 3.5.x@dev
+:---------|:----------
+ 5.4.x    | 3.4.x
+ 5.5.x    | 3.5.x
 
 ## Installation
 
