@@ -14,7 +14,7 @@ use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Orchestra\Testbench\Concerns\CanServeSite;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 
-abstract class BaseTestCase extends TestCase
+abstract class Foundation extends TestCase
 {
     use SupportsChrome, CanServeSite;
 
@@ -85,7 +85,7 @@ abstract class BaseTestCase extends TestCase
      * @throws \Exception
      * @throws \Throwable
      *
-     * @return \Laravel\Dusk\Browser|void
+     * @return void
      */
     public function browse(Closure $callback)
     {

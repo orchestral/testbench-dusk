@@ -6,7 +6,7 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 
-abstract class TestCase extends BaseTestCase
+abstract class TestCase extends Foundation
 {
     /**
      * Prepare for Dusk test execution.
