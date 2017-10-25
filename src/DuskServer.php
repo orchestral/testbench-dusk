@@ -1,17 +1,46 @@
 <?php
 
-namespace Orchestra\Testbench;
+namespace Orchestra\Testbench\Dusk;
 
 use Symfony\Component\Process\ProcessUtils;
 use Symfony\Component\Process\PhpExecutableFinder;
 
-class OrchestraServer
+class DuskServer
 {
+    /**
+     * Process pointer reference.
+     *
+     * @var object
+     */
     protected $pointer;
+
+    /**
+     * Array of file pointers.
+     *
+     * @var array
+     */
     protected $pipes;
+
+    /**
+     * Server host.
+     *
+     * @var string
+     */
     protected $host;
+
+    /**
+     * Server port.
+     *
+     * @var int
+     */
     protected $port;
 
+    /**
+     * Construct a new server.
+     *
+     * @param string  $host
+     * @param int  $port
+     */
     public function __construct($host = '127.0.0.1', $port = 8000)
     {
         $this->host = $host;
@@ -19,9 +48,11 @@ class OrchestraServer
     }
 
     /**
-     * Store some temp contents in a file for later use
+     * Store some temp contents in a file for later use.
      *
-     * @param $content
+     * @param  mixed  $content
+     *
+     * @return void
      */
     public function stash($content)
     {
@@ -29,28 +60,34 @@ class OrchestraServer
     }
 
     /**
-    * Prepare the path of the temp file for a particular server
-    */
+     * Prepare the path of the temp file for a particular server.
+     *
+     * @return string
+     */
     protected function temp()
     {
         return dirname(__DIR__).'/tmp/'.$this->host.'__'.$this->port;
     }
 
     /**
-     * Retrieve the contents of the relevant file
+     * Retrieve the contents of the relevant file.
      *
-     * @param string $key
+     * @param  string|null  $key
+     *
+     * @return mixed
      */
     public function getStash($key = null)
     {
         $content = json_decode(file_get_contents($this->temp()), true);
 
-        return $key ? ($content[$key] ?? null) : $content;
+        return $key ? (isset($content[$key]) ? $content[$key] : null) : $content;
     }
 
     /**
-    * Start a php server in a separate process
-    */
+     * Start a php server in a separate process.
+     *
+     * @return void
+     */
     public function start()
     {
         $this->stop();
@@ -58,20 +95,25 @@ class OrchestraServer
     }
 
     /**
-    * Stop the php server
-    */
+     * Stop the php server.
+     *
+     * @return void
+     */
     public function stop()
     {
         if (! $this->pointer) {
             return;
         }
+
         proc_terminate($this->pointer);
     }
 
     /**
      * Start the server. Execute the command and open a
      * pointer to it. Tuck away the output as it's
-     * not relevant for us during our testing
+     * not relevant for us during our testing.
+     *
+     * @return void
      */
     protected function startServer()
     {
@@ -84,25 +126,30 @@ class OrchestraServer
     }
 
     /**
-     * Prepare the command for starting the PHP server
+     * Prepare the command for starting the PHP server.
+     *
+     * @return string
      */
     protected function prepareCommand()
     {
         return sprintf(
             '%s -S %s:%s %s',
-            ProcessUtils::escapeArgument((new PhpExecutableFinder)->find(false)),
+            ProcessUtils::escapeArgument((new PhpExecutableFinder())->find(false)),
             $this->host,
             $this->port,
-            ProcessUtils::escapeArgument(__DIR__ . '/server.php')
+            ProcessUtils::escapeArgument(__DIR__.'/server.php')
         );
     }
 
-
     /**
-    * Figure out the path to the laravel application
-    * For testbench purposes, this exists in the
-    * core package.
-    */
+     * Figure out the path to the laravel application
+     * For testbench purposes, this exists in the
+     * core package.
+     *
+     * @param  string|null  $root
+     *
+     * @return string
+     */
     public function laravelPublicPath($root = null)
     {
         $root = dirname(dirname($root ?: __DIR__));
@@ -112,6 +159,6 @@ class OrchestraServer
             $root .= '/testbench-dusk/vendor/orchestra';
         }
 
-        return  $root.'/testbench-core/laravel/public';
+        return $root.'/testbench-core/laravel/public';
     }
 }

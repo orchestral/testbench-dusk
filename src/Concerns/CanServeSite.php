@@ -1,24 +1,29 @@
 <?php
 
-namespace Orchestra\Testbench\Concerns;
+namespace Orchestra\Testbench\Dusk\Concerns;
 
 use Closure;
 use SuperClosure\Serializer;
-use Orchestra\Testbench\OrchestraServer;
+use Orchestra\Testbench\Dusk\DuskServer;
 
 trait CanServeSite
 {
+    /**
+     * The server implementation.
+     *
+     * @var \Orchestra\Testbench\DuskServer
+     */
     protected static $server;
 
     /**
-     * Begin serving on a given host and port
+     * Begin serving on a given host and port.
      *
      * @param string $host
      * @param int    $port
      */
     public static function serve($host = '127.0.0.1', $port = 8000)
     {
-        $server = new OrchestraServer($host, $port);
+        $server = new DuskServer($host, $port);
         $server->stash(['class' => static::class]);
         $server->start();
 
@@ -27,7 +32,7 @@ trait CanServeSite
 
     /**
      * Stop serving on a given host and port. As a safety net, we will
-     * shut down all servers if we
+     * shut down all servers if we.
      */
     public static function stopServing()
     {
@@ -57,7 +62,7 @@ trait CanServeSite
      * We can't natively serialise closures in PHP, so we use SuperClosure.
      * The analyser can be set here, and overridden for the class - in
      * case the closure is not supported by the default Analyser, see:
-     * https://github.com/jeremeamia/super_closure
+     * https://github.com/jeremeamia/super_closure.
      *
      * @return \SuperClosure\Serializer
      */
@@ -83,11 +88,11 @@ trait CanServeSite
      * replicate the Application state during a Dusk test when we start our
      * test server. See the main server file 'server.php'.
      *
-     * @param \Orchestra\Testbench\OrchestraServer $server
+     * @param \Orchestra\Testbench\DuskServer $server
      *
      * @return \Illuminate\Foundation\Application
      */
-    public function getFreshApplicationToServe(OrchestraServer $server)
+    public function getFreshApplicationToServe(DuskServer $server)
     {
         static::$server = $server;
 

@@ -1,8 +1,11 @@
 language: php
 
-sudo: false
+sudo: required
+
+dist: trusty
 
 php:
+  - 5.6
   - 7.0
   - 7.1
   - 7.2
@@ -18,6 +21,9 @@ before_script:
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable; fi
   - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable; fi
   - if [[ $setup = 'coveralls' ]]; then travis_retry composer require "satooshi/php-coveralls=~0.7" --prefer-dist --no-interaction --dev; fi
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - ./vendor/laravel/dusk/bin/chromedriver-linux &
 
 script:
   - if [[ $coverage = 'yes' ]]; then ./vendor/bin/phpunit -c phpunit.xml --coverage-clover build/logs/clover.xml; fi
@@ -28,11 +34,11 @@ after_script:
 
 matrix:
   include:
-    - php: 7.0
+    - php: 5.6
       env: setup=lowest
-    - php: 7.0
+    - php: 5.6
       env: setup=stable
-    - php: 7.0
+    - php: 5.6
       env: setup=coveralls coverage=yes
   allow_failures:
     - env: setup=coveralls coverage=yes

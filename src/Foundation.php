@@ -7,16 +7,17 @@ use Exception;
 use Throwable;
 use ReflectionFunction;
 use Laravel\Dusk\Browser;
+use Laravel\Dusk\Chrome\SupportsChrome;
 use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Collection;
-use Laravel\Dusk\Chrome\SupportsChrome;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Orchestra\Testbench\Concerns\CanServeSite;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 
-abstract class BaseTestCase extends TestCase
+abstract class Foundation extends TestCase
 {
-    use SupportsChrome, CanServeSite;
+    use Concerns\CanServeSite,
+        SupportsChrome;
 
     /**
      * All of the active browser instances.
@@ -24,7 +25,6 @@ abstract class BaseTestCase extends TestCase
      * @var array
      */
     protected static $browsers = [];
-
     /**
      * The callbacks that should be run on class tear down.
      *
@@ -54,6 +54,7 @@ abstract class BaseTestCase extends TestCase
      * Tear down the Dusk test case class.
      *
      * @afterClass
+     *
      * @return void
      */
     public static function tearDownDuskClass()
@@ -82,9 +83,10 @@ abstract class BaseTestCase extends TestCase
      *
      * @param  \Closure $callback
      *
-     * @return \Laravel\Dusk\Browser|void
      * @throws \Exception
      * @throws \Throwable
+     *
+     * @return void
      */
     public function browse(Closure $callback)
     {
@@ -94,15 +96,12 @@ abstract class BaseTestCase extends TestCase
             $callback(...$browsers->all());
         } catch (Exception $e) {
             $this->captureFailuresFor($browsers);
-
             throw $e;
         } catch (Throwable $e) {
             $this->captureFailuresFor($browsers);
-
             throw $e;
         } finally {
             $this->storeConsoleLogsFor($browsers);
-
             static::$browsers = $this->closeAllButPrimary($browsers);
         }
     }
@@ -163,7 +162,7 @@ abstract class BaseTestCase extends TestCase
     protected function captureFailuresFor($browsers)
     {
         $browsers->each(function ($browser, $key) {
-            $browser->screenshot('failure-' . $this->getName() . '-' . $key);
+            $browser->screenshot('failure-'.$this->getName().'-'.$key);
         });
     }
 
@@ -177,7 +176,7 @@ abstract class BaseTestCase extends TestCase
     protected function storeConsoleLogsFor($browsers)
     {
         $browsers->each(function ($browser, $key) {
-            $browser->storeConsoleLog($this->getName() . '-' . $key);
+            $browser->storeConsoleLog($this->getName().'-'.$key);
         });
     }
 
@@ -227,8 +226,7 @@ abstract class BaseTestCase extends TestCase
     protected function driver()
     {
         return RemoteWebDriver::create(
-            'http://localhost:9515',
-            DesiredCapabilities::chrome()
+            'http://localhost:9515', DesiredCapabilities::chrome()
         );
     }
 
@@ -245,8 +243,9 @@ abstract class BaseTestCase extends TestCase
     /**
      * Get a callback that returns the default user to authenticate.
      *
-     * @return \Closure
      * @throws \Exception
+     *
+     * @return \Closure
      */
     protected function user()
     {
@@ -254,7 +253,7 @@ abstract class BaseTestCase extends TestCase
     }
 
     /**
-     * Ensure the directories we need for dusk exist, and set them for the Browser to use
+     * Ensure the directories we need for dusk exist, and set them for the Browser to use.
      */
     protected function prepareDirectories()
     {
@@ -262,16 +261,16 @@ abstract class BaseTestCase extends TestCase
 
         foreach (['/screenshots', '/console'] as $dir) {
             if (! is_dir($tests.$dir)) {
-                mkdir($tests . $dir, 0777, true);
+                mkdir($tests.$dir, 0777, true);
             }
         }
 
-        Browser::$storeScreenshotsAt = $tests . '/screenshots';
-        Browser::$storeConsoleLogAt = $tests . '/console';
+        Browser::$storeScreenshotsAt = $tests.'/screenshots';
+        Browser::$storeConsoleLogAt = $tests.'/console';
     }
 
     /**
-     * Figure out where the test directory is, if we're an included package, or the root one
+     * Figure out where the test directory is, if we're an included package, or the root one.
      */
     protected function resolveBrowserTestsPath()
     {
@@ -281,6 +280,7 @@ abstract class BaseTestCase extends TestCase
         if (basename(dirname($root)) == 'vendor') {
             $root = dirname(dirname($root));
         }
+
         return $root.'/tests/Browser';
     }
 }
