@@ -11,7 +11,6 @@ use Laravel\Dusk\SupportsChrome;
 use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Collection;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
-use Orchestra\Testbench\Concerns\CanServeSite;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 
 abstract class Foundation extends TestCase

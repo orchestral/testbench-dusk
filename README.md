@@ -22,9 +22,9 @@ The package has been developed by [Konsulting Ltd](https://github.com/konsulting
 ## Version Compatibility
 
  Laravel  | Testbench Dusk
-:---------|:------------
- 5.4.x    | 3.4.x@dev
- 5.5.x    | 3.5.x@dev
+:---------|:----------
+ 5.4.x    | 3.4.x
+ 5.5.x    | 3.5.x
 
 ## Installation
 
