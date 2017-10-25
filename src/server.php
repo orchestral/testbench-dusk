@@ -33,7 +33,7 @@ require is_file(__DIR__.'/../vendor/autoload.php')
 $orchestraServer = new OrchestraServer($_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT']);
 $originatingTestClass = $orchestraServer->getStash('class');
 
-$app = (new $originatingTestClass)->getFreshApplicationToServe($orchestraServer);
+$app = (new $originatingTestClass())->getFreshApplicationToServe($orchestraServer);
 
 // Process the request as per a normal Laravel request
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);

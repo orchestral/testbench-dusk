@@ -12,6 +12,7 @@ abstract class TestCase extends BaseTestCase
      * Prepare for Dusk test execution.
      *
      * @beforeClass
+     *
      * @return void
      */
     public static function prepare()
@@ -26,7 +27,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected function driver()
     {
-        $options = (new ChromeOptions)->addArguments([
+        $options = (new ChromeOptions())->addArguments([
             '--disable-gpu',
         ]);
 

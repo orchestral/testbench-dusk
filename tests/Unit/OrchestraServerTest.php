@@ -12,7 +12,7 @@ class OrchestraServerTest extends TestCase
     {
         $this->assertEquals(
             '/dir/testbench-dusk/vendor/orchestra/testbench-core/laravel/public',
-            (new OrchestraServer)->laravelPublicPath('/dir/testbench-dusk/src')
+            (new OrchestraServer())->laravelPublicPath('/dir/testbench-dusk/src')
         );
     }
 
@@ -21,7 +21,7 @@ class OrchestraServerTest extends TestCase
     {
         $this->assertEquals(
             '/dir/project/vendor/orchestra/testbench-core/laravel/public',
-            (new OrchestraServer)->laravelPublicPath('/dir/project/vendor/orchestra/testbench-dusk/src')
+            (new OrchestraServer())->laravelPublicPath('/dir/project/vendor/orchestra/testbench-dusk/src')
         );
     }
 }

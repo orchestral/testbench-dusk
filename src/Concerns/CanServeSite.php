@@ -11,7 +11,7 @@ trait CanServeSite
     protected static $server;
 
     /**
-     * Begin serving on a given host and port
+     * Begin serving on a given host and port.
      *
      * @param string $host
      * @param int    $port
@@ -27,7 +27,7 @@ trait CanServeSite
 
     /**
      * Stop serving on a given host and port. As a safety net, we will
-     * shut down all servers if we
+     * shut down all servers if we.
      */
     public static function stopServing()
     {
@@ -57,7 +57,7 @@ trait CanServeSite
      * We can't natively serialise closures in PHP, so we use SuperClosure.
      * The analyser can be set here, and overridden for the class - in
      * case the closure is not supported by the default Analyser, see:
-     * https://github.com/jeremeamia/super_closure
+     * https://github.com/jeremeamia/super_closure.
      *
      * @return \SuperClosure\Serializer
      */

@@ -19,7 +19,7 @@ class OrchestraServer
     }
 
     /**
-     * Store some temp contents in a file for later use
+     * Store some temp contents in a file for later use.
      *
      * @param $content
      */
@@ -29,15 +29,15 @@ class OrchestraServer
     }
 
     /**
-    * Prepare the path of the temp file for a particular server
-    */
+     * Prepare the path of the temp file for a particular server.
+     */
     protected function temp()
     {
         return dirname(__DIR__).'/tmp/'.$this->host.'__'.$this->port;
     }
 
     /**
-     * Retrieve the contents of the relevant file
+     * Retrieve the contents of the relevant file.
      *
      * @param string $key
      */
@@ -49,8 +49,8 @@ class OrchestraServer
     }
 
     /**
-    * Start a php server in a separate process
-    */
+     * Start a php server in a separate process.
+     */
     public function start()
     {
         $this->stop();
@@ -58,8 +58,8 @@ class OrchestraServer
     }
 
     /**
-    * Stop the php server
-    */
+     * Stop the php server.
+     */
     public function stop()
     {
         if (! $this->pointer) {
@@ -71,7 +71,7 @@ class OrchestraServer
     /**
      * Start the server. Execute the command and open a
      * pointer to it. Tuck away the output as it's
-     * not relevant for us during our testing
+     * not relevant for us during our testing.
      */
     protected function startServer()
     {
@@ -84,25 +84,24 @@ class OrchestraServer
     }
 
     /**
-     * Prepare the command for starting the PHP server
+     * Prepare the command for starting the PHP server.
      */
     protected function prepareCommand()
     {
         return sprintf(
             '%s -S %s:%s %s',
-            ProcessUtils::escapeArgument((new PhpExecutableFinder)->find(false)),
+            ProcessUtils::escapeArgument((new PhpExecutableFinder())->find(false)),
             $this->host,
             $this->port,
-            ProcessUtils::escapeArgument(__DIR__ . '/server.php')
+            ProcessUtils::escapeArgument(__DIR__.'/server.php')
         );
     }
 
-
     /**
-    * Figure out the path to the laravel application
-    * For testbench purposes, this exists in the
-    * core package.
-    */
+     * Figure out the path to the laravel application
+     * For testbench purposes, this exists in the
+     * core package.
+     */
     public function laravelPublicPath($root = null)
     {
         $root = dirname(dirname($root ?: __DIR__));
