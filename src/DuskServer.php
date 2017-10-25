@@ -5,7 +5,7 @@ namespace Orchestra\Testbench;
 use Symfony\Component\Process\ProcessUtils;
 use Symfony\Component\Process\PhpExecutableFinder;
 
-class OrchestraServer
+class DuskServer
 {
     /**
      * Process pointer reference.

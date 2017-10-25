@@ -1,6 +1,6 @@
 <?php
 
-use Orchestra\Testbench\OrchestraServer;
+use Orchestra\Testbench\DuskServer;
 
 // Simple server script, which pulls in large part from the framework.
 // It has been adapted so we can reconstruct the application to the
@@ -30,7 +30,7 @@ require is_file(__DIR__.'/../vendor/autoload.php')
 // Identify the calling test class based on the content of the stash,
 // use it to retrieve the built application as specificed in all
 // the setup methods for the test class
-$orchestraServer = new OrchestraServer($_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT']);
+$orchestraServer = new DuskServer($_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT']);
 $originatingTestClass = $orchestraServer->getStash('class');
 
 $app = (new $originatingTestClass())->getFreshApplicationToServe($orchestraServer);

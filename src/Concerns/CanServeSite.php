@@ -4,14 +4,14 @@ namespace Orchestra\Testbench\Concerns;
 
 use Closure;
 use SuperClosure\Serializer;
-use Orchestra\Testbench\OrchestraServer;
+use Orchestra\Testbench\DuskServer;
 
 trait CanServeSite
 {
     /**
      * The server implementation.
      *
-     * @var \Orchestra\Testbench\OrchestraServer
+     * @var \Orchestra\Testbench\DuskServer
      */
     protected static $server;
 
@@ -23,7 +23,7 @@ trait CanServeSite
      */
     public static function serve($host = '127.0.0.1', $port = 8000)
     {
-        $server = new OrchestraServer($host, $port);
+        $server = new DuskServer($host, $port);
         $server->stash(['class' => static::class]);
         $server->start();
 
@@ -88,11 +88,11 @@ trait CanServeSite
      * replicate the Application state during a Dusk test when we start our
      * test server. See the main server file 'server.php'.
      *
-     * @param \Orchestra\Testbench\OrchestraServer $server
+     * @param \Orchestra\Testbench\DuskServer $server
      *
      * @return \Illuminate\Foundation\Application
      */
-    public function getFreshApplicationToServe(OrchestraServer $server)
+    public function getFreshApplicationToServe(DuskServer $server)
     {
         static::$server = $server;
 
