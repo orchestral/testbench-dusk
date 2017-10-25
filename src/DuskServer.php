@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Testbench;
+namespace Orchestra\Testbench\Dusk;
 
 use Symfony\Component\Process\ProcessUtils;
 use Symfony\Component\Process\PhpExecutableFinder;

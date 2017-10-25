@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchestra\Testbench\Concerns;
+namespace Orchestra\Testbench\Dusk\Concerns;
 
 use Closure;
 use SuperClosure\Serializer;
-use Orchestra\Testbench\DuskServer;
+use Orchestra\Testbench\Dusk\DuskServer;
 
 trait CanServeSite
 {

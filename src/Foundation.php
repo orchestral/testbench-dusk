@@ -16,7 +16,8 @@ use Facebook\WebDriver\Remote\DesiredCapabilities;
 
 abstract class Foundation extends TestCase
 {
-    use SupportsChrome, CanServeSite;
+    use Concerns\CanServeSite,
+        SupportsChrome;
 
     /**
      * All of the active browser instances.

@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchestra\Testbench\Tests;
+namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Orchestra\Testbench\DuskServer;
+use Orchestra\Testbench\Dusk\DuskServer;
 
 class DuskServerTest extends TestCase
 {

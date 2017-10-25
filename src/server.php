@@ -1,6 +1,6 @@
 <?php
 
-use Orchestra\Testbench\DuskServer;
+use Orchestra\Testbench\Dusk\DuskServer;
 
 // Simple server script, which pulls in large part from the framework.
 // It has been adapted so we can reconstruct the application to the

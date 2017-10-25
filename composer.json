@@ -17,12 +17,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Orchestra\\Testbench\\": "src/"
+            "Orchestra\\Testbench\\Dusk\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Orchestra\\Testbench\\Tests\\": "tests/"
+            "Orchestra\\Testbench\\Dusk\\Tests\\": "tests/"
         }
     },
     "require": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Testbench\Tests\Browser;
+namespace Orchestra\Testbench\Dusk\Tests\Browser;
 
 use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Dusk\TestCase;
