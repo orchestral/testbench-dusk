@@ -60,8 +60,6 @@ Browser tests can take a while to run, so you could also separate your tests in 
     </testsuites>
 ```
 
-You can optionally set the default testsuite with the option `defaultTestSuite="Unit"`
-
 ## Advanced Usage
 
 During a test run, this package sets up a separate process using PHP's built in web server, by default at 127.0.0.1:8000. We use the calling test class to build up the application to be used when serving the request.
