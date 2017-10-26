@@ -7,12 +7,14 @@
         {
             "name": "Keoghan Litchfield",
             "email": "keoghan@klever.co.uk",
-            "homepage": "https://klever.co.uk"
+            "homepage": "https://klever.co.uk",
+            "role": "Developer"
         },
         {
             "name": "Mior Muhammad Zaki",
             "email": "crynobone@gmail.com",
-            "homepage": "https://github.com/crynobone"
+            "homepage": "https://github.com/crynobone",
+            "role": "Organization Maintainer"
         }
     ],
     "autoload": {
