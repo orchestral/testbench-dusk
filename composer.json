@@ -28,7 +28,7 @@
         }
     },
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.1",
         "jeremeamia/superclosure": "^2.3",
         "laravel/dusk": "~2.0.1",
         "orchestra/testbench": "~3.6.0"
