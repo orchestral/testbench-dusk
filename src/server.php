@@ -10,13 +10,6 @@ $uri = urldecode(
     parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
 );
 
-// This file allows us to emulate Apache's "mod_rewrite" functionality from the
-// built-in PHP web server. This provides a convenient way to test a Laravel
-// application without having installed a "real" web server software here.
-if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
-    return false;
-}
-
 // =========================================================================================
 // Laravel routes through public/index.php but we need to build the application differently.
 // =========================================================================================
@@ -34,6 +27,13 @@ $orchestraServer = new DuskServer($_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT
 $originatingTestClass = $orchestraServer->getStash('class');
 
 $app = (new $originatingTestClass())->getFreshApplicationToServe($orchestraServer);
+
+// This file allows us to emulate Apache's "mod_rewrite" functionality from the
+// built-in PHP web server. This provides a convenient way to test a Laravel
+// application without having installed a "real" web server software here.
+if ($uri !== '/' && file_exists($app->basePath() . '/public'.$uri)) {
+    return false;
+}
 
 // Process the request as per a normal Laravel request
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
