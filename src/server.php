@@ -6,6 +6,10 @@ use Orchestra\Testbench\Dusk\DuskServer;
 // It has been adapted so we can reconstruct the application to the
 // required state on each request (based on the calling Test Class)
 
+// This file allows us to emulate Apache's "mod_rewrite" functionality from the
+// built-in PHP web server. This provides a convenient way to test a Laravel
+// application without having installed a "real" web server software here.
+
 $uri = urldecode(
     parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
 );
@@ -28,9 +32,7 @@ $originatingTestClass = $orchestraServer->getStash('class');
 
 $app = (new $originatingTestClass())->getFreshApplicationToServe($orchestraServer);
 
-// This file allows us to emulate Apache's "mod_rewrite" functionality from the
-// built-in PHP web server. This provides a convenient way to test a Laravel
-// application without having installed a "real" web server software here.
+// Emulation of mod_rewrite, but we use the applications set base path
 if ($uri !== '/' && file_exists($app->basePath() . '/public'.$uri)) {
     return false;
 }
