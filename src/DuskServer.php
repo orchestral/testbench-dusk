@@ -54,7 +54,7 @@ class DuskServer
      *
      * @return void
      */
-    public function stash($content)
+    public function stash($content): void
     {
         file_put_contents($this->temp(), json_encode($content));
     }
@@ -64,7 +64,7 @@ class DuskServer
      *
      * @return string
      */
-    protected function temp()
+    protected function temp(): string
     {
         return dirname(__DIR__).'/tmp/'.$this->host.'__'.$this->port;
     }
@@ -76,7 +76,7 @@ class DuskServer
      *
      * @return mixed
      */
-    public function getStash($key = null)
+    public function getStash(?string $key = null)
     {
         $content = json_decode(file_get_contents($this->temp()), true);
 
@@ -88,7 +88,7 @@ class DuskServer
      *
      * @return void
      */
-    public function start()
+    public function start(): void
     {
         $this->stop();
         $this->startServer();
@@ -99,7 +99,7 @@ class DuskServer
      *
      * @return void
      */
-    public function stop()
+    public function stop(): void
     {
         if (! $this->pointer) {
             return;
@@ -115,7 +115,7 @@ class DuskServer
      *
      * @return void
      */
-    protected function startServer()
+    protected function startServer(): void
     {
         $this->pointer = proc_open(
             $this->prepareCommand(),
@@ -130,7 +130,7 @@ class DuskServer
      *
      * @return string
      */
-    protected function prepareCommand()
+    protected function prepareCommand(): string
     {
         return sprintf(
             '%s -S %s:%s %s',
@@ -150,7 +150,7 @@ class DuskServer
      *
      * @return string
      */
-    public function laravelPublicPath($root = null)
+    public function laravelPublicPath(?string $root = null): string
     {
         $root = dirname(dirname($root ?: __DIR__));
 
