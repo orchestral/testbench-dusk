@@ -134,10 +134,10 @@ class DuskServer
     {
         return sprintf(
             '%s -S %s:%s %s',
-            ProcessUtils::escapeArgument((new PhpExecutableFinder())->find(false)),
+            $this->escapeArgument((new PhpExecutableFinder())->find(false)),
             $this->host,
             $this->port,
-            ProcessUtils::escapeArgument(__DIR__.'/server.php')
+            $this->escapeArgument(__DIR__.'/server.php')
         );
     }
 
@@ -160,5 +160,35 @@ class DuskServer
         }
 
         return $root.'/testbench-core/laravel/public';
+    }
+
+    /**
+     * Escapes a string to be used as a shell argument.
+     *
+     * @param  string  $argument
+     *
+     * @return string
+     */
+    private function escapeArgument(string $argument): string
+    {
+        if ('\\' !== DIRECTORY_SEPARATOR) {
+            return "'".str_replace("'", "'\\''", $argument)."'";
+        }
+
+        if ('' === $argument = (string) $argument) {
+            return '""';
+        }
+
+        if (false !== strpos($argument, "\0")) {
+            $argument = str_replace("\0", '?', $argument);
+        }
+
+        if (!preg_match('/[\/()%!^"<>&|\s]/', $argument)) {
+            return $argument;
+        }
+
+        $argument = preg_replace('/(\\\\+)$/', '$1$1', $argument);
+
+        return '"'.str_replace(array('"', '^', '%', '!', "\n"), array('""', '"^^"', '"^%"', '"^!"', '!LF!'), $argument).'"';
     }
 }
