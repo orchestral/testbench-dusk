@@ -6,7 +6,7 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 
-abstract class TestCase extends Foundation
+abstract class TestCase extends Testing
 {
     /**
      * Prepare for Dusk test execution.
@@ -25,7 +25,7 @@ abstract class TestCase extends Foundation
      *
      * @return \Facebook\WebDriver\Remote\RemoteWebDriver
      */
-    protected function driver()
+    protected function driver(): RemoteWebDriver
     {
         $options = (new ChromeOptions())->addArguments([
             '--headless',

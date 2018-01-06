@@ -13,7 +13,7 @@ use Laravel\Dusk\Chrome\SupportsChrome;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 
-abstract class Foundation extends TestCase
+abstract class Testing extends TestCase
 {
     use Concerns\CanServeSite,
         SupportsChrome;
@@ -134,7 +134,7 @@ abstract class Foundation extends TestCase
      *
      * @return \Laravel\Dusk\Browser
      */
-    protected function newBrowser($driver)
+    protected function newBrowser($driver): Browser
     {
         return new Browser($driver);
     }
@@ -146,7 +146,7 @@ abstract class Foundation extends TestCase
      *
      * @return int
      */
-    protected function browsersNeededFor(Closure $callback)
+    protected function browsersNeededFor(Closure $callback): int
     {
         return (new ReflectionFunction($callback))->getNumberOfParameters();
     }
@@ -158,7 +158,7 @@ abstract class Foundation extends TestCase
      *
      * @return void
      */
-    protected function captureFailuresFor($browsers)
+    protected function captureFailuresFor($browsers): void
     {
         $browsers->each(function ($browser, $key) {
             $browser->screenshot('failure-'.$this->getName().'-'.$key);
@@ -172,7 +172,7 @@ abstract class Foundation extends TestCase
      *
      * @return void
      */
-    protected function storeConsoleLogsFor($browsers)
+    protected function storeConsoleLogsFor($browsers): void
     {
         $browsers->each(function ($browser, $key) {
             $browser->storeConsoleLog($this->getName().'-'.$key);
@@ -198,7 +198,7 @@ abstract class Foundation extends TestCase
      *
      * @return void
      */
-    public static function closeAll()
+    public static function closeAll(): void
     {
         Collection::make(static::$browsers)->each->quit();
 
@@ -222,7 +222,7 @@ abstract class Foundation extends TestCase
      *
      * @return \Facebook\WebDriver\Remote\RemoteWebDriver
      */
-    protected function driver()
+    protected function driver(): RemoteWebDriver
     {
         return RemoteWebDriver::create(
             'http://localhost:9515', DesiredCapabilities::chrome()
@@ -234,7 +234,7 @@ abstract class Foundation extends TestCase
      *
      * @var string
      */
-    protected function baseUrl()
+    protected function baseUrl(): string
     {
         return config('app.url');
     }
@@ -253,8 +253,10 @@ abstract class Foundation extends TestCase
 
     /**
      * Ensure the directories we need for dusk exist, and set them for the Browser to use.
+     *
+     * @return void
      */
-    protected function prepareDirectories()
+    protected function prepareDirectories(): void
     {
         $tests = $this->resolveBrowserTestsPath();
 
@@ -270,8 +272,10 @@ abstract class Foundation extends TestCase
 
     /**
      * Figure out where the test directory is, if we're an included package, or the root one.
+     *
+     * @return string
      */
-    protected function resolveBrowserTestsPath()
+    protected function resolveBrowserTestsPath(): string
     {
         $root = dirname(dirname(dirname(__DIR__)));
 
