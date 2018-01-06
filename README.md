@@ -24,6 +24,7 @@ The package was developed by [Konsulting Ltd](https://github.com/konsulting) and
  5.4.x    | 3.4.x
  5.5.x    | 3.5.x
  5.6.x.   | 3.6.x@dev
+ 5.7.x.   | 3.7.x@dev
 
 ## Installation
 
