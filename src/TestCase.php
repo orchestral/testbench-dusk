@@ -40,4 +40,20 @@ abstract class TestCase extends Testing
             )
         );
     }
+
+    /**
+     * Begin a server for the tests.
+     */
+    public static function setUpBeforeClass()
+    {
+        static::serve();
+    }
+
+    /**
+     * Kill our server.
+     */
+    public static function tearDownAfterClass()
+    {
+        static::stopServing();
+    }
 }
