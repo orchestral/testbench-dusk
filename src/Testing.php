@@ -273,17 +273,19 @@ abstract class Testing extends TestCase
     /**
      * Figure out where the test directory is, if we're an included package, or the root one.
      *
+     * @param string $path
+     *
      * @return string
      */
-    protected function resolveBrowserTestsPath(): string
+    protected function resolveBrowserTestsPath($path = __DIR__)
     {
-        $root = dirname(dirname(dirname(__DIR__)));
+        $path = dirname($path);
 
-        // If we're in 'vendor', we need to drop back two levels to project root
-        if (basename(dirname($root)) == 'vendor') {
-            $root = dirname(dirname($root));
+        // If we're in 'vendor', we need to drop back to project root
+        if (basename(dirname(dirname($path))) == 'vendor') {
+            $path = dirname(dirname(dirname($path)));
         }
 
-        return $root.'/tests/Browser';
+        return $path.'/tests/Browser';
     }
 }
