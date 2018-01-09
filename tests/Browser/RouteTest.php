@@ -25,16 +25,6 @@ class RouteTest extends TestCase
         }]);
     }
 
-    public static function setUpBeforeClass()
-    {
-        static::serve();
-    }
-
-    public static function tearDownAfterClass()
-    {
-        static::stopServing();
-    }
-
     /** @test */
     public function can_use_dusk()
     {

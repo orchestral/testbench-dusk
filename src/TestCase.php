@@ -28,6 +28,7 @@ abstract class TestCase extends Foundation
     protected function driver()
     {
         $options = (new ChromeOptions())->addArguments([
+            '--headless',
             '--disable-gpu',
         ]);
 
@@ -38,5 +39,21 @@ abstract class TestCase extends Foundation
                 $options
             )
         );
+    }
+
+    /**
+     * Begin a server for the tests.
+     */
+    public static function setUpBeforeClass()
+    {
+        static::serve();
+    }
+
+    /**
+     * Kill our server.
+     */
+    public static function tearDownAfterClass()
+    {
+        static::stopServing();
     }
 }
