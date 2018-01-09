@@ -17,7 +17,7 @@ abstract class TestCase extends Testing
      */
     public static function prepare()
     {
-        static::startChromeDriver();
+        static::startChromeDriver($port = 9515);
     }
 
     /**
