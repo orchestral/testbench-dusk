@@ -2,6 +2,7 @@
 
 namespace Orchestra\Testbench\Dusk;
 
+use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 use Symfony\Component\Process\ProcessUtils;
 use Symfony\Component\Process\PhpExecutableFinder;
 
@@ -38,8 +39,8 @@ class DuskServer
     /**
      * Construct a new server.
      *
-     * @param string  $host
-     * @param int  $port
+     * @param string $host
+     * @param int    $port
      */
     public function __construct($host = '127.0.0.1', $port = 8000)
     {
@@ -50,7 +51,7 @@ class DuskServer
     /**
      * Store some temp contents in a file for later use.
      *
-     * @param  mixed  $content
+     * @param  mixed $content
      *
      * @return void
      */
@@ -66,13 +67,13 @@ class DuskServer
      */
     protected function temp()
     {
-        return dirname(__DIR__).'/tmp/'.$this->host.'__'.$this->port;
+        return dirname(__DIR__) . '/tmp/' . $this->host . '__' . $this->port;
     }
 
     /**
      * Retrieve the contents of the relevant file.
      *
-     * @param  string|null  $key
+     * @param  string|null $key
      *
      * @return mixed
      */
@@ -92,6 +93,13 @@ class DuskServer
     {
         $this->stop();
         $this->startServer();
+
+        // We register the below, so if php is exited early, the child
+        // process for the server is closed down, rather than left
+        // hanging around for the user to close themselves.
+        register_shutdown_function(function () {
+            $this->stop();
+        });
     }
 
     /**
@@ -101,7 +109,7 @@ class DuskServer
      */
     public function stop()
     {
-        if (! $this->pointer) {
+        if (!$this->pointer) {
             return;
         }
 
@@ -117,12 +125,29 @@ class DuskServer
      */
     protected function startServer()
     {
+        $this->guardServerStarting();
+
         $this->pointer = proc_open(
             $this->prepareCommand(),
             [1 => ['pipe', 'w']],
             $this->pipes,
             $this->laravelPublicPath()
         );
+    }
+
+    /**
+     * Verify that there isn't an existing server on the host and port
+     * that we want to use.  Sometimes a server can be left oped when
+     * PHP drops out, or the user may have another service running.
+     *
+     * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
+     */
+    protected function guardServerStarting()
+    {
+        if ($socket = @fsockopen($this->host, $this->port, $errorNumber = 0, $errorString = '', $timeout = 1)) {
+            fclose($socket);
+            throw new UnableToStartServer($this->host.':'.$this->port);
+        }
     }
 
     /**
@@ -137,7 +162,7 @@ class DuskServer
             ProcessUtils::escapeArgument((new PhpExecutableFinder())->find(false)),
             $this->host,
             $this->port,
-            ProcessUtils::escapeArgument(__DIR__.'/server.php')
+            ProcessUtils::escapeArgument(__DIR__ . '/server.php')
         );
     }
 
@@ -146,7 +171,7 @@ class DuskServer
      * For testbench purposes, this exists in the
      * core package.
      *
-     * @param  string|null  $root
+     * @param  string|null $root
      *
      * @return string
      */
@@ -155,10 +180,10 @@ class DuskServer
         $root = dirname(dirname($root ?: __DIR__));
 
         // Check if we're working on this package. If we are, shimmy to the vendor dir.
-        if (! basename(dirname($root)) == 'vendor') {
+        if (!basename(dirname($root)) == 'vendor') {
             $root .= '/testbench-dusk/vendor/orchestra';
         }
 
-        return $root.'/testbench-core/laravel/public';
+        return $root . '/testbench-core/laravel/public';
     }
 }
