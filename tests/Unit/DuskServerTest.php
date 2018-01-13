@@ -71,6 +71,7 @@ class DuskServerTest extends TestCase
             default:
                 // @parent
                 pcntl_waitpid($pid, $status);
+                sleep(2);
                 try {
                     (new DuskServer)->start();
                     $this->assertTrue(true, 'We did not end up with an orphan server');
