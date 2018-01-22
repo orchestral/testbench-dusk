@@ -92,7 +92,7 @@ class DuskServerTest extends TestCase
             sleep(1);
             $i++;
 
-            if($i >= 10) {
+            if($i >= 30) {
                 throw new \Exception('Waited too long for server to start.');
             }
         }
@@ -106,7 +106,7 @@ class DuskServerTest extends TestCase
             sleep(1);
             $i++;
 
-            if ($i >= 10) {
+            if ($i >= 30) {
                 throw new \Exception('Waited too long for server to stop.');
             }
         }
