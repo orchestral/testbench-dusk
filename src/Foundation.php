@@ -11,7 +11,7 @@ use Facebook\WebDriver\Remote\DesiredCapabilities;
 abstract class Foundation extends TestCase
 {
     use Concerns\CanServeSite,
-        Concerns\Dusk;
+        Concerns\ProvidesDusk;
 
     /**
      * Register the base URL with Dusk.
