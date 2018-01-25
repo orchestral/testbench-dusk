@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
 use Laravel\Dusk\Chrome\SupportsChrome;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 
-trait ProvidesDusk
+trait ProvidesBrowser
 {
     use SupportsChrome;
 
