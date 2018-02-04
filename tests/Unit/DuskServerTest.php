@@ -40,7 +40,7 @@ class DuskServerTest extends TestCase
 
         } catch (UnableToStartServer $e) {
             $a->stop();
-            $b->stop();
+
             $this->waitForServerToStop();
             $this->assertTrue(true, 'New server was not created with the same host and port');
 
@@ -64,7 +64,7 @@ class DuskServerTest extends TestCase
                 break;
             case 0:
                 // @child
-                // We have everything from the scrip so far available
+                // We have everything from the script so far available
                 // So create a server and exit (to simluate a dd() or similar in a test)
                 // Once complete, the parent can check for the orpahn server.
                 (new DuskServer)->start();

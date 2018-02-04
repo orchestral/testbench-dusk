@@ -11,7 +11,7 @@ class DuskServer
     /**
      * Process pointer reference.
      *
-     * @var object
+     * @var resource
      */
     protected $pointer;
 
@@ -88,6 +88,7 @@ class DuskServer
      * Start a php server in a separate process.
      *
      * @return void
+     * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      */
     public function start()
     {
@@ -113,7 +114,12 @@ class DuskServer
             return;
         }
 
+        $pointer = $this->pointer;
         proc_terminate($this->pointer);
+
+        while (proc_get_status($pointer)['running'] ?? false == true) {
+            // wait
+        }
     }
 
     /**
@@ -122,6 +128,7 @@ class DuskServer
      * not relevant for us during our testing.
      *
      * @return void
+     * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      */
     protected function startServer()
     {
@@ -129,7 +136,10 @@ class DuskServer
 
         $this->pointer = proc_open(
             $this->prepareCommand(),
-            [1 => ['pipe', 'w']],
+            [
+                1 => ['pipe', 'w'],
+                2 => ['pipe', 'w'],
+            ],
             $this->pipes,
             $this->laravelPublicPath()
         );
