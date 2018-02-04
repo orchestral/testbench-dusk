@@ -3,6 +3,7 @@
 namespace Orchestra\Testbench\Dusk;
 
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
+use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessUtils;
 use Symfony\Component\Process\PhpExecutableFinder;
 
@@ -11,9 +12,9 @@ class DuskServer
     /**
      * Process pointer reference.
      *
-     * @var resource
+     * @var Process
      */
-    protected $pointer;
+    protected $process;
 
     /**
      * Array of file pointers.
@@ -110,16 +111,11 @@ class DuskServer
      */
     public function stop()
     {
-        if (!$this->pointer) {
+        if (!$this->process) {
             return;
         }
 
-        $pointer = $this->pointer;
-        proc_terminate($this->pointer);
-
-        while (proc_get_status($pointer)['running'] ?? false == true) {
-            // wait
-        }
+        $this->process->stop();
     }
 
     /**
@@ -134,15 +130,9 @@ class DuskServer
     {
         $this->guardServerStarting();
 
-        $this->pointer = proc_open(
-            $this->prepareCommand(),
-            [
-                1 => ['pipe', 'w'],
-                2 => ['pipe', 'w'],
-            ],
-            $this->pipes,
-            $this->laravelPublicPath()
-        );
+        $this->process = new Process($this->prepareCommand());
+        $this->process->setWorkingDirectory($this->laravelPublicPath());
+        $this->process->start();
     }
 
     /**
