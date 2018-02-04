@@ -158,7 +158,7 @@ class DuskServer
     protected function prepareCommand()
     {
         return sprintf(
-            '%s -S %s:%s %s',
+            'exec %s -S %s:%s %s',
             ProcessUtils::escapeArgument((new PhpExecutableFinder())->find(false)),
             $this->host,
             $this->port,
