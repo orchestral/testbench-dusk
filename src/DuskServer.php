@@ -118,7 +118,7 @@ class DuskServer
     {
         $this->pointer = proc_open(
             $this->prepareCommand(),
-            [1 => ['pipe', 'w']],
+            [1 => ['pipe', 'w'], 2 => ['pipe', 'w']],
             $this->pipes,
             $this->laravelPublicPath()
         );
