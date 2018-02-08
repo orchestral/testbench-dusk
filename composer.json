@@ -30,7 +30,7 @@
     "require": {
         "php": ">=7.0",
         "jeremeamia/superclosure": "^2.3",
-        "laravel/dusk": "~2.0.1",
+        "laravel/dusk": "~2.0.11",
         "orchestra/testbench": "~3.5.2"
     },
     "require-dev": {
