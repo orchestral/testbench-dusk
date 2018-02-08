@@ -26,15 +26,13 @@ abstract class Testing extends TestCase
     }
 
     /**
-     * Register an "after class" tear down callback.
+     * Get base path.
      *
-     * @param  \Closure $callback
-     *
-     * @return void
+     * @return string
      */
-    public static function afterClass(Closure $callback)
+    protected function getBasePath()
     {
-        static::$afterClassCallbacks[] = $callback;
+        return __DIR__.'/../laravel';
     }
 
     /**

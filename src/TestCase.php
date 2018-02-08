@@ -55,14 +55,4 @@ abstract class TestCase extends Testing
     {
         static::stopServing();
     }
-
-    /**
-     * Get base path.
-     *
-     * @return string
-     */
-    protected function getBasePath()
-    {
-        return __DIR__.'/../laravel';
-    }
 }

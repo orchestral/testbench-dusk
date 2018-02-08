@@ -12,12 +12,12 @@ class TestingTest extends TestCase
     {
         $this->assertEquals(
             '/home/person/code/testbench-dusk/tests/Browser',
-            (new OpenTesting)->resolveBrowserTestsPath('/home/person/code/testbench-dusk/src')
+            (new OpenTesting())->resolveBrowserTestsPath('/home/person/code/testbench-dusk/src')
         );
 
         $this->assertEquals(
             '/home/person/code/project/tests/Browser',
-            (new OpenTesting)->resolveBrowserTestsPath('/home/person/code/project/vendor/orchestra/testbench-dusk/src')
+            (new OpenTesting())->resolveBrowserTestsPath('/home/person/code/project/vendor/orchestra/testbench-dusk/src')
         );
     }
 }
