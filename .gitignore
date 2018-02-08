@@ -1,6 +1,9 @@
 # Composer
 composer.lock
 vendor/*
-tests/Browser/console
-tests/Browser/screenshots
+
+src/tests/Browser/console/*
+src/tests/Browser/screenshots/*
+tests/Browser/console/*
+tests/Browser/screenshots/*
 tmp/*

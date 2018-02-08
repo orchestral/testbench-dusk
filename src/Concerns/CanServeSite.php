@@ -18,10 +18,12 @@ trait CanServeSite
     /**
      * Begin serving on a given host and port.
      *
-     * @param string $host
-     * @param int    $port
+     * @param  string  $host
+     * @param  int  $port
+     *
+     * @return void
      */
-    public static function serve($host = '127.0.0.1', $port = 8000)
+    public static function serve($host = '127.0.0.1', $port = 8000): void
     {
         $server = new DuskServer($host, $port);
         $server->stash(['class' => static::class]);
@@ -33,22 +35,23 @@ trait CanServeSite
     /**
      * Stop serving on a given host and port. As a safety net, we will
      * shut down all servers if we.
+     *
+     * @return void
      */
-    public static function stopServing()
+    public static function stopServing(): void
     {
-        if (! isset(static::$server)) {
-            return;
+        if (isset(static::$server)) {
+            static::$server->stop();
         }
-
-        static::$server->stop();
     }
 
     /**
      * Make tweaks to the application, both inside the test and on the test server.
      *
      * @param \Closure $closure
+     * @return void
      */
-    public function tweakApplication(Closure $closure)
+    public function tweakApplication(Closure $closure): void
     {
         $closure($this->app);
 
@@ -66,7 +69,7 @@ trait CanServeSite
      *
      * @return \SuperClosure\Serializer
      */
-    public function getClosureSerializer()
+    public function getClosureSerializer(): Serializer
     {
         return new Serializer();
     }
@@ -77,8 +80,10 @@ trait CanServeSite
      * $app will be rebuilt for each test.
      *
      * It could be added to the tearDown method if used a lot.
+     *
+     * @return void
      */
-    public function removeApplicationTweaks()
+    public function removeApplicationTweaks(): void
     {
         static::$server->stash(['class' => static::class]);
     }

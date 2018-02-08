@@ -55,7 +55,7 @@ class DuskServer
      *
      * @return void
      */
-    public function stash($content)
+    public function stash($content): void
     {
         file_put_contents($this->temp(), json_encode($content));
     }
@@ -65,7 +65,7 @@ class DuskServer
      *
      * @return string
      */
-    protected function temp()
+    protected function temp(): string
     {
         return dirname(__DIR__) . '/tmp/' . $this->host . '__' . $this->port;
     }
@@ -77,7 +77,7 @@ class DuskServer
      *
      * @return mixed
      */
-    public function getStash($key = null)
+    public function getStash(?string $key = null)
     {
         $content = json_decode(file_get_contents($this->temp()), true);
 
@@ -90,7 +90,7 @@ class DuskServer
      * @return void
      * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      */
-    public function start()
+    public function start(): void
     {
         $this->stop();
         $this->startServer();
@@ -108,7 +108,7 @@ class DuskServer
      *
      * @return void
      */
-    public function stop()
+    public function stop(): void
     {
         if (!$this->process) {
             return;
@@ -125,7 +125,7 @@ class DuskServer
      * @return void
      * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      */
-    protected function startServer()
+    protected function startServer(): void
     {
         $this->guardServerStarting();
 
@@ -154,7 +154,7 @@ class DuskServer
      *
      * @return string
      */
-    protected function prepareCommand()
+    protected function prepareCommand(): string
     {
         return sprintf(
             'exec %s -S %s:%s %s',
@@ -174,15 +174,8 @@ class DuskServer
      *
      * @return string
      */
-    public function laravelPublicPath($root = null)
+    public function laravelPublicPath(?string $root = null): string
     {
-        $root = dirname(dirname($root ?: __DIR__));
-
-        // Check if we're working on this package. If we are, shimmy to the vendor dir.
-        if (! basename(dirname($root)) == 'vendor') {
-            $root .= '/testbench-dusk/vendor/orchestra';
-        }
-
-        return $root . '/testbench-core/laravel/public';
+        return $root ?: realpath(__DIR__.'/../laravel/public');
     }
 }
