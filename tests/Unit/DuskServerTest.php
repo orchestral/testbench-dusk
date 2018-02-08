@@ -11,8 +11,8 @@ class DuskServerTest extends TestCase
     public function it_provides_the_laravel_public_directory_when_it_is_a_root_package()
     {
         $this->assertEquals(
-            '/dir/testbench-dusk/vendor/orchestra/testbench-core/laravel/public',
-            (new DuskServer())->laravelPublicPath('/dir/testbench-dusk/src')
+            realpath(__DIR__.'/../../laravel/public'),
+            (new DuskServer())->laravelPublicPath()
         );
     }
 
@@ -20,8 +20,8 @@ class DuskServerTest extends TestCase
     public function it_provides_the_laravel_public_directory_when_it_is_a_required_package()
     {
         $this->assertEquals(
-            '/dir/project/vendor/orchestra/testbench-core/laravel/public',
-            (new DuskServer())->laravelPublicPath('/dir/project/vendor/orchestra/testbench-dusk/src')
+            '/dir/project/laravel/public',
+            (new DuskServer())->laravelPublicPath('/dir/project/laravel/public')
         );
     }
 }
