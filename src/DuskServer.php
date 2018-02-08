@@ -4,7 +4,6 @@ namespace Orchestra\Testbench\Dusk;
 
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 use Symfony\Component\Process\Process;
-use Symfony\Component\Process\ProcessUtils;
 use Symfony\Component\Process\PhpExecutableFinder;
 
 class DuskServer
@@ -159,10 +158,10 @@ class DuskServer
     {
         return sprintf(
             'exec %s -S %s:%s %s',
-            ProcessUtils::escapeArgument((new PhpExecutableFinder())->find(false)),
+            (new PhpExecutableFinder())->find(false),
             $this->host,
             $this->port,
-            ProcessUtils::escapeArgument(__DIR__ . '/server.php')
+            __DIR__ . '/server.php'
         );
     }
 
@@ -180,7 +179,7 @@ class DuskServer
         $root = dirname(dirname($root ?: __DIR__));
 
         // Check if we're working on this package. If we are, shimmy to the vendor dir.
-        if (!basename(dirname($root)) == 'vendor') {
+        if (! basename(dirname($root)) == 'vendor') {
             $root .= '/testbench-dusk/vendor/orchestra';
         }
 
