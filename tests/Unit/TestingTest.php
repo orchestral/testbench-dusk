@@ -2,8 +2,8 @@
 
 namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
-use Orchestra\Testbench\Dusk\Testing;
 use PHPUnit\Framework\TestCase;
+use Orchestra\Testbench\Dusk\Testing;
 
 class TestingTest extends TestCase
 {

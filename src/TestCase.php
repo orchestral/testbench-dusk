@@ -28,7 +28,6 @@ abstract class TestCase extends Testing
     protected function driver(): RemoteWebDriver
     {
         $options = (new ChromeOptions())->addArguments([
-            '--headless',
             '--disable-gpu',
         ]);
 
@@ -55,5 +54,15 @@ abstract class TestCase extends Testing
     public static function tearDownAfterClass()
     {
         static::stopServing();
+    }
+
+    /**
+     * Get base path.
+     *
+     * @return string
+     */
+    protected function getBasePath()
+    {
+        return __DIR__.'/../laravel';
     }
 }
