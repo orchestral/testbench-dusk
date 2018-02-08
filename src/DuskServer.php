@@ -152,13 +152,6 @@ class DuskServer
      */
     public function laravelPublicPath($root = null)
     {
-        $root = dirname(dirname($root ?: __DIR__));
-
-        // Check if we're working on this package. If we are, shimmy to the vendor dir.
-        if (! basename(dirname($root)) == 'vendor') {
-            $root .= '/testbench-dusk/vendor/orchestra';
-        }
-
-        return $root.'/testbench-core/laravel/public';
+        return $root ?: realpath(__DIR__.'/../laravel/public');
     }
 }

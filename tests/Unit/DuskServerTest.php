@@ -8,20 +8,20 @@ use Orchestra\Testbench\Dusk\DuskServer;
 class DuskServerTest extends TestCase
 {
     /** @test */
-    public function it_provides_the_laravel_public_directory_when_it_is_a_root_package()
+    public function it_provides_the_laravel_public_directory()
     {
         $this->assertEquals(
-            '/dir/testbench-dusk/vendor/orchestra/testbench-core/laravel/public',
-            (new DuskServer())->laravelPublicPath('/dir/testbench-dusk/src')
+            realpath(__DIR__.'/../../laravel/public'),
+            (new DuskServer())->laravelPublicPath()
         );
     }
 
     /** @test */
-    public function it_provides_the_laravel_public_directory_when_it_is_a_required_package()
+    public function it_provides_the_laravel_public_directory_from_custom_location()
     {
         $this->assertEquals(
-            '/dir/project/vendor/orchestra/testbench-core/laravel/public',
-            (new DuskServer())->laravelPublicPath('/dir/project/vendor/orchestra/testbench-dusk/src')
+            '/dir/project/laravel/public',
+            (new DuskServer())->laravelPublicPath('/dir/project/laravel/public')
         );
     }
 }
