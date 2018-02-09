@@ -14,11 +14,18 @@ abstract class TestCase extends Foundation
         Concerns\ProvidesBrowser;
 
     /**
-     * The base URL to use while testing the application.
+     * The base host URL to use while testing the application.
      *
      * @var string
      */
-    protected $baseUrl = 'http://127.0.0.1:8000';
+    protected static $baseHost = '127.0.0.1';
+
+    /**
+     * The base port to use while testing the application.
+     *
+     * @var int
+     */
+    protected static $basePort = 8000;
 
     /**
      * Register the base URL with Dusk.
@@ -72,7 +79,7 @@ abstract class TestCase extends Foundation
      */
     protected function baseUrl()
     {
-        return $this->baseUrl;
+        return sprintf('http://%s:%d', static::$baseHost, static::$basePort);
     }
 
     /**
@@ -104,7 +111,7 @@ abstract class TestCase extends Foundation
      */
     public static function setUpBeforeClass()
     {
-        static::serve();
+        static::serve(static::$baseHost, static::$basePort);
     }
 
     /**
