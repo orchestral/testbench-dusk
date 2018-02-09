@@ -2,7 +2,8 @@
 
 namespace Orchestra\Testbench\Dusk;
 
-use Illuminate\Support\ProcessUtils;
+use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
+use Symfony\Component\Process\Process;
 use Symfony\Component\Process\PhpExecutableFinder;
 
 class DuskServer
@@ -10,9 +11,9 @@ class DuskServer
     /**
      * Process pointer reference.
      *
-     * @var object
+     * @var Process
      */
-    protected $pointer;
+    protected $process;
 
     /**
      * Array of file pointers.
@@ -38,8 +39,8 @@ class DuskServer
     /**
      * Construct a new server.
      *
-     * @param string  $host
-     * @param int  $port
+     * @param string $host
+     * @param int    $port
      */
     public function __construct($host = '127.0.0.1', $port = 8000)
     {
@@ -50,7 +51,7 @@ class DuskServer
     /**
      * Store some temp contents in a file for later use.
      *
-     * @param  mixed  $content
+     * @param  mixed $content
      *
      * @return void
      */
@@ -66,13 +67,13 @@ class DuskServer
      */
     protected function temp(): string
     {
-        return dirname(__DIR__).'/tmp/'.$this->host.'__'.$this->port;
+        return dirname(__DIR__) . '/tmp/' . $this->host . '__' . $this->port;
     }
 
     /**
      * Retrieve the contents of the relevant file.
      *
-     * @param  string|null  $key
+     * @param  string|null $key
      *
      * @return mixed
      */
@@ -87,11 +88,19 @@ class DuskServer
      * Start a php server in a separate process.
      *
      * @return void
+     * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      */
     public function start(): void
     {
         $this->stop();
         $this->startServer();
+
+        // We register the below, so if php is exited early, the child
+        // process for the server is closed down, rather than left
+        // hanging around for the user to close themselves.
+        register_shutdown_function(function () {
+            $this->stop();
+        });
     }
 
     /**
@@ -101,11 +110,11 @@ class DuskServer
      */
     public function stop(): void
     {
-        if (! $this->pointer) {
+        if (!$this->process) {
             return;
         }
 
-        proc_terminate($this->pointer);
+        $this->process->stop();
     }
 
     /**
@@ -114,15 +123,30 @@ class DuskServer
      * not relevant for us during our testing.
      *
      * @return void
+     * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      */
     protected function startServer(): void
     {
-        $this->pointer = proc_open(
-            $this->prepareCommand(),
-            [1 => ['pipe', 'w'], 2 => ['pipe', 'w']],
-            $this->pipes,
-            $this->laravelPublicPath()
-        );
+        $this->guardServerStarting();
+
+        $this->process = new Process($this->prepareCommand());
+        $this->process->setWorkingDirectory($this->laravelPublicPath());
+        $this->process->start();
+    }
+
+    /**
+     * Verify that there isn't an existing server on the host and port
+     * that we want to use.  Sometimes a server can be left oped when
+     * PHP drops out, or the user may have another service running.
+     *
+     * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
+     */
+    protected function guardServerStarting()
+    {
+        if ($socket = @fsockopen($this->host, $this->port, $errorNumber = 0, $errorString = '', $timeout = 1)) {
+            fclose($socket);
+            throw new UnableToStartServer($this->host.':'.$this->port);
+        }
     }
 
     /**
@@ -133,11 +157,11 @@ class DuskServer
     protected function prepareCommand(): string
     {
         return sprintf(
-            '%s -S %s:%s %s',
-            ProcessUtils::escapeArgument((new PhpExecutableFinder())->find(false)),
+            'exec %s -S %s:%s %s',
+            (new PhpExecutableFinder())->find(false),
             $this->host,
             $this->port,
-            ProcessUtils::escapeArgument(__DIR__.'/server.php')
+            __DIR__ . '/server.php'
         );
     }
 
@@ -146,7 +170,7 @@ class DuskServer
      * For testbench purposes, this exists in the
      * core package.
      *
-     * @param  string|null  $root
+     * @param  string|null $root
      *
      * @return string
      */
