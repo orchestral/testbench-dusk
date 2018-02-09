@@ -28,7 +28,6 @@ abstract class TestCase extends Foundation
     protected function driver()
     {
         $options = (new ChromeOptions())->addArguments([
-            '--headless',
             '--disable-gpu',
         ]);
 
