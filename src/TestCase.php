@@ -13,6 +13,11 @@ abstract class TestCase extends Foundation
     use Concerns\CanServeSite,
         Concerns\ProvidesBrowser;
 
+    /**
+     * The base URL to use while testing the application.
+     *
+     * @var string
+     */
     protected $baseUrl = 'http://127.0.0.1:8000';
 
     /**
@@ -34,7 +39,7 @@ abstract class TestCase extends Foundation
      */
     protected function getBasePath()
     {
-        return __DIR__ . '/../laravel';
+        return __DIR__.'/../laravel';
     }
 
     /**
@@ -62,6 +67,7 @@ abstract class TestCase extends Foundation
      * Determine the application's base URL.
      *
      * @var string
+     *
      * @return \Illuminate\Config\Repository|mixed
      */
     protected function baseUrl()
@@ -72,8 +78,9 @@ abstract class TestCase extends Foundation
     /**
      * Get a callback that returns the default user to authenticate.
      *
-     * @return void
      * @throws \Exception
+     *
+     * @return void
      */
     protected function user()
     {

@@ -3,9 +3,9 @@
 namespace Orchestra\Testbench\Dusk\Concerns;
 
 use Laravel\Dusk\Browser;
+use Konsulting\ProjectRoot;
 use Laravel\Dusk\Chrome\SupportsChrome;
 use Laravel\Dusk\Concerns\ProvidesBrowser as Concern;
-use Konsulting\ProjectRoot;
 
 trait ProvidesBrowser
 {
@@ -52,8 +52,9 @@ trait ProvidesBrowser
      *
      * @param string $path
      *
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     protected function resolveBrowserTestsPath($path = __DIR__)
     {
