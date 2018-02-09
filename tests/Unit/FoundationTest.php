@@ -2,8 +2,8 @@
 
 namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
-use Orchestra\Testbench\Dusk\Foundation;
 use PHPUnit\Framework\TestCase;
+use Orchestra\Testbench\Dusk\Foundation;
 
 class FoundationTest extends TestCase
 {
@@ -12,12 +12,12 @@ class FoundationTest extends TestCase
     {
         $this->assertEquals(
             '/home/person/code/testbench-dusk/tests/Browser',
-            (new TestFoundation)->resolveBrowserTestsPath('/home/person/code/testbench-dusk/src')
+            (new TestFoundation())->resolveBrowserTestsPath('/home/person/code/testbench-dusk/src')
         );
 
         $this->assertEquals(
             '/home/person/code/project/tests/Browser',
-            (new TestFoundation)->resolveBrowserTestsPath('/home/person/code/project/vendor/orchestra/testbench-dusk/src')
+            (new TestFoundation())->resolveBrowserTestsPath('/home/person/code/project/vendor/orchestra/testbench-dusk/src')
         );
     }
 }
