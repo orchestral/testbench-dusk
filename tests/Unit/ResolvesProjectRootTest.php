@@ -34,4 +34,15 @@ class DummyTestCase extends TestbenchDuskTestCase
     {
         $this->assertTrue(true);
     }
+
+    // Don't try to start another server!
+    public static function setUpBeforeClass() {
+        //
+    }
+
+    // Don't need to stop a server
+    public static function tearDownAfterClass()
+    {
+        //
+    }
 }

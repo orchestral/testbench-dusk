@@ -180,4 +180,14 @@ class DuskServer
     {
         return $root ?: realpath(__DIR__.'/../laravel/public');
     }
+
+    /**
+     * Get the current process
+     *
+     * @return \Symfony\Component\Process\Process|null
+     */
+    public function getProcess()
+    {
+        return $this->process;
+    }
 }

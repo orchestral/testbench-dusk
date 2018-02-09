@@ -16,6 +16,7 @@ trait ProvidesBrowser
      * Setup the browser environment.
      *
      * @return void
+     * @throws \Exception
      */
     protected function setUpTheBrowserEnvironment()
     {
@@ -32,6 +33,7 @@ trait ProvidesBrowser
      * Ensure the directories we need for dusk exist, and set them for the Browser to use.
      *
      * @return void
+     * @throws \Exception
      */
     protected function prepareDirectories()
     {
