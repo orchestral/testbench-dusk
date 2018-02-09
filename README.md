@@ -46,22 +46,17 @@ Above installation can also be simplify by using the following command:
 
 ## Usage
 
-Use the `Orchestra\Testbench\Dusk\TestCase` as the parent class for your test. Optionally, extend that class to provide a custom base class for your project - in there you can perform the application setup you require for your tests.
+Use the `Orchestra\Testbench\Dusk\TestCase` as the parent class for your test. 
+Optionally, extend that class to provide a custom base class for your project - 
+in there you can perform the application setup you require for your tests.
 
-You will need to make sure that your Laravel application uses the correct `APP_URL` environment variable. You can set this in the `phpunit.xml` file's `php` block as below:
-```xml
-<php>
-    ...
-    <env name="APP_URL" value="http://127.0.0.1:8000"/>
-    ...
-</php>
-```
-
-By default, this package will start a server at `http://127.0.0.1:8000`.
+Tesbench Dusk will start its own PHP server at `http://127.0.0.1:8000`.
 
 #### Selectively running Dusk tests
 
-Browser tests can take a while to run, so you could also separate your tests in your `phpunit.xml` file by providing different testsuites, allowing you to run your Browser tests on demand. For example:
+Browser tests can take a while to run, so you could also separate your tests in your `phpunit.xml` 
+file by providing different testsuites, allowing you to run your Browser tests on demand. 
+For example:
 ```xml
     <testsuites>
         <testsuite name="Browser">
@@ -78,10 +73,11 @@ Browser tests can take a while to run, so you could also separate your tests in 
 
 Run only your browser tests by running phpunit with the `--testsuite=Browser` option.
 
+You can optionally set the default testsuite with the option `defaultTestSuite="Unit"`.
+
 ## Advanced Usage
 
-During a test run, this package sets up a separate process using PHP's built in web server, by default at `http://127.0.0.1:8000`. 
-
+### Customising the Laravel App instance used during a test
 We use the calling test class to build up the application to be used when serving the request.
 
 Sometimes you will want to make a minor change to the application for a single test (e.g. changing a config item).
@@ -89,3 +85,11 @@ Sometimes you will want to make a minor change to the application for a single t
 This is made possible by using the `tweakApplication` method on the test, and passing in a closure to apply. At the end of the test, you need to call the `removeApplicationTweaks` method to stop the changes being applied to the server.
 
 An example test (`can_tweak_the_application_within_a_test`) is available in the `tests/Browser/RouteTest.php` test file.
+
+#### Customising the host/port
+During a test run, this package sets up a separate web server process using PHP's built in web server, 
+by default at `http://127.0.0.1:8000`. 
+
+It is possible to customise the host and port, by adapting the base url in the test case, 
+and the serve() command during the setUpBeforeClass() method. This will not be needed for
+most people.

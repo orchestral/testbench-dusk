@@ -2,9 +2,9 @@
 
 namespace Orchestra\Testbench\Dusk;
 
-use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\PhpExecutableFinder;
+use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 
 class DuskServer
 {
@@ -67,7 +67,7 @@ class DuskServer
      */
     protected function temp()
     {
-        return dirname(__DIR__) . '/tmp/' . $this->host . '__' . $this->port;
+        return dirname(__DIR__).'/tmp/'.$this->host.'__'.$this->port;
     }
 
     /**
@@ -87,8 +87,9 @@ class DuskServer
     /**
      * Start a php server in a separate process.
      *
-     * @return void
      * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
+     *
+     * @return void
      */
     public function start()
     {
@@ -110,7 +111,7 @@ class DuskServer
      */
     public function stop()
     {
-        if (!$this->process) {
+        if (! $this->process) {
             return;
         }
 
@@ -122,8 +123,9 @@ class DuskServer
      * pointer to it. Tuck away the output as it's
      * not relevant for us during our testing.
      *
-     * @return void
      * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
+     *
+     * @return void
      */
     protected function startServer()
     {
@@ -161,7 +163,7 @@ class DuskServer
             (new PhpExecutableFinder())->find(false),
             $this->host,
             $this->port,
-            __DIR__ . '/server.php'
+            __DIR__.'/server.php'
         );
     }
 
@@ -177,5 +179,15 @@ class DuskServer
     public function laravelPublicPath($root = null)
     {
         return $root ?: realpath(__DIR__.'/../laravel/public');
+    }
+
+    /**
+     * Get the current process
+     *
+     * @return \Symfony\Component\Process\Process|null
+     */
+    public function getProcess()
+    {
+        return $this->process;
     }
 }

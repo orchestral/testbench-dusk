@@ -7,6 +7,7 @@ use Exception;
 use Throwable;
 use ReflectionFunction;
 use Laravel\Dusk\Browser;
+use Konsulting\ProjectRoot;
 use Laravel\Dusk\SupportsChrome;
 use Illuminate\Support\Collection;
 
@@ -209,6 +210,7 @@ trait ProvidesBrowser
      * Ensure the directories we need for dusk exist, and set them for the Browser to use.
      *
      * @return void
+     * @throws \Exception
      */
     protected function prepareDirectories()
     {
@@ -229,26 +231,14 @@ trait ProvidesBrowser
      *
      * @param string $path
      *
+     * @throws \Exception
+     *
      * @return string
      */
     protected function resolveBrowserTestsPath($path = __DIR__)
     {
-        $path = dirname($path);
-
-        // If we're in 'vendor', we need to drop back two levels to project root
-        if (basename(dirname(dirname($path))) == 'vendor') {
-            $path = dirname(dirname(dirname($path)));
-        }
-
-        return $path.'/tests/Browser';
+        return ProjectRoot::forPackage('testbench-dusk')->resolve($path).'/tests/Browser';
     }
-
-    /**
-     * Create the RemoteWebDriver instance.
-     *
-     * @return \Facebook\WebDriver\Remote\RemoteWebDriver
-     */
-    abstract protected function driver();
 
     /**
      * Determine the application's base URL.
