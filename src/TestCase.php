@@ -29,6 +29,7 @@ abstract class TestCase extends Foundation
     {
         $options = (new ChromeOptions())->addArguments([
             '--disable-gpu',
+            '--headless',
         ]);
 
         return RemoteWebDriver::create(
