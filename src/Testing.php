@@ -8,7 +8,7 @@ use Orchestra\Testbench\TestCase;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 
-abstract class Foundation extends TestCase
+abstract class Testing extends TestCase
 {
     use Concerns\CanServeSite,
         Concerns\ProvidesBrowser;
@@ -40,7 +40,7 @@ abstract class Foundation extends TestCase
      *
      * @return \Facebook\WebDriver\Remote\RemoteWebDriver
      */
-    protected function driver()
+    protected function driver(): RemoteWebDriver
     {
         return RemoteWebDriver::create(
             'http://localhost:9515', DesiredCapabilities::chrome()
@@ -52,7 +52,7 @@ abstract class Foundation extends TestCase
      *
      * @var string
      */
-    protected function baseUrl()
+    protected function baseUrl(): string
     {
         return config('app.url');
     }
