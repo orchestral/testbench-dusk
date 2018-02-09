@@ -49,6 +49,7 @@ trait CanServeSite
      * Make tweaks to the application, both inside the test and on the test server.
      *
      * @param \Closure $closure
+     *
      * @return void
      */
     public function tweakApplication(Closure $closure): void
