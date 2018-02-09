@@ -2,22 +2,39 @@
 
 namespace Orchestra\Testbench\Dusk;
 
+use Exception;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Orchestra\Testbench\TestCase as Foundation;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 
 abstract class TestCase extends Foundation
 {
+    use Concerns\CanServeSite,
+        Concerns\ProvidesBrowser;
+
+    protected $baseUrl = 'http://127.0.0.1:8000';
+
     /**
-     * Prepare for Dusk test execution.
-     *
-     * @beforeClass
+     * Register the base URL with Dusk.
      *
      * @return void
      */
-    public static function prepare()
+    protected function setUp()
     {
-        static::startChromeDriver();
+        parent::setUp();
+
+        $this->setUpTheBrowserEnvironment();
+    }
+
+    /**
+     * Get base path.
+     *
+     * @return string
+     */
+    protected function getBasePath()
+    {
+        return __DIR__ . '/../laravel';
     }
 
     /**
@@ -39,6 +56,40 @@ abstract class TestCase extends Foundation
                 $options
             )
         );
+    }
+
+    /**
+     * Determine the application's base URL.
+     *
+     * @var string
+     * @return \Illuminate\Config\Repository|mixed
+     */
+    protected function baseUrl()
+    {
+        return $this->baseUrl;
+    }
+
+    /**
+     * Get a callback that returns the default user to authenticate.
+     *
+     * @return void
+     * @throws \Exception
+     */
+    protected function user()
+    {
+        throw new Exception('User resolver has not been set.');
+    }
+
+    /**
+     * Prepare for Dusk test execution.
+     *
+     * @beforeClass
+     *
+     * @return void
+     */
+    public static function prepare()
+    {
+        static::startChromeDriver();
     }
 
     /**
