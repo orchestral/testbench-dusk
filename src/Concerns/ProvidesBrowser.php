@@ -3,6 +3,7 @@
 namespace Orchestra\Testbench\Dusk\Concerns;
 
 use Laravel\Dusk\Browser;
+use Konsulting\ProjectRoot;
 use Laravel\Dusk\Chrome\SupportsChrome;
 use Laravel\Dusk\Concerns\ProvidesBrowser as Concern;
 
@@ -15,6 +16,7 @@ trait ProvidesBrowser
      * Setup the browser environment.
      *
      * @return void
+     * @throws \Exception
      */
     protected function setUpTheBrowserEnvironment()
     {
@@ -31,6 +33,7 @@ trait ProvidesBrowser
      * Ensure the directories we need for dusk exist, and set them for the Browser to use.
      *
      * @return void
+     * @throws \Exception
      */
     protected function prepareDirectories()
     {
@@ -51,18 +54,13 @@ trait ProvidesBrowser
      *
      * @param string $path
      *
+     * @throws \Exception
+     *
      * @return string
      */
     protected function resolveBrowserTestsPath($path = __DIR__)
     {
-        $path = dirname($path);
-
-        // If we're in 'vendor', we need to drop back two levels to project root
-        if (basename(dirname(dirname($path))) == 'vendor') {
-            $path = dirname(dirname(dirname($path)));
-        }
-
-        return $path.'/tests/Browser';
+        return ProjectRoot::forPackage('testbench-dusk')->resolve($path).'/tests/Browser';
     }
 
     /**

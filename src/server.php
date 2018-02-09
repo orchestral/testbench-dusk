@@ -33,7 +33,7 @@ $originatingTestClass = $orchestraServer->getStash('class');
 $app = (new $originatingTestClass())->getFreshApplicationToServe($orchestraServer);
 
 // Emulation of mod_rewrite, but we use the applications set base path
-if ($uri !== '/' && file_exists($app->basePath() . '/public'.$uri)) {
+if ($uri !== '/' && file_exists($app->basePath().'/public'.$uri)) {
     return false;
 }
 
