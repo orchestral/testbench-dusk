@@ -11,7 +11,7 @@ trait CanServeSite
     /**
      * The server implementation.
      *
-     * @var \Orchestra\Testbench\DuskServer
+     * @var \Orchestra\Testbench\Dusk\DuskServer
      */
     protected static $server;
 
@@ -20,9 +20,13 @@ trait CanServeSite
      *
      * @param string $host
      * @param int    $port
+     *
+     * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      */
     public static function serve($host = '127.0.0.1', $port = 8000)
     {
+        static::stopServing();
+
         $server = new DuskServer($host, $port);
         $server->stash(['class' => static::class]);
         $server->start();
@@ -88,7 +92,7 @@ trait CanServeSite
      * replicate the Application state during a Dusk test when we start our
      * test server. See the main server file 'server.php'.
      *
-     * @param \Orchestra\Testbench\DuskServer $server
+     * @param \Orchestra\Testbench\Dusk\DuskServer $server
      *
      * @return \Illuminate\Foundation\Application
      */
@@ -106,5 +110,15 @@ trait CanServeSite
         }
 
         return $this->app;
+    }
+
+    /**
+     * Return the current instance of server
+     *
+     * @return \Orchestra\Testbench\Dusk\DuskServer|null
+     */
+    public function getServer()
+    {
+        return static::$server;
     }
 }

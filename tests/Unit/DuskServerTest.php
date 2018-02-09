@@ -2,7 +2,6 @@
 
 namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
 use Orchestra\Testbench\Dusk\DuskServer;
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 
@@ -81,44 +80,5 @@ class DuskServerTest extends TestCase
                 }
                 break;
         }
-    }
-
-    protected function waitForServerToStart()
-    {
-        $i = 0;
-
-        while (! $this->isServerUp()) {
-            sleep(1);
-            $i++;
-
-            if ($i >= 30) {
-                throw new \Exception('Waited too long for server to start.');
-            }
-        }
-    }
-
-    protected function waitForServerToStop()
-    {
-        $i = 0;
-
-        while ($this->isServerUp()) {
-            sleep(1);
-            $i++;
-
-            if ($i >= 30) {
-                throw new \Exception('Waited too long for server to stop.');
-            }
-        }
-    }
-
-    protected function isServerUp()
-    {
-        if ($socket = @fsockopen('127.0.0.1', 8000, $errorNumber = 0, $errorString = '', $timeout = 1)) {
-            fclose($socket);
-
-            return true;
-        }
-
-        return false;
     }
 }
