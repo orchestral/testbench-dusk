@@ -102,7 +102,7 @@ protected function getEnvironmentSetUp($app)
 }
 ```
 
-To populate the database you just need to run the following code:
+To create the sqlite database you just need to run the following code:
 
 ```bash
 php vendor/orchestra/testbench-dusk/create-sqlite-db
