@@ -19,12 +19,5 @@
             "App\\": "app/"
         }
     },
-    "extra": {
-        "laravel": {
-            "dont-discover": [
-                "*"
-            ]
-        }
-    },
     "minimum-stability": "dev"
 }

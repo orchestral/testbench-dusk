@@ -2,10 +2,10 @@
 
 namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestCase as PHPUnitTestcase;
 use Orchestra\Testbench\Dusk\TestCase as TestbenchDuskTestCase;
 
-class TestCaseTest extends TestCase
+class TestCaseTest extends PHPUnitTestCase
 {
     /** @test */
     public function it_finds_the_correct_path_for_the_browser_tests()

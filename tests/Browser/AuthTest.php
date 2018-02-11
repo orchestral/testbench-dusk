@@ -13,7 +13,7 @@ class AuthTest extends TestCase
         parent::setUp();
 
         $this->withFactories(__DIR__.'/../factories');
-        $this->loadLaravelMigrations('sqlite');
+        $this->loadLaravelMigrations(config('database.default'));
     }
 
     /** @test */

@@ -60,7 +60,7 @@ abstract class TestCase extends Foundation
         return tap(new Application($this->getBasePath()), function ($app) {
             $app->bind(
                 'Illuminate\Foundation\Bootstrap\LoadConfiguration',
-                'Orchestra\Testbench\Dusk\Bootstrap\LoadConfiguration'
+                Bootstrap\LoadConfiguration::class
             );
         });
     }
