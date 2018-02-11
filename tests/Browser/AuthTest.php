@@ -8,6 +8,9 @@ use Orchestra\Testbench\Dusk\TestCase;
 
 class AuthTest extends TestCase
 {
+    /**
+     * Setup the test environment.
+     */
     protected function setUp()
     {
         parent::setUp();
