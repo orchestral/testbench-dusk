@@ -82,6 +82,32 @@ class BrowserTestCase extends Orchestra\Testbench\Dusk\TestCase
 }
 ```
 
+### Database
+
+By default you can either use `sqlite`, `mysql`, `pgsql` or `sqlsrv` with Testbench Dusk, however do note that it is impossible to use `sqlite` using `:memory:` database as you would with **Testbench** or **Tesbench BrowserKit**.
+
+If you opt to use `sqlite`, you might want to set the default database connection to `sqlite` either using `phpunit` configuration or setting it up on `getEnvironmentSetUp()` method.
+
+```php
+/**
+ * Define environment setup.
+ *
+ * @param  Illuminate\Foundation\Application  $app
+ *
+ * @return void
+ */
+protected function getEnvironmentSetUp($app)
+{
+    $this->app['config']->set('database.default', 'sqlite');
+}
+```
+
+To populate the database you just need to run the following code:
+
+```bash
+php vendor/orchestra/testbench-dusk/create-sqlite-db
+```
+
 ## Advanced Usage
 
 ### Customising the Laravel App instance used during a test
