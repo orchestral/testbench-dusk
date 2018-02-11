@@ -33,11 +33,6 @@ return [
 
     'connections' => [
 
-        'testing' => [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-        ],
-
         'sqlite' => [
             'driver' => 'sqlite',
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
