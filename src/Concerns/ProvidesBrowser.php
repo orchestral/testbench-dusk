@@ -32,6 +32,7 @@ trait ProvidesBrowser
      * Tear down the Dusk test case class.
      *
      * @afterClass
+     *
      * @return void
      */
     public static function tearDownDuskClass()
@@ -70,9 +71,10 @@ trait ProvidesBrowser
      *
      * @param  \Closure $callback
      *
-     * @return \Laravel\Dusk\Browser|void
      * @throws \Exception
      * @throws \Throwable
+     *
+     * @return \Laravel\Dusk\Browser|void
      */
     public function browse(Closure $callback)
     {
@@ -85,8 +87,7 @@ trait ProvidesBrowser
         } catch (Throwable $e) {
             $this->captureFailuresFor($browsers);
             throw $e;
-        }
-        finally {
+        } finally {
             $this->storeConsoleLogsFor($browsers);
             static::$browsers = $this->closeAllButPrimary($browsers);
         }
@@ -146,7 +147,7 @@ trait ProvidesBrowser
     protected function captureFailuresFor($browsers)
     {
         $browsers->each(function ($browser, $key) {
-            $browser->screenshot('failure-' . $this->getName() . '-' . $key);
+            $browser->screenshot('failure-'.$this->getName().'-'.$key);
         });
     }
 
@@ -160,7 +161,7 @@ trait ProvidesBrowser
     protected function storeConsoleLogsFor($browsers)
     {
         $browsers->each(function ($browser, $key) {
-            $browser->storeConsoleLog($this->getName() . '-' . $key);
+            $browser->storeConsoleLog($this->getName().'-'.$key);
         });
     }
 
@@ -209,8 +210,9 @@ trait ProvidesBrowser
     /**
      * Ensure the directories we need for dusk exist, and set them for the Browser to use.
      *
-     * @return void
      * @throws \Exception
+     *
+     * @return void
      */
     protected function prepareDirectories()
     {

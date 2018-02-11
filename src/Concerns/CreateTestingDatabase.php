@@ -7,12 +7,13 @@ use InvalidArgumentException;
 trait CreateTestingDatabase
 {
     /**
-     * Create testing database. (Only support sqlite),
+     * Create testing database. (Only support sqlite),.
      *
      * @param  string|null  $connection
-     * @return void
      *
      * @throws \InvalidArgumentException
+     *
+     * @return void
      */
     protected function createDatabase($connection = null)
     {

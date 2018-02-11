@@ -11,7 +11,7 @@ class TestCase extends PHPUnitTestCase
     {
         $i = 0;
 
-        while (!$this->isServerUp()) {
+        while (! $this->isServerUp()) {
             sleep(1);
             $i++;
 
