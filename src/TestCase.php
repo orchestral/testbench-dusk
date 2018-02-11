@@ -53,6 +53,7 @@ abstract class TestCase extends Foundation
      * Dusk, we also close down all the server processes - so keeping the chome browser
      * open doesn't help, nor does it help when we're running in headless mode :)
      *
+     * @return void
      */
     protected function registerShutdownFunction()
     {
