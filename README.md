@@ -52,7 +52,20 @@ in there you can perform the application setup you require for your tests.
 
 Tesbench Dusk will start its own PHP server at `http://127.0.0.1:8000`.
 
-#### Selectively running Dusk tests
+### Headless or not
+
+Dusk 3.5+ offers the ability to run Dusk tests in headless mode (hidden browser window), and this is the default.  
+You can switch to running with the browser window open with a simple call:
+
+```php
+<?php
+    \Orchestra\Testbench\Dusk\Options::notHeadless();
+```
+
+You could place this in your testing bootstrap, or in the test Setup method. To restore headless mode, you simply call 
+the `headless()` method.
+
+### Selectively running Dusk tests
 
 Browser tests can take a while to run, so you could also separate your tests in your `phpunit.xml` 
 file by providing different testsuites, allowing you to run your Browser tests on demand. 
