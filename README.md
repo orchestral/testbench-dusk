@@ -31,7 +31,7 @@ Before going through the rest of this documentation, please take some time to re
 
 * [Package Development for Laravel](https://laravel.com/docs/5.4/packages)
 * [Orchestra Testbench Documentation](https://github.com/orchestral/testbench/blob/3.4/README.md)
-* [Laravel Duck Documentation](https://laravel.com/docs/5.5/passport)
+* [Laravel Dusk Documentation](https://laravel.com/docs/5.4/dusk)
 
 ## Installation
 
