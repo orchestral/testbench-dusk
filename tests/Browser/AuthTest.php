@@ -5,12 +5,17 @@ namespace Orchestra\Testbench\Dusk\Tests\Browser;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Auth\User;
 use Orchestra\Testbench\Dusk\TestCase;
+use Orchestra\Testbench\Dusk\Concerns\CreateTestingDatabase;
 
 class AuthTest extends TestCase
 {
+    use CreateTestingDatabase;
+
     protected function setUp()
     {
         parent::setUp();
+
+        $this->createDatabase(config('database.default'));
 
         $this->withFactories(__DIR__.'/../factories');
         $this->loadLaravelMigrations(config('database.default'));
