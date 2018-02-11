@@ -44,12 +44,6 @@
             "dev-master": "3.6-dev"
         }
     },
-    "scripts": {
-        "test": [
-            "@php -r \"file_exists('laravel/database/database.sqlite') || copy('laravel/database/database.sqlite.example', 'laravel/database/database.sqlite');\"",
-            "@php vendor/bin/phpunit -c ./ --color"
-        ]
-    },
     "config": {
         "sort-packages": true
     },
