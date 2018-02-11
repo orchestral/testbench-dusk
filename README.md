@@ -82,7 +82,19 @@ class BrowserTestCase extends Orchestra\Testbench\Dusk\TestCase
 }
 ```
 
-#### Selectively running Dusk tests
+## Advanced Usage
+
+### Customising the Laravel App instance used during a test
+
+We use the calling test class to build up the application to be used when serving the request.
+
+Sometimes you will want to make a minor change to the application for a single test (e.g. changing a config item).
+
+This is made possible by using the `tweakApplication` method on the test, and passing in a closure to apply. At the end of the test, you need to call the `removeApplicationTweaks` method to stop the changes being applied to the server.
+
+An example test (`can_tweak_the_application_within_a_test`) is available in the `tests/Browser/RouteTest.php` test file.
+
+### Selectively running Dusk tests
 
 Browser tests can take a while to run, so you could also separate your tests in your `phpunit.xml` file by providing different testsuites, allowing you to run your Browser tests on demand.
 
@@ -106,20 +118,3 @@ Run only your browser tests by running phpunit with the `--testsuite=Browser` op
 
 You can optionally set the default testsuite with the option `defaultTestSuite="Unit"`.
 
-## Advanced Usage
-
-### Customising the Laravel App instance used during a test
-
-We use the calling test class to build up the application to be used when serving the request.
-
-Sometimes you will want to make a minor change to the application for a single test (e.g. changing a config item).
-
-This is made possible by using the `tweakApplication` method on the test, and passing in a closure to apply. At the end of the test, you need to call the `removeApplicationTweaks` method to stop the changes being applied to the server.
-
-An example test (`can_tweak_the_application_within_a_test`) is available in the `tests/Browser/RouteTest.php` test file.
-
-#### Customising the host/port
-
-During a test run, this package sets up a separate web server process using PHP's built in web server, by default at `http://127.0.0.1:8000`. 
-
-It is possible to customise the host and port, by adapting the base url in the test case, and the `serve()` command during the setUpBeforeClass() method. This will not be needed formost people.
