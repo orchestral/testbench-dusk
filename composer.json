@@ -33,7 +33,7 @@
         "jeremeamia/superclosure": "^2.3",
         "konsulting/project-root": "~1.0",
         "laravel/dusk": "~3.0",
-        "orchestra/testbench": "~3.6.0"
+        "orchestra/testbench": "~3.7.0"
     },
     "require-dev": {
         "mockery/mockery": "~1.0",
@@ -41,7 +41,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.6-dev"
+            "dev-master": "3.7-dev"
         }
     },
     "scripts": {
