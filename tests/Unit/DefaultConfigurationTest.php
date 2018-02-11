@@ -4,9 +4,9 @@ namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
 use Illuminate\Foundation\Auth\User;
 use Laravel\Dusk\DuskServiceProvider;
-use Orchestra\Testbench\Dusk\TestCase;
+use Orchestra\Testbench\Dusk\TestCase as TestbenchDuskTestCase;
 
-class DefaultConfigurationTest extends TestCase
+class DefaultConfigurationTest extends TestbenchDuskTestCase
 {
     /** @test */
     public function it_loads_dusk_service_provider()
