@@ -3,6 +3,7 @@
 namespace Orchestra\Testbench\Dusk;
 
 use Exception;
+use Illuminate\Foundation\Application;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Orchestra\Testbench\TestCase as Foundation;
@@ -47,6 +48,21 @@ abstract class TestCase extends Foundation
     protected function getBasePath()
     {
         return __DIR__.'/../laravel';
+    }
+
+    /**
+     * Resolve application implementation.
+     *
+     * @return \Illuminate\Foundation\Application
+     */
+    protected function resolveApplication()
+    {
+        return tap(new Application($this->getBasePath()), function ($app) {
+            $app->bind(
+                'Illuminate\Foundation\Bootstrap\LoadConfiguration',
+                Bootstrap\LoadConfiguration::class
+            );
+        });
     }
 
     /**

@@ -41,7 +41,14 @@
     "suggest": {
         "orchestra/database": "Allow to use --realpath migration for testing (~3.4)."
     },
+    "scripts": {
+        "test": [
+            "@php -r \"file_exists('laravel/database/database.sqlite') || copy('laravel/database/database.sqlite.example', 'laravel/database/database.sqlite');\"",
+            "@php vendor/bin/phpunit -c ./ --color"
+        ]
+    },
     "config": {
         "sort-packages": true
-    }
+    },
+    "minimum-stability": "dev"
 }
