@@ -9,13 +9,9 @@ use Orchestra\Testbench\Dusk\Concerns\CreateTestingDatabase;
 
 class AuthTest extends TestCase
 {
-    use CreateTestingDatabase;
-
     protected function setUp()
     {
         parent::setUp();
-
-        $this->createDatabase(config('database.default'));
 
         $this->withFactories(__DIR__.'/../factories');
         $this->loadLaravelMigrations(config('database.default'));

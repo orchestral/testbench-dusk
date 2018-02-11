@@ -44,6 +44,7 @@
     },
     "scripts": {
         "test": [
+            "@php create-sqlite-db",
             "@php vendor/bin/phpunit -c ./ --color"
         ]
     },
