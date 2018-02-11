@@ -90,7 +90,7 @@ abstract class TestCase extends Foundation
      *
      * @var string
      *
-     * @return \Illuminate\Config\Repository|mixed
+     * @return string
      */
     protected function baseUrl()
     {
@@ -102,7 +102,7 @@ abstract class TestCase extends Foundation
      *
      * @throws \Exception
      *
-     * @return void
+     * @return callable
      */
     protected function user()
     {

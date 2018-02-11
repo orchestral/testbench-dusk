@@ -254,7 +254,7 @@ trait ProvidesBrowser
      *
      * @throws \Exception
      *
-     * @return \Closure
+     * @return callable
      */
     abstract protected function user();
 }
