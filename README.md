@@ -101,17 +101,17 @@ Browser tests can take a while to run, so you could also separate your tests in 
 For example:
 
 ```xml
-    <testsuites>
-        <testsuite name="Browser">
-            <directory suffix="Test.php">./tests/Browser</directory>
-        </testsuite>
-        <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
-        </testsuite>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
-        </testsuite>
-    </testsuites>
+<testsuites>
+    <testsuite name="Browser">
+        <directory suffix="Test.php">./tests/Browser</directory>
+    </testsuite>
+    <testsuite name="Feature">
+        <directory suffix="Test.php">./tests/Feature</directory>
+    </testsuite>
+    <testsuite name="Unit">
+        <directory suffix="Test.php">./tests/Unit</directory>
+    </testsuite>
+</testsuites>
 ```
 
 Run only your browser tests by running phpunit with the `--testsuite=Browser` option.
