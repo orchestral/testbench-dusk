@@ -31,6 +31,8 @@ trait ProvidesBrowser
     /**
      * Ensure the directories we need for dusk exist, and set them for the Browser to use.
      *
+     * @throws \Exception
+     *
      * @return void
      */
     protected function prepareDirectories()
@@ -73,7 +75,7 @@ trait ProvidesBrowser
      *
      * @throws \Exception
      *
-     * @return \Closure
+     * @return callable
      */
     abstract protected function user();
 }

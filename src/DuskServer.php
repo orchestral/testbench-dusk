@@ -182,7 +182,7 @@ class DuskServer
     }
 
     /**
-     * Get the current process
+     * Get the current process.
      *
      * @return \Symfony\Component\Process\Process|null
      */

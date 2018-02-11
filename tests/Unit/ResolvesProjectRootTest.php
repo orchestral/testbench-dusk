@@ -36,7 +36,8 @@ class DummyTestCase extends TestbenchDuskTestCase
     }
 
     // Don't try to start another server!
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass()
+    {
         //
     }
 
