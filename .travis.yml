@@ -5,7 +5,6 @@ sudo: required
 dist: trusty
 
 php:
-  - 5.6
   - 7.0
   - 7.1
   - 7.2
@@ -17,7 +16,7 @@ env:
 
 before_script:
   - composer config discard-changes true
-  - touch laravel/database/database.sqlite
+  - php ./create-sqlite-db
   - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction; fi
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable; fi
   - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable; fi
@@ -27,19 +26,19 @@ before_script:
   - ./vendor/laravel/dusk/bin/chromedriver-linux &
 
 script:
-  - if [[ $coverage = 'yes' ]]; then ./vendor/bin/phpunit -c phpunit.xml --coverage-clover build/logs/clover.xml; fi
-  - if [[ $coverage = 'no' ]]; then ./vendor/bin/phpunit -c phpunit.xml; fi
+  - if [[ $coverage = 'yes' ]]; then ./vendor/bin/phpunit -c ./ --coverage-clover build/logs/clover.xml; fi
+  - if [[ $coverage = 'no' ]]; then ./vendor/bin/phpunit -c ./; fi
 
 after_script:
   - if [[ $setup = 'coveralls' ]]; then php vendor/bin/coveralls -v; fi
 
 matrix:
   include:
-    - php: 5.6
+    - php: 7.0
       env: setup=lowest
-    - php: 5.6
+    - php: 7.0
       env: setup=stable
-    - php: 5.6
+    - php: 7.0
       env: setup=coveralls coverage=yes
   allow_failures:
     - env: setup=coveralls coverage=yes

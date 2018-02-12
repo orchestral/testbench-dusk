@@ -30,6 +30,13 @@ abstract class TestCase extends Foundation
     protected static $baseServePort = 8000;
 
     /**
+     * Keep track of whether we've registered shutdown function
+     *
+     * @var bool
+     */
+    protected static $hasRegisteredShutdown = false;
+
+    /**
      * Register the base URL with Dusk.
      *
      * @return void
@@ -39,6 +46,25 @@ abstract class TestCase extends Foundation
         parent::setUp();
 
         $this->setUpTheBrowserEnvironment();
+        $this->registerShutdownFunction();
+    }
+
+    /**
+     * Make sure we close down any chrome processes when we temrinate early, unlike normal
+     * Dusk, we also close down all the server processes - so keeping the chome browser
+     * open doesn't help, nor does it help when we're running in headless mode :)
+     *
+     * @return void
+     */
+    protected function registerShutdownFunction()
+    {
+        if (!static::$hasRegisteredShutdown) {
+            register_shutdown_function(function () {
+                $this->closeAll();
+            });
+
+            static::$hasRegisteredShutdown = true;
+        }
     }
 
     /**
@@ -87,7 +113,7 @@ abstract class TestCase extends Foundation
      *
      * @var string
      *
-     * @return \Illuminate\Config\Repository|mixed
+     * @return string
      */
     protected function baseUrl()
     {
@@ -99,7 +125,7 @@ abstract class TestCase extends Foundation
      *
      * @throws \Exception
      *
-     * @return void
+     * @return callable
      */
     protected function user()
     {
