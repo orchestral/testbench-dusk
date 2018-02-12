@@ -6,28 +6,34 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 
 class Options
 {
-    static $headless = true;
+    static $ui = true;
 
-    public static function headless()
+    public static function withoutUI()
     {
-        static::$headless = true;
+        static::$ui = false;
     }
 
-    public static function notHeadless()
+    public static function withUI()
     {
-        static::$headless = false;
+        static::$ui = true;
     }
 
-    public static function isHeadless()
+    public static function hasUI()
     {
-        return static::$headless;
+        return static::$ui;
     }
 
+    /**
+     * Return the ChromeOptions Object - used when configuring the
+     * Facebook Webdriver
+     *
+     * @return \Facebook\WebDriver\Chrome\ChromeOptions
+     */
     public static function getChromeOptions()
     {
         return (new ChromeOptions())->addArguments(array_merge(
-            ['--disable-gpu'],
-            static::isHeadless() ? ['--headless'] : []
+            [],
+            ! static::hasUI() ? ['--disable-gpu', '--headless'] : []
         ));
     }
 }

@@ -82,17 +82,20 @@ class BrowserTestCase extends Orchestra\Testbench\Dusk\TestCase
 ```
 
 
-### Headless or not
+### Running with or without UI
 
-Dusk 3.5+ offers the ability to run Dusk tests in headless mode (hidden browser window), and this is the default.  
-You can switch to running with the browser window open with a simple call:
+Dusk 3.5+ offers the ability to run Dusk tests without UI (the browser window), and this is the default and is normally slightly quicker.  
+You can switch the behaviour with the following calls:
 
 ```php
-\Orchestra\Testbench\Dusk\Options::notHeadless();
+// To show the UI during testing
+\Orchestra\Testbench\Dusk\Options::withUI();
+
+// To hide the UI during testing
+\Orchestra\Testbench\Dusk\Options::withoutUI();
 ```
 
-You could place this in your testing bootstrap, or in the test Setup method. To restore headless mode, you simply call 
-the `headless()` method.
+We recommend you place this in a `tests/bootstrap.php` file, similar to this packages own test setup and use this for PHP Unit.
 
 ### Database
 
