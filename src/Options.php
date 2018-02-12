@@ -6,18 +6,38 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 
 class Options
 {
+    /**
+     * Store UI setting
+     *
+     * @var bool
+     */
     static $ui = true;
 
+    /**
+     * Set to hide UI
+     *
+     * @return void
+     */
     public static function withoutUI()
     {
         static::$ui = false;
     }
 
+    /**
+     * Set to show UI
+     *
+     * @return void
+     */
     public static function withUI()
     {
         static::$ui = true;
     }
 
+    /**
+     * Return current setting for showing UI
+     *
+     * @return bool
+     */
     public static function hasUI()
     {
         return static::$ui;
