@@ -60,7 +60,6 @@ To use Testbench Dusk Component, all you need to do is extend `Orchestra\Testben
 
 ```php
 <?php
-
 class BrowserTestCase extends Orchestra\Testbench\Dusk\TestCase
 {
     //
@@ -82,6 +81,22 @@ class BrowserTestCase extends Orchestra\Testbench\Dusk\TestCase
     protected static $baseServePort = 9000;
 }
 ```
+
+
+### Running with or without UI
+
+Dusk 3.5+ offers the ability to run Dusk tests without UI (the browser window), and this is the default and is normally slightly quicker.  
+You can switch the behaviour with the following calls:
+
+```php
+// To show the UI during testing
+\Orchestra\Testbench\Dusk\Options::withUI();
+
+// To hide the UI during testing
+\Orchestra\Testbench\Dusk\Options::withoutUI();
+```
+
+We recommend you place this in a `tests/bootstrap.php` file, similar to this packages own test setup and use this for PHP Unit.
 
 ### Database
 
