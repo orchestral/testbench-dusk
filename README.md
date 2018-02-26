@@ -61,7 +61,6 @@ To use Testbench Dusk Component, all you need to do is extend `Orchestra\Testben
 
 ```php
 <?php
-
 class BrowserTestCase extends Orchestra\Testbench\Dusk\TestCase
 {
     //
@@ -82,6 +81,48 @@ class BrowserTestCase extends Orchestra\Testbench\Dusk\TestCase
     protected static $baseServeHost = '127.0.0.1';
     protected static $baseServePort = 9000;
 }
+```
+
+
+### Running with or without UI
+
+Dusk 3.5+ offers the ability to run Dusk tests without UI (the browser window), and this is the default and is normally slightly quicker.  
+You can switch the behaviour with the following calls:
+
+```php
+// To show the UI during testing
+\Orchestra\Testbench\Dusk\Options::withUI();
+
+// To hide the UI during testing
+\Orchestra\Testbench\Dusk\Options::withoutUI();
+```
+
+We recommend you place this in a `tests/bootstrap.php` file, similar to this packages own test setup and use this for PHP Unit.
+
+### Database
+
+By default you can either use `sqlite`, `mysql`, `pgsql` or `sqlsrv` with Testbench Dusk, however do note that it is impossible to use `sqlite` using `:memory:` database as you would with **Testbench** or **Tesbench BrowserKit**.
+
+If you opt to use `sqlite`, you might want to set the default database connection to `sqlite` either using `phpunit` configuration or setting it up on `getEnvironmentSetUp()` method.
+
+```php
+/**
+ * Define environment setup.
+ *
+ * @param  Illuminate\Foundation\Application  $app
+ *
+ * @return void
+ */
+protected function getEnvironmentSetUp($app)
+{
+    $this->app['config']->set('database.default', 'sqlite');
+}
+```
+
+To create the sqlite database you just need to run the following code:
+
+```bash
+php vendor/orchestra/testbench-dusk/create-sqlite-db
 ```
 
 ## Advanced Usage

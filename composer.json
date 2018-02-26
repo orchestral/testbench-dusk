@@ -46,7 +46,7 @@
     },
     "scripts": {
         "test": [
-            "@php -r \"file_exists('laravel/database/database.sqlite') || copy('laravel/database/database.sqlite.example', 'laravel/database/database.sqlite');\"",
+            "@php create-sqlite-db",
             "@php vendor/bin/phpunit -c ./ --color"
         ]
     },

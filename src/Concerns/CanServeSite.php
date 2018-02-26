@@ -119,7 +119,7 @@ trait CanServeSite
     }
 
     /**
-     * Return the current instance of server
+     * Return the current instance of server.
      *
      * @return \Orchestra\Testbench\Dusk\DuskServer|null
      */
