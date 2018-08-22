@@ -106,7 +106,7 @@ trait CanServeSite
     {
         static::$server = $server;
 
-        $this->setUp();
+        $this->setUpDuskServer();
 
         $serializedClosure = static::$server->getStash('tweakApplication');
 
@@ -126,5 +126,17 @@ trait CanServeSite
     public function getServer()
     {
         return static::$server;
+    }
+
+    /**
+     * Server specific setup. It may share alot with the main setUp() method, but
+     * should exclude things like DB migrations so we don't end up wiping the
+     * DB content mid test. Using this method means we can be explicit.
+     *
+     * @return void
+     */
+    protected function setUpDuskServer()
+    {
+        parent::setUp();
     }
 }
