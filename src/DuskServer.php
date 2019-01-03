@@ -159,7 +159,7 @@ class DuskServer
     protected function prepareCommand(): string
     {
         return sprintf(
-            'exec %s -S %s:%s %s',
+            (($this->isWindows() ? '' : 'exec ') .'"%s" -S %s:%s "%s"'),
             (new PhpExecutableFinder())->find(false),
             $this->host,
             $this->port,
@@ -179,6 +179,16 @@ class DuskServer
     public function laravelPublicPath(?string $root = null): string
     {
         return $root ?: realpath(__DIR__.'/../laravel/public');
+    }
+    
+    /**
+     * Check if current OS is Windows.
+     *
+     * @return bool
+     */
+    protected function isWindows()
+    {
+        return strtoupper(substr(PHP_OS, 0, 3)) === 'WIN';
     }
 
     /**
