@@ -2,8 +2,6 @@ language: php
 
 sudo: required
 
-dist: xenial
-
 php:
   - 7.1
   - 7.2
@@ -13,6 +11,9 @@ env:
     - setup=basic
     - coverage=no
 
+addons:
+  chrome: stable
+
 before_script:
   - composer config discard-changes true
   - php ./create-sqlite-db
@@ -20,9 +21,6 @@ before_script:
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable; fi
   - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable; fi
   - if [[ $setup = 'coveralls' ]]; then travis_retry composer require "satooshi/php-coveralls=~1.0" --prefer-dist --no-interaction --dev; fi
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - ./vendor/laravel/dusk/bin/chromedriver-linux &
 
 script:
   - if [[ $coverage = 'yes' ]]; then ./vendor/bin/phpunit -c ./ --coverage-clover build/logs/clover.xml; fi
