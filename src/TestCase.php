@@ -41,7 +41,7 @@ abstract class TestCase extends Foundation
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
 
@@ -141,7 +141,7 @@ abstract class TestCase extends Foundation
      */
     public static function prepare()
     {
-        static::startChromeDriver($port = 9515);
+        static::startChromeDriver(['port' => 9515]);
     }
 
     /**
