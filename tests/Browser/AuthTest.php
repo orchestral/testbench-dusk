@@ -22,6 +22,8 @@ class AuthTest extends TestCase
     /** @test */
     public function can_authenticate_user()
     {
+        $this->withExceptionHandling();
+
         $user = factory(User::class)->create();
 
         $this->browse(function (Browser $browser) use ($user) {
