@@ -21,8 +21,6 @@ before_script:
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable; fi
   - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable; fi
   - if [[ $setup = 'coveralls' ]]; then travis_retry composer require "satooshi/php-coveralls=~1.0" --prefer-dist --no-interaction --dev; fi
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-  - ./vendor/laravel/dusk/bin/chromedriver-linux &
 
 script:
   - if [[ $coverage = 'yes' ]]; then ./vendor/bin/phpunit -c ./ --coverage-clover build/logs/clover.xml; fi
