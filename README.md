@@ -16,6 +16,7 @@ The package was developed by [Konsulting Ltd](https://github.com/konsulting) and
 * [Installation](#installation)
 * [Usage](#usage)
 * [Advanced Usage](#advanced-usage)
+* [Troubleshooting](#troubleshooting)
 * [Changelog](https://github.com/orchestral/testbench-dusk/releases)
 
 ## Version Compatibility
@@ -162,3 +163,35 @@ Run only your browser tests by running phpunit with the `--testsuite=Browser` op
 
 You can optionally set the default testsuite with the option `defaultTestSuite="Unit"`.
 
+## Troubleshooting
+
+### Running Dusk- and standard testbench tests in same suite
+
+You may encounter the error
+`PHP Fatal error: Cannot declare class CreateUsersTable, because the name is already in use in...`
+when using [`loadLaravelMigrations()`](https://github.com/orchestral/testbench-core/blob/master/src/Concerns/WithLaravelMigrations.php) with some of your test extending the Dusk test class `\Orchestra\Testbench\Dusk\TestCase` and others extend the "normal" test class `\Orchestra\Testbench\TestCase`.
+
+The problem arises because migrations are loaded from both packages' "skeletons" during the same test run,
+and Laravel's migration classes are not namespaced.
+
+#### Solution
+Make sure all integration tests in your test suite use the same Laravel skeleton (the one from `testbench-dusk`),
+regardless of the base class they extend by overriding `getBasePath()` in your test classes.
+Do the override in your base integration test class, or perhaps in a trait if you need it in multiple classes.
+
+```php
+/**
+* Make sure all integration tests use the same Laravel "skeleton" files.
+* This avoids duplicate classes during migrations.
+*
+* Overrides \Orchestra\Testbench\Dusk\TestCase::getBasePath
+*       and \Orchestra\Testbench\Concerns\CreatesApplication::getBasePath
+*
+* @return string
+*/
+protected function getBasePath()
+{
+    // Adjust this path depending on where your override is located.
+    return __DIR__.'/../vendor/orchestra/testbench-dusk/laravel'; 
+}
+```
