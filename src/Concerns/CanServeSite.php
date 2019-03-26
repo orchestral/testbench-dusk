@@ -3,7 +3,7 @@
 namespace Orchestra\Testbench\Dusk\Concerns;
 
 use Closure;
-use SuperClosure\Serializer;
+use Opis\Closure\SerializableClosure;
 use Orchestra\Testbench\Dusk\DuskServer;
 
 trait CanServeSite
@@ -62,21 +62,8 @@ trait CanServeSite
 
         static::$server->stash([
             'class' => static::class,
-            'tweakApplication' => $this->getClosureSerializer()->serialize($closure),
+            'tweakApplication' => serialize(SerializableClosure::from($closure)),
         ]);
-    }
-
-    /**
-     * We can't natively serialise closures in PHP, so we use SuperClosure.
-     * The analyser can be set here, and overridden for the class - in
-     * case the closure is not supported by the default Analyser, see:
-     * https://github.com/jeremeamia/super_closure.
-     *
-     * @return \SuperClosure\Serializer
-     */
-    public function getClosureSerializer(): Serializer
-    {
-        return new Serializer();
     }
 
     /**
@@ -106,12 +93,12 @@ trait CanServeSite
     {
         static::$server = $server;
 
-        $this->setUp();
+        $this->setUpDuskServer();
 
         $serializedClosure = static::$server->getStash('tweakApplication');
 
         if ($serializedClosure) {
-            $closure = $this->getClosureSerializer()->unserialize($serializedClosure);
+            $closure = unserialize($serializedClosure)->getClosure();
             $closure($this->app);
         }
 
@@ -126,5 +113,17 @@ trait CanServeSite
     public function getServer()
     {
         return static::$server;
+    }
+
+    /**
+     * Server specific setup. It may share alot with the main setUp() method, but
+     * should exclude things like DB migrations so we don't end up wiping the
+     * DB content mid test. Using this method means we can be explicit.
+     *
+     * @return void
+     */
+    protected function setUpDuskServer(): void
+    {
+        parent::setUp();
     }
 }

@@ -24,8 +24,8 @@ The package was developed by [Konsulting Ltd](https://github.com/konsulting) and
 :---------|:----------
  5.4.x    | 3.4.x
  5.5.x    | 3.5.x
- 5.6.x.   | 3.6.x@dev
- 5.7.x.   | 3.7.x@dev
+ 5.6.x.   | 3.6.x
+ 5.7.x.   | 3.7.x
  5.8.x    | 3.8.x@dev
 
 ## Getting Started
@@ -43,7 +43,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require-dev": {
-        "orchestra/testbench-dusk": "~3.4"
+        "orchestra/testbench-dusk": "^3.4"
     }
 }
 ```
@@ -54,7 +54,7 @@ And then run `composer install` from the terminal.
 
 Above installation can also be simplify by using the following command:
 
-    composer require --dev "orchestra/testbench-dusk=~3.4"
+    composer require --dev "orchestra/testbench-dusk=^3.4"
 
 ## Usage
 

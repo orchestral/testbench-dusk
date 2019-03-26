@@ -24,7 +24,7 @@ class DefaultConfigurationTest extends TestbenchDuskTestCase
     /** @test */
     public function it_populate_expected_cache_defaults()
     {
-        $this->assertSame('array', $this->app['config']['cache.default']);
+        $this->assertSame('file', $this->app['config']['cache.default']);
     }
 
     /** @test */

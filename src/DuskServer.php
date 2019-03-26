@@ -159,7 +159,7 @@ class DuskServer
     protected function prepareCommand(): string
     {
         return sprintf(
-            (($this->isWindows() ? '' : 'exec ') .'"%s" -S %s:%s "%s"'),
+            (($this->isWindows() ? '' : 'exec ') .'%s -S %s:%s %s'),
             (new PhpExecutableFinder())->find(false),
             $this->host,
             $this->port,
@@ -180,16 +180,6 @@ class DuskServer
     {
         return $root ?: realpath(__DIR__.'/../laravel/public');
     }
-    
-    /**
-     * Check if current OS is Windows.
-     *
-     * @return bool
-     */
-    protected function isWindows()
-    {
-        return strtoupper(substr(PHP_OS, 0, 3)) === 'WIN';
-    }
 
     /**
      * Get the current process.
@@ -199,5 +189,15 @@ class DuskServer
     public function getProcess()
     {
         return $this->process;
+    }
+
+    /**
+     * Check if current OS is Windows.
+     *
+     * @return bool
+     */
+    protected function isWindows()
+    {
+        return strtoupper(substr(PHP_OS, 0, 3)) === 'WIN';
     }
 }
