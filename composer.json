@@ -29,10 +29,10 @@
     },
     "require": {
         "php": ">=7.1",
-        "facebook/webdriver": "~1.3",
+        "facebook/webdriver": "^1.3",
         "jeremeamia/superclosure": "^2.3",
         "konsulting/project-root": "^1.0",
-        "laravel/dusk": "^4.0.4",
+        "laravel/dusk": "^5.0",
         "orchestra/testbench": "~3.7.0"
     },
     "require-dev": {
