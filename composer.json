@@ -33,7 +33,7 @@
         "konsulting/project-root": "^1.0",
         "laravel/dusk": "^5.0",
         "opis/closure": "^3.1",
-        "orchestra/testbench": "~3.7.0"
+        "orchestra/testbench": "~3.7.7"
     },
     "require-dev": {
         "laravel/laravel": "5.7.x-dev",
