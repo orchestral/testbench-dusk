@@ -12,7 +12,6 @@ env:
     - coverage=no
   matrix:
     - setup=basic
-    - setup=lowest
     - setup=stable
 
 addons:
