@@ -3,7 +3,6 @@ language: php
 sudo: required
 
 php:
-  - 7.1
   - 7.2
   - 7.3
 
@@ -41,7 +40,7 @@ after_script:
 
 matrix:
   include:
-    - php: 7.1
+    - php: 7.2
       env: setup=coveralls coverage=yes
   allow_failures:
     - env: setup=coveralls coverage=yes
