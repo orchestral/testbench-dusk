@@ -8,19 +8,26 @@ php:
   - 7.0
   - 7.1
   - 7.2
+  - 7.3
 
 env:
   global:
-    - setup=basic
     - coverage=no
+  matrix:
+    - setup=basic
+    - setup=stable
 
-before_script:
+before_install:
+  - travis_retry composer self-update
   - composer config discard-changes true
   - php ./create-sqlite-db
+  - sudo sh -c 'echo 0 > /proc/sys/net/ipv6/conf/all/disable_ipv6'
+
+before_script:
   - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction; fi
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable; fi
   - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable; fi
-  - if [[ $setup = 'coveralls' ]]; then travis_retry composer require "satooshi/php-coveralls=~1.0" --prefer-dist --no-interaction --dev; fi
+  - if [[ $setup = 'coveralls' ]]; then travis_retry composer require "satooshi/php-coveralls=^2.1" --prefer-dist --no-interaction --dev; fi
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - ./vendor/laravel/dusk/bin/chromedriver-linux &
@@ -30,14 +37,10 @@ script:
   - if [[ $coverage = 'no' ]]; then ./vendor/bin/phpunit -c ./; fi
 
 after_script:
-  - if [[ $setup = 'coveralls' ]]; then php vendor/bin/coveralls -v; fi
+  - if [[ $setup = 'coveralls' ]]; then php vendor/bin/php-coveralls -v; fi
 
 matrix:
   include:
-    - php: 7.0
-      env: setup=lowest
-    - php: 7.0
-      env: setup=stable
     - php: 7.0
       env: setup=coveralls coverage=yes
   allow_failures:
