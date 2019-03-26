@@ -135,7 +135,7 @@ trait CanServeSite
      *
      * @return void
      */
-    protected function setUpDuskServer()
+    protected function setUpDuskServer(): void
     {
         parent::setUp();
     }
