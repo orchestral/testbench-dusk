@@ -2,8 +2,6 @@ language: php
 
 sudo: required
 
-dist: trusty
-
 php:
   - 7.1
   - 7.2
@@ -21,6 +19,7 @@ before_install:
   - travis_retry composer self-update
   - composer config discard-changes true
   - php ./create-sqlite-db
+  - sudo sh -c 'echo 0 > /proc/sys/net/ipv6/conf/all/disable_ipv6'
 
 before_script:
   - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction; fi
