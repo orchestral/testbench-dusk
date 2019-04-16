@@ -36,13 +36,13 @@ class DummyTestCase extends TestbenchDuskTestCase
     }
 
     // Don't try to start another server!
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         //
     }
 
     // Don't need to stop a server
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         //
     }
