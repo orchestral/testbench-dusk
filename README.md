@@ -29,9 +29,9 @@ The package was developed by [Konsulting Ltd](https://github.com/konsulting) and
 
 Before going through the rest of this documentation, please take some time to read the following documentation:
 
-* [Package Development for Laravel](https://laravel.com/docs/5.4/packages)
+* [Package Development for Laravel](https://laravel.com/docs/5.5/packages)
 * [Orchestra Testbench Documentation](https://github.com/orchestral/testbench/blob/3.4/README.md)
-* [Laravel Dusk Documentation](https://laravel.com/docs/5.4/dusk)
+* [Laravel Dusk Documentation](https://laravel.com/docs/5.5/dusk)
 
 ## Installation
 
