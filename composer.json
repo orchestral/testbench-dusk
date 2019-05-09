@@ -33,6 +33,7 @@
         "konsulting/project-root": "^1.1",
         "laravel/dusk": "^5.0",
         "opis/closure": "^3.1",
+        "orchestra/dusk-updater": "^1.0",
         "orchestra/testbench": "~3.8.1"
     },
     "require-dev": {
@@ -45,6 +46,9 @@
         }
     },
     "scripts": {
+        "post-autoload-dump": [
+            "./vendor/bin/dusk-updater update"
+        ],
         "test": [
             "@php create-sqlite-db",
             "@php vendor/bin/phpunit -c ./ --color"
