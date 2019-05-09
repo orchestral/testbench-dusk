@@ -59,6 +59,7 @@ To use Testbench Dusk Component, all you need to do is extend `Orchestra\Testben
 
 ```php
 <?php
+
 class BrowserTestCase extends Orchestra\Testbench\Dusk\TestCase
 {
     //
