@@ -46,9 +46,6 @@
         }
     },
     "scripts": {
-        "post-autoload-dump": [
-            "./vendor/bin/dusk-updater update"
-        ],
         "test": [
             "@php create-sqlite-db",
             "@php vendor/bin/phpunit -c ./ --color"
