@@ -46,6 +46,9 @@
         }
     },
     "scripts": {
+        "update-dusk": [
+            "@php vendor/bin/dusk-updater detect --auto-update"
+        ],
         "test": [
             "@php create-sqlite-db",
             "@php vendor/bin/phpunit -c ./ --color"
