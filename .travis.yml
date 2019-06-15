@@ -16,6 +16,9 @@ env:
 addons:
    chrome: stable
 
+services:
+  - xvfb
+
 before_install:
   - travis_retry composer self-update
   - composer config discard-changes true
@@ -29,7 +32,6 @@ before_script:
   - if [[ $setup = 'coveralls' ]]; then travis_retry composer require "satooshi/php-coveralls=^2.1" --prefer-dist --no-interaction --dev; fi
   - ./vendor/bin/dusk-updater detect --auto-update
   - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
   - ./vendor/laravel/dusk/bin/chromedriver-linux &
 
 script:
