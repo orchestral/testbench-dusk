@@ -5,7 +5,7 @@ The Testbench Dusk Component is a simple package that is supposed to help you wr
 
 The package was developed by [Konsulting Ltd](https://github.com/konsulting) and transferred to the Orchestra namespace where we will assist with supporting it in the future. It is in early development and feedback is appreciated.
 
-[![Build Status](https://travis-ci.org/orchestral/testbench-dusk.svg?branch=master)](https://travis-ci.org/orchestral/testbench-dusk)
+[![Build Status](https://travis-ci.org/orchestral/testbench-dusk.svg?branch=3.9)](https://travis-ci.org/orchestral/testbench-dusk)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/testbench-dusk/v/stable)](https://packagist.org/packages/orchestra/testbench-dusk)
 [![Total Downloads](https://poser.pugx.org/orchestra/testbench-dusk/downloads)](https://packagist.org/packages/orchestra/testbench-dusk)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/testbench-dusk/v/unstable)](https://packagist.org/packages/orchestra/testbench-dusk)
@@ -171,7 +171,7 @@ You can optionally set the default testsuite with the option `defaultTestSuite="
 
 You may encounter the error
 `PHP Fatal error: Cannot declare class CreateUsersTable, because the name is already in use in...`
-when using [`loadLaravelMigrations()`](https://github.com/orchestral/testbench-core/blob/master/src/Concerns/WithLaravelMigrations.php) with some of your test extending the Dusk test class `\Orchestra\Testbench\Dusk\TestCase` and others extend the "normal" test class `\Orchestra\Testbench\TestCase`.
+when using [`loadLaravelMigrations()`](https://github.com/orchestral/testbench-core/blob/3.9/src/Concerns/WithLaravelMigrations.php) with some of your test extending the Dusk test class `\Orchestra\Testbench\Dusk\TestCase` and others extend the "normal" test class `\Orchestra\Testbench\TestCase`.
 
 The problem arises because migrations are loaded from both packages' "skeletons" during the same test run,
 and Laravel's migration classes are not namespaced.
