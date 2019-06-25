@@ -145,7 +145,15 @@ class DuskServer
      */
     protected function guardServerStarting()
     {
-        if ($socket = @fsockopen($this->host, $this->port, $errorNumber = 0, $errorString = '', $timeout = 1)) {
+        $socket = \rescue(function () {
+            $errorNumber = 0;
+            $errorString = '';
+            $timeout = 1;
+
+            return @fsockopen($this->host, $this->port, $errorNumber, $errorString, $timeout);
+        }, null, false);
+
+        if ($socket) {
             fclose($socket);
             throw new UnableToStartServer($this->host.':'.$this->port);
         }
