@@ -33,7 +33,7 @@
         "jeremeamia/superclosure": "^2.3",
         "konsulting/project-root": "^1.0",
         "laravel/dusk": "^4.0.4",
-        "orchestra/dusk-updater": "^1.0",
+        "orchestra/dusk-updater": "^1.1",
         "orchestra/testbench": "~3.6.6"
     },
     "require-dev": {
