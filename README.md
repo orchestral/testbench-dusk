@@ -166,6 +166,11 @@ You can optionally set the default testsuite with the option `defaultTestSuite="
 
 ## Troubleshooting
 
+### Chrome versions
+
+If tests report wrong Chrome versions, run `./vendor/bin/dusk-updater update`
+to set it right before running tests again.
+
 ### Running Dusk- and standard testbench tests in same suite
 
 You may encounter the error
