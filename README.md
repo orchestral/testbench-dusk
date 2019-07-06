@@ -168,10 +168,19 @@ You can optionally set the default testsuite with the option `defaultTestSuite="
 
 ### Chrome versions
 
-If tests report wrong Chrome versions, run `./vendor/bin/dusk-updater update`
-to set it right before running tests again.
+```
+Facebook\WebDriver\Exception\SessionNotCreatedException: session not created: Chrome version must be between 70 and 73
+```
 
-### Running Dusk- and standard testbench tests in same suite
+If tests report following error, run the following command:
+
+    ./vendor/bin/dusk-updater update
+
+Alternatively you can run the following command to detect installed ChromeDriver and auto update it if neccessary:
+
+    ./vendor/bin/dusk-updater detect --auto-update
+
+### Running Dusk and standard testbench tests in same suite
 
 You may encounter the error
 `PHP Fatal error: Cannot declare class CreateUsersTable, because the name is already in use in...`
@@ -181,6 +190,7 @@ The problem arises because migrations are loaded from both packages' "skeletons"
 and Laravel's migration classes are not namespaced.
 
 #### Solution
+
 Make sure all integration tests in your test suite use the same Laravel skeleton (the one from `testbench-dusk`),
 regardless of the base class they extend by overriding `getBasePath()` in your test classes.
 Do the override in your base integration test class, or perhaps in a trait if you need it in multiple classes.
