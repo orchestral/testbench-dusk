@@ -30,7 +30,7 @@ abstract class TestCase extends Foundation
     protected static $baseServePort = 8000;
 
     /**
-     * Keep track of whether we've registered shutdown function
+     * Keep track of whether we've registered shutdown function.
      *
      * @var bool
      */
@@ -41,7 +41,7 @@ abstract class TestCase extends Foundation
      *
      * @return void
      */
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -52,13 +52,13 @@ abstract class TestCase extends Foundation
     /**
      * Make sure we close down any chrome processes when we temrinate early, unlike normal
      * Dusk, we also close down all the server processes - so keeping the chome browser
-     * open doesn't help, nor does it help when we're running in headless mode :)
+     * open doesn't help, nor does it help when we're running in headless mode :).
      *
      * @return void
      */
     protected function registerShutdownFunction()
     {
-        if (!static::$hasRegisteredShutdown) {
+        if (! static::$hasRegisteredShutdown) {
             register_shutdown_function(function () {
                 $this->closeAll();
             });
