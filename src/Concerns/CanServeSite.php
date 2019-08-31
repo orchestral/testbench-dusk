@@ -21,9 +21,9 @@ trait CanServeSite
      * @param string $host
      * @param int    $port
      *
-     * @return void
-
      * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
+     *
+     * @return void
      */
     public static function serve($host = '127.0.0.1', $port = 8000): void
     {

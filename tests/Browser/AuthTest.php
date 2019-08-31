@@ -11,7 +11,7 @@ class AuthTest extends TestCase
     /**
      * Setup the test environment.
      */
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
 

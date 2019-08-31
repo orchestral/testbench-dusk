@@ -167,7 +167,7 @@ class DuskServer
     protected function prepareCommand(): string
     {
         return sprintf(
-            (($this->isWindows() ? '' : 'exec ') .'%s -S %s:%s %s'),
+            (($this->isWindows() ? '' : 'exec ').'%s -S %s:%s %s'),
             (new PhpExecutableFinder())->find(false),
             $this->host,
             $this->port,
