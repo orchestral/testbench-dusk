@@ -62,7 +62,7 @@ trait CanServeSite
 
         static::$server->stash([
             'class' => static::class,
-            'tweakApplication' => serialize(SerializableClosure::from($closure)),
+            'tweakApplication' => \serialize(SerializableClosure::from($closure)),
         ]);
     }
 
@@ -98,7 +98,7 @@ trait CanServeSite
         $serializedClosure = static::$server->getStash('tweakApplication');
 
         if ($serializedClosure) {
-            $closure = unserialize($serializedClosure)->getClosure();
+            $closure = \unserialize($serializedClosure)->getClosure();
             $closure($this->app);
         }
 

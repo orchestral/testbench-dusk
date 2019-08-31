@@ -59,7 +59,7 @@ abstract class TestCase extends Foundation
     protected function registerShutdownFunction()
     {
         if (! static::$hasRegisteredShutdown) {
-            register_shutdown_function(function () {
+            \register_shutdown_function(function () {
                 $this->closeAll();
             });
 
@@ -84,7 +84,7 @@ abstract class TestCase extends Foundation
      */
     protected function resolveApplication()
     {
-        return tap(new Application($this->getBasePath()), function ($app) {
+        return \tap(new Application($this->getBasePath()), static function ($app) {
             $app->bind(
                 'Illuminate\Foundation\Bootstrap\LoadConfiguration',
                 Bootstrap\LoadConfiguration::class
@@ -117,7 +117,7 @@ abstract class TestCase extends Foundation
      */
     protected function baseUrl()
     {
-        return sprintf('http://%s:%d', static::$baseServeHost, static::$baseServePort);
+        return \sprintf('http://%s:%d', static::$baseServeHost, static::$baseServePort);
     }
 
     /**

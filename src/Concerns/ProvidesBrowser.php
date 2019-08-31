@@ -40,8 +40,8 @@ trait ProvidesBrowser
         $tests = $this->resolveBrowserTestsPath();
 
         foreach (['/screenshots', '/console'] as $dir) {
-            if (! is_dir($tests.$dir)) {
-                mkdir($tests.$dir, 0777, true);
+            if (! \is_dir($tests.$dir)) {
+                \mkdir($tests.$dir, 0777, true);
             }
         }
 
