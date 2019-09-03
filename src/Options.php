@@ -51,9 +51,8 @@ class Options
      */
     public static function getChromeOptions()
     {
-        return (new ChromeOptions())->addArguments(array_merge(
-            [],
+        return (new ChromeOptions())->addArguments(
             ! static::hasUI() ? ['--disable-gpu', '--headless'] : []
-        ));
+        );
     }
 }

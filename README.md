@@ -28,15 +28,15 @@ The package was developed by [Konsulting Ltd](https://github.com/konsulting) and
  5.6.x.   | 3.6.x
  5.7.x.   | 3.7.x
  5.8.x    | 3.8.x
- 6.x      | 4.x@dev
+ 6.x      | 4.x
 
 ## Getting Started
 
 Before going through the rest of this documentation, please take some time to read the following documentation:
 
-* [Package Development for Laravel](https://laravel.com/docs/5.8/packages)
-* [Orchestra Testbench Documentation](https://github.com/orchestral/testbench/blob/3.8/README.md)
-* [Laravel Dusk Documentation](https://laravel.com/docs/5.8/dusk)
+* [Package Development for Laravel](https://laravel.com/docs/6.0/packages)
+* [Orchestra Testbench Documentation](https://github.com/orchestral/testbench/blob/4.x/README.md)
+* [Laravel Dusk Documentation](https://laravel.com/docs/6.0/dusk)
 
 ## Installation
 
@@ -45,7 +45,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require-dev": {
-        "orchestra/testbench-dusk": "^3.4"
+        "orchestra/testbench-dusk": "^4.0"
     }
 }
 ```
@@ -56,11 +56,11 @@ And then run `composer install` from the terminal.
 
 Above installation can also be simplify by using the following command:
 
-    composer require --dev "orchestra/testbench-dusk=^3.4"
+    composer require --dev "orchestra/testbench-dusk=^4.0"
 
 ## Usage
 
-To use Testbench Dusk Component, all you need to do is extend `Orchestra\Testbench\Dusk\TestCase` instead of `Laravel\Dusk\TestCase`. The fixture app booted by `Orchestra\Testbench\Dusk\TestCase` is predefined to follow the base application skeleton of Laravel 5.
+To use Testbench Dusk Component, all you need to do is extend `Orchestra\Testbench\Dusk\TestCase` instead of `Laravel\Dusk\TestCase`. The fixture app booted by `Orchestra\Testbench\Dusk\TestCase` is predefined to follow the base application skeleton of Laravel 6.
 
 ```php
 <?php

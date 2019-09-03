@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'testing'),
+    'env' => env('APP_ENV', 'production'),
 
     /*
     |--------------------------------------------------------------------------
@@ -165,16 +165,15 @@ return [
         /*
          * Package Service Providers...
          */
-        Laravel\Dusk\DuskServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
-        // App\Providers\AppServiceProvider::class,
-        // App\Providers\AuthServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
-        // App\Providers\EventServiceProvider::class,
-        // App\Providers\RouteServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
 
     ],
 

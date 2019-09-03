@@ -57,7 +57,7 @@ class DuskServer
      */
     public function stash($content): void
     {
-        file_put_contents($this->temp(), json_encode($content));
+        \file_put_contents($this->temp(), \json_encode($content));
     }
 
     /**
@@ -67,7 +67,7 @@ class DuskServer
      */
     protected function temp(): string
     {
-        return dirname(__DIR__).'/tmp/'.$this->host.'__'.$this->port;
+        return \dirname(__DIR__).'/tmp/'.$this->host.'__'.$this->port;
     }
 
     /**
@@ -79,7 +79,7 @@ class DuskServer
      */
     public function getStash(?string $key = null)
     {
-        $content = json_decode(file_get_contents($this->temp()), true);
+        $content = \json_decode(\file_get_contents($this->temp()), true);
 
         return $key ? (isset($content[$key]) ? $content[$key] : null) : $content;
     }
@@ -99,7 +99,7 @@ class DuskServer
         // We register the below, so if php is exited early, the child
         // process for the server is closed down, rather than left
         // hanging around for the user to close themselves.
-        register_shutdown_function(function () {
+        \register_shutdown_function(function () {
             $this->stop();
         });
     }
@@ -150,11 +150,11 @@ class DuskServer
             $errorString = '';
             $timeout = 1;
 
-            return @fsockopen($this->host, $this->port, $errorNumber, $errorString, $timeout);
+            return @\fsockopen($this->host, $this->port, $errorNumber, $errorString, $timeout);
         }, null, false);
 
         if ($socket) {
-            fclose($socket);
+            \fclose($socket);
             throw new UnableToStartServer($this->host.':'.$this->port);
         }
     }
@@ -166,7 +166,7 @@ class DuskServer
      */
     protected function prepareCommand(): string
     {
-        return sprintf(
+        return \sprintf(
             (($this->isWindows() ? '' : 'exec ').'%s -S %s:%s %s'),
             (new PhpExecutableFinder())->find(false),
             $this->host,
@@ -186,7 +186,7 @@ class DuskServer
      */
     public function laravelPublicPath(?string $root = null): string
     {
-        return $root ?: realpath(__DIR__.'/../laravel/public');
+        return $root ?: \realpath(__DIR__.'/../laravel/public');
     }
 
     /**
@@ -206,6 +206,6 @@ class DuskServer
      */
     protected function isWindows()
     {
-        return strtoupper(substr(PHP_OS, 0, 3)) === 'WIN';
+        return \strtoupper(\substr(PHP_OS, 0, 3)) === 'WIN';
     }
 }
