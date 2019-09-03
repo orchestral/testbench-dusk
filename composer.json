@@ -37,7 +37,7 @@
         "orchestra/testbench": "~3.8.1"
     },
     "require-dev": {
-        "laravel/laravel": "dev-master",
+        "laravel/laravel": "5.8.x-dev",
         "mockery/mockery": "^1.0"
     },
     "extra": {
