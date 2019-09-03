@@ -34,9 +34,9 @@ The package was developed by [Konsulting Ltd](https://github.com/konsulting) and
 
 Before going through the rest of this documentation, please take some time to read the following documentation:
 
-* [Package Development for Laravel](https://laravel.com/docs/5.8/packages)
-* [Orchestra Testbench Documentation](https://github.com/orchestral/testbench/blob/3.8/README.md)
-* [Laravel Dusk Documentation](https://laravel.com/docs/5.8/dusk)
+* [Package Development for Laravel](https://laravel.com/docs/6.0/packages)
+* [Orchestra Testbench Documentation](https://github.com/orchestral/testbench/blob/3.9/README.md)
+* [Laravel Dusk Documentation](https://laravel.com/docs/6.0/dusk)
 
 ## Installation
 
@@ -60,7 +60,7 @@ Above installation can also be simplify by using the following command:
 
 ## Usage
 
-To use Testbench Dusk Component, all you need to do is extend `Orchestra\Testbench\Dusk\TestCase` instead of `Laravel\Dusk\TestCase`. The fixture app booted by `Orchestra\Testbench\Dusk\TestCase` is predefined to follow the base application skeleton of Laravel 5.
+To use Testbench Dusk Component, all you need to do is extend `Orchestra\Testbench\Dusk\TestCase` instead of `Laravel\Dusk\TestCase`. The fixture app booted by `Orchestra\Testbench\Dusk\TestCase` is predefined to follow the base application skeleton of Laravel 6.
 
 ```php
 <?php
