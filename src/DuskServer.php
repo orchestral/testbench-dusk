@@ -2,9 +2,9 @@
 
 namespace Orchestra\Testbench\Dusk;
 
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\PhpExecutableFinder;
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
+use Symfony\Component\Process\PhpExecutableFinder;
+use Symfony\Component\Process\Process;
 
 class DuskServer
 {

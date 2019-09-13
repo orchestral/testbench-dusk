@@ -3,12 +3,12 @@
 namespace Orchestra\Testbench\Dusk;
 
 use Exception;
-use Illuminate\Foundation\Application;
 use Facebook\WebDriver\Chrome\ChromeOptions;
-use Facebook\WebDriver\Remote\RemoteWebDriver;
-use Orchestra\Testbench\TestCase as Foundation;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Illuminate\Foundation\Application;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
+use Orchestra\Testbench\TestCase as Foundation;
 
 abstract class TestCase extends Foundation
 {

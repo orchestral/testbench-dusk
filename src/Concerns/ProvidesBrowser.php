@@ -2,8 +2,8 @@
 
 namespace Orchestra\Testbench\Dusk\Concerns;
 
-use Laravel\Dusk\Browser;
 use Konsulting\ProjectRoot;
+use Laravel\Dusk\Browser;
 use Laravel\Dusk\Chrome\SupportsChrome;
 use Laravel\Dusk\Concerns\ProvidesBrowser as Concern;
 

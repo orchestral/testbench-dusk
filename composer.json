@@ -51,6 +51,7 @@
         ],
         "test": [
             "@php create-sqlite-db",
+            "@composer run update-dusk",
             "@php vendor/bin/phpunit -c ./ --color"
         ]
     },
