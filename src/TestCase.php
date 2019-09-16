@@ -3,12 +3,12 @@
 namespace Orchestra\Testbench\Dusk;
 
 use Exception;
-use Illuminate\Foundation\Application;
 use Facebook\WebDriver\Chrome\ChromeOptions;
-use Facebook\WebDriver\Remote\RemoteWebDriver;
-use Orchestra\Testbench\TestCase as Foundation;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Illuminate\Foundation\Application;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
+use Orchestra\Testbench\TestCase as Foundation;
 
 abstract class TestCase extends Foundation
 {
@@ -30,7 +30,7 @@ abstract class TestCase extends Foundation
     protected static $baseServePort = 8000;
 
     /**
-     * Keep track of whether we've registered shutdown function
+     * Keep track of whether we've registered shutdown function.
      *
      * @var bool
      */
@@ -41,7 +41,7 @@ abstract class TestCase extends Foundation
      *
      * @return void
      */
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -52,14 +52,14 @@ abstract class TestCase extends Foundation
     /**
      * Make sure we close down any chrome processes when we temrinate early, unlike normal
      * Dusk, we also close down all the server processes - so keeping the chome browser
-     * open doesn't help, nor does it help when we're running in headless mode :)
+     * open doesn't help, nor does it help when we're running in headless mode :).
      *
      * @return void
      */
     protected function registerShutdownFunction()
     {
-        if (!static::$hasRegisteredShutdown) {
-            register_shutdown_function(function () {
+        if (! static::$hasRegisteredShutdown) {
+            \register_shutdown_function(function () {
                 $this->closeAll();
             });
 
@@ -84,7 +84,7 @@ abstract class TestCase extends Foundation
      */
     protected function resolveApplication()
     {
-        return tap(new Application($this->getBasePath()), function ($app) {
+        return \tap(new Application($this->getBasePath()), static function ($app) {
             $app->bind(
                 'Illuminate\Foundation\Bootstrap\LoadConfiguration',
                 Bootstrap\LoadConfiguration::class
@@ -117,7 +117,7 @@ abstract class TestCase extends Foundation
      */
     protected function baseUrl()
     {
-        return sprintf('http://%s:%d', static::$baseServeHost, static::$baseServePort);
+        return \sprintf('http://%s:%d', static::$baseServeHost, static::$baseServePort);
     }
 
     /**

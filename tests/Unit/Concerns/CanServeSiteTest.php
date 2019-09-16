@@ -2,8 +2,8 @@
 
 namespace Orchestra\Testbench\Dusk\Tests\Unit\Concerns;
 
-use Orchestra\Testbench\Dusk\Tests\Unit\TestCase;
 use Orchestra\Testbench\Dusk\Concerns\CanServeSite;
+use Orchestra\Testbench\Dusk\Tests\Unit\TestCase;
 
 class CanServeSiteTest extends TestCase
 {

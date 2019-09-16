@@ -37,6 +37,7 @@
         "orchestra/testbench": "^5.0"
     },
     "require-dev": {
+        "laravel/laravel": "dev-develop",
         "mockery/mockery": "^1.0"
     },
     "extra": {
@@ -50,6 +51,7 @@
         ],
         "test": [
             "@php create-sqlite-db",
+            "@composer run update-dusk",
             "@php vendor/bin/phpunit -c ./ --color"
         ]
     },

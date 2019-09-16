@@ -13,7 +13,7 @@ class TestCase extends PHPUnitTestCase
 
         while (! $this->isServerUp()) {
             sleep(1);
-            $i++;
+            ++$i;
 
             if ($i >= 5) {
                 throw new Exception('Waited too long for server to start.');
@@ -27,7 +27,7 @@ class TestCase extends PHPUnitTestCase
 
         while ($this->isServerUp()) {
             sleep(1);
-            $i++;
+            ++$i;
 
             if ($i >= 5) {
                 throw new Exception('Waited too long for server to stop.');

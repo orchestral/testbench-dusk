@@ -3,9 +3,9 @@
 namespace Orchestra\Testbench\Dusk\Bootstrap;
 
 use Illuminate\Config\Repository;
-use Symfony\Component\Finder\Finder;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Config\Repository as RepositoryContract;
+use Illuminate\Contracts\Foundation\Application;
+use Symfony\Component\Finder\Finder;
 
 class LoadConfiguration
 {
@@ -24,7 +24,7 @@ class LoadConfiguration
 
         $this->loadConfigurationFiles($app, $config);
 
-        mb_internal_encoding('UTF-8');
+        \mb_internal_encoding('UTF-8');
     }
 
     /**
@@ -53,10 +53,10 @@ class LoadConfiguration
     {
         $files = [];
 
-        $path = realpath(__DIR__.'/../../laravel/config');
+        $path = \realpath(__DIR__.'/../../laravel/config');
 
         foreach (Finder::create()->files()->name('*.php')->in($path) as $file) {
-            $files[basename($file->getRealPath(), '.php')] = $file->getRealPath();
+            $files[\basename($file->getRealPath(), '.php')] = $file->getRealPath();
         }
 
         return $files;

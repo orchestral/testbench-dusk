@@ -2,8 +2,8 @@
 
 namespace Orchestra\Testbench\Dusk\Concerns;
 
-use Laravel\Dusk\Browser;
 use Konsulting\ProjectRoot;
+use Laravel\Dusk\Browser;
 use Laravel\Dusk\Chrome\SupportsChrome;
 use Laravel\Dusk\Concerns\ProvidesBrowser as Concern;
 
@@ -40,8 +40,8 @@ trait ProvidesBrowser
         $tests = $this->resolveBrowserTestsPath();
 
         foreach (['/screenshots', '/console'] as $dir) {
-            if (! is_dir($tests.$dir)) {
-                mkdir($tests.$dir, 0777, true);
+            if (! \is_dir($tests.$dir)) {
+                \mkdir($tests.$dir, 0777, true);
             }
         }
 

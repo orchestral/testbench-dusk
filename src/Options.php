@@ -7,14 +7,14 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 class Options
 {
     /**
-     * Store UI setting
+     * Store UI setting.
      *
      * @var bool
      */
-    static $ui = true;
+    protected static $ui = true;
 
     /**
-     * Set to hide UI
+     * Set to hide UI.
      *
      * @return void
      */
@@ -24,7 +24,7 @@ class Options
     }
 
     /**
-     * Set to show UI
+     * Set to show UI.
      *
      * @return void
      */
@@ -34,7 +34,7 @@ class Options
     }
 
     /**
-     * Return current setting for showing UI
+     * Return current setting for showing UI.
      *
      * @return bool
      */
@@ -45,15 +45,14 @@ class Options
 
     /**
      * Return the ChromeOptions Object - used when configuring the
-     * Facebook Webdriver
+     * Facebook Webdriver.
      *
      * @return \Facebook\WebDriver\Chrome\ChromeOptions
      */
     public static function getChromeOptions()
     {
-        return (new ChromeOptions())->addArguments(array_merge(
-            [],
+        return (new ChromeOptions())->addArguments(
             ! static::hasUI() ? ['--disable-gpu', '--headless'] : []
-        ));
+        );
     }
 }
