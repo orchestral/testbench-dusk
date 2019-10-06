@@ -34,11 +34,11 @@
         "laravel/dusk": "^5.1",
         "opis/closure": "^3.1",
         "orchestra/dusk-updater": "^1.1",
-        "orchestra/testbench": "^4.0"
+        "orchestra/testbench": "^4.1"
     },
     "require-dev": {
         "laravel/laravel": "dev-master",
-        "mockery/mockery": "^1.0"
+        "mockery/mockery": "^1.2.3"
     },
     "extra": {
         "branch-alias": {
