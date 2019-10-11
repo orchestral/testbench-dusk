@@ -34,7 +34,7 @@
         "laravel/dusk": "^5.1",
         "opis/closure": "^3.1",
         "orchestra/dusk-updater": "^1.1",
-        "orchestra/testbench": "^3.9.0"
+        "orchestra/testbench": "^3.9.2"
     },
     "require-dev": {
         "laravel/laravel": "dev-master",
