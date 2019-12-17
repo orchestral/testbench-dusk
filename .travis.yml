@@ -44,6 +44,10 @@ after_script:
 
 matrix:
   include:
+    - php: 7.4
+      env: setup=basic
+    - php: 7.4
+      env: setup=stable
     - php: 7.2
       env: setup=coveralls coverage=yes
   allow_failures:
