@@ -5,10 +5,11 @@ sudo: required
 php:
   - 7.2
   - 7.3
+  - 7.4
 
 env:
   global:
-    - coverage=no
+    - coverage=no phpunit=^8.3
   matrix:
     - setup=basic
     - setup=stable
@@ -44,10 +45,18 @@ after_script:
 
 matrix:
   include:
+    - php: 7.3
+      env: setup=basic phpunit=^9.0
     - php: 7.4
-      env: setup=basic
+      env: setup=basic phpunit=^9.0
+    - php: 7.3
+      env: setup=stable phpunit=^9.0
     - php: 7.4
-      env: setup=stable
+      env: setup=stable phpunit=^9.0
+    - php: 7.3
+      env: setup=lowest phpunit=^9.0
+    - php: 7.4
+      env: setup=lowest phpunit=^9.0
     - php: 7.2
       env: setup=coveralls coverage=yes
   allow_failures:
