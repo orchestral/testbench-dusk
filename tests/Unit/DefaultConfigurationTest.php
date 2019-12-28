@@ -11,8 +11,8 @@ class DefaultConfigurationTest extends TestbenchDuskTestCase
     /** @test */
     public function it_loads_dusk_service_provider()
     {
-        $this->assertContains(DuskServiceProvider::class, $this->app['config']['app.providers']);
-        $this->assertContains(DuskServiceProvider::class, $this->app->getLoadedProviders());
+        $this->assertContains(DuskServiceProvider::class, array_values($this->app['config']['app.providers']));
+        $this->assertContains(DuskServiceProvider::class, array_keys($this->app->getLoadedProviders()));
     }
 
     /** @test */

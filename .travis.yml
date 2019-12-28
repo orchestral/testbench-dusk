@@ -8,7 +8,7 @@ php:
 
 env:
   global:
-    - coverage=no
+    - coverage=no phpunit=^8.3
   matrix:
     - setup=basic
     - setup=stable
@@ -27,6 +27,7 @@ before_install:
   - sudo sh -c 'echo 0 > /proc/sys/net/ipv6/conf/all/disable_ipv6'
 
 before_script:
+  - composer require "phpunit/phpunit=${phpunit}" --dev --prefer-dist --no-interaction --no-suggest
   - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction; fi
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable; fi
   - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable; fi
@@ -48,6 +49,16 @@ matrix:
       env: setup=basic
     - php: 7.4
       env: setup=stable
+    - php: 7.3
+      env: setup=basic phpunit=^9.0
+    - php: 7.4
+      env: setup=basic phpunit=^9.0
+    - php: 7.3
+      env: setup=stable phpunit=^9.0
+    - php: 7.4
+      env: setup=stable phpunit=^9.0
+    - php: 7.3
+      env: setup=lowest phpunit=^9.0
     - php: 7.2
       env: setup=coveralls coverage=yes
   allow_failures:
