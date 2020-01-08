@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 4.5.0
+
+Released: 2020-01-08
+
+### Changes
+
+* Update skeleton.
+* Update minimum support for Testbench v4.5.0+. ([v4.4.1...v4.5.0](https://github.com/orchestral/testbench/compare/v4.4.1...v4.5.0))
+
 ## 4.4.1
 
 Released: 2019-12-17
