@@ -29,7 +29,7 @@
     },
     "require": {
         "php": ">=7.2",
-        "facebook/webdriver": "^1.7",
+        "php-webdriver/webdriver": "^1.7",
         "konsulting/project-root": "^1.1",
         "laravel/dusk": "^5.6.3",
         "opis/closure": "^3.1",
