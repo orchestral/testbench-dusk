@@ -5,6 +5,7 @@ sudo: required
 php:
   - 7.2
   - 7.3
+  - 7.4
 
 env:
   global:
@@ -45,10 +46,6 @@ after_script:
 
 matrix:
   include:
-    - php: 7.4
-      env: setup=basic
-    - php: 7.4
-      env: setup=stable
     - php: 7.3
       env: setup=basic phpunit=^9.0
     - php: 7.4
@@ -58,6 +55,8 @@ matrix:
     - php: 7.4
       env: setup=stable phpunit=^9.0
     - php: 7.3
+      env: setup=lowest phpunit=^9.0
+    - php: 7.4
       env: setup=lowest phpunit=^9.0
     - php: 7.2
       env: setup=coveralls coverage=yes

@@ -2,6 +2,16 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 4.6.0
+
+Released: 2020-01-24
+
+### Changes
+
+* Update skeleton.
+* Replace deprecated `facebook/webdriver` with `php-webdriver/webdriver`. 
+* Update `opis/closure`, avoid `Opis\Closure\ClosureStream::stream_set_option` is not implemented on PHP 7.4 with `--prefer-lowest` setup.
+
 ## 4.5.0
 
 Released: 2020-01-08
