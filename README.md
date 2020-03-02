@@ -29,6 +29,7 @@ The package was developed by [Konsulting Ltd](https://github.com/konsulting) and
  5.7.x.   | 3.7.x
  5.8.x    | 3.8.x
  6.x      | 4.x
+ 7.x      | 5.x
 
 ## Getting Started
 
@@ -40,27 +41,13 @@ Before going through the rest of this documentation, please take some time to re
 
 ## Installation
 
-To install through composer, simply put the following in your `composer.json` file:
+To install through composer, run the following command from terminal:
 
-```json
-{
-    "require-dev": {
-        "orchestra/testbench-dusk": "^4.0"
-    }
-}
-```
-
-And then run `composer install` from the terminal.
-
-### Quick Installation
-
-Above installation can also be simplify by using the following command:
-
-    composer require --dev "orchestra/testbench-dusk=^4.0"
+    composer require --dev "orchestra/testbench-dusk"
 
 ## Usage
 
-To use Testbench Dusk Component, all you need to do is extend `Orchestra\Testbench\Dusk\TestCase` instead of `Laravel\Dusk\TestCase`. The fixture app booted by `Orchestra\Testbench\Dusk\TestCase` is predefined to follow the base application skeleton of Laravel 6.
+To use Testbench Dusk Component, all you need to do is extend `Orchestra\Testbench\Dusk\TestCase` instead of `Laravel\Dusk\TestCase`. The fixture app booted by `Orchestra\Testbench\Dusk\TestCase` is predefined to follow the base application skeleton of Laravel 7.
 
 ```php
 <?php
