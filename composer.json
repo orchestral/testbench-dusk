@@ -37,7 +37,7 @@
         "php-webdriver/webdriver": "^1.7"
     },
     "require-dev": {
-        "laravel/laravel": "dev-master",
+        "laravel/laravel": "6.x-dev",
         "mockery/mockery": "^1.0"
     },
     "extra": {
