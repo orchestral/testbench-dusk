@@ -33,7 +33,7 @@
         "laravel/dusk": "^5.8.2",
         "opis/closure": "^3.4.2",
         "orchestra/dusk-updater": "^1.2.1",
-        "orchestra/testbench": "^5.0.2",
+        "orchestra/testbench": "^5.1",
         "php-webdriver/webdriver": "^1.7"
     },
     "require-dev": {
@@ -41,7 +41,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "5.0-dev"
+            "dev-master": "5.1-dev"
         }
     },
     "scripts": {
