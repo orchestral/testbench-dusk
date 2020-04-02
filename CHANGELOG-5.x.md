@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 5.1.2
+
+Released: 2020-04-02
+
+### Changes
+
+* Update Laravel 7.x skeleton:
+    - Rename `filesystems.disk.s3.url` to `filesystems.disk.s3.endpoint`.
+
 ## 5.1.1
 
 Released: 2020-03-16
