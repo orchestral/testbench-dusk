@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 5.1.3
+
+Released: 2020-04-11
+
+### Changes
+
+* Update Laravel 7.x skeleton.
+
 ## 5.1.2
 
 Released: 2020-04-02
