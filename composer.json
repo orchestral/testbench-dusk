@@ -32,7 +32,7 @@
         "konsulting/project-root": "^1.1",
         "laravel/dusk": "^5.8.2",
         "opis/closure": "^3.1",
-        "orchestra/dusk-updater": "^1.2.1",
+        "orchestra/dusk-updater": "^1.2.2",
         "orchestra/testbench": "^3.9.3",
         "php-webdriver/webdriver": "^1.7"
     },
