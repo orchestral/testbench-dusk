@@ -44,3 +44,9 @@ jobs:
         run: vendor/laravel/dusk/bin/chromedriver-linux &
       - name: Execute tests
         run: vendor/bin/phpunit
+      - name: Upload Failed Screenshots
+        uses: actions/upload-artifact@v2-preview
+        if: failure()
+        with:
+          name: screenshots
+          path: tests/Browser/screenshots/*
