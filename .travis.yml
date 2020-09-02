@@ -32,7 +32,7 @@ before_script:
   - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction; fi
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable; fi
   - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable; fi
-  - if [[ $setup = 'coveralls' ]]; then travis_retry composer require "satooshi/php-coveralls=^2.1" --prefer-dist --no-interaction --dev; fi
+  - if [[ $setup = 'coveralls' ]]; then wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.2.0/php-coveralls.phar; chmod +x php-coveralls.phar; fi
   - ./vendor/bin/dusk-updater detect --auto-update
   - export DISPLAY=:99.0
   - ./vendor/laravel/dusk/bin/chromedriver-linux &
@@ -42,7 +42,7 @@ script:
   - if [[ $coverage = 'no' ]]; then ./vendor/bin/phpunit -c ./ --verbose; fi
 
 after_script:
-  - if [[ $setup = 'coveralls' ]]; then php vendor/bin/php-coveralls -v; fi
+  - if [[ $setup = 'coveralls' ]]; then php-coveralls.phar -v; fi
 
 matrix:
   include:
