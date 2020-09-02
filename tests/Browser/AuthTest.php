@@ -5,6 +5,7 @@ namespace Orchestra\Testbench\Dusk\Tests\Browser;
 use Illuminate\Foundation\Auth\User;
 use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Dusk\TestCase;
+use Orchestra\Testbench\Dusk\Tests\Factories\UserFactory;
 
 class AuthTest extends TestCase
 {
@@ -21,7 +22,7 @@ class AuthTest extends TestCase
     /** @test */
     public function can_authenticate_user()
     {
-        $user = factory(User::class)->create();
+        $user = UserFactory::new()->create();
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user, 'web')
