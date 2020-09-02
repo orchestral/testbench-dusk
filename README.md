@@ -5,7 +5,7 @@ The Testbench Dusk Component is a simple package that is supposed to help you wr
 
 The package was developed by [Konsulting Ltd](https://github.com/konsulting) and transferred to the Orchestra namespace where we will assist with supporting it in the future. It is in early development and feedback is appreciated.
 
-[![Build Status](https://travis-ci.org/orchestral/testbench-dusk.svg?branch=4.x)](https://travis-ci.org/orchestral/testbench-dusk)
+[![Build Status](https://travis-ci.org/orchestral/testbench-dusk.svg?branch=6.x)](https://travis-ci.org/orchestral/testbench-dusk)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/testbench-dusk/v/stable)](https://packagist.org/packages/orchestra/testbench-dusk)
 [![Total Downloads](https://poser.pugx.org/orchestra/testbench-dusk/downloads)](https://packagist.org/packages/orchestra/testbench-dusk)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/testbench-dusk/v/unstable)](https://packagist.org/packages/orchestra/testbench-dusk)
@@ -30,6 +30,7 @@ The package was developed by [Konsulting Ltd](https://github.com/konsulting) and
  5.8.x    | 3.8.x
  6.x      | 4.x
  7.x      | 5.x
+ 8.x      | 6.x
 
 ## Getting Started
 
