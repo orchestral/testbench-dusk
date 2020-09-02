@@ -37,8 +37,7 @@
         "php-webdriver/webdriver": "^1.7"
     },
     "require-dev": {
-        "laravel/laravel": "dev-develop",
-        "laravel/legacy-factories": "^1.0.4"
+        "laravel/laravel": "dev-develop"
     },
     "extra": {
         "branch-alias": {
