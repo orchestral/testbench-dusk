@@ -5,7 +5,7 @@ namespace Orchestra\Testbench\Dusk\Tests\Browser;
 use Illuminate\Foundation\Auth\User;
 use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Dusk\TestCase;
-use Orchestra\Testbench\Dusk\Tests\Factories\UserFactory;
+use Orchestra\Testbench\Factories\UserFactory;
 
 class AuthTest extends TestCase
 {
