@@ -27,6 +27,9 @@
             "Orchestra\\Testbench\\Dusk\\Tests\\": "tests/"
         }
     },
+    "bin": [
+        "testbench-dusk"
+    ],
     "require": {
         "php": ">=7.2",
         "konsulting/project-root": "^1.1",
