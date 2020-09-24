@@ -98,6 +98,16 @@ class Commander
     }
 
     /**
+     * Get base path.
+     *
+     * @return string
+     */
+    protected function getBasePath()
+    {
+        return __DIR__.'/../../laravel';
+    }
+
+    /**
      * Define environment setup.
      *
      * @param  \Illuminate\Foundation\Application   $app
