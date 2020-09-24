@@ -37,7 +37,8 @@
         "opis/closure": "^3.4.2",
         "orchestra/dusk-updater": "^1.2.2",
         "orchestra/testbench": "^5.2",
-        "php-webdriver/webdriver": "^1.7"
+        "php-webdriver/webdriver": "^1.7",
+        "symfony/yaml": "^4.3 || ^5.0"
     },
     "require-dev": {
         "laravel/laravel": "7.x-dev"
