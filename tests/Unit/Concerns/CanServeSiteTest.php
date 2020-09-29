@@ -52,4 +52,14 @@ class CanServeSiteTest extends TestCase
 class CanServeSiteDummy
 {
     use CanServeSite;
+
+    /**
+     * Get base path.
+     *
+     * @return string
+     */
+    protected function getBasePath()
+    {
+        return __DIR__.'/../../../laravel';
+    }
 }
