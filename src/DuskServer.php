@@ -37,6 +37,13 @@ class DuskServer
     protected $port;
 
     /**
+     * Laravel public working path.
+     *
+     * @var string
+     */
+    protected $laravelPublicPath;
+
+    /**
      * Construct a new server.
      *
      * @param string $host
@@ -46,6 +53,18 @@ class DuskServer
     {
         $this->host = $host;
         $this->port = $port;
+    }
+
+    /**
+     * Set Laravel working path.
+     *
+     * @param  string|null  $publicPath
+     *
+     * @return void
+     */
+    public function setPublicPath(?string $publicPath = null): void
+    {
+        $this->laravelPublicPath = $publicPath;
     }
 
     /**
@@ -184,9 +203,9 @@ class DuskServer
      *
      * @return string
      */
-    public function laravelPublicPath(?string $root = null): string
+    public function laravelPublicPath(): string
     {
-        return $root ?: \realpath(__DIR__.'/../laravel/public');
+        return $this->laravelPublicPath ?: \realpath(__DIR__.'/../laravel/public');
     }
 
     /**
