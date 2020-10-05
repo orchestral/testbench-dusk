@@ -10,7 +10,9 @@ Released: 2020-10-05
 
 * Added experimental support for running artisan commands outside of Laravel. e.g:
 
-    ./vendor/bin/testbench migrate
+```
+./vendor/bin/testbench migrate
+```
 
 This would allows you to setup the testing environment before running `phpunit` instead of executing everything from within `TestCase::setUp()`.
 
