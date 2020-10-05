@@ -36,6 +36,18 @@ abstract class TestCase extends Foundation
      */
     protected static $hasRegisteredShutdown = false;
 
+        /**
+     * Determine the application's base URL.
+     *
+     * @var string
+     *
+     * @return string
+     */
+    public static function baseServeUrl()
+    {
+        return \sprintf('http://%s:%d', static::$baseServeHost, static::$baseServePort);
+    }
+
     /**
      * Register the base URL with Dusk.
      *
