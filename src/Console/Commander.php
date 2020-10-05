@@ -4,7 +4,6 @@ namespace Orchestra\Testbench\Dusk\Console;
 
 use Dotenv\Dotenv;
 use Dotenv\Loader\Loader;
-use Dotenv\Parser\Parser;
 use Dotenv\Store\StringStore;
 use Illuminate\Contracts\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Env;
@@ -90,10 +89,9 @@ class Commander
     protected function createDotenv()
     {
         (new Dotenv(
-            new StringStore(implode("\n", $this->config['env'])),
-            new Parser(),
             new Loader(),
-            Env::getRepository()
+            Env::getRepository(),
+            new StringStore(implode("\n", $this->config['env'] ?? []))
         ))->load();
     }
 
