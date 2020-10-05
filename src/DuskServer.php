@@ -39,7 +39,7 @@ class DuskServer
     /**
      * Laravel public working path.
      *
-     * @var string
+     * @var string|null
      */
     protected $laravelPublicPath;
 

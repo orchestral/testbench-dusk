@@ -2,6 +2,32 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 5.3.0
+
+Released: 2020-10-05
+
+### Added
+
+* Added experimental support for running artisan commands outside of Laravel. e.g:
+
+```
+./vendor/bin/testbench migrate
+```
+
+This would allows you to setup the testing environment before running `phpunit` instead of executing everything from within `TestCase::setUp()`.
+
+* Add following folders to Laravel skeleton:
+  - `app/Console`
+  - `app/Exceptions`
+  - `app/Http/Controllers`
+  - `app/Http/Middleware`
+  - `app/Providers`
+  - `database/seeds`
+
+### Changes
+
+* Change default port from `8000` to `8001`.
+
 ## 5.2.0
 
 Released: 2020-05-05

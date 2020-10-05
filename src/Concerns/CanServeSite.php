@@ -130,7 +130,6 @@ trait CanServeSite
         parent::setUp();
     }
 
-
     /**
      * Get base path.
      *

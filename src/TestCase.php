@@ -36,7 +36,7 @@ abstract class TestCase extends Foundation
      */
     protected static $hasRegisteredShutdown = false;
 
-        /**
+    /**
      * Determine the application's base URL.
      *
      * @var string
