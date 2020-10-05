@@ -25,7 +25,7 @@ trait CanServeSite
      *
      * @return void
      */
-    public static function serve($host = '127.0.0.1', $port = 8000): void
+    public static function serve($host = '127.0.0.1', $port = 8001): void
     {
         static::stopServing();
 

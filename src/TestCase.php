@@ -27,7 +27,7 @@ abstract class TestCase extends Foundation
      *
      * @var int
      */
-    protected static $baseServePort = 8000;
+    protected static $baseServePort = 8001;
 
     /**
      * Keep track of whether we've registered shutdown function.
@@ -35,6 +35,18 @@ abstract class TestCase extends Foundation
      * @var bool
      */
     protected static $hasRegisteredShutdown = false;
+
+        /**
+     * Determine the application's base URL.
+     *
+     * @var string
+     *
+     * @return string
+     */
+    public static function baseServeUrl()
+    {
+        return \sprintf('http://%s:%d', static::$baseServeHost, static::$baseServePort);
+    }
 
     /**
      * Register the base URL with Dusk.

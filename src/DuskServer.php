@@ -49,7 +49,7 @@ class DuskServer
      * @param string $host
      * @param int    $port
      */
-    public function __construct($host = '127.0.0.1', $port = 8000)
+    public function __construct($host = '127.0.0.1', $port = 8001)
     {
         $this->host = $host;
         $this->port = $port;
