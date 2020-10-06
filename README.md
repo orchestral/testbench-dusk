@@ -61,7 +61,7 @@ class BrowserTestCase extends Orchestra\Testbench\Dusk\TestCase
 
 ### Custom Host and Port
 
-By default, Tesbench Dusk will start its own PHP server at `http://127.0.0.1:8000`.
+By default, Testbench Dusk will start its own PHP server at `http://127.0.0.1:8000`.
 
 You can customize this by replacing the `$baseServeHost` and `$baseServePort` such as below:
 
@@ -93,7 +93,7 @@ We recommend you place this in a `tests/bootstrap.php` file, similar to this pac
 
 ### Database
 
-By default you can either use `sqlite`, `mysql`, `pgsql` or `sqlsrv` with Testbench Dusk, however do note that it is impossible to use `sqlite` using `:memory:` database as you would with **Testbench** or **Tesbench BrowserKit**.
+By default you can either use `sqlite`, `mysql`, `pgsql` or `sqlsrv` with Testbench Dusk, however do note that it is impossible to use `sqlite` using `:memory:` database as you would with **Testbench** or **Testbench BrowserKit**.
 
 If you opt to use `sqlite`, you might want to set the default database connection to `sqlite` either using `phpunit` configuration or setting it up on `getEnvironmentSetUp()` method.
 
