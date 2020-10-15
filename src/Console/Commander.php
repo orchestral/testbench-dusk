@@ -32,13 +32,22 @@ class Commander
     protected $config = [];
 
     /**
+     * Working path.
+     *
+     * @var string|null
+     */
+    protected $workingPath;
+
+    /**
      * Construct a new Commander.
      *
-     * @param array $config
+     * @param array  $config
+     * @param string|null  $workingPath
      */
-    public function __construct(array $config = [])
+    public function __construct(array $config = [], ?string $workingPath)
     {
         $this->config = $config;
+        $this->workingPath = $workingPath;
     }
 
     /**
@@ -95,6 +104,24 @@ class Commander
             new StringStore(implode("\n", $this->config['env'] ?? []))
         ))->load();
     }
+
+    /**
+     * Get base path.
+     *
+     * @return string
+     */
+    protected function getBasePath()
+    {
+
+        $laravelBasePath = $this->config['laravel'] ?? null;
+
+        if (! is_null($laravelBasePath)) {
+            return \str_replace('./', $this->workingPath.'/', $laravelBasePath);
+        }
+
+        return __DIR__.'/../../laravel';
+    }
+
 
     /**
      * Define environment setup.
