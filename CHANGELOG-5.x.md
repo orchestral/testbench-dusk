@@ -8,7 +8,7 @@ Released: 2020-10-20
 
 ### Added
 
-* Added ability to use custom Laravel path for `testbench` CLI.
+* Added ability to use custom Laravel path for `testbench-dusk` CLI.
 
 ## 5.3.0
 
@@ -19,7 +19,7 @@ Released: 2020-10-05
 * Added experimental support for running artisan commands outside of Laravel. e.g:
 
 ```
-./vendor/bin/testbench migrate
+./vendor/bin/testbench-dusk migrate
 ```
 
 This would allows you to setup the testing environment before running `phpunit` instead of executing everything from within `TestCase::setUp()`.
