@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.2.1
+
+Released: 2020-10-20
+
+### Fixes
+
+* Fixes missing `$workingPath`.
+
 ## 6.2.0 
 
 Released: 2020-10-20
