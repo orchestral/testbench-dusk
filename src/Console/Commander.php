@@ -112,7 +112,6 @@ class Commander
      */
     protected function getBasePath()
     {
-
         $laravelBasePath = $this->config['laravel'] ?? null;
 
         if (! is_null($laravelBasePath)) {
@@ -121,7 +120,6 @@ class Commander
 
         return __DIR__.'/../../laravel';
     }
-
 
     /**
      * Define environment setup.
