@@ -28,7 +28,7 @@ before_install:
   - sudo sh -c 'echo 0 > /proc/sys/net/ipv6/conf/all/disable_ipv6'
 
 before_script:
-  - composer require "phpunit/phpunit=${phpunit}" --dev --prefer-dist --no-interaction --no-suggest
+  - composer require "phpunit/phpunit=${phpunit}" --dev --prefer-dist --no-interaction --no-update
   - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction; fi
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable; fi
   - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable; fi
