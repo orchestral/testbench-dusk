@@ -27,11 +27,6 @@ before_script:
   - export DISPLAY=:99.0
   - ./vendor/laravel/dusk/bin/chromedriver-linux &
 
-before_script:
-  - composer install --prefer-dist --no-interaction
-  - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.2.0/php-coveralls.phar
-  - chmod +x php-coveralls.phar
-
 script:
   - ./vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
 
