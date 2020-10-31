@@ -22,11 +22,11 @@ jobs:
           - "highest"
         experimental:
           - false
-      include:
-        - php: "8.0"
-          dependencies: "highest"
-          composer-options: "--ignore-platform-reqs"
-          experimental: true
+        include:
+          - php: "8.0"
+            dependencies: "highest"
+            composer-options: "--ignore-platform-reqs"
+            experimental: true
 
     name: PHP${{ matrix.php }} on ubuntu-latest (${{ matrix.dependencies }})
 
