@@ -33,7 +33,7 @@ before_script:
   - chmod +x php-coveralls.phar
 
 script:
-  - ./vendor/bin/phpunit -c phpunit.xml --coverage-clover build/logs/clover.xml
+  - ./vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
 
 after_script:
   - php-coveralls.phar -v
