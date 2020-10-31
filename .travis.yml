@@ -28,7 +28,6 @@ before_script:
   - ./vendor/laravel/dusk/bin/chromedriver-linux &
 
 before_script:
-  - composer require "phpunit/phpunit=${phpunit}" --prefer-dist --no-interaction --no-update
   - composer install --prefer-dist --no-interaction
   - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.2.0/php-coveralls.phar
   - chmod +x php-coveralls.phar
