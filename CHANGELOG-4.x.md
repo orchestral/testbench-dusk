@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 4.9.0
+
+Released: 2020-11-07
+
+### Added
+
+* Added `Orchestra\Testbench\Dusk\TestCase::baseServeUrl()` helper method.
+ 
+### Changes
+
+* Draft support for PHP 8, pending compatibility from `php-webdriver/webdriver` and `laravel/dusk`.
+* Improves support for custom skeleton laravel.
+
 ## 4.8.1
 
 Released: 2020-04-11

@@ -4,16 +4,6 @@ sudo: required
 
 php:
   - 7.2
-  - 7.3
-  - 7.4
-
-env:
-  global:
-    - coverage=no phpunit=^8.3
-  matrix:
-    - setup=basic
-    - setup=stable
-    - setup=lowest
 
 addons:
    chrome: stable
@@ -28,38 +18,30 @@ before_install:
   - sudo sh -c 'echo 0 > /proc/sys/net/ipv6/conf/all/disable_ipv6'
 
 before_script:
+<<<<<<< HEAD
   - composer require "phpunit/phpunit=${phpunit}" --dev --prefer-dist --no-interaction --no-update
   - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction; fi
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable; fi
   - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable; fi
   - if [[ $setup = 'coveralls' ]]; then wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.2.0/php-coveralls.phar; chmod +x php-coveralls.phar; fi
+=======
+  - composer install --prefer-dist --no-interaction
+  - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.2.0/php-coveralls.phar
+  - chmod +x php-coveralls.phar
+>>>>>>> 4.x
   - ./vendor/bin/dusk-updater detect --auto-update
   - export DISPLAY=:99.0
   - ./vendor/laravel/dusk/bin/chromedriver-linux &
 
 script:
-  - if [[ $coverage = 'yes' ]]; then ./vendor/bin/phpunit -c ./ --coverage-clover build/logs/clover.xml; fi
-  - if [[ $coverage = 'no' ]]; then ./vendor/bin/phpunit -c ./ --verbose; fi
+  - ./vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
 
 after_script:
+<<<<<<< HEAD
   - if [[ $setup = 'coveralls' ]]; then php-coveralls.phar -v; fi
+=======
+  - php-coveralls.phar -v
+>>>>>>> 4.x
 
 matrix:
-  include:
-    - php: 7.3
-      env: setup=basic phpunit=^9.0
-    - php: 7.4
-      env: setup=basic phpunit=^9.0
-    - php: 7.3
-      env: setup=stable phpunit=^9.0
-    - php: 7.4
-      env: setup=stable phpunit=^9.0
-    - php: 7.3
-      env: setup=lowest phpunit=^9.0
-    - php: 7.4
-      env: setup=lowest phpunit=^9.0
-    - php: 7.2
-      env: setup=coveralls coverage=yes
-  allow_failures:
-    - env: setup=coveralls coverage=yes
   fast_finish: true
