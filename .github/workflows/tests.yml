@@ -34,12 +34,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v1
 
-      - name: Cache dependencies
-        uses: actions/cache@v1
-        with:
-          path: ~/.composer/cache/files
-          key: dependencies-${{ matrix.php }}-ubuntu-latest-${{ matrix.dependencies }}-composer-${{ hashFiles('composer.json') }}
-
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
