@@ -18,17 +18,9 @@ before_install:
   - sudo sh -c 'echo 0 > /proc/sys/net/ipv6/conf/all/disable_ipv6'
 
 before_script:
-<<<<<<< HEAD
-  - composer require "phpunit/phpunit=${phpunit}" --dev --prefer-dist --no-interaction --no-update
-  - if [[ $setup = 'basic' ]]; then travis_retry composer install --prefer-dist --no-interaction; fi
-  - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable; fi
-  - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable; fi
-  - if [[ $setup = 'coveralls' ]]; then wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.2.0/php-coveralls.phar; chmod +x php-coveralls.phar; fi
-=======
   - composer install --prefer-dist --no-interaction
   - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.2.0/php-coveralls.phar
   - chmod +x php-coveralls.phar
->>>>>>> 4.x
   - ./vendor/bin/dusk-updater detect --auto-update
   - export DISPLAY=:99.0
   - ./vendor/laravel/dusk/bin/chromedriver-linux &
@@ -37,11 +29,7 @@ script:
   - ./vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
 
 after_script:
-<<<<<<< HEAD
-  - if [[ $setup = 'coveralls' ]]; then php-coveralls.phar -v; fi
-=======
   - php-coveralls.phar -v
->>>>>>> 4.x
 
 matrix:
   fast_finish: true
