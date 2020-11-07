@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 5.5.0
+
+Released: 2020-11-07
+
+### Changes
+
+* Draft support for PHP 8, pending compatibility from `php-webdriver/webdriver` and `laravel/dusk`.
+
 ## 5.4.1
 
 Released: 2020-10-20
