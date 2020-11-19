@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.4.0
+
+Released: 2020-11-20
+
+### Changes
+
+* Official support for PHP 8.
+* Update app skeleton.
+
+### Fixes
+
+* Fixes `fsockopen` imcompatible usage on PHP 8.
+
 ## 6.3.0
 
 Released: 2020-11-07
