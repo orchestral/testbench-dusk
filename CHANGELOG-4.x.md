@@ -2,7 +2,13 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
-## Unreleased
+## 4.10.0
+
+Released: 2020-11-20
+
+### Changes
+
+* Official support for PHP 8
 
 ### Fixes
 
