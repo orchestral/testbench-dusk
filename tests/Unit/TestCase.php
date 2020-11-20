@@ -37,7 +37,7 @@ class TestCase extends PHPUnitTestCase
 
     protected function isServerUp()
     {
-        if ($socket = @fsockopen('127.0.0.1', 8000, $errorNumber = 0, $errorString = '', $timeout = 1)) {
+        if ($socket = @fsockopen('127.0.0.1', 8001, $errorNumber, $errorString, $timeout = 1)) {
             fclose($socket);
 
             return true;

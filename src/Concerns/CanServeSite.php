@@ -25,11 +25,14 @@ trait CanServeSite
      *
      * @return void
      */
-    public static function serve($host = '127.0.0.1', $port = 8000): void
+    public static function serve($host = '127.0.0.1', $port = 8001): void
     {
         static::stopServing();
 
+        $basePath = (new static())->getBasePath();
+
         $server = new DuskServer($host, $port);
+        $server->setPublicPath("{$basePath}/public");
         $server->stash(['class' => static::class]);
         $server->start();
 
@@ -126,4 +129,11 @@ trait CanServeSite
     {
         parent::setUp();
     }
+
+    /**
+     * Get base path.
+     *
+     * @return string
+     */
+    abstract protected function getBasePath();
 }

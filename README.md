@@ -5,7 +5,7 @@ The Testbench Dusk Component is a simple package that is supposed to help you wr
 
 The package was developed by [Konsulting Ltd](https://github.com/konsulting) and transferred to the Orchestra namespace where we will assist with supporting it in the future. It is in early development and feedback is appreciated.
 
-[![Build Status](https://travis-ci.org/orchestral/testbench-dusk.svg?branch=4.x)](https://travis-ci.org/orchestral/testbench-dusk)
+[![tests](https://github.com/orchestral/testbench-dusk/workflows/tests/badge.svg?branch=master)](https://github.com/orchestral/testbench-dusk/actions?query=workflow%3Atests+branch%3Amaster)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/testbench-dusk/v/stable)](https://packagist.org/packages/orchestra/testbench-dusk)
 [![Total Downloads](https://poser.pugx.org/orchestra/testbench-dusk/downloads)](https://packagist.org/packages/orchestra/testbench-dusk)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/testbench-dusk/v/unstable)](https://packagist.org/packages/orchestra/testbench-dusk)
@@ -30,6 +30,7 @@ The package was developed by [Konsulting Ltd](https://github.com/konsulting) and
  5.8.x    | 3.8.x
  6.x      | 4.x
  7.x      | 5.x
+ 8.x      | 6.x
 
 ## Getting Started
 
@@ -60,7 +61,11 @@ class BrowserTestCase extends Orchestra\Testbench\Dusk\TestCase
 
 ### Custom Host and Port
 
+<<<<<<< HEAD
 By default, Tesbench Dusk will start its own PHP server at `http://127.0.0.1:8001`.
+=======
+By default, Testbench Dusk will start its own PHP server at `http://127.0.0.1:8000`.
+>>>>>>> 6.x
 
 You can customize this by replacing the `$baseServeHost` and `$baseServePort` such as below:
 
@@ -92,7 +97,7 @@ We recommend you place this in a `tests/bootstrap.php` file, similar to this pac
 
 ### Database
 
-By default you can either use `sqlite`, `mysql`, `pgsql` or `sqlsrv` with Testbench Dusk, however do note that it is impossible to use `sqlite` using `:memory:` database as you would with **Testbench** or **Tesbench BrowserKit**.
+By default you can either use `sqlite`, `mysql`, `pgsql` or `sqlsrv` with Testbench Dusk, however do note that it is impossible to use `sqlite` using `:memory:` database as you would with **Testbench** or **Testbench BrowserKit**.
 
 If you opt to use `sqlite`, you might want to set the default database connection to `sqlite` either using `phpunit` configuration or setting it up on `getEnvironmentSetUp()` method.
 

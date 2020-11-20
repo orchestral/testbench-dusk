@@ -2,6 +2,68 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 5.6.0
+
+Released: 2020-11-20
+
+### Changes
+
+* Official support for PHP 8
+
+### Fixes
+
+* Fixes `fsockopen` imcompatible usage on PHP 8.
+
+## 5.5.0
+
+Released: 2020-11-07
+
+### Changes
+
+* Draft support for PHP 8, pending compatibility from `php-webdriver/webdriver` and `laravel/dusk`.
+
+## 5.4.1
+
+Released: 2020-10-20
+
+### Fixes
+
+* Fixes missing `$workingPath`.
+
+## 5.4.0 
+
+Released: 2020-10-20
+
+### Added
+
+* Added ability to use custom Laravel path for `testbench-dusk` CLI.
+
+## 5.3.0
+
+Released: 2020-10-05
+
+### Added
+
+* Added experimental support for running artisan commands outside of Laravel. e.g:
+
+```
+./vendor/bin/testbench-dusk migrate
+```
+
+This would allows you to setup the testing environment before running `phpunit` instead of executing everything from within `TestCase::setUp()`.
+
+* Add following folders to Laravel skeleton:
+  - `app/Console`
+  - `app/Exceptions`
+  - `app/Http/Controllers`
+  - `app/Http/Middleware`
+  - `app/Providers`
+  - `database/seeds`
+
+### Changes
+
+* Change default port from `8000` to `8001`.
+
 ## 5.2.0
 
 Released: 2020-05-05

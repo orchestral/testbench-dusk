@@ -12,7 +12,7 @@ class CanServeSiteTest extends TestCase
     {
         $dummy = new CanServeSiteDummy();
 
-        $dummy::serve('127.0.0.1', 8000);
+        $dummy::serve('127.0.0.1', 8001);
 
         $this->assertFalse($dummy->getServer()->getProcess()->isTerminated());
 
@@ -32,12 +32,12 @@ class CanServeSiteTest extends TestCase
     {
         $dummy = new CanServeSiteDummy();
 
-        $dummy::serve('127.0.0.1', 8000);
+        $dummy::serve('127.0.0.1', 8001);
 
         $duskServerOne = $dummy->getServer();
         // we don't bother waiting since that is tested in 'it_starts_and_stops_a_server'
 
-        $dummy::serve('127.0.0.1', 8000);
+        $dummy::serve('127.0.0.1', 8001);
 
         $duskServerTwo = $dummy->getServer();
 
@@ -52,4 +52,14 @@ class CanServeSiteTest extends TestCase
 class CanServeSiteDummy
 {
     use CanServeSite;
+
+    /**
+     * Get base path.
+     *
+     * @return string
+     */
+    protected function getBasePath()
+    {
+        return __DIR__.'/../../../laravel';
+    }
 }
