@@ -33,19 +33,19 @@
     "require": {
         "php": ">=7.3 || ^8.0",
         "konsulting/project-root": "^1.1",
-        "laravel/dusk": "^6.5",
+        "laravel/dusk": "dev-develop",
         "opis/closure": "^3.4.2",
         "orchestra/dusk-updater": "^1.2.2",
-        "orchestra/testbench": "^6.4",
+        "orchestra/testbench": "^7.0",
         "php-webdriver/webdriver": "^1.7",
         "symfony/yaml": "^4.3 || ^5.0"
     },
     "require-dev": {
-        "laravel/laravel": "8.x-dev"
+        "laravel/laravel": "dev-master"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "6.0-dev"
+            "dev-master": "7.0-dev"
         }
     },
     "scripts": {
