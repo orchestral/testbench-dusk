@@ -2,134 +2,17 @@
 
 namespace Orchestra\Testbench\Dusk\Console;
 
-use Dotenv\Dotenv;
-use Dotenv\Loader\Loader;
-use Dotenv\Store\StringStore;
-use Illuminate\Contracts\Console\Kernel as ConsoleKernel;
-use Illuminate\Support\Env;
-use Orchestra\Testbench\Concerns\CreatesApplication;
-use Symfony\Component\Console\Input\ArgvInput;
-use Symfony\Component\Console\Output\ConsoleOutput;
+use Orchestra\Testbench\Console\Commander as Foundation;
 
-class Commander
+class Commander extends Foundation
 {
-    use CreatesApplication {
-        resolveApplication as protected resolveApplicationFromTrait;
-    }
-
     /**
-     * Application instance.
-     *
-     * @var \Illuminate\Foundation\Application
-     */
-    protected $app;
-
-    /**
-     * List of configurations.
-     *
-     * @var array
-     */
-    protected $config = [];
-
-    /**
-     * Working path.
-     *
-     * @var string|null
-     */
-    protected $workingPath;
-
-    /**
-     * Construct a new Commander.
-     *
-     * @param array  $config
-     * @param string|null  $workingPath
-     */
-    public function __construct(array $config = [], ?string $workingPath)
-    {
-        $this->config = $config;
-        $this->workingPath = $workingPath;
-    }
-
-    /**
-     * Handle the command.
-     *
-     * @return void
-     */
-    public function handle()
-    {
-        $laravel = $this->createApplication();
-        $kernel = $laravel->make(ConsoleKernel::class);
-
-        $status = $kernel->handle(
-            $input = new ArgvInput(), new ConsoleOutput()
-        );
-
-        $kernel->terminate($input, $status);
-
-        exit($status);
-    }
-
-    /**
-     * Get package providers.
-     *
-     * @param  \Illuminate\Foundation\Application  $app
-     *
-     * @return array
-     */
-    protected function getPackageProviders($app)
-    {
-        return $this->config['providers'] ?? [];
-    }
-
-    /**
-     * Resolve application implementation.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    protected function resolveApplication()
-    {
-        return \tap($this->resolveApplicationFromTrait(), function () {
-            $this->createDotenv();
-        });
-    }
-
-    /**
-     * Create a Dotenv instance.
-     */
-    protected function createDotenv()
-    {
-        (new Dotenv(
-            new Loader(),
-            Env::getRepository(),
-            new StringStore(implode("\n", $this->config['env'] ?? []))
-        ))->load();
-    }
-
-    /**
-     * Get base path.
+     * Get base path from trait.
      *
      * @return string
      */
-    protected function getBasePath()
+    protected function getBasePathFromTrait()
     {
-        $laravelBasePath = $this->config['laravel'] ?? null;
-
-        if (! is_null($laravelBasePath)) {
-            return \str_replace('./', $this->workingPath.'/', $laravelBasePath);
-        }
-
         return __DIR__.'/../../laravel';
-    }
-
-    /**
-     * Define environment setup.
-     *
-     * @param  \Illuminate\Foundation\Application   $app
-     *
-     * @return void
-     */
-    protected function getEnvironmentSetUp($app)
-    {
-        //
     }
 }
