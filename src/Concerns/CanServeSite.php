@@ -127,7 +127,9 @@ trait CanServeSite
      */
     protected function setUpDuskServer(): void
     {
-        parent::setUp();
+        if (! $this->app) {
+            $this->refreshApplication();
+        }
     }
 
     /**
