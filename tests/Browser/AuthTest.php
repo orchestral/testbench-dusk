@@ -9,12 +9,12 @@ use Orchestra\Testbench\Dusk\TestCase;
 class AuthTest extends TestCase
 {
     /**
-     * Setup the test environment.
+     * Define database migrations.
+     *
+     * @return void
      */
-    protected function setUp(): void
+    protected function defineDatabaseMigrations()
     {
-        parent::setUp();
-
         $this->withFactories(__DIR__.'/../factories');
         $this->loadLaravelMigrations(config('database.default'));
     }
