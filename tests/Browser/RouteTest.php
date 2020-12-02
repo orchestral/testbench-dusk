@@ -14,7 +14,7 @@ class RouteTest extends TestCase
      *
      * @return void
      */
-    protected function getEnvironmentSetUp($app)
+    protected function defineEnvironment($app)
     {
         $app['router']->get('hello', ['as' => 'hi', 'uses' => function () {
             return 'hello world';
