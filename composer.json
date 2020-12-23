@@ -33,7 +33,7 @@
     "require": {
         "php": ">=7.3 || ^8.0",
         "konsulting/project-root": "^1.1",
-        "laravel/dusk": "^6.5",
+        "laravel/dusk": "^6.11",
         "opis/closure": "^3.4.2",
         "orchestra/dusk-updater": "^1.2.2",
         "orchestra/testbench": "^6.7",
