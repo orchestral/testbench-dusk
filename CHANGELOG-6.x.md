@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.7.1
+
+Released: 2020-12-31
+
+### Changes
+
+* Update minimum support for Laravel Dusk v6.11.0+. ([v6.5.0...v6.11.0](https://github.com/laravel/dusk/compare/v6.5.0...v6.11.0))
+* Update minimum support for Testbench v6.7.2+. ([v6.7.0...v6.7.2](https://github.com/orchestral/testbench/compare/v6.7.0...v6.7.2))
+
 ## 6.7.0
 
 Released: 2020-12-15
