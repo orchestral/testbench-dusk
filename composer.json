@@ -35,10 +35,10 @@
         "konsulting/project-root": "^1.1",
         "laravel/dusk": "dev-develop",
         "opis/closure": "^3.4.2",
-        "orchestra/dusk-updater": "^1.2.2",
+        "orchestra/dusk-updater": "^1.3",
         "orchestra/testbench": "^7.0",
         "php-webdriver/webdriver": "^1.7",
-        "symfony/yaml": "^4.3 || ^5.0"
+        "symfony/yaml": "^5.2"
     },
     "require-dev": {
         "laravel/laravel": "dev-master"
