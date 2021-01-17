@@ -2,9 +2,9 @@
 
 namespace Orchestra\Testbench\Dusk\Console;
 
-use Orchestra\Testbench\Console\Commander as Foundation;
+use Orchestra\Testbench\Console\Commander as Testbench;
 
-class Commander extends Foundation
+class Commander extends Testbench
 {
     /**
      * Get base path from trait.
