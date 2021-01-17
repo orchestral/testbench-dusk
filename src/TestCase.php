@@ -8,9 +8,9 @@ use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Foundation\Application;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
-use Orchestra\Testbench\TestCase as Foundation;
+use Orchestra\Testbench\TestCase as Testbench;
 
-abstract class TestCase extends Foundation
+abstract class TestCase extends Testbench
 {
     use Concerns\CanServeSite,
         Concerns\ProvidesBrowser;
