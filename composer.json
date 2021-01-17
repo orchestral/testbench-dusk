@@ -49,7 +49,7 @@
         }
     },
     "scripts": {
-        "update-dusk": [
+        "dusk:prepare": [
             "@php vendor/bin/dusk-updater detect --auto-update"
         ],
         "test": [
