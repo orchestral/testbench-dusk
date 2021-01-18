@@ -22,6 +22,7 @@ before_script:
   - wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.2.0/php-coveralls.phar
   - chmod +x php-coveralls.phar
   - ./vendor/bin/dusk-updater detect --auto-update
+  - ./testbench-dusk package:discover
   - export DISPLAY=:99.0
   - ./vendor/laravel/dusk/bin/chromedriver-linux &
 
