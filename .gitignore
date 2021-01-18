@@ -1,9 +1,14 @@
 # Composer
-composer.lock
-vendor/*
+/composer.lock
+/vendor/*
 
-src/tests/Browser/console/*
-src/tests/Browser/screenshots/*
-tests/Browser/console/*
-tests/Browser/screenshots/*
-tmp/*
+# Testbench Dusk
+
+/src/tests/Browser/console/*
+/src/tests/Browser/screenshots/*
+/tests/Browser/console/*
+/tests/Browser/screenshots/*
+/tmp/*
+
+# Laravel Stubs
+/laravel/vendor
