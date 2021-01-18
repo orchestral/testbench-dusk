@@ -49,12 +49,13 @@
         }
     },
     "scripts": {
-        "dusk:prepare": [
-            "@php vendor/bin/dusk-updater detect --auto-update"
+        "prepare": [
+            "@php vendor/bin/dusk-updater detect --auto-update",
+            "@php testbench-dusk package:discover"
         ],
         "test": [
             "@php create-sqlite-db",
-            "@composer run update-dusk",
+            "@composer run prepare",
             "@php vendor/bin/phpunit -c ./ --color"
         ]
     },

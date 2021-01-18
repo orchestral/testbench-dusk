@@ -2,9 +2,17 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.9.0
+
+Released: 2021-01-18
+
+### Changes
+
+* Update minimum support for Testbench v6.9.0+. ([v6.8.0...v6.9.0](https://github.com/orchestral/testbench/compare/v6.8.0...v6.9.0))
+
 ## 6.8.0
 
-Released: 2020-12-31
+Released: 2021-01-17
 
 ### Changes
 
