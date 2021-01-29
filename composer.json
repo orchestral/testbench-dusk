@@ -50,13 +50,16 @@
     },
     "scripts": {
         "prepare": [
-            "@php vendor/bin/dusk-updater detect --auto-update",
-            "@php testbench-dusk package:discover"
+            "@composer run post-autoload-dump",
+            "@php vendor/bin/dusk-updater detect --auto-update"
         ],
         "test": [
             "@php create-sqlite-db",
             "@composer run prepare",
             "@php vendor/bin/phpunit -c ./ --color"
+        ],
+        "post-autoload-dump": [
+            "@php testbench-dusk package:discover --ansi"
         ]
     },
     "config": {
