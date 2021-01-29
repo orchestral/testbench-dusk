@@ -31,14 +31,13 @@
         "testbench-dusk"
     ],
     "require": {
-        "php": ">=7.2.5 || ^8.0",
+        "php": "^7.2.5 || ^8.0",
         "konsulting/project-root": "^1.1",
         "laravel/dusk": "^5.8.2 || ^6.0",
         "opis/closure": "^3.4.2",
         "orchestra/dusk-updater": "^1.2.2",
-        "orchestra/testbench": "^5.14",
-        "php-webdriver/webdriver": "^1.7",
-        "symfony/yaml": "^5.0"
+        "orchestra/testbench": "^5.15",
+        "php-webdriver/webdriver": "^1.7"
     },
     "require-dev": {
         "laravel/laravel": "7.x-dev"
@@ -51,7 +50,7 @@
     "scripts": {
         "prepare": [
             "@php vendor/bin/dusk-updater detect --auto-update",
-            "@php testbench-dusk package:discover"
+            "@php testbench-dusk package:discover --ansi"
         ],
         "test": [
             "@php create-sqlite-db",
