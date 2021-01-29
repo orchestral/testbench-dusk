@@ -27,7 +27,7 @@ before_script:
   - ./vendor/laravel/dusk/bin/chromedriver-linux &
 
 script:
-  - ./vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
+  - CI=true ./vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
 
 after_script:
   - php-coveralls.phar -v
