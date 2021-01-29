@@ -65,7 +65,7 @@ jobs:
           name: screenshots
           path: tests/Browser/screenshots/*
 
-  tests-on-phpunit=9:
+  tests-on-phpunit-9:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
     strategy:
