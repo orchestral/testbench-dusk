@@ -7,6 +7,7 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Foundation\Application;
+use Orchestra\Testbench\Dusk\Foundation\PackageManifest;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
 use Orchestra\Testbench\TestCase as Testbench;
 
@@ -112,11 +113,13 @@ abstract class TestCase extends Testbench
      */
     protected function resolveApplication()
     {
-        return \tap(new Application($this->getBasePath()), static function ($app) {
+        return \tap(new Application($this->getBasePath()), function ($app) {
             $app->bind(
                 'Illuminate\Foundation\Bootstrap\LoadConfiguration',
                 Bootstrap\LoadConfiguration::class
             );
+
+            PackageManifest::swap($app, $this);
         });
     }
 
