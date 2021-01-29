@@ -62,6 +62,22 @@ abstract class TestCase extends Testbench
     }
 
     /**
+     * Setup parallel testing callback
+     */
+    protected function setUpParallelTestingCallbacks(): void
+    {
+        // Not supported at the moment.
+    }
+
+    /**
+     * Teardown parallel testing callback
+     */
+    protected function tearDownParallelTestingCallbacks(): void
+    {
+        // Not supported at the moment.
+    }
+
+    /**
      * Make sure we close down any chrome processes when we temrinate early, unlike normal
      * Dusk, we also close down all the server processes - so keeping the chome browser
      * open doesn't help, nor does it help when we're running in headless mode :).
