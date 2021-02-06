@@ -130,6 +130,10 @@ abstract class TestCase extends Testbench
      */
     protected function driver(): RemoteWebDriver
     {
+        if (isset($_SERVER['CI']) || isset($_ENV['CI'])) {
+            DuskOptions::withoutUi();
+        }
+
         return RemoteWebDriver::create(
             'http://localhost:9515',
             DesiredCapabilities::chrome()->setCapability(
