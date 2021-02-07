@@ -23,19 +23,21 @@ class Options
     /**
      * Add a browser option.
      *
-     * @return void
+     * @return static
      */
     public static function addArgument(string $argument)
     {
         if (! static::hasArgument($argument)) {
             \array_push(static::$arguments, $argument);
         }
+
+        return new static();
     }
 
     /**
      * Remove a browser option.
      *
-     * @return void
+     * @return static
      */
     public static function removeArgument(string $argument)
     {
@@ -44,8 +46,9 @@ class Options
                 return $option !== $argument;
             }));
         }
-    }
 
+        return new static();
+    }
 
     /**
      * Check has a browser option.
@@ -64,8 +67,7 @@ class Options
      */
     public static function withoutUI()
     {
-        static::disableGpu();
-        static::headless();
+        return static::disableGpu()->headless();
     }
 
     /**
@@ -75,8 +77,7 @@ class Options
      */
     public static function withUI()
     {
-        static::removeArgument('--disable-gpu');
-        static::removeArgument('--headless');
+        return static::removeArgument('--disable-gpu')->removeArgument('--headless');
     }
 
     /**
@@ -92,50 +93,51 @@ class Options
     /**
      * Run the browser in headless mode.
      *
-     * @return void
+     * @return static
      */
     public static function headless()
     {
-        static::addArgument('--headless');
+        return static::addArgument('--headless');
     }
 
     /**
      * Disable the browser using gpu.
      *
-     * @return void
+     * @return static
      */
     public static function disableGpu()
     {
-        static::addArgument('--disable-gpu');
+        return static::addArgument('--disable-gpu');
     }
 
     /**
      * Disable the sandbox.
      *
-     * @return void
+     * @return static
      */
     public static function noSandbox()
     {
-        static::addArgument('--no-sandbox');
+        return static::addArgument('--no-sandbox');
     }
 
     /**
      * Disables the use of a zygote process for forking child processes.
      *
-     * @return void
+     * @return static
      */
     public static function noZygote()
     {
-        static::noSandbox();
-        static::addArgument('--no-zygote');
+        return static::noSandbox()->addArgument('--no-zygote');
     }
 
     /**
      * Ignore SSL certificate error messages.
+     *
+     * @return static
      */
-    public static function ignoreSslErrors(): void
+    public static function ignoreSslErrors()
     {
-        static::addArgument('--ignore-certificate-errors');
+        return static::addArgument('--ignore-certificate-errors');
     }
 
     /**
@@ -144,11 +146,11 @@ class Options
      * @param $width the browser width in pixels
      * @param $height the browser height in pixels
      *
-     * @return void
+     * @return static
      */
     public static function windowSize(int $width, int $height)
     {
-        static::addArgument('--window-size='.$width.','.$height);
+        return static::addArgument('--window-size='.$width.','.$height);
     }
 
     /**
@@ -156,11 +158,11 @@ class Options
      *
      * @param $useragent the user agent to use
      *
-     * @return void
+     * @return static
      */
     public static function userAgent(string $useragent)
     {
-        static::addArgument('--user-agent='.$useragent);
+        return static::addArgument('--user-agent='.$useragent);
     }
 
     /**
