@@ -111,8 +111,8 @@ abstract class TestCase extends Testbench
      */
     protected function driver(): RemoteWebDriver
     {
-        if (isset($_SERVER['CI']) || isset($_ENV['CI'])) {
-            DuskOptions::withoutUi();
+        if (DuskOptions::shouldUsesWithoutUI()) {
+            DuskOptions::withoutUI();
         }
 
         return RemoteWebDriver::create(
