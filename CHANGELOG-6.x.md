@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.12.0
+
+Released: 2021-02-09
+
+### Changes
+
+* Update minimum support for Testbench v6.12.0+. ([v6.11.0...v6.12.0](https://github.com/orchestral/testbench/compare/v6.11.0...v6.12.0))
+* Update list of available methods on `Orchestra\Testbench\Dusk\Options`.
+* Automatically set `--headless` when environment variable contains `CI=true`.
 
 ## 6.11.0
 

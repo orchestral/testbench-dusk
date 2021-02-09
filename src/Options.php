@@ -82,12 +82,19 @@ class Options
 
     /**
      * Return current setting for showing UI.
-     *
-     * @return bool
      */
-    public static function hasUI()
+    public static function hasUI(): bool
     {
         return ! static::hasArgument('--headless');
+    }
+
+    /**
+     * It should uses without UI.
+     */
+    public static function shouldUsesWithoutUI(): bool
+    {
+        return isset($_SERVER['CI']) && $_SERVER['CI'] == true
+            || isset($_ENV['CI']) && $_ENV['CI'] == true;
     }
 
     /**
