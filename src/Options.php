@@ -93,8 +93,8 @@ class Options
      */
     public static function shouldUsesWithoutUI(): bool
     {
-        return isset($_SERVER['CI']) && $_SERVER['CI'] == true
-            || isset($_ENV['CI']) && $_ENV['CI'] == true;
+        return (isset($_SERVER['CI']) && $_SERVER['CI'] == true)
+            || (isset($_ENV['CI']) && $_ENV['CI'] == true);
     }
 
     /**
