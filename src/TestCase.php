@@ -113,6 +113,8 @@ abstract class TestCase extends Testbench
     {
         if (DuskOptions::shouldUsesWithoutUI()) {
             DuskOptions::withoutUI();
+        } elseif ($this->hasHeadlessDisabled()) {
+            DuskOptions::withUI();
         }
 
         return RemoteWebDriver::create(
@@ -178,5 +180,16 @@ abstract class TestCase extends Testbench
     public static function tearDownAfterClass(): void
     {
         static::stopServing();
+    }
+
+    /**
+     * Determine whether the Dusk command has disabled headless mode.
+     *
+     * @return bool
+     */
+    protected function hasHeadlessDisabled()
+    {
+        return isset($_SERVER['DUSK_HEADLESS_DISABLED']) ||
+               isset($_ENV['DUSK_HEADLESS_DISABLED']);
     }
 }
