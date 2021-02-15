@@ -6,6 +6,10 @@ This changelog references the relevant changes (bug and security fixes) done to 
 
 Released: 2021-02-09
 
+### Added
+
+* Added `Orchestra\Testbench\Dusk\TestCase::hasHeadlessDisabled()` method.
+
 ### Changes
 
 * Update minimum support for Testbench v6.12.1+. ([v6.11.0...v6.12.1](https://github.com/orchestral/testbench/compare/v6.11.0...v6.12.1))
