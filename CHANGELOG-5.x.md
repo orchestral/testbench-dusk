@@ -2,13 +2,32 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 5.15.0
+
+Released: 2021-02-21
+
+### Changes
+
+* Update minimum support for Testbench v5.18.0+. ([v5.17.1...v5.18.0](https://github.com/orchestral/testbench/compare/v5.17.1...v5.18.0))
+
+## 5.14.1
+
+Released: 2021-02-15
+
+### Added
+
+* Added `Orchestra\Testbench\Dusk\TestCase::hasHeadlessDisabled()` method.
+
+### Changes
+
+* Update minimum support for Testbench v5.17.1+. ([v5.16.0...v5.17.1](https://github.com/orchestral/testbench/compare/v5.16.0...v5.17.1))
+
 ## 5.14.0
 
 Released: 2021-02-09
 
 ### Changes
 
-* Update minimum support for Testbench v5.17.0+. ([v5.16.0...v5.17.0](https://github.com/orchestral/testbench/compare/v5.16.0...v5.17.0))
 * Update list of available methods on `Orchestra\Testbench\Dusk\Options`.
 * Automatically set `--headless` when environment variable contains `CI=true`.
 
