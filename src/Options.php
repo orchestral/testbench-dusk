@@ -161,6 +161,18 @@ class Options
     }
 
     /**
+     * Set remote debugging port.
+     *
+     * @param  int  $port
+     *
+     * @return static
+     */
+    public static function remoteDebuggingPort(int $port)
+    {
+        return static::addArgument('--remote-debugging-port='.$port);
+    }
+
+    /**
      * Set the user agent.
      *
      * @param $useragent the user agent to use
