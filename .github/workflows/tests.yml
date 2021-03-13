@@ -124,7 +124,6 @@ jobs:
           name: screenshots
           path: tests/Browser/screenshots/*
 
-
   tests-on-phpunit-10:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
