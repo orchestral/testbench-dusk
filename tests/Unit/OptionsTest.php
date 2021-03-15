@@ -12,7 +12,7 @@ class OptionsTest extends PHPUnitTestCase
      */
     protected function tearDown(): void
     {
-        Options::$arguments = [];
+        Options::resetArguments();
     }
 
     /** @test */

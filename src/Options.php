@@ -21,6 +21,16 @@ class Options
     public static $arguments = [];
 
     /**
+     * Reset arguments.
+     *
+     * @return void
+     */
+    public static function resetArguments(): void
+    {
+        static::$arguments = [];
+    }
+
+    /**
      * Add a browser option.
      *
      * @return static
