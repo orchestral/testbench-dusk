@@ -37,13 +37,13 @@ class OptionsTest extends PHPUnitTestCase
     /** @test */
     public function it_tells_us_if_we_want_ui()
     {
-        Options::withUI();
-
-        $this->assertTrue(Options::hasUI());
-
         Options::withoutUI();
 
         $this->assertFalse(Options::hasUI());
+
+        Options::withUI();
+
+        $this->assertTrue(Options::hasUI());
     }
 
     /** @test */
