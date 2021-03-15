@@ -36,7 +36,11 @@
         "laravel/dusk": "^6.12",
         "opis/closure": "^3.4.2",
         "orchestra/dusk-updater": "^1.4.1",
+<<<<<<< HEAD
         "orchestra/testbench": "dev-phpunit10",
+=======
+        "orchestra/testbench": "^6.14",
+>>>>>>> 6.x
         "php-webdriver/webdriver": "^1.7"
     },
     "require-dev": {

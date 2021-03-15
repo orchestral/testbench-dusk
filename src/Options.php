@@ -11,14 +11,24 @@ class Options
      *
      * @var bool
      */
-    protected static $ui = true;
+    public static $ui = true;
 
     /**
      * A list of remote web driver arguments.
      *
      * @var array
      */
-    protected static $arguments = [];
+    public static $arguments = [];
+
+    /**
+     * Reset arguments.
+     *
+     * @return void
+     */
+    public static function resetArguments(): void
+    {
+        static::$arguments = [];
+    }
 
     /**
      * Add a browser option.
@@ -63,7 +73,7 @@ class Options
     /**
      * Set to hide UI.
      *
-     * @return void
+     * @return static
      */
     public static function withoutUI()
     {
@@ -73,7 +83,7 @@ class Options
     /**
      * Set to show UI.
      *
-     * @return void
+     * @return static
      */
     public static function withUI()
     {
@@ -150,9 +160,6 @@ class Options
     /**
      * Set the initial browser window size.
      *
-     * @param $width the browser width in pixels
-     * @param $height the browser height in pixels
-     *
      * @return static
      */
     public static function windowSize(int $width, int $height)
@@ -161,9 +168,17 @@ class Options
     }
 
     /**
-     * Set the user agent.
+     * Set remote debugging port.
      *
-     * @param $useragent the user agent to use
+     * @return static
+     */
+    public static function remoteDebuggingPort(int $port = 9222)
+    {
+        return static::addArgument('--remote-debugging-port='.$port);
+    }
+
+    /**
+     * Set the user agent.
      *
      * @return static
      */
