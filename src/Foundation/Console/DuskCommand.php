@@ -25,7 +25,7 @@ class DuskCommand extends Command
     protected $description = 'Run the package Dusk tests';
 
     /**
-     * Construct a new Dusk Command.
+     * Create a new command instance.
      */
     public function __construct()
     {
