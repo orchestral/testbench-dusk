@@ -50,8 +50,8 @@ class DuskCommand extends Command
      */
     protected function purgeScreenshots()
     {
-        $this->purgeExistingLogs(
-            TESTBENCH_WORKING_PATH.'/tests/Browser/screenshots', '*.log'
+        $this->purgeDebuggingFiles(
+            TESTBENCH_WORKING_PATH.'/tests/Browser/screenshots', 'failure-*'
         );
     }
 
@@ -62,7 +62,7 @@ class DuskCommand extends Command
      */
     protected function purgeConsoleLogs()
     {
-        $this->purgeExistingLogs(
+        $this->purgeDebuggingFiles(
             TESTBENCH_WORKING_PATH.'/tests/Browser/console', '*.log'
         );
     }
@@ -74,7 +74,7 @@ class DuskCommand extends Command
      */
     protected function purgeSourceLogs()
     {
-        $this->purgeExistingLogs(
+        $this->purgeDebuggingFiles(
             TESTBENCH_WORKING_PATH.'/tests/Browser/source', '*.txt'
         );
     }
@@ -111,13 +111,13 @@ class DuskCommand extends Command
     /**
      * Purge existing logs.
      */
-    protected function purgeExistingLogs(string $path, string $pattern): void
+    protected function purgeDebuggingFiles(string $path, string $patterns): void
     {
         if (! is_dir($path)) {
             return;
         }
 
-        foreach (Finder::create()->files()->in($path)->name($pattern) as $file) {
+        foreach (Finder::create()->files()->in($path)->name($patterns) as $file) {
             @unlink($file->getRealPath());
         }
     }
