@@ -1,0 +1,2 @@
+providers:
+  - Orchestra\Testbench\Dusk\Foundation\TestbenchServiceProvider

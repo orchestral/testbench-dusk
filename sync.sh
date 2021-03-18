@@ -7,6 +7,7 @@ cp -rf vendor/laravel/laravel/database/migrations/2019_08_19_000000_create_faile
 cp -rf vendor/laravel/laravel/resources/lang/en/*.php laravel/resources/lang/en/
 cp -rf vendor/laravel/laravel/server.php laravel/server.php
 cp -rf vendor/laravel/laravel/public/index.php laravel/public/index.php
+cp -rf vendor/laravel/dusk/stubs/phpunit.xml stubs/phpunit.xml
 
 awk '{sub(/ Package Service Providers.../," Dusk Service Provider\n         \*\/\n        Laravel\\Dusk\\DuskServiceProvider::class,\n\n        \/\*\n         * Package Service Providers...")}1' laravel/config/app.php > laravel/config/temp.stub && mv laravel/config/temp.stub laravel/config/app.php
 awk '{sub(/production/,"testing")}1' laravel/config/app.php > laravel/config/temp.stub && mv laravel/config/temp.stub laravel/config/app.php

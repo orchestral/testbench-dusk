@@ -16,6 +16,7 @@ trait ProvidesBrowser
      * Setup the browser environment.
      *
      * @return void
+     * @throws \Exception
      */
     protected function setUpTheBrowserEnvironment()
     {

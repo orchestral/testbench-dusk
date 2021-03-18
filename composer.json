@@ -40,11 +40,17 @@
         "php-webdriver/webdriver": "^1.7"
     },
     "require-dev": {
-        "laravel/laravel": "8.x-dev"
+        "laravel/laravel": "8.x-dev",
+        "orchestra/canvas": "^6.1"
     },
     "extra": {
         "branch-alias": {
             "dev-master": "6.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Orchestra\\Testbench\\Dusk\\Foundation\\TestbenchServiceProvider"
+            ]
         }
     },
     "scripts": {
