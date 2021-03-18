@@ -36,6 +36,19 @@ class DuskCommand extends Command
         }
     }
 
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $this->callSilent('package:dusk-purge');
+
+        parent::handle();
+    }
+
     /**
      * Get the array of arguments for running PHPUnit.
      *
