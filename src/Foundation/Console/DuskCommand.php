@@ -25,6 +25,18 @@ class DuskCommand extends Command
     protected $description = 'Run the package Dusk tests';
 
     /**
+     * Construct a new Dusk Command.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        if (! defined('TESTBENCH_WORKING_PATH')) {
+            $this->setHidden(true);
+        }
+    }
+
+    /**
      * Get the array of arguments for running PHPUnit.
      *
      * @param  array  $options
