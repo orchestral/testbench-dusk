@@ -8,5 +8,5 @@ paths:
 console:
   namespace: Orchestra\Testbench\Dusk\Foundation\Console
 
-providers:
+provider:
   namespace: Orchestra\Testbench\Dusk\Foundation
