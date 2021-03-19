@@ -2,6 +2,7 @@
 
 namespace Orchestra\Testbench\Dusk\Foundation\Console;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Dusk\Console\DuskCommand as Command;
 
@@ -60,11 +61,18 @@ class DuskCommand extends Command
             return ! Str::startsWith($option, '--env=');
         }));
 
-        if (! file_exists($file = TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml')) {
-            $file = TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml.dist';
-        }
+        $file = Collection::make([
+            'phpunit.dusk.xml',
+            'phpunit.dusk.xml.dist',
+            'phpunit.xml',
+            'phpunit.xml.dist',
+        ])->map(function ($file) {
+            return TESTBENCH_WORKING_PATH."/{$file}";
+        })->filter(function ($file) {
+            return \file_exists($file);
+        })->first();
 
-        return array_merge(['-c', $file], $options);
+         return ! \is_null($file) ? array_merge(['-c', $file], $options) : $options;
     }
 
     /**
@@ -74,9 +82,19 @@ class DuskCommand extends Command
      */
     protected function writeConfiguration()
     {
-        if (! file_exists($file = TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml') &&
-            ! file_exists(TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml.dist')) {
-            copy(realpath(__DIR__.'/../../../stubs/phpunit.xml'), $file);
+        $file = Collection::make([
+            'phpunit.dusk.xml',
+            'phpunit.dusk.xml.dist',
+            'phpunit.xml',
+            'phpunit.xml.dist',
+        ])->map(function ($file) {
+            return TESTBENCH_WORKING_PATH."/{$file}";
+        })->filter(function ($file) {
+            return \file_exists($file);
+        })->first();
+
+        if (\is_null($file)) {
+            \copy(\realpath(__DIR__.'/../../../stubs/phpunit.xml'), TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml');
 
             return;
         }
