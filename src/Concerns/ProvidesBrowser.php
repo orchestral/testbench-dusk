@@ -40,7 +40,7 @@ trait ProvidesBrowser
     {
         $tests = $this->resolveBrowserTestsPath();
 
-        foreach (['/screenshots', '/console'] as $dir) {
+        foreach (['/screenshots', '/console', '/source'] as $dir) {
             if (! \is_dir($tests.$dir)) {
                 \mkdir($tests.$dir, 0777, true);
             }
@@ -48,6 +48,7 @@ trait ProvidesBrowser
 
         Browser::$storeScreenshotsAt = $tests.'/screenshots';
         Browser::$storeConsoleLogAt = $tests.'/console';
+        Browser::$storeSourceAt = $tests.'/source';
     }
 
     /**
