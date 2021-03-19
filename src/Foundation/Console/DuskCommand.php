@@ -69,42 +69,6 @@ class DuskCommand extends Command
     }
 
     /**
-     * Purge the failure screenshots.
-     *
-     * @return void
-     */
-    protected function purgeScreenshots()
-    {
-        $this->purgeDebuggingFiles(
-            TESTBENCH_WORKING_PATH.'/tests/Browser/screenshots', 'failure-*'
-        );
-    }
-
-    /**
-     * Purge the console logs.
-     *
-     * @return void
-     */
-    protected function purgeConsoleLogs()
-    {
-        $this->purgeDebuggingFiles(
-            TESTBENCH_WORKING_PATH.'/tests/Browser/console', '*.log'
-        );
-    }
-
-    /**
-     * Purge the source logs.
-     *
-     * @return void
-     */
-    protected function purgeSourceLogs()
-    {
-        $this->purgeDebuggingFiles(
-            TESTBENCH_WORKING_PATH.'/tests/Browser/source', '*.txt'
-        );
-    }
-
-    /**
      * Write the Dusk PHPUnit configuration.
      *
      * @return void
@@ -130,20 +94,6 @@ class DuskCommand extends Command
     {
         if (! $this->hasPhpUnitConfiguration && file_exists($file = TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml')) {
             unlink($file);
-        }
-    }
-
-    /**
-     * Purge existing logs.
-     */
-    protected function purgeDebuggingFiles(string $path, string $patterns): void
-    {
-        if (! is_dir($path)) {
-            return;
-        }
-
-        foreach (Finder::create()->files()->in($path)->name($patterns) as $file) {
-            @unlink($file->getRealPath());
         }
     }
 }
