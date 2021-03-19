@@ -2,14 +2,11 @@
 
 namespace Orchestra\Testbench\Dusk\Concerns;
 
-use Illuminate\Support\Collection;
-use Illuminate\Support\LazyCollection;
-use Konsulting\ProjectRoot;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Chrome\SupportsChrome;
 use Laravel\Dusk\Concerns\ProvidesBrowser as Concern;
-use function Orchestra\Testbench\Dusk\prepare_debug_directories;
 use function Orchestra\Testbench\Dusk\find_test_directory;
+use function Orchestra\Testbench\Dusk\prepare_debug_directories;
 
 trait ProvidesBrowser
 {
@@ -19,8 +16,9 @@ trait ProvidesBrowser
     /**
      * Setup the browser environment.
      *
-     * @return void
      * @throws \Exception
+     *
+     * @return void
      */
     protected function setUpTheBrowserEnvironment()
     {

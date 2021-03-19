@@ -4,7 +4,6 @@ namespace Orchestra\Testbench\Dusk\Foundation\Console;
 
 use Illuminate\Support\Str;
 use Laravel\Dusk\Console\DuskCommand as Command;
-use Symfony\Component\Finder\Finder;
 
 class DuskCommand extends Command
 {
@@ -36,7 +35,6 @@ class DuskCommand extends Command
         }
     }
 
-
     /**
      * Execute the console command.
      *
@@ -53,6 +51,7 @@ class DuskCommand extends Command
      * Get the array of arguments for running PHPUnit.
      *
      * @param  array  $options
+     *
      * @return array
      */
     protected function phpunitArguments($options)

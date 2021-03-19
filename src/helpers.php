@@ -6,11 +6,13 @@ use Illuminate\Support\LazyCollection;
 use Konsulting\ProjectRoot;
 use Laravel\Dusk\Browser;
 
-function find_test_directory($path = __DIR__): string {
+function find_test_directory($path = __DIR__): string
+{
     return ProjectRoot::forPackage('testbench-dusk')->resolve($path).'/tests/Browser';
 }
 
-function prepare_debug_directories(): void {
+function prepare_debug_directories(): void
+{
     $path = find_test_directory();
 
     LazyCollection::make(['screenshots', 'console', 'source'])
