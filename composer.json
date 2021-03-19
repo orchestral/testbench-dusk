@@ -46,11 +46,6 @@
     "extra": {
         "branch-alias": {
             "dev-master": "6.0-dev"
-        },
-        "laravel": {
-            "providers": [
-                "Orchestra\\Testbench\\Dusk\\Foundation\\TestbenchServiceProvider"
-            ]
         }
     },
     "scripts": {
