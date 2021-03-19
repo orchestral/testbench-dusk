@@ -2,10 +2,14 @@
 
 namespace Orchestra\Testbench\Dusk\Concerns;
 
+use Illuminate\Support\Collection;
+use Illuminate\Support\LazyCollection;
 use Konsulting\ProjectRoot;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Chrome\SupportsChrome;
 use Laravel\Dusk\Concerns\ProvidesBrowser as Concern;
+use function Orchestra\Testbench\Dusk\prepare_debug_directories;
+use function Orchestra\Testbench\Dusk\find_test_directory;
 
 trait ProvidesBrowser
 {
@@ -38,17 +42,7 @@ trait ProvidesBrowser
      */
     protected function prepareDirectories()
     {
-        $tests = $this->resolveBrowserTestsPath();
-
-        foreach (['/screenshots', '/console', '/source'] as $dir) {
-            if (! \is_dir($tests.$dir)) {
-                \mkdir($tests.$dir, 0777, true);
-            }
-        }
-
-        Browser::$storeScreenshotsAt = $tests.'/screenshots';
-        Browser::$storeConsoleLogAt = $tests.'/console';
-        Browser::$storeSourceAt = $tests.'/source';
+        prepare_debug_directories();
     }
 
     /**
@@ -62,7 +56,7 @@ trait ProvidesBrowser
      */
     protected function resolveBrowserTestsPath($path = __DIR__)
     {
-        return ProjectRoot::forPackage('testbench-dusk')->resolve($path).'/tests/Browser';
+        return find_test_directory($path);
     }
 
     /**
