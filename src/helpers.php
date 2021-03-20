@@ -13,6 +13,10 @@ function find_test_directory($path = __DIR__): string
 
 function prepare_debug_directories(): void
 {
+    if (defined('TESTBENCH_DIRECTORY_STUBBED')) {
+        return;
+    }
+
     $path = find_test_directory();
 
     LazyCollection::make(['screenshots', 'console', 'source'])
@@ -31,4 +35,6 @@ function prepare_debug_directories(): void
     Browser::$storeScreenshotsAt = $path.'/screenshots';
     Browser::$storeConsoleLogAt = $path.'/console';
     Browser::$storeSourceAt = $path.'/source';
+
+    define('TESTBENCH_DIRECTORY_STUBBED', true);
 }
