@@ -57,7 +57,7 @@ class DuskCommand extends Command
      */
     protected function phpunitArguments($options)
     {
-        $options = array_values(array_filter($options, function ($option) {
+        $options = \array_values(\array_filter($options, function ($option) {
             return ! Str::startsWith($option, '--env=');
         }));
 
@@ -109,8 +109,8 @@ class DuskCommand extends Command
      */
     protected function removeConfiguration()
     {
-        if (! $this->hasPhpUnitConfiguration && file_exists($file = TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml')) {
-            unlink($file);
+        if (! $this->hasPhpUnitConfiguration && \file_exists($file = TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml')) {
+            @unlink($file);
         }
     }
 }
