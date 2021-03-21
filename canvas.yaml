@@ -1,0 +1,12 @@
+preset: package
+
+namespace: Orchestra\Testbench\Dusk
+
+paths:
+  src: src
+
+console:
+  namespace: Orchestra\Testbench\Dusk\Foundation\Console
+
+provider:
+  namespace: Orchestra\Testbench\Dusk\Foundation

@@ -2,6 +2,20 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 5.16.0
+
+Released: 2021-03-21
+
+### Added
+
+* Added `TESTBENCH_WORKING_PATH` constant.
+* Added `package:dusk` command using CLI Commander.
+* Added `package:dusk-purge` command using CLI Commander.
+
+### Changes
+
+* Improves preparing debugging tools for Dusk tests.
+
 ## 5.15.0
 
 Released: 2021-02-21

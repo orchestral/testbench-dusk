@@ -63,7 +63,7 @@ abstract class TestCase extends Testbench
     }
 
     /**
-     * Setup parallel testing callback
+     * Setup parallel testing callback.
      */
     protected function setUpParallelTestingCallbacks(): void
     {
@@ -71,7 +71,7 @@ abstract class TestCase extends Testbench
     }
 
     /**
-     * Teardown parallel testing callback
+     * Teardown parallel testing callback.
      */
     protected function tearDownParallelTestingCallbacks(): void
     {

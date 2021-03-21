@@ -2,6 +2,33 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.15.0
+
+Released: 2021-03-21
+
+### Added
+
+* Added `TESTBENCH_WORKING_PATH` constant.
+* Added `package:dusk` command using CLI Commander.
+* Added `package:dusk-purge` command using CLI Commander.
+
+### Changes
+
+* Update minimum support for Testbench v6.15.0+. ([v6.14.0...v6.15.0](https://github.com/orchestral/testbench/compare/v6.14.0...v6.15.0))
+* Improves preparing debugging tools for Dusk tests.
+
+## 6.14.0
+
+Released: 2021-03-16
+
+### Changes
+
+* Update minimum support for Testbench v6.14.0+. ([v6.13.0...v6.14.0](https://github.com/orchestral/testbench/compare/v6.13.0...v6.14.0))
+* Update Laravel skeleton.
+  - Add `Date` aliases.
+  - Update `logging` configuration.
+  - Update `validation` language file.
+
 ## 6.13.1
 
 Released: 2021-03-10

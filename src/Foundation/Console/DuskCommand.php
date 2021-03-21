@@ -1,0 +1,116 @@
+<?php
+
+namespace Orchestra\Testbench\Dusk\Foundation\Console;
+
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Laravel\Dusk\Console\DuskCommand as Command;
+
+class DuskCommand extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'package:dusk
+                {--browse : Open a browser instead of using headless mode}
+                {--without-tty : Disable output to TTY}';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Run the package Dusk tests';
+
+    /**
+     * Create a new command instance.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        if (! defined('TESTBENCH_WORKING_PATH')) {
+            $this->setHidden(true);
+        }
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $this->callSilent('package:dusk-purge');
+
+        parent::handle();
+    }
+
+    /**
+     * Get the array of arguments for running PHPUnit.
+     *
+     * @param  array  $options
+     *
+     * @return array
+     */
+    protected function phpunitArguments($options)
+    {
+        $options = \array_values(\array_filter($options, function ($option) {
+            return ! Str::startsWith($option, '--env=');
+        }));
+
+        $file = Collection::make([
+            'phpunit.dusk.xml',
+            'phpunit.dusk.xml.dist',
+            'phpunit.xml',
+            'phpunit.xml.dist',
+        ])->map(function ($file) {
+            return TESTBENCH_WORKING_PATH."/{$file}";
+        })->filter(function ($file) {
+            return \file_exists($file);
+        })->first();
+
+         return ! \is_null($file) ? array_merge(['-c', $file], $options) : $options;
+    }
+
+    /**
+     * Write the Dusk PHPUnit configuration.
+     *
+     * @return void
+     */
+    protected function writeConfiguration()
+    {
+        $file = Collection::make([
+            'phpunit.dusk.xml',
+            'phpunit.dusk.xml.dist',
+            'phpunit.xml',
+            'phpunit.xml.dist',
+        ])->map(function ($file) {
+            return TESTBENCH_WORKING_PATH."/{$file}";
+        })->filter(function ($file) {
+            return \file_exists($file);
+        })->first();
+
+        if (\is_null($file)) {
+            \copy(\realpath(__DIR__.'/../../../stubs/phpunit.xml'), TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml');
+
+            return;
+        }
+
+        $this->hasPhpUnitConfiguration = true;
+    }
+
+    /**
+     * Remove the Dusk PHPUnit configuration.
+     *
+     * @return void
+     */
+    protected function removeConfiguration()
+    {
+        if (! $this->hasPhpUnitConfiguration && \file_exists($file = TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml')) {
+            @unlink($file);
+        }
+    }
+}
