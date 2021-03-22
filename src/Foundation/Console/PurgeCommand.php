@@ -3,9 +3,10 @@
 namespace Orchestra\Testbench\Dusk\Foundation\Console;
 
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 
-class DuskPurgeCommand extends Command
+class PurgeCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -65,6 +66,10 @@ class DuskPurgeCommand extends Command
         $path = TESTBENCH_WORKING_PATH."/{$relativePath}";
 
         if (! is_dir($path)) {
+            $this->warn(
+                "Ignored purging none existing [{$relativePath}] path.", OutputInterface::VERBOSITY_DEBUG
+            );
+
             return;
         }
 

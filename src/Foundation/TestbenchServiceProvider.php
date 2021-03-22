@@ -16,7 +16,7 @@ class TestbenchServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Console\DuskCommand::class,
-                Console\DuskPurgeCommand::class,
+                Console\PurgeCommand::class,
             ]);
         }
     }
