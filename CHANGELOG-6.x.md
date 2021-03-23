@@ -2,6 +2,16 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.15.1
+
+Released: 2021-03-24
+
+### Changes
+
+* Rename `Orchestra\Testbench\Dusk\Foundation\Console\DuskPurgeCommand` to `Orchestra\Testbench\Dusk\Foundation\Console\PurgeCommand`.
+* Update Laravel skeleton.
+  - Update `validation` language file.
+   
 ## 6.15.0
 
 Released: 2021-03-21
