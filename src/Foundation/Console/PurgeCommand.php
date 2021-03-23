@@ -67,7 +67,7 @@ class PurgeCommand extends Command
 
         if (! is_dir($path)) {
             $this->warn(
-                "Purge skipped the directory that does not exist at [{$relativePath}] path.", OutputInterface::VERBOSITY_DEBUG
+                "Unable to purge missing directory [{$relativePath}].", OutputInterface::VERBOSITY_DEBUG
             );
 
             return;
