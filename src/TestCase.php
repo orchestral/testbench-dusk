@@ -103,7 +103,7 @@ abstract class TestCase extends Testbench
      */
     protected function getBasePath()
     {
-        return __DIR__.'/../laravel';
+        return $_ENV['APP_BASE_PATH'] ?? __DIR__.'/../laravel';
     }
 
     /**
