@@ -2,6 +2,16 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.16.0
+
+Released: 2021-03-31
+
+### Changes
+
+* Update minimum support for Testbench v6.16.0+. ([v6.14.0...v6.16.0](https://github.com/orchestral/testbench/compare/v6.14.0...v6.16.0))
+* Update minimum support for Laravel Dusk v6.14.0+. ([v6.12.0...v6.14.0](https://github.com/laravel/dusk/compare/v6.12.0...v6.14.0))
+* Accept `APP_BASE_PATH` environment variable to configure `getBasePath()`.
+
 ## 6.15.1
 
 Released: 2021-03-24
