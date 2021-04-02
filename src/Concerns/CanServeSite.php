@@ -16,6 +16,13 @@ trait CanServeSite
     protected static $server;
 
     /**
+     * Testbench should provide application server.
+     *
+     * @var bool
+     */
+    protected static $providesApplicationServer = true;
+
+    /**
      * Begin serving on a given host and port.
      *
      * @param string $host
@@ -29,14 +36,16 @@ trait CanServeSite
     {
         static::stopServing();
 
-        $basePath = (new static())->getBasePath();
+        if (static::$providesApplicationServer === true) {
+            $basePath = (new static())->getBasePath();
 
-        $server = new DuskServer($host, $port);
-        $server->setPublicPath("{$basePath}/public");
-        $server->stash(['class' => static::class]);
-        $server->start();
+            $server = new DuskServer($host, $port);
+            $server->setPublicPath("{$basePath}/public");
+            $server->stash(['class' => static::class]);
+            $server->start();
 
-        static::$server = $server;
+            static::$server = $server;
+        }
     }
 
     /**
