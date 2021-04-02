@@ -5,6 +5,7 @@ namespace Orchestra\Testbench\Dusk\Concerns;
 use Closure;
 use Opis\Closure\SerializableClosure;
 use Orchestra\Testbench\Dusk\DuskServer;
+use Orchestra\Testbench\Dusk\Options;
 
 trait CanServeSite
 {
@@ -14,13 +15,6 @@ trait CanServeSite
      * @var \Orchestra\Testbench\Dusk\DuskServer
      */
     protected static $server;
-
-    /**
-     * Testbench should provide application server.
-     *
-     * @var bool
-     */
-    protected static $providesApplicationServer = true;
 
     /**
      * Begin serving on a given host and port.
@@ -36,7 +30,7 @@ trait CanServeSite
     {
         static::stopServing();
 
-        if (static::$providesApplicationServer === true) {
+        if (Options::$providesApplicationServer === true) {
             $basePath = (new static())->getBasePath();
 
             $server = new DuskServer($host, $port);
