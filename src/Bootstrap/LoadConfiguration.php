@@ -47,18 +47,16 @@ class LoadConfiguration
      *
      * @param  \Illuminate\Contracts\Foundation\Application  $app
      *
-     * @return array
+     * @return \Generator
      */
     protected function getConfigurationFiles(Application $app)
     {
-        $files = [];
-
-        $path = \realpath(__DIR__.'/../../laravel/config');
-
-        foreach (Finder::create()->files()->name('*.php')->in($path) as $file) {
-            $files[\basename($file->getRealPath(), '.php')] = $file->getRealPath();
+        if (! \is_dir($path = $app->basePath('config'))) {
+            $path = \realpath(__DIR__.'/../../laravel/config');
         }
 
-        return $files;
+        foreach (Finder::create()->files()->name('*.php')->in($path) as $file) {
+            yield \basename($file->getRealPath(), '.php') => $file->getRealPath();
+        }
     }
 }
