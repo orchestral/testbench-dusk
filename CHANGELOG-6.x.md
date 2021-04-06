@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.17.0
+
+Released: 2021-04-06
+
+### Added
+
+* Added `Orchestra\Testbench\Dusk\Options::$providesApplicationServer` property to allow disabling default serve web-server.
+
+### Changes
+
+* Update minimum support for Testbench v6.17.0+. ([v6.16.0...v6.17.0](https://github.com/orchestral/testbench/compare/v6.16.0...v6.17.0))
+* Allow configuration to be loaded from `Application::basePath()` instead of hardcoded value.
+
 ## 6.16.0
 
 Released: 2021-03-31
