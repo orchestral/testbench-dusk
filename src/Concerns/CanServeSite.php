@@ -31,15 +31,17 @@ trait CanServeSite
         static::stopServing();
 
         if (Options::$providesApplicationServer === true) {
-            $basePath = (new static())->getBasePath();
-
-            $server = new DuskServer($host, $port);
-            $server->setPublicPath("{$basePath}/public");
-            $server->stash(['class' => static::class]);
-            $server->start();
-
-            static::$server = $server;
+            return;
         }
+
+        $basePath = (new static())->getBasePath();
+
+        $server = new DuskServer($host, $port);
+        $server->setPublicPath("{$basePath}/public");
+        $server->stash(['class' => static::class]);
+        $server->start();
+
+        static::$server = $server;
     }
 
     /**
