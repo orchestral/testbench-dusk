@@ -30,7 +30,7 @@ trait CanServeSite
     {
         static::stopServing();
 
-        if (Options::$providesApplicationServer === true) {
+        if (Options::$providesApplicationServer !== true) {
             return;
         }
 
