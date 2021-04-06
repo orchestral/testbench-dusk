@@ -72,7 +72,7 @@ class DuskCommand extends Command
             return \file_exists($file);
         })->first();
 
-         return ! \is_null($file) ? array_merge(['-c', $file], $options) : $options;
+        return ! \is_null($file) ? array_merge(['-c', $file], $options) : $options;
     }
 
     /**
