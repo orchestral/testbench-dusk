@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.17.2
+
+Released: 2021-05-19
+
+### Changes
+
+* Update skeleton to match v8.5.18.
+
 ## 6.17.1
 
 Released: 2021-05-19
