@@ -14,6 +14,13 @@ class Options
     public static $ui = true;
 
     /**
+     * Testbench should provide application server.
+     *
+     * @var bool
+     */
+    public static $providesApplicationServer = true;
+
+    /**
      * A list of remote web driver arguments.
      *
      * @var array

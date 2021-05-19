@@ -2,6 +2,55 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.17.2
+
+Released: 2021-05-19
+
+### Changes
+
+* Update skeleton to match v8.5.18.
+
+## 6.17.1
+
+Released: 2021-05-19
+
+### Changes
+
+* Update minimum support for Testbench v6.17.1+. ([v6.17.0...v6.17.1](https://github.com/orchestral/testbench/compare/v6.17.0...v6.17.1))
+
+## 6.17.0
+
+Released: 2021-04-06
+
+### Added
+
+* Added `Orchestra\Testbench\Dusk\Options::$providesApplicationServer` property to allow disabling default serve web-server.
+
+### Changes
+
+* Update minimum support for Testbench v6.17.0+. ([v6.16.0...v6.17.0](https://github.com/orchestral/testbench/compare/v6.16.0...v6.17.0))
+* Allow configuration to be loaded from `Application::basePath()` instead of hardcoded value.
+
+## 6.16.0
+
+Released: 2021-03-31
+
+### Changes
+
+* Update minimum support for Testbench v6.16.0+. ([v6.14.0...v6.16.0](https://github.com/orchestral/testbench/compare/v6.14.0...v6.16.0))
+* Update minimum support for Laravel Dusk v6.14.0+. ([v6.12.0...v6.14.0](https://github.com/laravel/dusk/compare/v6.12.0...v6.14.0))
+* Accept `APP_BASE_PATH` environment variable to configure `getBasePath()`.
+
+## 6.15.1
+
+Released: 2021-03-24
+
+### Changes
+
+* Rename `Orchestra\Testbench\Dusk\Foundation\Console\DuskPurgeCommand` to `Orchestra\Testbench\Dusk\Foundation\Console\PurgeCommand`.
+* Update Laravel skeleton.
+  - Update `validation` language file.
+   
 ## 6.15.0
 
 Released: 2021-03-21

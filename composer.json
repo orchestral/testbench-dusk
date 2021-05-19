@@ -36,9 +36,9 @@
     "require": {
         "php": "^7.3 || ^8.0",
         "konsulting/project-root": "^1.1",
-        "laravel/dusk": "^6.12",
+        "laravel/dusk": "^6.14",
         "opis/closure": "^3.4.2",
-        "orchestra/dusk-updater": "^1.4.1",
+        "orchestra/dusk-updater": "^1.4.3",
         "orchestra/testbench": "dev-phpunit10",
         "php-webdriver/webdriver": "^1.7"
     },

@@ -5,6 +5,7 @@ namespace Orchestra\Testbench\Dusk\Concerns;
 use Closure;
 use Opis\Closure\SerializableClosure;
 use Orchestra\Testbench\Dusk\DuskServer;
+use Orchestra\Testbench\Dusk\Options;
 
 trait CanServeSite
 {
@@ -28,6 +29,10 @@ trait CanServeSite
     public static function serve($host = '127.0.0.1', $port = 8001): void
     {
         static::stopServing();
+
+        if (Options::$providesApplicationServer !== true) {
+            return;
+        }
 
         $basePath = (new static('laravel'))->getBasePath();
 
