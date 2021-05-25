@@ -34,7 +34,7 @@ trait CanServeSite
             return;
         }
 
-        $basePath = (new static())->getBasePath();
+        $basePath = (new static('laravel'))->getBasePath();
 
         $server = new DuskServer($host, $port);
         $server->setPublicPath("{$basePath}/public");
