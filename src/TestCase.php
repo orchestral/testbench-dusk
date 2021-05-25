@@ -37,7 +37,17 @@ abstract class TestCase extends Testbench
     protected static $hasRegisteredShutdown = false;
 
     /**
-     * Get Application base URL.
+     * Get Application's base path.
+     *
+     * @return string
+     */
+    public static function applicationBasePath()
+    {
+        return $_ENV['APP_BASE_PATH'] ?? \realpath(__DIR__.'/../laravel');
+    }
+
+    /**
+     * Get Application's base URL.
      *
      * @var string
      *
@@ -59,7 +69,7 @@ abstract class TestCase extends Testbench
      */
     public static function baseServeUrl()
     {
-        return \sprintf('http://%s:%d', static::$baseServeHost, static::$baseServePort);
+        return static::applicationBaseUrl();
     }
 
     /**
@@ -100,7 +110,7 @@ abstract class TestCase extends Testbench
      */
     protected function getBasePath()
     {
-        return __DIR__.'/../laravel';
+        return realpath(__DIR__.'/../laravel');
     }
 
     /**
@@ -149,7 +159,7 @@ abstract class TestCase extends Testbench
      */
     protected function baseUrl()
     {
-        return \sprintf('http://%s:%d', static::$baseServeHost, static::$baseServePort);
+        return static::applicationBaseUrl();
     }
 
     /**

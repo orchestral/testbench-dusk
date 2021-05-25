@@ -2,6 +2,22 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 4.17.0
+
+Released: 2021-05-25
+
+### Added
+
+* Added static methods `applicationBasePath()` and `applicationBaseUrl()` to `Orchestra\Testbench\Dusk\TestCase`.
+
+### Changes
+
+* Update minimum support for Testbench v4.17.0+. ([v4.16.0...v4.17.0](https://github.com/orchestral/testbench/compare/v4.16.0...v4.17.0))
+
+### Deprecated
+
+* Deprecate `baseUrl()` and `baseServeUrl()` method from `Orchestra\Testbench\Dusk\TestCase`.
+
 ## 4.16.0
 
 Released: 2021-02-09
