@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 
+define('TESTBENCH_WORKING_PATH', $workingPath = getcwd());
+
 if (file_exists(__DIR__.'/vendor/autoload.php')) {
     // Development environment.
     require __DIR__.'/vendor/autoload.php';
@@ -9,7 +11,6 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
     require __DIR__.'/../../autoload.php';
 }
 
-$workingPath = getcwd();
 $config = ['env' => [], 'providers' => ['Laravel\Dusk\DuskServiceProvider']];
 
 if (file_exists("{$workingPath}/testbench.yaml")) {

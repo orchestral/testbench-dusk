@@ -2,6 +2,153 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.18.0
+
+Released: 2021-05-25
+
+### Added
+
+* Added static methods `applicationBasePath()` and `applicationBaseUrl()` to `Orchestra\Testbench\Dusk\TestCase`.
+
+### Changes
+
+* Update minimum support for Testbench v6.18.0+. ([v6.17.1...v6.18.0](https://github.com/orchestral/testbench/compare/v6.17.1...v6.18.0))
+
+### Deprecated
+
+* Deprecate `baseServeUrl()` method from `Orchestra\Testbench\Dusk\TestCase`.
+
+## 6.17.2
+
+Released: 2021-05-19
+
+### Changes
+
+* Update skeleton to match v8.5.18.
+
+## 6.17.1
+
+Released: 2021-05-19
+
+### Changes
+
+* Update minimum support for Testbench v6.17.1+. ([v6.17.0...v6.17.1](https://github.com/orchestral/testbench/compare/v6.17.0...v6.17.1))
+
+## 6.17.0
+
+Released: 2021-04-06
+
+### Added
+
+* Added `Orchestra\Testbench\Dusk\Options::$providesApplicationServer` property to allow disabling default serve web-server.
+
+### Changes
+
+* Update minimum support for Testbench v6.17.0+. ([v6.16.0...v6.17.0](https://github.com/orchestral/testbench/compare/v6.16.0...v6.17.0))
+* Allow configuration to be loaded from `Application::basePath()` instead of hardcoded value.
+
+## 6.16.0
+
+Released: 2021-03-31
+
+### Changes
+
+* Update minimum support for Testbench v6.16.0+. ([v6.14.0...v6.16.0](https://github.com/orchestral/testbench/compare/v6.14.0...v6.16.0))
+* Update minimum support for Laravel Dusk v6.14.0+. ([v6.12.0...v6.14.0](https://github.com/laravel/dusk/compare/v6.12.0...v6.14.0))
+* Accept `APP_BASE_PATH` environment variable to configure `getBasePath()`.
+
+## 6.15.1
+
+Released: 2021-03-24
+
+### Changes
+
+* Rename `Orchestra\Testbench\Dusk\Foundation\Console\DuskPurgeCommand` to `Orchestra\Testbench\Dusk\Foundation\Console\PurgeCommand`.
+* Update Laravel skeleton.
+  - Update `validation` language file.
+   
+## 6.15.0
+
+Released: 2021-03-21
+
+### Added
+
+* Added `TESTBENCH_WORKING_PATH` constant.
+* Added `package:dusk` command using CLI Commander.
+* Added `package:dusk-purge` command using CLI Commander.
+
+### Changes
+
+* Update minimum support for Testbench v6.15.0+. ([v6.14.0...v6.15.0](https://github.com/orchestral/testbench/compare/v6.14.0...v6.15.0))
+* Improves preparing debugging tools for Dusk tests.
+
+## 6.14.0
+
+Released: 2021-03-16
+
+### Changes
+
+* Update minimum support for Testbench v6.14.0+. ([v6.13.0...v6.14.0](https://github.com/orchestral/testbench/compare/v6.13.0...v6.14.0))
+* Update Laravel skeleton.
+  - Add `Date` aliases.
+  - Update `logging` configuration.
+  - Update `validation` language file.
+
+## 6.13.1
+
+Released: 2021-03-10
+
+### Changes
+
+* Update Laravel skeleton.
+  - Update `queue` configuration.
+  - Update `validation` language file.
+
+## 6.13.0
+
+Released: 2021-02-21
+
+### Changes
+
+* Update minimum support for Testbench v6.13.0+. ([v6.12.1...v6.13.0](https://github.com/orchestral/testbench/compare/v6.12.1...v6.13.0))
+
+## 6.12.1
+
+Released: 2021-02-09
+
+### Added
+
+* Added `Orchestra\Testbench\Dusk\TestCase::hasHeadlessDisabled()` method.
+
+### Changes
+
+* Update minimum support for Testbench v6.12.1+. ([v6.11.0...v6.12.1](https://github.com/orchestral/testbench/compare/v6.11.0...v6.12.1))
+
+## 6.12.0
+
+Released: 2021-02-09
+
+### Changes
+
+* Update list of available methods on `Orchestra\Testbench\Dusk\Options`.
+* Automatically set `--headless` when environment variable contains `CI=true`.
+
+## 6.11.0
+
+Released: 2021-01-31
+
+### Changes
+
+* Update minimum support for Testbench v6.11.0+. ([v6.10.0...v6.11.0](https://github.com/orchestral/testbench/compare/v6.10.0...v6.11.0))
+
+## 6.10.0
+
+Released: 2021-01-29
+
+### Changes
+
+* Update minimum support for Testbench v6.10.0+. ([v6.9.0...v6.10.0](https://github.com/orchestral/testbench/compare/v6.9.0...v6.10.0))
+
 ## 6.9.0
 
 Released: 2021-01-18

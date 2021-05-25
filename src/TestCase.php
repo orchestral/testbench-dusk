@@ -7,6 +7,7 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Foundation\Application;
+use Orchestra\Testbench\Dusk\Foundation\PackageManifest;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
 use Orchestra\Testbench\TestCase as Testbench;
 
@@ -37,15 +38,39 @@ abstract class TestCase extends Testbench
     protected static $hasRegisteredShutdown = false;
 
     /**
-     * Determine the application's base URL.
+     * Get Application's base path.
+     *
+     * @return string
+     */
+    public static function applicationBasePath()
+    {
+        return $_ENV['APP_BASE_PATH'] ?? \realpath(__DIR__.'/../laravel');
+    }
+
+    /**
+     * Get Application's base URL.
      *
      * @var string
      *
      * @return string
      */
-    public static function baseServeUrl()
+    public static function applicationBaseUrl()
     {
         return \sprintf('http://%s:%d', static::$baseServeHost, static::$baseServePort);
+    }
+
+    /**
+     * Determine the application's base URL.
+     *
+     * @var string
+     *
+     * @return string
+     *
+     * @deprecated To be removed on 7.0.0, use static::applicationBaseUrl() instead.
+     */
+    public static function baseServeUrl()
+    {
+        return static::applicationBaseUrl();
     }
 
     /**
@@ -59,6 +84,22 @@ abstract class TestCase extends Testbench
 
         $this->setUpTheBrowserEnvironment();
         $this->registerShutdownFunction();
+    }
+
+    /**
+     * Setup parallel testing callback.
+     */
+    protected function setUpParallelTestingCallbacks(): void
+    {
+        // Not supported at the moment.
+    }
+
+    /**
+     * Teardown parallel testing callback.
+     */
+    protected function tearDownParallelTestingCallbacks(): void
+    {
+        // Not supported at the moment.
     }
 
     /**
@@ -86,7 +127,7 @@ abstract class TestCase extends Testbench
      */
     protected function getBasePath()
     {
-        return __DIR__.'/../laravel';
+        return static::applicationBasePath();
     }
 
     /**
@@ -96,11 +137,13 @@ abstract class TestCase extends Testbench
      */
     protected function resolveApplication()
     {
-        return \tap(new Application($this->getBasePath()), static function ($app) {
+        return \tap(new Application($this->getBasePath()), function ($app) {
             $app->bind(
                 'Illuminate\Foundation\Bootstrap\LoadConfiguration',
                 Bootstrap\LoadConfiguration::class
             );
+
+            PackageManifest::swap($app, $this);
         });
     }
 
@@ -111,6 +154,12 @@ abstract class TestCase extends Testbench
      */
     protected function driver(): RemoteWebDriver
     {
+        if (DuskOptions::shouldUsesWithoutUI()) {
+            DuskOptions::withoutUI();
+        } elseif ($this->hasHeadlessDisabled()) {
+            DuskOptions::withUI();
+        }
+
         return RemoteWebDriver::create(
             'http://localhost:9515',
             DesiredCapabilities::chrome()->setCapability(
@@ -129,7 +178,7 @@ abstract class TestCase extends Testbench
      */
     protected function baseUrl()
     {
-        return \sprintf('http://%s:%d', static::$baseServeHost, static::$baseServePort);
+        return static::applicationBaseUrl();
     }
 
     /**
@@ -174,5 +223,16 @@ abstract class TestCase extends Testbench
     public static function tearDownAfterClass(): void
     {
         static::stopServing();
+    }
+
+    /**
+     * Determine whether the Dusk command has disabled headless mode.
+     *
+     * @return bool
+     */
+    protected function hasHeadlessDisabled()
+    {
+        return (isset($_SERVER['DUSK_HEADLESS_DISABLED']) && $_SERVER['DUSK_HEADLESS_DISABLED'] == true)
+            || (isset($_ENV['DUSK_HEADLESS_DISABLED']) && $_ENV['DUSK_HEADLESS_DISABLED'] == true);
     }
 }

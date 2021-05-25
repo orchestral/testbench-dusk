@@ -2,6 +2,81 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 5.17.0
+
+Released: 2021-05-25
+
+### Added
+
+* Added static methods `applicationBasePath()` and `applicationBaseUrl()` to `Orchestra\Testbench\Dusk\TestCase`.
+
+### Changes
+
+* Update minimum support for Testbench v5.19.0+. ([v5.18.0...v5.19.0](https://github.com/orchestral/testbench/compare/v5.18.0...v5.19.0))
+
+### Deprecated
+
+* Deprecate `baseUrl()` and `baseServeUrl()` method from `Orchestra\Testbench\Dusk\TestCase`.
+
+## 5.16.0
+
+Released: 2021-03-21
+
+### Added
+
+* Added `TESTBENCH_WORKING_PATH` constant.
+* Added `package:dusk` command using CLI Commander.
+* Added `package:dusk-purge` command using CLI Commander.
+
+### Changes
+
+* Improves preparing debugging tools for Dusk tests.
+
+## 5.15.0
+
+Released: 2021-02-21
+
+### Changes
+
+* Update minimum support for Testbench v5.18.0+. ([v5.17.1...v5.18.0](https://github.com/orchestral/testbench/compare/v5.17.1...v5.18.0))
+
+## 5.14.1
+
+Released: 2021-02-15
+
+### Added
+
+* Added `Orchestra\Testbench\Dusk\TestCase::hasHeadlessDisabled()` method.
+
+### Changes
+
+* Update minimum support for Testbench v5.17.1+. ([v5.16.0...v5.17.1](https://github.com/orchestral/testbench/compare/v5.16.0...v5.17.1))
+
+## 5.14.0
+
+Released: 2021-02-09
+
+### Changes
+
+* Update list of available methods on `Orchestra\Testbench\Dusk\Options`.
+* Automatically set `--headless` when environment variable contains `CI=true`.
+
+## 5.13.0
+
+Released: 2021-01-30
+
+### Changes
+
+* Update minimum support for Testbench v5.16.0+. ([v5.15.0...v5.16.0](https://github.com/orchestral/testbench/compare/v5.15.0...v5.16.0))
+
+## 5.12.0
+
+Released: 2021-01-29
+
+### Changes
+
+* Update minimum support for Testbench v5.15.0+. ([v5.14.0...v5.15.0](https://github.com/orchestral/testbench/compare/v5.14.0...v5.15.0))
+
 ## 5.11.0
 
 Released: 2021-01-18

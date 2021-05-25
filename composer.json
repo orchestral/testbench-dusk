@@ -20,7 +20,10 @@
     "autoload": {
         "psr-4": {
             "Orchestra\\Testbench\\Dusk\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -35,12 +38,13 @@
         "konsulting/project-root": "^1.1",
         "laravel/dusk": "dev-develop",
         "opis/closure": "^3.4.2",
-        "orchestra/dusk-updater": "^1.3",
+        "orchestra/dusk-updater": "^1.4.3",
         "orchestra/testbench": "^7.0",
         "php-webdriver/webdriver": "^1.7"
     },
     "require-dev": {
-        "laravel/laravel": "dev-master"
+        "laravel/laravel": "dev-master",
+        "orchestra/canvas": "^7.0"
     },
     "extra": {
         "branch-alias": {
@@ -49,13 +53,16 @@
     },
     "scripts": {
         "prepare": [
-            "@php vendor/bin/dusk-updater detect --auto-update",
-            "@php testbench-dusk package:discover"
+            "@composer run post-autoload-dump",
+            "@php vendor/bin/dusk-updater detect --auto-update"
         ],
         "test": [
             "@php create-sqlite-db",
             "@composer run prepare",
             "@php vendor/bin/phpunit -c ./ --color"
+        ],
+        "post-autoload-dump": [
+            "@php testbench-dusk package:discover --ansi"
         ]
     },
     "config": {
