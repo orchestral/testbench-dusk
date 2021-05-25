@@ -7,7 +7,7 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
-  tests-on-phpunit-8:
+  tests-on-phpunit-9:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
     strategy:
@@ -15,10 +15,10 @@ jobs:
         os:
           - "ubuntu-latest"
         php:
-          - "7.3"
           - "7.4"
+          - "8.0"
         phpunit:
-          - "^8.4"
+          - "^9.3"
         dependencies:
           - "locked"
           - "highest"
@@ -65,7 +65,7 @@ jobs:
           name: screenshots
           path: tests/Browser/screenshots/*
 
-  tests-on-phpunit-9:
+  tests-on-phpunit-10:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
     strategy:
@@ -73,21 +73,15 @@ jobs:
         os:
           - "ubuntu-latest"
         php:
-          - "7.4"
           - "8.0"
         phpunit:
-          - "^9.3"
+          - "^10.0"
         dependencies:
           - "locked"
           - "highest"
           - "lowest"
         experimental:
           - false
-        include:
-          - php: "8.0"
-            dependencies: "highest"
-            composer-options: "--ignore-platform-reqs"
-            experimental: true
 
     name: PHP${{ matrix.php }} with PHPUnit${{ matrix.phpunit }} on ${{ matrix.os }} (${{ matrix.dependencies }})
 
