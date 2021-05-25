@@ -37,11 +37,25 @@ abstract class TestCase extends Testbench
     protected static $hasRegisteredShutdown = false;
 
     /**
+     * Get Application base URL.
+     *
+     * @var string
+     *
+     * @return string
+     */
+    public static function applicationBaseUrl()
+    {
+        return \sprintf('http://%s:%d', static::$baseServeHost, static::$baseServePort);
+    }
+
+    /**
      * Determine the application's base URL.
      *
      * @var string
      *
      * @return string
+     *
+     * @deprecated To be removed on 7.0.0, use static::applicationBaseUrl() instead.
      */
     public static function baseServeUrl()
     {
@@ -130,6 +144,8 @@ abstract class TestCase extends Testbench
      * @var string
      *
      * @return string
+     *
+     * @deprecated To be removed on 7.0.0, use static::applicationBaseUrl() instead.
      */
     protected function baseUrl()
     {
