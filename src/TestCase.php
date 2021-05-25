@@ -60,20 +60,6 @@ abstract class TestCase extends Testbench
     }
 
     /**
-     * Determine the application's base URL.
-     *
-     * @var string
-     *
-     * @return string
-     *
-     * @deprecated To be removed on 7.0.0, use static::applicationBaseUrl() instead.
-     */
-    public static function baseServeUrl()
-    {
-        return static::applicationBaseUrl();
-    }
-
-    /**
      * Register the base URL with Dusk.
      *
      * @return void
