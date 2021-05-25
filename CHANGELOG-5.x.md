@@ -5,6 +5,7 @@ This changelog references the relevant changes (bug and security fixes) done to 
 ## 5.17.0
 
 Released: 2021-05-25
+
 ### Added
 
 * Added static methods `applicationBasePath()` and `applicationBaseUrl()` to `Orchestra\Testbench\Dusk\TestCase`.
