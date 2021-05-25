@@ -175,8 +175,6 @@ abstract class TestCase extends Testbench
      * @var string
      *
      * @return string
-     *
-     * @deprecated To be removed on 7.0.0, use static::applicationBaseUrl() instead.
      */
     protected function baseUrl()
     {
