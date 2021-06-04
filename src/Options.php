@@ -14,6 +14,13 @@ class Options
     public static $ui = true;
 
     /**
+     * Set W3C compliant.
+     *
+     * @var bool
+     */
+    public static $w3cCompliant = false;
+
+    /**
      * Testbench should provide application server.
      *
      * @var bool
@@ -202,8 +209,10 @@ class Options
      */
     public static function getChromeOptions()
     {
-        return (new ChromeOptions())
-            ->setExperimentalOption('w3c', false)
-            ->addArguments(static::$arguments);
+        return tap(new ChromeOptions(), function ($option) {
+            if (static::$w3cCompliant === false) {
+                $option->setExperimentalOption('w3c', static::$w3cCompliant);
+            }
+        })->addArguments(static::$arguments);
     }
 }
