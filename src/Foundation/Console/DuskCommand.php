@@ -31,7 +31,7 @@ class DuskCommand extends Command
     {
         parent::__construct();
 
-        if (! defined('TESTBENCH_WORKING_PATH')) {
+        if (! \defined('TESTBENCH_WORKING_PATH')) {
             $this->setHidden(true);
         }
     }
@@ -57,7 +57,7 @@ class DuskCommand extends Command
      */
     protected function phpunitArguments($options)
     {
-        $options = \array_values(\array_filter($options, function ($option) {
+        $options = array_values(array_filter($options, function ($option) {
             return ! Str::startsWith($option, '--env=');
         }));
 
@@ -69,7 +69,7 @@ class DuskCommand extends Command
         ])->map(function ($file) {
             return TESTBENCH_WORKING_PATH."/{$file}";
         })->filter(function ($file) {
-            return \file_exists($file);
+            return file_exists($file);
         })->first();
 
         return ! \is_null($file) ? array_merge(['-c', $file], $options) : $options;
@@ -90,11 +90,11 @@ class DuskCommand extends Command
         ])->map(function ($file) {
             return TESTBENCH_WORKING_PATH."/{$file}";
         })->filter(function ($file) {
-            return \file_exists($file);
+            return file_exists($file);
         })->first();
 
         if (\is_null($file)) {
-            \copy(\realpath(__DIR__.'/../../../stubs/phpunit.xml'), TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml');
+            copy(realpath(__DIR__.'/../../../stubs/phpunit.xml'), TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml');
 
             return;
         }
@@ -109,7 +109,7 @@ class DuskCommand extends Command
      */
     protected function removeConfiguration()
     {
-        if (! $this->hasPhpUnitConfiguration && \file_exists($file = TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml')) {
+        if (! $this->hasPhpUnitConfiguration && file_exists($file = TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml')) {
             @unlink($file);
         }
     }

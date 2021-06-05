@@ -52,7 +52,7 @@ class Options
     public static function addArgument(string $argument)
     {
         if (! static::hasArgument($argument)) {
-            \array_push(static::$arguments, $argument);
+            array_push(static::$arguments, $argument);
         }
 
         return new static();
@@ -66,7 +66,7 @@ class Options
     public static function removeArgument(string $argument)
     {
         if (static::hasArgument($argument)) {
-            static::$arguments = array_values(\array_filter(static::$arguments, function ($option) use ($argument) {
+            static::$arguments = array_values(array_filter(static::$arguments, function ($option) use ($argument) {
                 return $option !== $argument;
             }));
         }

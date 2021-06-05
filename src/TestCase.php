@@ -44,7 +44,7 @@ abstract class TestCase extends Testbench
      */
     public static function applicationBasePath()
     {
-        return $_ENV['APP_BASE_PATH'] ?? \realpath(__DIR__.'/../laravel');
+        return $_ENV['APP_BASE_PATH'] ?? realpath(__DIR__.'/../laravel');
     }
 
     /**
@@ -56,7 +56,7 @@ abstract class TestCase extends Testbench
      */
     public static function applicationBaseUrl()
     {
-        return \sprintf('http://%s:%d', static::$baseServeHost, static::$baseServePort);
+        return sprintf('http://%s:%d', static::$baseServeHost, static::$baseServePort);
     }
 
     /**
@@ -112,7 +112,7 @@ abstract class TestCase extends Testbench
     protected function registerShutdownFunction()
     {
         if (! static::$hasRegisteredShutdown) {
-            \register_shutdown_function(function () {
+            register_shutdown_function(function () {
                 $this->closeAll();
             });
 
@@ -137,7 +137,7 @@ abstract class TestCase extends Testbench
      */
     protected function resolveApplication()
     {
-        return \tap(new Application($this->getBasePath()), function ($app) {
+        return tap(new Application($this->getBasePath()), function ($app) {
             $app->bind(
                 'Illuminate\Foundation\Bootstrap\LoadConfiguration',
                 Bootstrap\LoadConfiguration::class
