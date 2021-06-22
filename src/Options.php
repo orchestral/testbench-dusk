@@ -14,6 +14,13 @@ class Options
     public static $ui = true;
 
     /**
+     * Set W3C compliant.
+     *
+     * @var bool
+     */
+    public static $w3cCompliant = false;
+
+    /**
      * Testbench should provide application server.
      *
      * @var bool
@@ -45,7 +52,7 @@ class Options
     public static function addArgument(string $argument)
     {
         if (! static::hasArgument($argument)) {
-            \array_push(static::$arguments, $argument);
+            array_push(static::$arguments, $argument);
         }
 
         return new static();
@@ -59,7 +66,7 @@ class Options
     public static function removeArgument(string $argument)
     {
         if (static::hasArgument($argument)) {
-            static::$arguments = array_values(\array_filter(static::$arguments, function ($option) use ($argument) {
+            static::$arguments = array_values(array_filter(static::$arguments, function ($option) use ($argument) {
                 return $option !== $argument;
             }));
         }
@@ -202,8 +209,10 @@ class Options
      */
     public static function getChromeOptions()
     {
-        return (new ChromeOptions())
-            ->setExperimentalOption('w3c', false)
-            ->addArguments(static::$arguments);
+        return tap(new ChromeOptions(), function ($option) {
+            if (static::$w3cCompliant === false) {
+                $option->setExperimentalOption('w3c', static::$w3cCompliant);
+            }
+        })->addArguments(static::$arguments);
     }
 }

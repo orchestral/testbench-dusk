@@ -31,7 +31,7 @@ class PurgeCommand extends Command
     {
         parent::__construct();
 
-        if (! defined('TESTBENCH_WORKING_PATH')) {
+        if (! \defined('TESTBENCH_WORKING_PATH')) {
             $this->setHidden(true);
         }
     }

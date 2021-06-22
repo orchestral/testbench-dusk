@@ -14,7 +14,7 @@ class Commander extends Testbench
      */
     protected function resolveApplication()
     {
-        return \tap(parent::resolveApplication(), function ($app) {
+        return tap(parent::resolveApplication(), static function ($app) {
             $app->register(TestbenchServiceProvider::class);
         });
     }
