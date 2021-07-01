@@ -2,6 +2,18 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.19.0
+
+Released: 2021-07-01
+
+### Added
+
+* Added ability to configure w3c compliant using `Orchestra\Testbench\Dusk\Options::$w3cCompliant = true;`
+
+### Changes
+
+* Update minimum support for Testbench v6.19.0+. ([v6.18.0...v6.19.0](https://github.com/orchestral/testbench/compare/v6.18.0...v6.19.0))
+
 ## 6.18.0
 
 Released: 2021-05-25
