@@ -12,12 +12,12 @@ class ResolvesProjectRootTest extends PHPUnitTestCase
     {
         $this->assertEquals(
             '/home/person/code/testbench-dusk/tests/Browser',
-            (new DummyTestCase())->resolveBrowserTestsPath('/home/person/code/testbench-dusk/src')
+            (new DummyTestCase('dummy'))->resolveBrowserTestsPath('/home/person/code/testbench-dusk/src')
         );
 
         $this->assertEquals(
             '/home/person/code/project/tests/Browser',
-            (new DummyTestCase())->resolveBrowserTestsPath('/home/person/code/project/vendor/orchestra/testbench-dusk/src')
+            (new DummyTestCase('dummy'))->resolveBrowserTestsPath('/home/person/code/project/vendor/orchestra/testbench-dusk/src')
         );
     }
 }
