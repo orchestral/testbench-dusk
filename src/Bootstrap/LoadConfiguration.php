@@ -24,7 +24,7 @@ class LoadConfiguration
 
         $this->loadConfigurationFiles($app, $config);
 
-        \mb_internal_encoding('UTF-8');
+        mb_internal_encoding('UTF-8');
     }
 
     /**
@@ -51,12 +51,12 @@ class LoadConfiguration
      */
     protected function getConfigurationFiles(Application $app)
     {
-        if (! \is_dir($path = $app->basePath('config'))) {
-            $path = \realpath(__DIR__.'/../../laravel/config');
+        if (! is_dir($path = $app->basePath('config'))) {
+            $path = realpath(__DIR__.'/../../laravel/config');
         }
 
         foreach (Finder::create()->files()->name('*.php')->in($path) as $file) {
-            yield \basename($file->getRealPath(), '.php') => $file->getRealPath();
+            yield basename($file->getRealPath(), '.php') => $file->getRealPath();
         }
     }
 }
