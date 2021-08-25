@@ -2,7 +2,7 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
-## 6.21.2
+## 6.21.1
 
 Released: 2021-08-25
 
