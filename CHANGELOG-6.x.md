@@ -2,6 +2,16 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.22.0
+
+Released: 2021-09-18
+
+### Changes
+
+* Update minimum support for Testbench v6.21.1+. ([v6.20.1...v6.21.1](https://github.com/orchestral/testbench/compare/v6.20.1...v6.21.1))
+* Update minimum support for Laravel Dusk v6.18.1+. ([v6.17.1...v6.18.1](https://github.com/laravel/dusk/compare/v6.17.1...v6.18.1))
+* Update skeleton to match v8.6.2.
+
 ## 6.21.1
 
 Released: 2021-08-25
@@ -277,7 +287,7 @@ Released: 2020-10-20
 
 * Fixes missing `$workingPath`.
 
-## 6.2.0 
+## 6.2.0
 
 Released: 2020-10-20
 
