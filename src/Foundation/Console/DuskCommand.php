@@ -15,7 +15,8 @@ class DuskCommand extends Command
      */
     protected $signature = 'package:dusk
                 {--browse : Open a browser instead of using headless mode}
-                {--without-tty : Disable output to TTY}';
+                {--without-tty : Disable output to TTY}
+                {--pest : Run the tests using Pest}';
 
     /**
      * The console command description.

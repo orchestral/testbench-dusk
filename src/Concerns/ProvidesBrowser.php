@@ -46,7 +46,7 @@ trait ProvidesBrowser
     /**
      * Figure out where the test directory is, if we're an included package, or the root one.
      *
-     * @param string $path
+     * @param  string  $path
      *
      * @throws \Exception
      *

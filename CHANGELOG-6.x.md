@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.22.1
+
+Released: 2021-10-02
+
+### Fixes
+
+* Fixes missing `--pest` options on `package:dusk` command.
+
 ## 6.22.0
 
 Released: 2021-09-18
