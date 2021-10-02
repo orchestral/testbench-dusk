@@ -45,7 +45,7 @@ class DuskCommand extends Command
     {
         $this->callSilent('package:dusk-purge');
 
-        parent::handle();
+        return parent::handle();
     }
 
     /**
@@ -57,7 +57,7 @@ class DuskCommand extends Command
      */
     protected function phpunitArguments($options)
     {
-        $options = array_values(array_filter($options, function ($option) {
+        $options = array_values(array_filter($options, static function ($option) {
             return ! Str::startsWith($option, '--env=');
         }));
 
@@ -66,9 +66,9 @@ class DuskCommand extends Command
             'phpunit.dusk.xml.dist',
             'phpunit.xml',
             'phpunit.xml.dist',
-        ])->map(function ($file) {
+        ])->map(static function ($file) {
             return TESTBENCH_WORKING_PATH."/{$file}";
-        })->filter(function ($file) {
+        })->filter(static function ($file) {
             return file_exists($file);
         })->first();
 
@@ -87,9 +87,9 @@ class DuskCommand extends Command
             'phpunit.dusk.xml.dist',
             'phpunit.xml',
             'phpunit.xml.dist',
-        ])->map(function ($file) {
+        ])->map(static function ($file) {
             return TESTBENCH_WORKING_PATH."/{$file}";
-        })->filter(function ($file) {
+        })->filter(static function ($file) {
             return file_exists($file);
         })->first();
 

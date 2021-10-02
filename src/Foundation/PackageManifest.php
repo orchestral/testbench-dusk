@@ -7,7 +7,7 @@ class PackageManifest extends \Orchestra\Testbench\Foundation\PackageManifest
     /**
      * List of required packages.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $requiredPackages = [
         'laravel/dusk',

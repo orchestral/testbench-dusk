@@ -30,7 +30,7 @@ class Options
     /**
      * A list of remote web driver arguments.
      *
-     * @var array
+     * @var array<int, string>
      */
     public static $arguments = [];
 
