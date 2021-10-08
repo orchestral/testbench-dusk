@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.22.2
+
+Released: 2021-10-08
+
+### Added
+
+* Added support for `laravel/serializable-closure`.
+
 ## 6.22.1
 
 Released: 2021-10-02
