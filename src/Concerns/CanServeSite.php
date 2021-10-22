@@ -140,6 +140,11 @@ trait CanServeSite
         if (! $this->app) {
             $this->refreshApplication();
         }
+        
+        
+        if(in_array('Orchestra\Testbench\Concerns\HandlesRoutes', class_uses_recursive($this))) {
+            $this->setUpApplicationRoutes();
+        }
     }
 
     /**
