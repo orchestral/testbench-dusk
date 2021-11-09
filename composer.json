@@ -37,10 +37,11 @@
         "php": "^7.4 || ^8.0",
         "konsulting/project-root": "^1.1",
         "laravel/dusk": "dev-develop",
-        "opis/closure": "^3.4.2",
-        "orchestra/dusk-updater": "^1.4.3",
+        "opis/closure": "^3.6",
+        "laravel/serializable-closure": "^1.0",
+        "orchestra/dusk-updater": "^1.4.3 || ^2.0",
         "orchestra/testbench": "^7.0",
-        "php-webdriver/webdriver": "^1.7"
+        "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
         "laravel/laravel": "dev-master",

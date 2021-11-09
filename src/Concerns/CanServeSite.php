@@ -3,6 +3,7 @@
 namespace Orchestra\Testbench\Dusk\Concerns;
 
 use Closure;
+use Illuminate\Queue\SerializableClosureFactory;
 use Opis\Closure\SerializableClosure;
 use Orchestra\Testbench\Dusk\DuskServer;
 use Orchestra\Testbench\Dusk\Options;
@@ -70,7 +71,11 @@ trait CanServeSite
 
         static::$server->stash([
             'class' => static::class,
-            'tweakApplication' => serialize(SerializableClosure::from($closure)),
+            'tweakApplication' => serialize(
+                class_exists(SerializableClosureFactory::class)
+                    ? SerializableClosureFactory::make($closure)
+                    : new SerializableClosure($closure)
+            ),
         ]);
     }
 

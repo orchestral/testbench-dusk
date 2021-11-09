@@ -55,7 +55,7 @@ class PurgeCommand extends Command
             'tests/Browser/source', '*.txt'
         );
 
-        return 0;
+        return self::SUCCESS;
     }
 
     /**
