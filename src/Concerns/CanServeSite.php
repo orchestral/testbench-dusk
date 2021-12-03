@@ -20,8 +20,8 @@ trait CanServeSite
     /**
      * Begin serving on a given host and port.
      *
-     * @param string $host
-     * @param int    $port
+     * @param  string  $host
+     * @param  int  $port
      *
      * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      *
@@ -61,7 +61,7 @@ trait CanServeSite
     /**
      * Make tweaks to the application, both inside the test and on the test server.
      *
-     * @param \Closure $closure
+     * @param  \Closure  $closure
      *
      * @return void
      */
@@ -98,7 +98,7 @@ trait CanServeSite
      * replicate the Application state during a Dusk test when we start our
      * test server. See the main server file 'server.php'.
      *
-     * @param \Orchestra\Testbench\Dusk\DuskServer $server
+     * @param  \Orchestra\Testbench\Dusk\DuskServer  $server
      *
      * @return \Illuminate\Foundation\Application
      */
