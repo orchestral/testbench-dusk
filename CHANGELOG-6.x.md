@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.23.2
+
+Released: 2021-12-04
+
+### Changes
+
+* Update minimum support for Testbench v6.23.1+. ([v6.23.0...v6.23.1](https://github.com/orchestral/testbench/compare/v6.23.0...v6.23.1))
+* Support path containing spaces on Windows environment.
+
 ## 6.23.1
 
 Released: 2021-11-10
