@@ -10,22 +10,22 @@ class Commander extends Testbench
     /**
      * Resolve application implementation.
      *
-     * @return \Illuminate\Foundation\Application
+     * @return \Closure(\Illuminate\Foundation\Application):void
      */
-    protected function resolveApplication()
+    protected function resolveApplicationCallback()
     {
-        return tap(parent::resolveApplication(), static function ($app) {
+        return function ($app) {
             $app->register(TestbenchServiceProvider::class);
-        });
+        };
     }
 
     /**
-     * Get base path from trait.
+     * Get Application base path.
      *
      * @return string
      */
-    protected function getBasePathFromTrait()
+    public static function applicationBasePath()
     {
-        return __DIR__.'/../../laravel';
+        return $_ENV['APP_BASE_PATH'] ?? realpath(__DIR__.'/../../laravel');
     }
 }

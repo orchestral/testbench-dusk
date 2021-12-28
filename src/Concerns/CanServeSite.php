@@ -61,7 +61,7 @@ trait CanServeSite
     /**
      * Make tweaks to the application, both inside the test and on the test server.
      *
-     * @param  \Closure  $closure
+     * @param  \Closure(\Illuminate\Foundation\Application):void  $closure
      *
      * @return void
      */
