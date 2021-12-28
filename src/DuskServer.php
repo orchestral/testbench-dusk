@@ -190,7 +190,7 @@ class DuskServer
             (new PhpExecutableFinder())->find(false),
             $this->host,
             $this->port,
-            __DIR__.'/server.php'
+            '"'.__DIR__.'/server.php'.'"'
         );
     }
 

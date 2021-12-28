@@ -39,7 +39,7 @@
         "laravel/dusk": "dev-develop",
         "opis/closure": "^3.6",
         "laravel/serializable-closure": "^1.0",
-        "orchestra/dusk-updater": "^1.4.3 || ^2.0",
+        "orchestra/dusk-updater": "^1.5 || ^2.0",
         "orchestra/testbench": "^7.0",
         "php-webdriver/webdriver": "^1.9"
     },
