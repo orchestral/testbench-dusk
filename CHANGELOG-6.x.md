@@ -2,6 +2,106 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.23.3
+
+Released: 2021-12-28
+
+### Changes
+
+* Update minimum support for Testbench v6.23.2+. ([v6.23.1...v6.23.2](https://github.com/orchestral/testbench/compare/v6.23.1...v6.23.2))
+* Update skeleton to match v8.6.10.
+
+## 6.23.2
+
+Released: 2021-12-04
+
+### Changes
+
+* Update minimum support for Testbench v6.23.1+. ([v6.23.0...v6.23.1](https://github.com/orchestral/testbench/compare/v6.23.0...v6.23.1))
+* Support path containing spaces on Windows environment.
+
+## 6.23.1
+
+Released: 2021-11-10
+
+### Changes
+
+* Update minimum support for Testbench v6.23.0+. ([v6.20.0...v6.23.0](https://github.com/orchestral/testbench/compare/v6.20.0...v6.23.0))
+
+## 6.23.0
+
+Released: 2021-10-21
+
+### Changes
+
+* Update minimum support for Testbench v6.22.0+. ([v6.21.1...v6.22.0](https://github.com/orchestral/testbench/compare/v6.21.1...v6.22.0))
+* Update minimum support for Laravel Dusk v6.19.2+. ([v6.18.1...v6.19.2](https://github.com/laravel/dusk/compare/v6.18.1...v6.19.2))
+* Update skeleton to match v8.6.4.
+
+## 6.22.2
+
+Released: 2021-10-08
+
+### Added
+
+* Added support for `laravel/serializable-closure`.
+
+## 6.22.1
+
+Released: 2021-10-02
+
+### Fixes
+
+* Fixes missing `--pest` options on `package:dusk` command.
+
+## 6.22.0
+
+Released: 2021-09-18
+
+### Changes
+
+* Update minimum support for Testbench v6.21.1+. ([v6.20.1...v6.21.1](https://github.com/orchestral/testbench/compare/v6.20.1...v6.21.1))
+* Update minimum support for Laravel Dusk v6.18.1+. ([v6.17.1...v6.18.1](https://github.com/laravel/dusk/compare/v6.17.1...v6.18.1))
+* Update skeleton to match v8.6.2.
+
+## 6.21.1
+
+Released: 2021-08-25
+
+### Changes
+
+* Update minimum support for Testbench v6.20.1+. ([v6.20.0...v6.20.1](https://github.com/orchestral/testbench/compare/v6.20.0...v6.20.1))
+* Update minimum support for Laravel Dusk v6.17.1+. ([v6.17.0...v6.17.1](https://github.com/laravel/dusk/compare/v6.17.0...v6.17.1))
+* Update skeleton to match v8.6.1.
+
+## 6.21.0
+
+Released: 2021-08-12
+
+### Changes
+
+* Update minimum support for Testbench v6.20.0+. ([v6.19.0...v6.20.0](https://github.com/orchestral/testbench/compare/v6.19.0...v6.20.0))
+* Update minimum support for Laravel Dusk v6.17.0+. ([v6.15.1...v6.17.0](https://github.com/laravel/dusk/compare/v6.15.1...v6.17.0))
+* Update skeleton to match v8.5.24.
+
+## 6.20.1
+
+Released: 2021-07-14
+
+### Changes
+
+* Update skeleton to match v8.5.22.
+
+## 6.20.0
+
+Released: 2021-07-09
+
+### Changes
+
+* Update minimum support for Laravel Dusk v6.15.1+. ([v6.14.0...v6.15.1](https://github.com/laravel/dusk/compare/v6.14.0...v6.15.1))
+* Update skeleton to match v8.5.21.
+* Support Dusk Updater v2.
+
 ## 6.19.0
 
 Released: 2021-07-01
@@ -239,7 +339,7 @@ Released: 2020-10-20
 
 * Fixes missing `$workingPath`.
 
-## 6.2.0 
+## 6.2.0
 
 Released: 2020-10-20
 

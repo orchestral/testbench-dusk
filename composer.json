@@ -36,15 +36,16 @@
     "require": {
         "php": "^7.3 || ^8.0",
         "konsulting/project-root": "^1.1",
-        "laravel/dusk": "^6.14",
-        "opis/closure": "^3.4.2",
-        "orchestra/dusk-updater": "^1.4.3",
+        "laravel/dusk": "^6.19.2",
+        "opis/closure": "^3.6",
+        "laravel/serializable-closure": "^1.0",
+        "orchestra/dusk-updater": "^1.5 || ^2.0",
         "orchestra/testbench": "dev-phpunit10",
-        "php-webdriver/webdriver": "^1.7"
+        "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
         "laravel/laravel": "8.x-dev",
-        "orchestra/canvas": "^6.1"
+        "orchestra/canvas": "^6.10"
     },
     "extra": {
         "branch-alias": {

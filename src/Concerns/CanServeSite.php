@@ -3,6 +3,7 @@
 namespace Orchestra\Testbench\Dusk\Concerns;
 
 use Closure;
+use Illuminate\Queue\SerializableClosureFactory;
 use Opis\Closure\SerializableClosure;
 use Orchestra\Testbench\Dusk\DuskServer;
 use Orchestra\Testbench\Dusk\Options;
@@ -19,8 +20,8 @@ trait CanServeSite
     /**
      * Begin serving on a given host and port.
      *
-     * @param string $host
-     * @param int    $port
+     * @param  string  $host
+     * @param  int  $port
      *
      * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      *
@@ -60,7 +61,7 @@ trait CanServeSite
     /**
      * Make tweaks to the application, both inside the test and on the test server.
      *
-     * @param \Closure $closure
+     * @param  \Closure(\Illuminate\Foundation\Application):void  $closure
      *
      * @return void
      */
@@ -70,7 +71,11 @@ trait CanServeSite
 
         static::$server->stash([
             'class' => static::class,
-            'tweakApplication' => serialize(SerializableClosure::from($closure)),
+            'tweakApplication' => serialize(
+                class_exists(SerializableClosureFactory::class)
+                    ? SerializableClosureFactory::make($closure)
+                    : new SerializableClosure($closure)
+            ),
         ]);
     }
 
@@ -93,7 +98,7 @@ trait CanServeSite
      * replicate the Application state during a Dusk test when we start our
      * test server. See the main server file 'server.php'.
      *
-     * @param \Orchestra\Testbench\Dusk\DuskServer $server
+     * @param  \Orchestra\Testbench\Dusk\DuskServer  $server
      *
      * @return \Illuminate\Foundation\Application
      */
