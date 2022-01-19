@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.24.0
+
+Released: 2022-01-19
+
+### Added
+
+* Added `beforeServingApplication()` as alias to `tweakApplication()` method.
+
+### Changes
+
+* Update minimum support for Testbench v6.24.0+. ([v6.23.2...v6.24.0](https://github.com/orchestral/testbench/compare/v6.23.2...v6.24.0))
+* Update minimum support for Laravel Dusk v6.20.0+. ([v6.19.2...v6.20.0](https://github.com/laravel/dusk/compare/v6.19.2...v6.20.0))
+
 ## 6.23.3
 
 Released: 2021-12-28
