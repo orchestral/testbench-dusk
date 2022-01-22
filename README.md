@@ -61,7 +61,7 @@ class BrowserTestCase extends Orchestra\Testbench\Dusk\TestCase
 
 ### Custom Host and Port
 
-By default, Testbench Dusk will start its own PHP server at `http://127.0.0.1:8000`.
+By default, Testbench Dusk will start its own PHP server at `http://127.0.0.1:8001`.
 
 You can customize this by replacing the `$baseServeHost` and `$baseServePort` such as below:
 
