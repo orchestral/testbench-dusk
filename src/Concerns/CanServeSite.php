@@ -65,9 +65,9 @@ trait CanServeSite
      *
      * @return void
      */
-    public function tweakApplication(Closure $closure): void
+    public function beforeServingApplication(Closure $closure): void
     {
-        $closure($this->app);
+        $closure($this->app, $this->app['config']);
 
         static::$server->stash([
             'class' => static::class,
@@ -77,6 +77,18 @@ trait CanServeSite
                     : new SerializableClosure($closure)
             ),
         ]);
+    }
+
+    /**
+     * Make tweaks to the application, both inside the test and on the test server.
+     *
+     * @param  \Closure(\Illuminate\Foundation\Application):void  $closure
+     *
+     * @return void
+     */
+    public function tweakApplication(Closure $closure): void
+    {
+        $this->beforeServingApplication($closure);
     }
 
     /**
@@ -112,7 +124,7 @@ trait CanServeSite
 
         if ($serializedClosure) {
             $closure = unserialize($serializedClosure)->getClosure();
-            $closure($this->app);
+            $closure($this->app, $this->app['config']);
         }
 
         return $this->app;

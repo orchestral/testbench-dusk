@@ -49,8 +49,8 @@ class RouteTest extends TestCase
     /** @test */
     public function can_tweak_the_application_within_a_test()
     {
-        $this->tweakApplication(function ($app) {
-            $app['config']->set('new_config_item', 'Fantastic!');
+        $this->tweakApplication(function ($app, $config) {
+            $config->set('new_config_item', 'Fantastic!');
         });
 
         $this->assertEquals('Fantastic!', config('new_config_item'));
