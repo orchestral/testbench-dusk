@@ -43,7 +43,7 @@
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
-        "laravel/laravel": "dev-master",
+        "laravel/laravel": "9.x-dev",
         "orchestra/canvas": "^7.0"
     },
     "extra": {
