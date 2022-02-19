@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -196,6 +195,8 @@ return [
     |
     */
 
-    'aliases' => with(Facade::defaultAliases(), fn ($aliases) => $aliases instanceof Arrayable ? $aliases->toArray() : $aliases),
+    'aliases' => Facade::defaultAliases()->merge([
+        // ...
+    ])->toArray(),
 
 ];
