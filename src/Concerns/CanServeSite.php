@@ -153,11 +153,4 @@ trait CanServeSite
             $this->refreshApplication();
         }
     }
-
-    /**
-     * Get base path.
-     *
-     * @return string
-     */
-    abstract protected function getBasePath();
 }

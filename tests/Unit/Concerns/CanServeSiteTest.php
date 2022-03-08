@@ -64,14 +64,4 @@ class CanServeSiteDummy
     {
         return __DIR__.'/../../../laravel';
     }
-
-    /**
-     * Get base path.
-     *
-     * @return string
-     */
-    protected function getBasePath()
-    {
-        return static::applicationBasePath();
-    }
 }
