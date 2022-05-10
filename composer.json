@@ -34,12 +34,12 @@
         "testbench-dusk"
     ],
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.0",
         "konsulting/project-root": "^1.1",
         "laravel/dusk": "^6.23",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^1.5 || ^2.0",
-        "orchestra/testbench": "^7.4",
+        "orchestra/testbench": "^7.5",
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
