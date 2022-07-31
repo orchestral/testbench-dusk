@@ -170,9 +170,9 @@ abstract class TestCase extends Testbench
     /**
      * Get a callback that returns the default user to authenticate.
      *
-     * @throws \Exception
-     *
      * @return callable
+     *
+     * @throws \Exception
      */
     protected function user()
     {

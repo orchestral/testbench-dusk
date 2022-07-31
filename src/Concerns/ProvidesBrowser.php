@@ -16,9 +16,9 @@ trait ProvidesBrowser
     /**
      * Setup the browser environment.
      *
-     * @throws \Exception
-     *
      * @return void
+     *
+     * @throws \Exception
      */
     protected function setUpTheBrowserEnvironment()
     {
@@ -34,9 +34,9 @@ trait ProvidesBrowser
     /**
      * Ensure the directories we need for dusk exist, and set them for the Browser to use.
      *
-     * @throws \Exception
-     *
      * @return void
+     *
+     * @throws \Exception
      */
     protected function prepareDirectories()
     {
@@ -47,10 +47,9 @@ trait ProvidesBrowser
      * Figure out where the test directory is, if we're an included package, or the root one.
      *
      * @param  string  $path
+     * @return string
      *
      * @throws \Exception
-     *
-     * @return string
      */
     protected function resolveBrowserTestsPath($path = __DIR__)
     {
@@ -67,9 +66,9 @@ trait ProvidesBrowser
     /**
      * Get a callback that returns the default user to authenticate.
      *
-     * @throws \Exception
-     *
      * @return callable
+     *
+     * @throws \Exception
      */
     abstract protected function user();
 }

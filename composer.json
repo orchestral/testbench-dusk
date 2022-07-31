@@ -44,6 +44,7 @@
     },
     "require-dev": {
         "laravel/laravel": "9.x-dev",
+        "laravel/pint": "^1.1",
         "orchestra/canvas": "^7.0"
     },
     "extra": {
