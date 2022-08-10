@@ -36,10 +36,10 @@
     "require": {
         "php": "^8.0",
         "konsulting/project-root": "^1.1",
-        "laravel/dusk": "^6.24",
+        "laravel/dusk": "^6.25.1",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^1.5 || ^2.0",
-        "orchestra/testbench": "^7.6",
+        "orchestra/testbench": "^7.6.1",
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
