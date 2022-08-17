@@ -22,10 +22,9 @@ trait CanServeSite
      *
      * @param  string  $host
      * @param  int  $port
+     * @return void
      *
      * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
-     *
-     * @return void
      */
     public static function serve($host = '127.0.0.1', $port = 8001): void
     {
@@ -62,7 +61,6 @@ trait CanServeSite
      * Make tweaks to the application, both inside the test and on the test server.
      *
      * @param  \Closure(\Illuminate\Foundation\Application):void  $closure
-     *
      * @return void
      */
     public function beforeServingApplication(Closure $closure): void
@@ -83,7 +81,6 @@ trait CanServeSite
      * Make tweaks to the application, both inside the test and on the test server.
      *
      * @param  \Closure(\Illuminate\Foundation\Application):void  $closure
-     *
      * @return void
      */
     public function tweakApplication(Closure $closure): void
@@ -111,7 +108,6 @@ trait CanServeSite
      * test server. See the main server file 'server.php'.
      *
      * @param  \Orchestra\Testbench\Dusk\DuskServer  $server
-     *
      * @return \Illuminate\Foundation\Application
      */
     public function getFreshApplicationToServe(DuskServer $server)

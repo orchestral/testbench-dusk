@@ -46,8 +46,8 @@ class DuskServer
     /**
      * Construct a new server.
      *
-     * @param string $host
-     * @param int    $port
+     * @param  string  $host
+     * @param  int  $port
      */
     public function __construct($host = '127.0.0.1', $port = 8001)
     {
@@ -59,7 +59,6 @@ class DuskServer
      * Set Laravel working path.
      *
      * @param  string|null  $publicPath
-     *
      * @return void
      */
     public function setPublicPath(?string $publicPath = null): void
@@ -70,8 +69,7 @@ class DuskServer
     /**
      * Store some temp contents in a file for later use.
      *
-     * @param  mixed $content
-     *
+     * @param  mixed  $content
      * @return void
      */
     public function stash($content): void
@@ -92,8 +90,7 @@ class DuskServer
     /**
      * Retrieve the contents of the relevant file.
      *
-     * @param  string|null $key
-     *
+     * @param  string|null  $key
      * @return mixed
      */
     public function getStash(?string $key = null)
@@ -106,9 +103,9 @@ class DuskServer
     /**
      * Start a php server in a separate process.
      *
-     * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
-     *
      * @return void
+     *
+     * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      */
     public function start(): void
     {
@@ -142,9 +139,9 @@ class DuskServer
      * pointer to it. Tuck away the output as it's
      * not relevant for us during our testing.
      *
-     * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
-     *
      * @return void
+     *
+     * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      */
     protected function startServer(): void
     {
@@ -199,8 +196,7 @@ class DuskServer
      * For testbench purposes, this exists in the
      * core package.
      *
-     * @param  string|null $root
-     *
+     * @param  string|null  $root
      * @return string
      */
     public function laravelPublicPath(): string
