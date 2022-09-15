@@ -110,8 +110,7 @@ protected function getEnvironmentSetUp($app)
     $this->app['config']->set('database.default', 'sqlite');
 }
 ```
-**Note:**
-In contradiction with laravel documentation you **should not** use `Illuminate\Foundation\Testing\DatabaseMigrations` trait, as testbench-dusk handles rollbacks by its self
+> **Note**: In contradiction with laravel documentation you **should not** use `Illuminate\Foundation\Testing\DatabaseMigrations` trait, as testbench-dusk handles rollbacks by its self
 
 To create the sqlite database you just need to run the following code:
 
