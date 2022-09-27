@@ -38,6 +38,23 @@ abstract class TestCase extends Testbench
     protected static $hasRegisteredShutdown = false;
 
     /**
+     * @return int
+     */
+    public static function getBaseServePort()
+    {
+        return static::$baseServePort;
+    }
+
+
+    /**
+     * @return string
+     */
+    public static function getBaseServeHost()
+    {
+        return static::$baseServeHost;
+    }
+
+    /**
      * Get Application's base path.
      *
      * @return string
@@ -56,7 +73,7 @@ abstract class TestCase extends Testbench
      */
     public static function applicationBaseUrl()
     {
-        return sprintf('http://%s:%d', static::$baseServeHost, static::$baseServePort);
+        return sprintf('http://%s:%d', static::getBaseServeHost(), static::getBaseServePort());
     }
 
     /**
@@ -198,7 +215,7 @@ abstract class TestCase extends Testbench
      */
     public static function setUpBeforeClass(): void
     {
-        static::serve(static::$baseServeHost, static::$baseServePort);
+        static::serve(static::getBaseServeHost(), static::getBaseServePort());
     }
 
     /**
