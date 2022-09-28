@@ -38,6 +38,8 @@ abstract class TestCase extends Testbench
     protected static $hasRegisteredShutdown = false;
 
     /**
+     * The base server port.
+     *
      * @return int
      */
     public static function getBaseServePort()
@@ -47,6 +49,8 @@ abstract class TestCase extends Testbench
 
 
     /**
+     * The base server host.
+     *
      * @return string
      */
     public static function getBaseServeHost()
