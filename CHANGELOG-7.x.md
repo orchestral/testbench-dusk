@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.8.0
+
+Released: 2022-09-28
+
+### Added
+
+* Added `getBaseServePort()` and `getBaseServeHost()` method to `Orchestra\Testbench\Dusk\TestCase`.
+
+### Changes
+
+* Update minimum support for Testbench v7.8.0+. ([v7.7.1...v7.8.0](https://github.com/orchestral/testbench/compare/v7.7.1...v7.8.0))
+* Improves PHPUnit memory leaks.
+
 ## 7.7.1
 
 Released: 2022-09-28
