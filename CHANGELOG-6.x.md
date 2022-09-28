@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.27.0
+
+Released: 2022-09-28
+
+### Added
+
+* Added `getBaseServePort()` and `getBaseServeHost()` method to `Orchestra\Testbench\Dusk\TestCase`.
+
 ## 6.26.0
 
 Released: 2022-08-24
