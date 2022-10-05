@@ -2,6 +2,18 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.9.0
+
+Released: 2022-10-05
+
+### Added
+
+* Added draft support for PHP 8.2.
+
+### Changes
+
+* Update minimum support for Testbench v7.9.0+. ([v7.8.1...v7.9.0](https://github.com/orchestral/testbench/compare/v7.8.1...v7.9.0))
+
 ## 7.8.1
 
 Released: 2022-10-04
