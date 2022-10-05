@@ -220,7 +220,7 @@ abstract class TestCase extends Testbench
      */
     public static function setUpBeforeClass(): void
     {
-        static::serve(static::getBaseServeHost(), static::getBaseServePort());
+        static::startServing();
     }
 
     /**
