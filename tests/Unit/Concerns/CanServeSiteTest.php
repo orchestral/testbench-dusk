@@ -64,4 +64,24 @@ class CanServeSiteDummy
     {
         return __DIR__.'/../../../laravel';
     }
+
+    /**
+     * The base server port.
+     *
+     * @return int
+     */
+    public static function getBaseServePort()
+    {
+        return 8001;
+    }
+
+    /**
+     * The base server host.
+     *
+     * @return string
+     */
+    public static function getBaseServeHost()
+    {
+        return '127.0.0.1';
+    }
 }
