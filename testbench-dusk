@@ -11,12 +11,12 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
     require __DIR__.'/../../autoload.php';
 }
 
-$config = ['env' => [], 'providers' => ['Laravel\Dusk\DuskServiceProvider']];
+$config = Orchestra\Testbench\Foundation\Config::loadFromYaml($workingPath, 'testbench.yaml', [
+    'env' => [],
+    'providers' => ['Laravel\Dusk\DuskServiceProvider'],
+    'dont-discover' => [],
+]);
 
-if (file_exists("{$workingPath}/testbench.yaml")) {
-    $config = Symfony\Component\Yaml\Yaml::parseFile("{$workingPath}/testbench.yaml");
-}
-
-$commander = new Orchestra\Testbench\Dusk\Console\Commander($config, $workingPath);
+$commander = new Orchestra\Testbench\Dusk\Console\Commander($config->getAttributes(), $workingPath);
 
 $commander->handle();
