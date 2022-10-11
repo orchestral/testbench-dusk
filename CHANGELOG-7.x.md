@@ -2,6 +2,18 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.10.0
+
+Released: 2022-10-11
+
+### Added
+
+* Added `startServing()` and `reloadServing()` method to `Orchestra\Testbench\Dusk\Concerns\CanServeSite` trait.
+
+### Changes
+
+* Update minimum support for Testbench v7.10.0+. ([v7.9.0...v7.10.0](https://github.com/orchestral/testbench/compare/v7.9.0...v7.10.0))
+
 ## 7.9.0
 
 Released: 2022-10-05
