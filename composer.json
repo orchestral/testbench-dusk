@@ -40,7 +40,7 @@
         "opis/closure": "^3.6",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^1.5 || ^2.0",
-        "orchestra/testbench": "^6.25",
+        "orchestra/testbench": "^6.25.1",
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
@@ -53,17 +53,14 @@
         }
     },
     "scripts": {
-        "prepare": [
-            "@composer run post-autoload-dump",
-            "@php vendor/bin/dusk-updater detect --auto-update"
-        ],
+        "prepare": "@composer run post-autoload-dump",
         "test": [
             "@php create-sqlite-db",
-            "@composer run prepare",
             "@php vendor/bin/phpunit -c ./ --color"
         ],
         "post-autoload-dump": [
-            "@php testbench-dusk package:discover --ansi"
+            "@php testbench-dusk package:discover --ansi",
+            "@php vendor/bin/dusk-updater detect --auto-update"
         ]
     },
     "config": {
