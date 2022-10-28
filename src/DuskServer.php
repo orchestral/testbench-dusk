@@ -11,7 +11,7 @@ class DuskServer
     /**
      * Process pointer reference.
      *
-     * @var Process
+     * @var \Symfony\Component\Process\Process|null
      */
     protected $process;
 
@@ -157,6 +157,8 @@ class DuskServer
      * that we want to use.  Sometimes a server can be left oped when
      * PHP drops out, or the user may have another service running.
      *
+     * @return void
+     *
      * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      */
     protected function guardServerStarting()
@@ -196,7 +198,6 @@ class DuskServer
      * For testbench purposes, this exists in the
      * core package.
      *
-     * @param  string|null  $root
      * @return string
      */
     public function laravelPublicPath(): string
