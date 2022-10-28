@@ -45,7 +45,8 @@
     "require-dev": {
         "laravel/laravel": "9.x-dev",
         "laravel/pint": "^1.1",
-        "orchestra/canvas": "^7.0"
+        "orchestra/canvas": "^7.0",
+        "phpstan/phpstan": "^1.8"
     },
     "extra": {
         "branch-alias": {

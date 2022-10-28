@@ -61,16 +61,17 @@ class DuskCommand extends Command
             return ! Str::startsWith($option, '--env=');
         }));
 
+        /** @phpstan-ignore-next-line */
+        $workingPath = TESTBENCH_WORKING_PATH;
+
         $file = Collection::make([
             'phpunit.dusk.xml',
             'phpunit.dusk.xml.dist',
             'phpunit.xml',
             'phpunit.xml.dist',
-        ])->map(static function ($file) {
-            return TESTBENCH_WORKING_PATH."/{$file}";
-        })->filter(static function ($file) {
-            return file_exists($file);
-        })->first();
+        ])->map(fn ($file) => "{$workingPath}/{$file}")
+        ->filter(fn ($file) => file_exists($file))
+        ->first();
 
         return ! \is_null($file) ? array_merge(['-c', $file], $options) : $options;
     }
@@ -82,18 +83,20 @@ class DuskCommand extends Command
      */
     protected function writeConfiguration()
     {
+        /** @phpstan-ignore-next-line */
+        $workingPath = TESTBENCH_WORKING_PATH;
+
         $file = Collection::make([
             'phpunit.dusk.xml',
             'phpunit.dusk.xml.dist',
             'phpunit.xml',
             'phpunit.xml.dist',
-        ])->map(static function ($file) {
-            return TESTBENCH_WORKING_PATH."/{$file}";
-        })->filter(static function ($file) {
-            return file_exists($file);
-        })->first();
+        ])->map(fn ($file) => "{$workingPath}/{$file}")
+        ->filter(fn ($file) => file_exists($file))
+        ->first();
 
         if (\is_null($file)) {
+            /** @phpstan-ignore-next-line */
             copy(realpath(__DIR__.'/../../../stubs/phpunit.xml'), TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml');
 
             return;
@@ -109,6 +112,7 @@ class DuskCommand extends Command
      */
     protected function removeConfiguration()
     {
+        /** @phpstan-ignore-next-line */
         if (! $this->hasPhpUnitConfiguration && file_exists($file = TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml')) {
             @unlink($file);
         }

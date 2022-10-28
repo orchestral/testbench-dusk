@@ -72,8 +72,6 @@ abstract class TestCase extends Testbench
     /**
      * Get Application's base URL.
      *
-     * @var string
-     *
      * @return string
      */
     public static function applicationBaseUrl()
@@ -179,8 +177,6 @@ abstract class TestCase extends Testbench
 
     /**
      * Determine the application's base URL.
-     *
-     * @var string
      *
      * @return string
      */

@@ -13,7 +13,7 @@ trait CanServeSite
     /**
      * The server implementation.
      *
-     * @var \Orchestra\Testbench\Dusk\DuskServer
+     * @var \Orchestra\Testbench\Dusk\DuskServer|null
      */
     protected static $server;
 
@@ -81,7 +81,7 @@ trait CanServeSite
     /**
      * Make tweaks to the application, both inside the test and on the test server.
      *
-     * @param  \Closure(\Illuminate\Foundation\Application):void  $closure
+     * @param  \Closure(\Illuminate\Foundation\Application, \Illuminate\Contracts\Config\Repository):void  $closure
      * @return void
      */
     public function beforeServingApplication(Closure $closure): void
