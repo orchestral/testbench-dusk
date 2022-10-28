@@ -3,6 +3,7 @@
 namespace Orchestra\Testbench\Dusk\Foundation\Console;
 
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Collection;
 use Orchestra\Testbench\Foundation\Console\ServeCommand as Command;
 
 class ServeCommand extends Command
@@ -16,7 +17,7 @@ class ServeCommand extends Command
      */
     protected function copyTestbenchDotEnvFile(Filesystem $filesystem, string $workingPath): void
     {
-        $configurationFile = collect([
+        $configurationFile = Collection::make([
             '.env.dusk',
             '.env.dusk.example',
             '.env.dusk.dist',
