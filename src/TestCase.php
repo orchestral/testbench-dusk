@@ -48,7 +48,6 @@ abstract class TestCase extends Testbench
         return static::$baseServePort;
     }
 
-
     /**
      * The base server host.
      *
