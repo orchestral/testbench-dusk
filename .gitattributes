@@ -5,6 +5,7 @@
 /build export-ignore
 /docs export-ignore
 /tests export-ignore
+/.env.dusk.example export-ignore
 /.coveralls.yml export-ignore
 /.gitattributes export-ignore
 /.gitignore export-ignore
