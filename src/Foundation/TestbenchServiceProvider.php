@@ -17,6 +17,7 @@ class TestbenchServiceProvider extends ServiceProvider
             $this->commands([
                 Console\DuskCommand::class,
                 Console\PurgeCommand::class,
+                Console\ServeCommand::class,
             ]);
         }
     }
