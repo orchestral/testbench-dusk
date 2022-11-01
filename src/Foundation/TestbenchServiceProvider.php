@@ -15,6 +15,7 @@ class TestbenchServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                Console\DevToolCommand::class,
                 Console\DuskCommand::class,
                 Console\PurgeCommand::class,
                 Console\ServeCommand::class,
