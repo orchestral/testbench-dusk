@@ -13,8 +13,13 @@ class TestbenchServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if (file_exists($this->app->basePath('migrations'))) {
+            $this->loadMigrationsFrom($this->app->basePath('migrations'));
+        }
+
         if ($this->app->runningInConsole()) {
             $this->commands([
+                Console\CreateSqliteDbCommand::class,
                 Console\DevToolCommand::class,
                 Console\DuskCommand::class,
                 Console\PurgeCommand::class,
