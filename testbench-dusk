@@ -1,6 +1,7 @@
 #!/usr/bin/env php
 <?php
 
+define('TESTBENCH_DUSK', true);
 define('TESTBENCH_WORKING_PATH', $workingPath = getcwd());
 
 if (file_exists(__DIR__.'/vendor/autoload.php')) {
@@ -14,7 +15,6 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
 $config = Orchestra\Testbench\Foundation\Config::loadFromYaml(
     workingPath: $workingPath,
     defaults: [
-        'env' => [],
         'providers' => ['Laravel\Dusk\DuskServiceProvider'],
         'dont-discover' => [],
     ],
