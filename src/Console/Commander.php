@@ -8,6 +8,13 @@ use Orchestra\Testbench\Dusk\Foundation\TestbenchServiceProvider;
 class Commander extends Testbench
 {
     /**
+     * The environment file name.
+     *
+     * @var string
+     */
+    protected $environmentFile = '.env.dusk';
+
+    /**
      * Resolve application implementation.
      *
      * @return \Closure(\Illuminate\Foundation\Application):void
