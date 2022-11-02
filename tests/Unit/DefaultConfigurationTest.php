@@ -9,6 +9,19 @@ use Orchestra\Testbench\Dusk\TestCase as TestbenchDuskTestCase;
 class DefaultConfigurationTest extends TestbenchDuskTestCase
 {
     /** @test */
+    public function it_populate_expected_testing_config()
+    {
+        tap($this->app['config']['database.connections.testing'], function ($config) {
+            $this->assertTrue(isset($config));
+            $this->assertEquals([
+                'driver' => 'sqlite',
+                'database' => ':memory:',
+                'foreign_key_constraints' => false,
+            ], $config);
+        });
+    }
+
+    /** @test */
     public function it_loads_dusk_service_provider()
     {
         $this->assertContains(DuskServiceProvider::class, array_values($this->app['config']['app.providers']));
