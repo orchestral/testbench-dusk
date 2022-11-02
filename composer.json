@@ -56,7 +56,6 @@
     "scripts": {
         "post-autoload-dump": "@composer run prepare",
         "prepare": [
-            "@php create-sqlite-db",
             "@php testbench-dusk package:discover --ansi",
             "@php vendor/bin/dusk-updater detect --auto-update"
         ],
