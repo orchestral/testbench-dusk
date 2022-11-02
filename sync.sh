@@ -5,8 +5,8 @@ cp -rf vendor/laravel/laravel/config/*.php laravel/config/
 cp -rf vendor/laravel/laravel/database/migrations/2014_10_12_000000_create_users_table.php laravel/migrations/2014_10_12_000000_testbench_create_users_table.php
 cp -rf vendor/laravel/laravel/database/migrations/2014_10_12_100000_create_password_resets_table.php laravel/migrations/2014_10_12_100000_testbench_create_password_resets_table.php
 cp -rf vendor/laravel/laravel/database/migrations/2019_08_19_000000_create_failed_jobs_table.php laravel/migrations/2019_08_19_000000_testbench_create_failed_jobs_table.php
-cp -rf vendor/orchestra/testbench-core/laravel/lang/en/*.php laravel/lang/en/
-cp -f vendor/orchestra/testbench-core/laravel/lang/*.json laravel/lang/
+cp -rf vendor/laravel/laravel/lang/en/*.php laravel/lang/en/
+cp -rf vendor/laravel/laravel/resources/views/* laravel/resources/views/
 cp -rf vendor/orchestra/testbench-core/laravel/server.php laravel/server.php
 cp -rf vendor/laravel/laravel/public/index.php laravel/public/index.php
 cp -rf vendor/laravel/dusk/stubs/phpunit.xml stubs/phpunit.xml
