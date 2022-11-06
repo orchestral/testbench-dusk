@@ -15,7 +15,6 @@ class TestbenchServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        /** @phpstan-ignore-next-line */
         $workingPath = defined('TESTBENCH_WORKING_PATH') ? TESTBENCH_WORKING_PATH : null;
 
         AboutCommand::add('Testbench', fn () => [
