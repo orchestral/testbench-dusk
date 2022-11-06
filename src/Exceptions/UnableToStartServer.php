@@ -10,9 +10,9 @@ class UnableToStartServer extends Exception
     /**
      * Create new "Unable to start server" exception.
      *
-     * @param string  $message
-     * @param int  $code
-     * @param \Throwable|null  $previous
+     * @param  string  $message
+     * @param  int  $code
+     * @param  \Throwable|null  $previous
      */
     public function __construct($message = '', $code = 0, Throwable $previous = null)
     {
