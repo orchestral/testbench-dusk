@@ -23,6 +23,8 @@ class TestbenchServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
+                Console\CreateSqliteDbCommand::class,
+                Console\DropSqliteDbCommand::class,
                 Console\DevToolCommand::class,
                 Console\DuskCommand::class,
                 Console\PurgeCommand::class,
