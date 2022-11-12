@@ -2,11 +2,23 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.12.1
+
+Released: 2022-11-12
+
+### Changes
+
+* Update minimum support for Testbench v7.12.1+. ([v7.12.0...v7.12.1](https://github.com/orchestral/testbench/compare/v7.12.0...v7.12.1))
+
+### Fixes
+
+* Fixes where the default database connection as `sqlite` causes an exception when the database file isn't available. The loaded application should revert to `testing` database connection for the state.
+
 ## 7.12.0
 
 Released: 2022-11-12
 
-##### Added
+### Added
 
 * Added support for `about` artisan command.
 * Added `package:devtool` to generate `.env`, `testbench.yaml` and `database.sqlite` file.
