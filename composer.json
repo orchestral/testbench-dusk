@@ -39,7 +39,7 @@
         "laravel/dusk": "^6.25.1 || ^7.0",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^1.5 || ^2.0",
-        "orchestra/testbench": "^7.12.2",
+        "orchestra/testbench": "^7.13",
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
@@ -66,8 +66,8 @@
             "@composer run test"
         ],
         "test": [
-            "@php drop-sqlite-db",
-            "@php create-sqlite-db",
+            "@php testbench-dusk package:drop-sqlite-db",
+            "@php testbench-dusk package:create-sqlite-db",
             "@php vendor/bin/phpunit -c ./ --color"
         ]
     },
