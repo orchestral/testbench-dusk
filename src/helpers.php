@@ -36,7 +36,7 @@ function prepare_debug_directories(): void
             }
         })->each(static function ($directory) {
             if (! is_file("{$directory}/.gitignore")) {
-                copy(realpath(__DIR__.'/../stubs/gitignore.stub'), "{$directory}/.gitignore");
+                copy((string) realpath(__DIR__.'/../stubs/gitignore.stub'), "{$directory}/.gitignore");
             }
         });
 

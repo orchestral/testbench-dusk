@@ -95,7 +95,7 @@ class DuskServer
      */
     public function getStash(?string $key = null)
     {
-        $content = json_decode(file_get_contents($this->temp()), true);
+        $content = json_decode((string) file_get_contents($this->temp()), true);
 
         return $key ? (isset($content[$key]) ? $content[$key] : null) : $content;
     }
@@ -202,7 +202,7 @@ class DuskServer
      */
     public function laravelPublicPath(): string
     {
-        return $this->laravelPublicPath ?: realpath(__DIR__.'/../laravel/public');
+        return $this->laravelPublicPath ?: (string) realpath(__DIR__.'/../laravel/public');
     }
 
     /**

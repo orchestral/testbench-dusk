@@ -86,9 +86,12 @@ trait CanServeSite
      */
     public function beforeServingApplication(Closure $closure): void
     {
-        $closure($this->app, $this->app['config']);
+        /** @var \Illuminate\Foundation\Application $app */
+        $app = $this->app;
 
-        static::$server->stash([
+        $closure($app, $app['config']);
+
+        static::$server?->stash([
             'class' => static::class,
             'tweakApplication' => serialize(
                 class_exists(SerializableClosureFactory::class)
@@ -101,7 +104,7 @@ trait CanServeSite
     /**
      * Make tweaks to the application, both inside the test and on the test server.
      *
-     * @param  \Closure(\Illuminate\Foundation\Application):void  $closure
+     * @param  \Closure(\Illuminate\Foundation\Application, \Illuminate\Contracts\Config\Repository):void  $closure
      * @return void
      */
     public function tweakApplication(Closure $closure): void
@@ -120,7 +123,7 @@ trait CanServeSite
      */
     public function removeApplicationTweaks(): void
     {
-        static::$server->stash(['class' => static::class]);
+        static::$server?->stash(['class' => static::class]);
     }
 
     /**
@@ -137,14 +140,17 @@ trait CanServeSite
 
         $this->setUpDuskServer();
 
+        /** @var \Illuminate\Foundation\Application $app */
+        $app = $this->app;
+
         $serializedClosure = static::$server->getStash('tweakApplication');
 
         if ($serializedClosure) {
             $closure = unserialize($serializedClosure)->getClosure();
-            $closure($this->app, $this->app['config']);
+            $closure($app, $app['config']);
         }
 
-        return $this->app;
+        return $app;
     }
 
     /**
