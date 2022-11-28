@@ -13,6 +13,11 @@ cp -rf vendor/laravel/dusk/stubs/phpunit.xml stubs/phpunit.xml
 rm laravel/config/sanctum.php
 
 awk '{sub(/DB_CONNECTION=mysql/,"DB_CONNECTION=sqlite")}1' laravel/.env.example > laravel/.env.example.stub && mv laravel/.env.example.stub laravel/.env.example
+awk '{sub(/DB_HOST=/,"\# DB_HOST=")}1' laravel/.env.example > laravel/.env.example.stub && mv laravel/.env.example.stub laravel/.env.example
+awk '{sub(/DB_PORT=/,"\# DB_PORT=")}1' laravel/.env.example > laravel/.env.example.stub && mv laravel/.env.example.stub laravel/.env.example
+awk '{sub(/DB_DATABASE=/,"\# DB_DATABASE=")}1' laravel/.env.example > laravel/.env.example.stub && mv laravel/.env.example.stub laravel/.env.example
+awk '{sub(/DB_USERNAME=/,"\# DB_USERNAME=")}1' laravel/.env.example > laravel/.env.example.stub && mv laravel/.env.example.stub laravel/.env.example
+awk '{sub(/DB_PASSWORD=/,"\# DB_PASSWORD=")}1' laravel/.env.example > laravel/.env.example.stub && mv laravel/.env.example.stub laravel/.env.example
 awk '{sub(/ Package Service Providers.../," Dusk Service Provider\n         \*\/\n        Laravel\\Dusk\\DuskServiceProvider::class,\n\n        \/\*\n         * Package Service Providers...")}1' laravel/config/app.php > laravel/config/app.stub && mv laravel/config/app.stub laravel/config/app.php
 awk '{sub(/production/,"testing")}1' laravel/config/app.php > laravel/config/app.stub && mv laravel/config/app.stub laravel/config/app.php
 awk '{sub(/App\\Providers/,"// App\\Providers")}1' laravel/config/app.php > laravel/config/app.stub && mv laravel/config/app.stub laravel/config/app.php
