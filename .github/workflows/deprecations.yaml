@@ -25,9 +25,6 @@ jobs:
         experimental:
           - false
 
-    name: PHP${{ matrix.php }} with PHPUnit${{ matrix.phpunit }} (${{ matrix.dependencies }})
-
-    steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -35,12 +32,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, intl, fileinfo
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, sqlite3, pdo_sqlite, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
           coverage: none
 
       - name: Install PHPUnit ${{ matrix.phpunit }}
         run: |
-          composer require "phpunit/phpunit:${{ matrix.phpunit }}" --no-interaction --no-update
+          composer require "phpunit/phpunit:${{ matrix.phpunit }}" --dev --no-interaction --no-update
 
       - name: Install dependencies
         uses: "ramsey/composer-install@v2"
@@ -52,7 +49,17 @@ jobs:
         run: |
           composer show -D
 
+      - name: Create database
+        run: php ./create-sqlite-db
+      - name: Start Chrome Driver
+        run: vendor/laravel/dusk/bin/chromedriver-linux &
       - name: Execute tests
-        run: vendor/bin/phpunit --exclude-group=deprecations
+        run: vendor/bin/phpunit
         env:
-          TESTBENCH_CONVERT_DEPRECATIONS_TO_EXCEPTIONS: true
+          TESTBENCH_CONVERT_DEPRECATIONS_TO_EXCEPTIONS=true
+      - name: Upload Failed Screenshots
+        uses: actions/upload-artifact@v2-preview
+        if: failure()
+        with:
+          name: screenshots
+          path: tests/Browser/screenshots/*
