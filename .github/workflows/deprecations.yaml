@@ -59,7 +59,7 @@ jobs:
       - name: Execute tests
         run: vendor/bin/phpunit
         env:
-          TESTBENCH_CONVERT_DEPRECATIONS_TO_EXCEPTIONS=true
+          TESTBENCH_CONVERT_DEPRECATIONS_TO_EXCEPTIONS: true
       - name: Upload Failed Screenshots
         uses: actions/upload-artifact@v2-preview
         if: failure()
