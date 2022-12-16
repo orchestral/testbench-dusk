@@ -55,12 +55,22 @@ jobs:
 
       - name: Create database
         run: php ./create-sqlite-db
+
       - name: Start Chrome Driver
         run: vendor/laravel/dusk/bin/chromedriver-linux &
-      - name: Execute tests
+
+      - name: Execute tests (with deprecations)
         run: vendor/bin/phpunit
+        if: matrix.dependencies == 'highest'
+
+      - name: Execute tests (without deprecations)
+        run: vendor/bin/phpunit
+        env:
+          TESTBENCH_CONVERT_DEPRECATIONS_TO_EXCEPTIONS: false
+        if: matrix.dependencies != 'highest'
+
       - name: Upload Failed Screenshots
-        uses: actions/upload-artifact@v2-preview
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: screenshots
