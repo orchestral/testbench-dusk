@@ -10,7 +10,6 @@ use Illuminate\Foundation\Application;
 use Orchestra\Testbench\Dusk\Foundation\PackageManifest;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
 use Orchestra\Testbench\TestCase as Testbench;
-use PHPUnit\Util\Annotation\Registry;
 
 abstract class TestCase extends Testbench
 {
@@ -226,11 +225,6 @@ abstract class TestCase extends Testbench
     public static function tearDownAfterClass(): void
     {
         static::stopServing();
-
-        (function () {
-            $this->classDocBlocks = [];
-            $this->methodDocBlocks = [];
-        })->call(Registry::getInstance());
     }
 
     /**
