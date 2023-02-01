@@ -43,9 +43,9 @@
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
-        "laravel/pint": "^1.1",
+        "laravel/pint": "^1.4",
         "orchestra/canvas": "^7.0",
-        "phpstan/phpstan": "^1.8"
+        "phpstan/phpstan": "^1.9.14"
     },
     "extra": {
         "branch-alias": {
