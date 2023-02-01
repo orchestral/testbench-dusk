@@ -8,6 +8,7 @@ Released: 2023-02-01
 
 ### Changes
 
+* Allow to use environment variable `DUSK_DRIVER_URL` value (when available).
 * Update minimum support for Testbench v7.20.0+. ([v7.19.0...v7.20.0](https://github.com/orchestral/testbench/compare/v7.19.0...v7.20.0))
 * Update minimum support for Laravel Dusk v7.5.0+. ([v7.3.0...v7.5.0](https://github.com/laravel/dusk/compare/v7.3.0...v7.5.0))
 
