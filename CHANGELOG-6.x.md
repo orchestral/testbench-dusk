@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.28.0
+
+Released: 2023-01-30
+
+### Changes
+
+* Allow to use environment variable `DUSK_DRIVER_URL` value (when available).
+
 ## 6.27.1
 
 Released: 2022-10-11
