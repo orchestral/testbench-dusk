@@ -36,17 +36,16 @@
     "require": {
         "php": "^8.1",
         "konsulting/project-root": "^1.1",
-        "laravel/dusk": "^7.3",
+        "laravel/dusk": "^7.5",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^1.5 || ^2.0",
         "orchestra/testbench": "^8.0",
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
-        "laravel/laravel": "dev-master",
-        "laravel/pint": "^1.1",
+        "laravel/pint": "^1.4",
         "orchestra/canvas": "^8.0",
-        "phpstan/phpstan": "^1.9.7"
+        "phpstan/phpstan": "^1.9.14"
     },
     "extra": {
         "branch-alias": {
