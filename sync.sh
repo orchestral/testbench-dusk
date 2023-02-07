@@ -10,8 +10,10 @@ cp -rf skeleton/database/migrations/2019_08_19_000000_create_failed_jobs_table.p
 cp -rf skeleton/lang/en/*.php laravel/lang/en/
 cp -rf skeleton/resources/views/* laravel/resources/views/
 cp -rf vendor/orchestra/testbench-core/laravel/server.php laravel/server.php
+cp -rf vendor/orchestra/testbench-core/laravel/.gitignore laravel/.gitignore
 cp -rf skeleton/public/index.php laravel/public/index.php
 cp -rf vendor/laravel/dusk/stubs/phpunit.xml stubs/phpunit.xml
+cp -rf skeleton/tests/CreatesApplication.php laravel/tests/CreatesApplication.php
 rm laravel/config/sanctum.php
 
 rm -Rf skeleton
