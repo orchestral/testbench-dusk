@@ -10,5 +10,10 @@
 /tests/Browser/screenshots/*
 /tmp/*
 
+# PHPUnit
+/coverage/*
+/.phpunit.cache/*
+/.phpunit.result.cache
+
 # Laravel Stubs
 /laravel/vendor
