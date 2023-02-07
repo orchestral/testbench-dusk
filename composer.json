@@ -40,8 +40,7 @@
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^1.5 || ^2.0",
         "orchestra/testbench": "^8.0",
-        "php-webdriver/webdriver": "^1.9",
-        "phpunit/phpunit": "^9.6"
+        "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
         "laravel/pint": "^1.4",
