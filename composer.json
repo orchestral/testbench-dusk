@@ -48,11 +48,6 @@
         "orchestra/canvas": "^8.0",
         "phpstan/phpstan": "^1.9.14"
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "8.0-dev"
-        }
-    },
     "scripts": {
         "post-autoload-dump": "@composer run prepare",
         "prepare": [
