@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.0.1
+
+Released: 2023-02-16
+
+### Fixes
+
+* Fixes generating `phpunit.dusk.xml` when executing `package:dusk` command on PHPUnit 10.
+
 ## 8.0.0
 
 Released: 2023-02-14
