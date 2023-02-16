@@ -5,6 +5,7 @@ namespace Orchestra\Testbench\Dusk\Foundation\Console;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Dusk\Console\DuskCommand as Command;
+use function Orchestra\Testbench\phpunit_version_compare;
 
 class DuskCommand extends Command
 {
@@ -96,8 +97,10 @@ class DuskCommand extends Command
         ->first();
 
         if (\is_null($file)) {
+            $phpunitStub = phpunit_version_compare('10.0', '>=') ? 'phpunit.xml' : 'phpunit9.xml';
+
             /** @phpstan-ignore-next-line */
-            copy(realpath(__DIR__.'/../../../stubs/phpunit.xml'), TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml');
+            copy(realpath(__DIR__.'/../../../stubs/'.$phpunitStub), $workingPath.'/phpunit.dusk.xml');
 
             return;
         }
