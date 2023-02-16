@@ -13,6 +13,7 @@ cp -rf vendor/orchestra/testbench-core/laravel/server.php laravel/server.php
 cp -rf vendor/orchestra/testbench-core/laravel/.gitignore laravel/.gitignore
 cp -rf skeleton/public/index.php laravel/public/index.php
 cp -rf vendor/laravel/dusk/stubs/phpunit.xml stubs/phpunit.xml
+cp -rf vendor/laravel/dusk/stubs/phpunit9.xml stubs/phpunit9.xml
 cp -rf skeleton/tests/CreatesApplication.php laravel/tests/CreatesApplication.php
 rm laravel/config/sanctum.php
 
