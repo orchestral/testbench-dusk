@@ -21,7 +21,7 @@ class OptionsTest extends PHPUnitTestCase
         Options::withoutUI();
 
         $this->assertEquals(
-            ['--disable-gpu', '--headless'],
+            ['--disable-gpu', '--headless=new'],
             Options::getChromeOptions()->toArray()['args']
         );
     }

@@ -101,7 +101,7 @@ class Options
      */
     public static function withUI()
     {
-        return static::removeArgument('--disable-gpu')->removeArgument('--headless');
+        return static::removeArgument('--disable-gpu')->removeArgument('--headless=new');
     }
 
     /**
@@ -109,7 +109,7 @@ class Options
      */
     public static function hasUI(): bool
     {
-        return ! static::hasArgument('--headless');
+        return ! static::hasArgument('--headless=new');
     }
 
     /**
@@ -128,7 +128,7 @@ class Options
      */
     public static function headless()
     {
-        return static::addArgument('--headless');
+        return static::addArgument('--headless=new');
     }
 
     /**
