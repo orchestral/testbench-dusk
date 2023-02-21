@@ -101,7 +101,10 @@ class Options
      */
     public static function withUI()
     {
-        return static::removeArgument('--disable-gpu')->removeArgument('--headless=new');
+        return static::removeArgument('--disable-gpu')
+            ->removeArgument('--headless=new')
+            ->removeArgument('--headless=chrome')
+            ->removeArgument('--headless');
     }
 
     /**
