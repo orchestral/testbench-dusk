@@ -37,7 +37,7 @@
         "php": "^8.1",
         "composer-runtime-api": "^2.2",
         "konsulting/project-root": "^1.1",
-        "laravel/dusk": "^7.6",
+        "laravel/dusk": "^7.7",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^2.0",
         "orchestra/testbench": ">=8.0.3 <8.1.0 || 8.x-dev",
@@ -57,8 +57,7 @@
         "ci": [
             "@composer run prepare",
             "@php vendor/bin/phpstan analyse",
-            "@php vendor/bin/pint",
-            "@composer run test"
+            "@php vendor/bin/pint"
         ],
         "test": [
             "@php testbench-dusk package:drop-sqlite-db",
