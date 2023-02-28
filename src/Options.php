@@ -14,6 +14,13 @@ class Options
     public static $ui = true;
 
     /**
+     * Headless mode.
+     *
+     * @var string|null
+     */
+    public static $headlessMode = null;
+
+    /**
      * Set W3C compliant.
      *
      * @var bool
@@ -101,7 +108,9 @@ class Options
      */
     public static function withUI()
     {
-        return static::removeArgument('--disable-gpu')->removeArgument('--headless');
+        return static::removeArgument('--disable-gpu')
+            ->removeArgument('--headless='.(static::$headlessMode ?? 'new'))
+            ->removeArgument('--headless');
     }
 
     /**
@@ -109,7 +118,8 @@ class Options
      */
     public static function hasUI(): bool
     {
-        return ! static::hasArgument('--headless');
+        return ! static::hasArgument('--headless='.(static::$headlessMode ?? 'new')) &&
+            ! static::hasArgument('--headless');
     }
 
     /**
@@ -126,9 +136,15 @@ class Options
      *
      * @return static
      */
-    public static function headless()
+    public static function headless(?string $mode = 'new')
     {
-        return static::addArgument('--headless');
+        static::$headlessMode = $mode;
+
+        if (\is_null($mode)) {
+            return static::addArgument('--headless');
+        }
+
+        return static::addArgument("--headless={$mode}");
     }
 
     /**
