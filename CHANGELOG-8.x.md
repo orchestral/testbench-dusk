@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.1.0
+
+Released: 2023-03-02
+
+### Added
+
+* Allow using `--headless=new` available from Chrome v109.
+
+### Changes
+
+* Update minimum support for Laravel Dusk v7.6.0+. ([v7.5.0...v7.6.0](https://github.com/laravel/dusk/compare/v7.5.0...v7.6.0))
+* Allows to define `--headless` via `$value` using `Orchestra\Testbench\Dusk\Options::withUI($value)`.
+
 ## 8.0.3
 
 Released: 2023-02-24
