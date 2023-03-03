@@ -13,7 +13,7 @@ Released: 2023-03-02
 ### Changes
 
 * Update minimum support for Laravel Dusk v7.6.0+. ([v7.5.0...v7.6.0](https://github.com/laravel/dusk/compare/v7.5.0...v7.6.0))
-* Allows to define `--headless` via `$value` using `Orchestra\Testbench\Dusk\Options::withUI($value)`.
+* Allows to define `--headless` via `$mode` using `Orchestra\Testbench\Dusk\Options::headless($mode)`.
 
 ## 8.0.3
 
