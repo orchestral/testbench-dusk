@@ -127,8 +127,7 @@ class Options
      */
     public static function shouldUsesWithoutUI(): bool
     {
-        return (isset($_SERVER['CI']) && $_SERVER['CI'] == true)
-            || (isset($_ENV['CI']) && $_ENV['CI'] == true);
+        return env('CI', false) == true;
     }
 
     /**
@@ -136,15 +135,15 @@ class Options
      *
      * @return static
      */
-    public static function headless(?string $mode = 'new')
+    public static function headless()
     {
-        static::$headlessMode = $mode;
+        static::$headlessMode = env('DUSK_HEADLESS_MODE', 'new');
 
-        if (\is_null($mode)) {
+        if (\is_null(static::$headlessMode)) {
             return static::addArgument('--headless');
         }
 
-        return static::addArgument("--headless={$mode}");
+        return static::addArgument('--headless='.static::$headlessMode);
     }
 
     /**

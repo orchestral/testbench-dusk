@@ -234,7 +234,6 @@ abstract class TestCase extends Testbench
      */
     protected function hasHeadlessDisabled()
     {
-        return (isset($_SERVER['DUSK_HEADLESS_DISABLED']) && $_SERVER['DUSK_HEADLESS_DISABLED'] == true)
-            || (isset($_ENV['DUSK_HEADLESS_DISABLED']) && $_ENV['DUSK_HEADLESS_DISABLED'] == true);
+        return env('DUSK_HEADLESS_DISABLED', false) == true;
     }
 }
