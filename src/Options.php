@@ -19,7 +19,7 @@ class Options
      * @var string|null
      */
     public static $headlessMode = null;
-    
+
     /**
      * Set W3C compliant.
      *
@@ -136,7 +136,7 @@ class Options
      * @return static
      */
     public static function headless()
-    {        
+    {
         static::$headlessMode = env('DUSK_HEADLESS_MODE', 'new');
 
         if (\is_null(static::$headlessMode)) {
