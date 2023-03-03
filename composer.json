@@ -61,8 +61,7 @@
         "ci": [
             "@composer run prepare",
             "@php vendor/bin/phpstan analyse",
-            "@php vendor/bin/pint",
-            "@composer run test"
+            "@php vendor/bin/pint"
         ],
         "test": [
             "@php testbench-dusk package:drop-sqlite-db",
