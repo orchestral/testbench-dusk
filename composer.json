@@ -52,7 +52,9 @@
         "post-autoload-dump": "@composer run prepare",
         "prepare": [
             "@php testbench-dusk package:discover --ansi",
-            "@php vendor/bin/dusk-updater detect --auto-update"
+            "@php vendor/bin/dusk-updater detect --auto-update",
+            "@php testbench-dusk package:drop-sqlite-db",
+            "@php testbench-dusk package:create-sqlite-db"
         ],
         "ci": [
             "@composer run prepare",
@@ -60,8 +62,7 @@
             "@php vendor/bin/pint"
         ],
         "test": [
-            "@php testbench-dusk package:drop-sqlite-db",
-            "@php testbench-dusk package:create-sqlite-db",
+            "@composer run prepare",
             "@php vendor/bin/phpunit -c ./ --color"
         ]
     },
