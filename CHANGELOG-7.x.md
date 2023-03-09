@@ -2,6 +2,18 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.23.0
+
+Released: 2023-03-03
+
+### Added
+
+* Allow using `--headless=new` available from Chrome v109 using environment variable `DUSK_HEADLESS_MODE` value (when available).
+
+### Changes
+
+* Update minimum support for Laravel Dusk v7.7.0+. ([v7.5.0...v7.7.0](https://github.com/laravel/dusk/compare/v7.5.0...v7.7.0))
+
 ## 7.22.1
 
 Released: 2023-02-24
@@ -32,7 +44,7 @@ Released: 2023-02-01
 
 ### Changes
 
-* Allow to use environment variable `DUSK_DRIVER_URL` value (when available).
+* Allow using environment variable `DUSK_DRIVER_URL` value (when available).
 * Update minimum support for Testbench v7.20.0+. ([v7.19.0...v7.20.0](https://github.com/orchestral/testbench/compare/v7.19.0...v7.20.0))
 * Update minimum support for Laravel Dusk v7.5.0+. ([v7.3.0...v7.5.0](https://github.com/laravel/dusk/compare/v7.3.0...v7.5.0))
 

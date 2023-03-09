@@ -2,13 +2,22 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.1.2
+
+Released: 2023-03-09
+
+### Changes
+
+* Update minimum support for Testbench v8.0.7+. ([v8.0.3...v8.0.7](https://github.com/orchestral/testbench/compare/v8.0.3...v8.0.7))
+
+
 ## 8.1.1
 
 Released: 2023-03-03
 
 ### Changes
 
-* Allow to use environment variable `DUSK_HEADLESS_MODE` value (when available).
+* Allow using environment variable `DUSK_HEADLESS_MODE` value (when available).
 
 ## 8.1.0
 
@@ -20,7 +29,7 @@ Released: 2023-03-02
 
 ### Changes
 
-* Update minimum support for Laravel Dusk v7.6.0+. ([v7.5.0...v7.6.0](https://github.com/laravel/dusk/compare/v7.5.0...v7.6.0))
+* Update minimum support for Laravel Dusk v7.7.0+. ([v7.6.0...v7.7.0](https://github.com/laravel/dusk/compare/v7.6.0...v7.7.0))
 
 ## 8.0.3
 
