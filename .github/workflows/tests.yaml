@@ -121,6 +121,8 @@ jobs:
 
       - name: Execute tests
         run: vendor/bin/phpunit -c phpunit.xml
+        env:
+          RAY_ENABLED: false
 
       - name: Upload Failed Screenshots
         uses: actions/upload-artifact@v3
