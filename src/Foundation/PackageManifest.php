@@ -2,6 +2,9 @@
 
 namespace Orchestra\Testbench\Dusk\Foundation;
 
+/**
+ * @internal
+ */
 class PackageManifest extends \Orchestra\Testbench\Foundation\PackageManifest
 {
     /**
