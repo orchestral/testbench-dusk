@@ -3,12 +3,16 @@
 /vendor/*
 
 # Testbench Dusk
-
 /src/tests/Browser/console/*
 /src/tests/Browser/screenshots/*
 /tests/Browser/console/*
 /tests/Browser/screenshots/*
 /tmp/*
+
+# PHPUnit
+/coverage/*
+/.phpunit.cache/*
+/.phpunit.result.cache
 
 # Laravel Stubs
 /laravel/vendor
