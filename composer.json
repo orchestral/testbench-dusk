@@ -40,13 +40,14 @@
         "laravel/dusk": "^7.7",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^2.0",
-        "orchestra/testbench": ">=8.2.0 <8.3.0",
+        "orchestra/testbench": ">=8.2.1 <8.3.0",
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
         "laravel/pint": "^1.6",
         "orchestra/canvas": "^8.1",
-        "phpstan/phpstan": "^1.10.7"
+        "phpstan/phpstan": "^1.10.7",
+        "phpunit/phpunit": "^9.6 || ~10.0.7"
     },
     "scripts": {
         "post-autoload-dump": "@composer run prepare",
