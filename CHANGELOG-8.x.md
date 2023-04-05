@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.4.0
+
+Released: 2023-04-05
+
+### Changes
+
+* Update minimum support for Testbench v8.3.0+. ([v8.2.1...v8.3.0](https://github.com/orchestral/testbench/compare/v8.2.1...v8.3.0))
+* Add `setUpTheTestEnvironmentTraitToBeIgnored()` method to determine `setup<Concern>` and `teardown<Concern>` with imported traits should be use on given trait.
+
 ## 8.3.1
 
 Released: 2023-04-03
