@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.4.2
+
+Released: 2023-04-14
+
+### Changes
+
+* Update minimum support for Testbench v8.4.0+. ([v8.3.0...v8.4.0](https://github.com/orchestral/testbench/compare/v8.3.0...v8.4.0))
+* Supports PHPUnit 10.1.
+
 ## 8.4.1
 
 Released: 2023-04-12
