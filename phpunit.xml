@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.1/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.2/phpunit.xsd"
          backupGlobals="false"
          bootstrap="vendor/autoload.php"
          colors="true"
@@ -8,11 +8,7 @@
          stopOnFailure="false"
          cacheDirectory=".phpunit.cache"
          backupStaticProperties="false">
-    <coverage includeUncoveredFiles="false">
-        <include>
-            <directory suffix=".php">src/</directory>
-        </include>
-    </coverage>
+    <coverage includeUncoveredFiles="false"/>
     <testsuites>
         <testsuite name="Browser">
             <directory suffix="Test.php">./tests/Browser</directory>
@@ -26,4 +22,9 @@
         <env name="APP_KEY" value="AckfSECXIvnK5r28GVIWUAxmbBSjTsmF"/>
         <env name="DB_CONNECTION" value="sqlite"/>
     </php>
+    <source>
+        <include>
+            <directory suffix=".php">src/</directory>
+        </include>
+    </source>
 </phpunit>
