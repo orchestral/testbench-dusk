@@ -2,6 +2,40 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.6.0
+
+Released: 2023-04-18
+
+### Changes
+
+* Update minimum support for Testbench v8.5.0+. ([v8.4.0...v8.5.0](https://github.com/orchestral/testbench/compare/v8.4.0...v8.5.0))
+
+## 8.5.0
+
+Released: 2023-04-14
+
+### Changes
+
+* Update minimum support for Testbench v8.4.0+. ([v8.3.0...v8.4.0](https://github.com/orchestral/testbench/compare/v8.3.0...v8.4.0))
+* Supports PHPUnit 10.1.
+
+## 8.4.1
+
+Released: 2023-04-12
+
+### Changes
+
+* Update skeleton to match v10.0.6.
+
+## 8.4.0
+
+Released: 2023-04-05
+
+### Changes
+
+* Update minimum support for Testbench v8.3.0+. ([v8.2.1...v8.3.0](https://github.com/orchestral/testbench/compare/v8.2.1...v8.3.0))
+* Add `setUpTheTestEnvironmentTraitToBeIgnored()` method to determine `setup<Concern>` and `teardown<Concern>` with imported traits that should be used on a given trait.
+
 ## 8.3.1
 
 Released: 2023-04-03

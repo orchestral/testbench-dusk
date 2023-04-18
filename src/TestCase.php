@@ -7,6 +7,7 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Str;
 use Orchestra\Testbench\Dusk\Foundation\PackageManifest;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
 use Orchestra\Testbench\TestCase as Testbench;
@@ -88,6 +89,22 @@ abstract class TestCase extends Testbench
 
         $this->setUpTheBrowserEnvironment();
         $this->registerShutdownFunction();
+    }
+
+    /**
+     * Determine trait should be ignored from being autoloaded.
+     *
+     * @param  class-string  $use
+     * @return bool
+     */
+    protected function setUpTheTestEnvironmentTraitToBeIgnored(string $use): bool
+    {
+        return Str::startsWith($use, [
+            Concerns\CanServeSite::class,
+            Concerns\ProvidesBrowser::class,
+            \Laravel\Dusk\Concerns\ProvidesBrowser::class,
+            \Laravel\Dusk\Chrome\SupportsChrome::class,
+        ]) || parent::setUpTheTestEnvironmentTraitToBeIgnored($use);
     }
 
     /**
