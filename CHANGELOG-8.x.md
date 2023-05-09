@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.6.1
+
+Released: 2023-05-09
+
+### Changes
+
+* Update skeleton to match v10.2.0.
+* Update minimum support for Laravel Dusk v7.7.1+. ([v7.7.0...v7.7.1](https://github.com/laravel/dusk/compare/v7.7.0...v7.7.1))
+
 ## 8.6.0
 
 Released: 2023-04-18
