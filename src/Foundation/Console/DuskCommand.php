@@ -58,7 +58,7 @@ class DuskCommand extends Command
      */
     protected function phpunitArguments($options)
     {
-        if ($this->shouldUseCollisionPrinter()) {
+        if (method_exists($this, 'shouldUseCollisionPrinter') && $this->shouldUseCollisionPrinter()) {
             $options[] = '--no-output';
         }
 
