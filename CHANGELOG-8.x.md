@@ -2,6 +2,31 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.6.6
+
+Released: 2023-07-22
+
+### Changes
+
+* Update `orchestra/dusk-updater` to support ChromeDriver `115`+.
+
+## 8.6.5
+
+Released: 2023-07-12
+
+### Changes
+
+* Update minimum support for Laravel Dusk v7.8.0+. ([v7.7.1...v7.8.0](https://github.com/laravel/dusk/compare/v7.7.1...v7.8.0))
+* Update skeleton to match v10.2.5.
+
+## 8.6.4
+
+Released: 2023-06-13
+
+### Changes
+
+* Update minimum support for Testbench v8.5.7+. ([v8.5.0...v8.5.7](https://github.com/orchestral/testbench/compare/v8.5.0...v8.5.7))
+
 ## 8.6.3
 
 Released: 2023-05-26

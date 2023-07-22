@@ -58,6 +58,10 @@ class DuskCommand extends Command
      */
     protected function phpunitArguments($options)
     {
+        if ($this->shouldUseCollisionPrinter()) {
+            $options[] = '--no-output';
+        }
+
         $options = array_values(array_filter($options, static function ($option) {
             return ! Str::startsWith($option, '--env=');
         }));
