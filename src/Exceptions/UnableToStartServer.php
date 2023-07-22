@@ -14,7 +14,7 @@ class UnableToStartServer extends Exception
      * @param  int  $code
      * @param  \Throwable|null  $previous
      */
-    public function __construct($message = '', $code = 0, Throwable $previous = null)
+    public function __construct($message = '', $code = 0, ?Throwable $previous = null)
     {
         $fullMessage = "A server is already running on {$message}. Please stop it before proceeding. \n".
             "It is likely to be a php server, so you can search your existing processes for 'php -L'. \n".
