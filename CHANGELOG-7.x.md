@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.26.0
+
+Released: 2023-07-22
+
+### Changes
+
+* Update minimum support for Testbench v7.25.0+. ([v7.24.1...v7.25.0](https://github.com/orchestral/testbench/compare/v7.24.1...v7.25.0))
+* Update `orchestra/dusk-updater` to support ChromeDriver `115`+.
+
 ## 7.25.1
 
 Released: 2023-04-03
