@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.6.6
+
+Released: 2023-07-22
+
+### Changes
+
+* Update `orchestra/dusk-updater` to support ChromeDriver `115`+.
+
 ## 8.6.5
 
 Released: 2023-07-12
