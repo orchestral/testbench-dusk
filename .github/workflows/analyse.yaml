@@ -15,7 +15,7 @@ jobs:
         php:
           - 8.1
         experimental:
-          - true
+          - false
 
     name: PHP${{ matrix.php }} on ${{ matrix.os }}
 
