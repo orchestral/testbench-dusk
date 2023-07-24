@@ -9,12 +9,13 @@ class DatabaseMigrationsTest extends TestCase
 {
     protected function setUp(): void
     {
-        $this->beforeApplicationDestroyed(function() {
+        $this->beforeApplicationDestroyed(function () {
             $this->assertFalse(Schema::hasTable('tests'));
         });
 
         parent::setUp();
     }
+
     /**
      * Define database migrations.
      *
