@@ -8,7 +8,7 @@ Released: 2023-07-25
 
 ### Fixes
 
-* Fixes running `DuskServer` on certain environment where path need to be wrapped in quote.
+* Fixes running `DuskServer` on certain environment where PHP executable path need to be wrapped using quote.
 
 ## 6.31.0
 
