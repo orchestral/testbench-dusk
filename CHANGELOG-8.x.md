@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.6.7
+
+Released: 2023-07-25
+
+### Fixes
+
+* Fixes running `DuskServer` on certain environment where PHP executable path need to be wrapped using quote.
+
 ## 8.6.6
 
 Released: 2023-07-22
