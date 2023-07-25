@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.31.1
+
+Released: 2023-07-25
+
+### Fixes
+
+* Fixes running `DuskServer` on certain environment where path need to be wrapped in quote.
+
 ## 6.31.0
 
 Released: 2023-07-23
