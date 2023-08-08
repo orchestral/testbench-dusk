@@ -1,6 +1,7 @@
 #!/usr/bin/env php
 <?php
 
+define('TESTBENCH_CORE', true);
 define('TESTBENCH_DUSK', true);
 define('TESTBENCH_WORKING_PATH', $workingPath = getcwd());
 
