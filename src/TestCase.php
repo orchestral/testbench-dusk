@@ -8,6 +8,7 @@ use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Str;
+use Laravel\Dusk\DuskServiceProvider;
 use Orchestra\Testbench\Dusk\Foundation\PackageManifest;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
 use Orchestra\Testbench\TestCase as Testbench;
@@ -65,7 +66,7 @@ abstract class TestCase extends Testbench
      */
     public static function applicationBasePath()
     {
-        return $_ENV['APP_BASE_PATH'] ?? realpath(__DIR__.'/../laravel');
+        return static::applicationBasePathUsingWorkbench() ?? (string) realpath(__DIR__.'/../laravel');
     }
 
     /**
@@ -105,6 +106,19 @@ abstract class TestCase extends Testbench
             \Laravel\Dusk\Concerns\ProvidesBrowser::class,
             \Laravel\Dusk\Chrome\SupportsChrome::class,
         ]) || parent::setUpTheTestEnvironmentTraitToBeIgnored($use);
+    }
+
+    /**
+     * Get application providers.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return array<int, class-string>
+     */
+    protected function getApplicationProviders($app)
+    {
+        return array_merge(parent::getApplicationProviders($app), [
+            DuskServiceProvider::class,
+        ]);
     }
 
     /**
@@ -231,6 +245,8 @@ abstract class TestCase extends Testbench
      */
     public static function setUpBeforeClass(): void
     {
+        parent::setUpBeforeClass();
+
         static::startServing();
     }
 
@@ -242,6 +258,8 @@ abstract class TestCase extends Testbench
     public static function tearDownAfterClass(): void
     {
         static::stopServing();
+
+        parent::tearDownAfterClass();
     }
 
     /**
