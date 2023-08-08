@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.32.0
+
+Released: 2023-08-08
+
+### Changes
+
+* Update minimum support for Testbench v6.29.0+. ([v6.28.0...v6.29.0](https://github.com/orchestral/testbench/compare/v6.28.0...v6.29.0))
+* Autoload `Laravel\Dusk\DuskServiceProvider` service provider.
+
 ## 6.31.1
 
 Released: 2023-07-25
