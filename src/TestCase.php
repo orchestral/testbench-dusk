@@ -233,6 +233,8 @@ abstract class TestCase extends Testbench
      */
     public static function setUpBeforeClass(): void
     {
+        parent::setUpBeforeClass();
+
         static::serve(static::getBaseServeHost(), static::getBaseServePort());
     }
 
@@ -244,6 +246,8 @@ abstract class TestCase extends Testbench
     public static function tearDownAfterClass(): void
     {
         static::stopServing();
+
+        parent::tearDownAfterClass();
     }
 
     /**
