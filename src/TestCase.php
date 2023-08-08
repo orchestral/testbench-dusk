@@ -7,6 +7,7 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Foundation\Application;
+use Laravel\Dusk\DuskServiceProvider;
 use Orchestra\Testbench\Dusk\Foundation\PackageManifest;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
 use Orchestra\Testbench\TestCase as Testbench;
@@ -104,6 +105,19 @@ abstract class TestCase extends Testbench
 
         $this->setUpTheBrowserEnvironment();
         $this->registerShutdownFunction();
+    }
+
+    /**
+     * Get application providers.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return array<int, class-string>
+     */
+    protected function getApplicationProviders($app)
+    {
+        return array_merge(parent::getApplicationProviders($app), [
+            DuskServiceProvider::class,
+        ]);
     }
 
     /**
