@@ -148,7 +148,7 @@ class DuskServer
         $this->guardServerStarting();
 
         $environmentVariables = collect($_ENV)
-            ->when(defined('TESTBENCH_WORKING_PATH'), function ($collect) {
+            ->when(\defined('TESTBENCH_WORKING_PATH'), function ($collect) {
                 $collect->put('TESTBENCH_WORKING_PATH', TESTBENCH_WORKING_PATH);
             });
 
