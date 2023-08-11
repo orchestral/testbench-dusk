@@ -15,15 +15,17 @@ class RouteTest extends TestCase
      */
     protected function defineEnvironment($app)
     {
-        $app['router']->get('hello', ['uses' => function () {
+        $router = $app['router'];
+
+        $router->get('hello', ['uses' => function () {
             return 'hello world';
         }]);
 
-        $app['router']->get('config', ['uses' => function () {
+        $router->get('config', ['uses' => function () {
             return config('new_config_item');
         }]);
 
-        $app['router']->get('environment', ['uses' => function () {
+        $router->get('environment', ['uses' => function () {
             return config('app.env');
         }]);
     }
