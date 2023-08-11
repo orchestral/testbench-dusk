@@ -147,11 +147,6 @@ class DuskServer
     {
         $this->guardServerStarting();
 
-        $passthroughVariables = [
-            'APP_ENV',
-            'APP_KEY',
-        ];
-
         $environmentVariables = collect($_ENV)
             ->when(defined('TESTBENCH_WORKING_PATH'), function ($collect) {
                 $collect->put('TESTBENCH_WORKING_PATH', TESTBENCH_WORKING_PATH);
