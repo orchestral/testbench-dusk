@@ -3,6 +3,7 @@
 use Illuminate\Support\Env;
 use Orchestra\Testbench\Foundation\Application;
 use Orchestra\Testbench\Foundation\Config;
+use Orchestra\Testbench\Workbench\Bootstrap\StartWorkbench;
 
 /**
  * Create Laravel application.
@@ -24,15 +25,18 @@ $createApp = function (string $workingPath) {
     return Application::create(
         basePath: $config['laravel'],
         options: ['load_environment_variables' => $hasEnvironmentFile, 'extra' => $config->getExtraAttributes()],
+        resolvingCallback: function ($app) use ($config) {
+            (new StartWorkbench($config))->bootstrap($app);
+        },
     );
 };
 
 $app = $createApp(realpath(__DIR__.'/../'));
 
+unset($createApp);
+
 /** @var \Illuminate\Routing\Router $router */
 $router = $app->make('router');
-
-unset($createApp);
 
 collect(glob(__DIR__.'/../routes/testbench-*.php'))
     ->each(function ($routeFile) use ($app, $router) {

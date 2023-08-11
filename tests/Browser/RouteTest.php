@@ -8,22 +8,22 @@ use Orchestra\Testbench\Dusk\TestCase;
 class RouteTest extends TestCase
 {
     /**
-     * Define environment setup.
+     * Define routes setup.
      *
-     * @param  Illuminate\Foundation\Application  $app
+     * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
-    protected function defineEnvironment($app)
+    protected function defineRoutes($router)
     {
-        $app['router']->get('hello', ['uses' => function () {
+        $router->get('hello', ['uses' => function () {
             return 'hello world';
         }]);
 
-        $app['router']->get('config', ['uses' => function () {
+        $router->get('config', ['uses' => function () {
             return config('new_config_item');
         }]);
 
-        $app['router']->get('environment', ['uses' => function () {
+        $router->get('environment', ['uses' => function () {
             return config('app.env');
         }]);
     }
