@@ -147,7 +147,15 @@ class DuskServer
     {
         $this->guardServerStarting();
 
-        $this->process = Process::fromShellCommandline($this->prepareCommand());
+        $environmentVariables = collect($_ENV)
+            ->when(defined('TESTBENCH_WORKING_PATH'), function ($collect) {
+                $collect->put('TESTBENCH_WORKING_PATH', TESTBENCH_WORKING_PATH);
+            });
+
+        $this->process = Process::fromShellCommandline(
+            $this->prepareCommand(), null, $environmentVariables->all()
+        );
+
         $this->process->setWorkingDirectory($this->laravelPublicPath());
         $this->process->start();
     }
