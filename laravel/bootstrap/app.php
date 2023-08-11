@@ -1,20 +1,47 @@
 <?php
 
-use Orchestra\Testbench\Dusk\Console\Commander;
+use function Orchestra\Testbench\default_environment_variables;
+use Orchestra\Testbench\Foundation\Application;
+use Orchestra\Testbench\Foundation\Bootstrap\LoadEnvironmentVariablesFromArray;
+use Orchestra\Testbench\Foundation\Config;
+use Orchestra\Testbench\Workbench\Bootstrap\StartWorkbench;
 
-$APP_KEY = $_SERVER['APP_KEY'] ?? $_ENV['APP_KEY'] ?? 'AckfSECXIvnK5r28GVIWUAxmbBSjTsmF';
-$DB_CONNECTION = $_SERVER['DB_CONNECTION'] ?? $_ENV['DB_CONNECTION'] ?? 'testing';
+/**
+ * Create Laravel application.
+ *
+ * @param  string  $workingPath
+ * @return \Illuminate\Foundation\Application
+ */
+$createApp = function (string $workingPath) {
+    $config = Config::loadFromYaml($workingPath);
 
-$config = ['env' => ['APP_KEY="'.$APP_KEY.'"', 'DB_CONNECTION="'.$DB_CONNECTION.'"'], 'providers' => []];
+    $hasEnvironmentFile = file_exists("{$workingPath}/.env");
 
-$app = (new Commander($config, realpath(__DIR__.'/../../')))->laravel();
+    return Application::create(
+        $config['laravel'],
+        function ($app) use ($config, $hasEnvironmentFile) {
+            (new StartWorkbench($config))->bootstrap($app);
 
-unset($APP_KEY, $DB_CONNECTION, $config);
+            if ($hasEnvironmentFile === false) {
+                (new LoadEnvironmentVariablesFromArray(
+                    ! empty($config['env']) ? $config['env'] : default_environment_variables()
+                ))->bootstrap($app);
+            }
+        },
+        ['load_environment_variables' => $hasEnvironmentFile, 'extra' => $config->getExtraAttributes()],
+    );
+};
 
-if (file_exists(__DIR__.'/../routes/testbench.php')) {
-    $router = $app->make('router');
+$app = $createApp(realpath(__DIR__.'/../'));
 
-    require __DIR__.'/../routes/testbench.php';
-}
+unset($createApp);
+
+/** @var \Illuminate\Routing\Router $router */
+$router = $app->make('router');
+
+collect(glob(__DIR__.'/../routes/testbench-*.php'))
+    ->each(function ($routeFile) use ($app, $router) {
+        require $routeFile;
+    });
 
 return $app;
