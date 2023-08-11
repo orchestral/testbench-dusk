@@ -15,12 +15,16 @@ class RouteTest extends TestCase
      */
     protected function defineEnvironment($app)
     {
-        $app['router']->get('hello', ['as' => 'hi', 'uses' => function () {
+        $app['router']->get('hello', ['uses' => function () {
             return 'hello world';
         }]);
 
-        $app['router']->get('config', ['as' => 'hi', 'uses' => function () {
+        $app['router']->get('config', ['uses' => function () {
             return config('new_config_item');
+        }]);
+
+        $app['router']->get('environment', ['uses' => function () {
+            return config('app.env');
         }]);
     }
 
@@ -30,6 +34,15 @@ class RouteTest extends TestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('hello')
                 ->assertSee('hello world');
+        });
+    }
+
+    /** @test */
+    public function can_return_correct_application_environment()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('environment')
+                ->assertSee('testing');
         });
     }
 
