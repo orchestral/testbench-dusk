@@ -44,8 +44,7 @@
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
-        "laravel/laravel": "8.x-dev",
-        "orchestra/canvas": "^6.10"
+        "laravel/laravel": "8.x-dev"
     },
     "extra": {
         "branch-alias": {
