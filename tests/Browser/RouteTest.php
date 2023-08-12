@@ -8,19 +8,23 @@ use Orchestra\Testbench\Dusk\TestCase;
 class RouteTest extends TestCase
 {
     /**
-     * Define environment setup.
+     * Define routes setup.
      *
-     * @param  Illuminate\Foundation\Application  $app
+     * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
-    protected function defineEnvironment($app)
+    protected function defineRoutes($router)
     {
-        $app['router']->get('hello', ['as' => 'hi', 'uses' => function () {
+        $router->get('hello', ['uses' => function () {
             return 'hello world';
         }]);
 
-        $app['router']->get('config', ['as' => 'hi', 'uses' => function () {
+        $router->get('config', ['uses' => function () {
             return config('new_config_item');
+        }]);
+
+        $router->get('environment', ['uses' => function () {
+            return config('app.env');
         }]);
     }
 
@@ -30,6 +34,15 @@ class RouteTest extends TestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('hello')
                 ->assertSee('hello world');
+        });
+    }
+
+    /** @test */
+    public function can_return_correct_application_environment()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('environment')
+                ->assertSee('testing');
         });
     }
 
