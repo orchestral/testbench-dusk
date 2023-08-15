@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.33.1
+
+Released: 2023-08-15
+
+### Fixes
+
+* Fixes missing import.
+
 ## 6.33.0
 
 Released: 2023-08-15
