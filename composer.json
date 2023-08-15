@@ -27,7 +27,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Orchestra\\Testbench\\Dusk\\Tests\\": "tests/"
+            "Orchestra\\Testbench\\Dusk\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\": "workbench/database/"
         }
     },
     "bin": [
@@ -40,7 +42,7 @@
         "laravel/dusk": "^7.9",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^2.2.1",
-        "orchestra/testbench": ">=8.7.0 <8.8.0",
+        "orchestra/testbench": ">=8.8.0 <8.9.0",
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
@@ -54,14 +56,15 @@
             "@php testbench-dusk package:discover --ansi",
             "@php vendor/bin/dusk-updater detect --auto-update"
         ],
+        "clear": "@php testbench-dusk package:purge-skeleton --ansi",
         "ci": [
             "@composer run prepare",
             "@php vendor/bin/phpstan analyse",
             "@php vendor/bin/pint"
         ],
+        "build": "@php testbench-dusk workbench:build --ansi",
         "test": [
-            "@php testbench-dusk package:drop-sqlite-db",
-            "@php testbench-dusk package:create-sqlite-db",
+            "@composer run build",
             "@php vendor/bin/phpunit -c ./ --color"
         ]
     },

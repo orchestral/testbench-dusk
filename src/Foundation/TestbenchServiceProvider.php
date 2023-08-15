@@ -40,9 +40,9 @@ class TestbenchServiceProvider extends ServiceProvider
             $this->commands([
                 Console\CreateSqliteDbCommand::class,
                 Console\DropSqliteDbCommand::class,
-                Console\DevToolCommand::class,
                 Console\DuskCommand::class,
                 Console\PurgeCommand::class,
+                Console\PurgeSkeletonCommand::class,
                 Console\ServeCommand::class,
             ]);
         }
