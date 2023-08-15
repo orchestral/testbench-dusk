@@ -1,0 +1,5 @@
+workbench:
+  start: '/'
+  build:
+    - drop-sqlite-db
+    - create-sqlite-db
