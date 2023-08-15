@@ -13,7 +13,9 @@ use Orchestra\Testbench\Workbench\Bootstrap\StartWorkbench;
  * @return \Illuminate\Foundation\Application
  */
 $createApp = function (string $workingPath) {
-    $config = Config::loadFromYaml($workingPath);
+    $config = Config::loadFromYaml(
+        defined('TESTBENCH_WORKING_PATH') ? TESTBENCH_WORKING_PATH : $workingPath
+    );
 
     $hasEnvironmentFile = file_exists("{$workingPath}/.env");
 
@@ -31,6 +33,10 @@ $createApp = function (string $workingPath) {
         ['load_environment_variables' => $hasEnvironmentFile, 'extra' => $config->getExtraAttributes()],
     );
 };
+
+if (! defined('TESTBENCH_WORKING_PATH') && ! is_null(Env::get('TESTBENCH_WORKING_PATH'))) {
+    define('TESTBENCH_WORKING_PATH', Env::get('TESTBENCH_WORKING_PATH'));
+}
 
 $app = $createApp(realpath(__DIR__.'/../'));
 
