@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.8.0
+
+Released: 2023-08-15
+
+### Changes
+
+* Update minimum support for Testbench v8.8.0+. ([v8.6.3...v8.8.0](https://github.com/orchestral/testbench/compare/v8.6.3...v8.8.0))
+* Update `laravel/bootstrap/app.php` to match `orchestra/testbench-core`.
+
 ## 8.7.2
 
 Released: 2023-08-10
