@@ -59,14 +59,13 @@
             "@php testbench-dusk package:create-sqlite-db"
         ],
         "clear": "@php testbench-dusk package:purge-skeleton --ansi",
-        "ci": [
-            "@composer run prepare",
+        "build": [
+            "@php vendor/bin/dusk-updater detect --auto-update",
+            "@php testbench-dusk workbench:build --ansi"
+        ],
+        "lint": [
             "@php vendor/bin/phpstan analyse",
             "@php vendor/bin/pint"
-        ],
-        "build": [
-            "@composer run prepare",
-            "@php testbench-dusk workbench:build --ansi"
         ],
         "test": [
             "@composer run build",
