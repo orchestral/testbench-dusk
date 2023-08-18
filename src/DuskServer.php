@@ -174,6 +174,7 @@ class DuskServer
      */
     protected function guardServerStarting()
     {
+        /** @var resource|null $socket */
         $socket = rescue(function () {
             $errorNumber = 0;
             $errorString = '';

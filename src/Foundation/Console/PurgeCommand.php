@@ -3,9 +3,11 @@
 namespace Orchestra\Testbench\Dusk\Foundation\Console;
 
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 
+#[AsCommand(name: 'package:dusk-purge', description: 'Purge the package debugging files for Dusk')]
 class PurgeCommand extends Command
 {
     /**
