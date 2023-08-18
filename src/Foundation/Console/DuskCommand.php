@@ -5,6 +5,7 @@ namespace Orchestra\Testbench\Dusk\Foundation\Console;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Dusk\Console\DuskCommand as Command;
+
 use function Orchestra\Testbench\phpunit_version_compare;
 
 class DuskCommand extends Command

@@ -2,6 +2,7 @@
 
 namespace Orchestra\Testbench\Dusk;
 
+use Illuminate\Support\Collection;
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
@@ -147,13 +148,15 @@ class DuskServer
     {
         $this->guardServerStarting();
 
-        $environmentVariables = collect($_ENV)
+        /** @var array<string, mixed> $environmentVariables */
+        $environmentVariables = Collection::make($_ENV)
             ->when(\defined('TESTBENCH_WORKING_PATH'), function ($collect) {
-                $collect->put('TESTBENCH_WORKING_PATH', TESTBENCH_WORKING_PATH);
-            });
+                /** @phpstan-ignore-next-line */
+                return $collect->put('TESTBENCH_WORKING_PATH', TESTBENCH_WORKING_PATH);
+            })->all();
 
         $this->process = Process::fromShellCommandline(
-            $this->prepareCommand(), null, $environmentVariables->all()
+            $this->prepareCommand(), null, $environmentVariables
         );
 
         $this->process->setWorkingDirectory($this->laravelPublicPath());
@@ -171,6 +174,7 @@ class DuskServer
      */
     protected function guardServerStarting()
     {
+        /** @var resource|null $socket */
         $socket = rescue(function () {
             $errorNumber = 0;
             $errorString = '';
