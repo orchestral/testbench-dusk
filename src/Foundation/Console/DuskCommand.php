@@ -5,7 +5,9 @@ namespace Orchestra\Testbench\Dusk\Foundation\Console;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Dusk\Console\DuskCommand as Command;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'package:dusk', description: 'Run the package Dusk tests')]
 class DuskCommand extends Command
 {
     /**

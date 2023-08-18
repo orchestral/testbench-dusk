@@ -61,12 +61,14 @@
             "@php vendor/bin/dusk-updater detect --auto-update"
         ],
         "clear": "@php testbench-dusk package:purge-skeleton --ansi",
-        "ci": [
-            "@composer run prepare",
+        "build": [
+            "@php vendor/bin/dusk-updater detect --auto-update",
+            "@php testbench-dusk workbench:build --ansi"
+        ],
+        "lint": [
             "@php vendor/bin/phpstan analyse",
             "@php vendor/bin/pint"
         ],
-        "build": "@php testbench-dusk workbench:build --ansi",
         "test": [
             "@composer run build",
             "@php vendor/bin/phpunit -c ./ --color"
