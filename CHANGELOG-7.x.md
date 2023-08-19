@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.29.0
+
+Released: 2023-08-15
+
+### Changes
+
+* Update minimum support for Testbench v7.29.0+. ([v7.28.0...v7.29.0](https://github.com/orchestral/testbench/compare/v7.28.0...v7.29.0))
+* Use `Symfony\Component\Console\Attribute\AsCommand` attribute.
+
 ## 7.28.0
 
 Released: 2023-08-15
