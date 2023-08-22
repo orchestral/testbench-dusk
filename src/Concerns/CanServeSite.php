@@ -92,6 +92,10 @@ trait CanServeSite
         $app = $this->app;
 
         after_resolving($app, 'config', static function ($config, $app) use ($closure) {
+            /**
+             * @var \Illuminate\Foundation\Application $app
+             * @var \Illuminate\Contracts\Config\Repository $config
+             */
             $closure($app, $config);
         });
 
