@@ -29,7 +29,8 @@
         "psr-4": {
             "Orchestra\\Testbench\\Dusk\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/",
-            "Workbench\\Database\\": "workbench/database/"
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "bin": [
@@ -42,7 +43,7 @@
         "laravel/dusk": "^7.9",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^2.2.1",
-        "orchestra/testbench": ">=8.9.0 <8.10.0",
+        "orchestra/testbench": ">=8.9.1 <8.10.0",
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
@@ -50,24 +51,35 @@
         "phpstan/phpstan": "^1.10.7",
         "phpunit/phpunit": "^10.1"
     },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "8.0-dev"
+        }
+    },
     "scripts": {
-        "post-autoload-dump": "@composer run prepare",
-        "prepare": [
-            "@php testbench-dusk package:discover --ansi",
-            "@php vendor/bin/dusk-updater detect --auto-update"
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare",
+            "@dusk:install-chromedriver"
         ],
-        "clear": "@php testbench-dusk package:purge-skeleton --ansi",
-        "build": [
-            "@php vendor/bin/dusk-updater detect --auto-update",
-            "@php testbench-dusk workbench:build --ansi"
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "dusk:install-chromedriver": "@php vendor/bin/dusk-updater detect --auto-update --ansi",
+        "serve": [
+            "@build",
+            "@php vendor/bin/testbench serve"
         ],
         "lint": [
-            "@php vendor/bin/phpstan analyse",
-            "@php vendor/bin/pint"
+            "@php vendor/bin/pint",
+            "@php vendor/bin/phpstan analyse"
         ],
-        "test": [
-            "@composer run build",
-            "@php vendor/bin/phpunit -c ./ --color"
+        "test": "@php vendor/bin/phpunit -c ./ --color",
+        "ci": [
+            "@prepare",
+            "@dusk:install-chromedriver",
+            "@lint",
+            "@test"
         ]
     },
     "config": {
