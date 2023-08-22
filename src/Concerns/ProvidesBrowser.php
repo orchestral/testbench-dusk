@@ -5,6 +5,7 @@ namespace Orchestra\Testbench\Dusk\Concerns;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Chrome\SupportsChrome;
 use Laravel\Dusk\Concerns\ProvidesBrowser as Concern;
+
 use function Orchestra\Testbench\Dusk\find_test_directory;
 use function Orchestra\Testbench\Dusk\prepare_debug_directories;
 

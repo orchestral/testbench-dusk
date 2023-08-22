@@ -4,6 +4,7 @@ namespace Orchestra\Testbench\Dusk\Tests\Browser;
 
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\Dusk\TestCase;
+
 use function Orchestra\Testbench\workbench_path;
 
 class DatabaseMigrationsTest extends TestCase

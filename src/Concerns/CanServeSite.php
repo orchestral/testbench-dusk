@@ -124,7 +124,10 @@ trait CanServeSite
 
         if ($serializedClosure) {
             $closure = unserialize($serializedClosure)->getClosure();
-            $closure($this->app, $this->app['config']);
+
+            after_resolving($this->app, 'config', function ($config, $app) use ($closure) {
+                $closure($app, $config);
+            });
         }
 
         return $this->app;
