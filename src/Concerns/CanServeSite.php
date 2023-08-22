@@ -8,6 +8,8 @@ use Laravel\SerializableClosure\SerializableClosure;
 use Orchestra\Testbench\Dusk\DuskServer;
 use Orchestra\Testbench\Dusk\Options;
 
+use function Orchestra\Testbench\after_resolving;
+
 trait CanServeSite
 {
     /**
@@ -89,6 +91,10 @@ trait CanServeSite
         /** @var \Illuminate\Foundation\Application $app */
         $app = $this->app;
 
+        after_resolving($app, 'config', static function ($config, $app) use ($closure) {
+            $closure($app, $config);
+        });
+
         $closure($app, $app['config']);
 
         static::$server?->stash([
@@ -147,7 +153,10 @@ trait CanServeSite
 
         if ($serializedClosure) {
             $closure = unserialize($serializedClosure)->getClosure();
-            $closure($app, $app['config']);
+
+            after_resolving($app, 'config', static function ($config, $app) use ($closure) {
+                $closure($app, $config);
+            });
         }
 
         return $app;
