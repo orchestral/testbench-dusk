@@ -7,6 +7,7 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Str;
 use Laravel\Dusk\DuskServiceProvider;
 use Orchestra\Testbench\Dusk\Foundation\PackageManifest;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
@@ -15,6 +16,7 @@ use Orchestra\Testbench\TestCase as Testbench;
 abstract class TestCase extends Testbench
 {
     use Concerns\CanServeSite,
+        Concerns\InteractsWithWebDriverOptions,
         Concerns\ProvidesBrowser;
 
     /**
@@ -108,6 +110,23 @@ abstract class TestCase extends Testbench
     }
 
     /**
+     * Determine trait should be ignored from being autoloaded.
+     *
+     * @param  class-string  $use
+     * @return bool
+     */
+    protected function setUpTheTestEnvironmentTraitToBeIgnored(string $use): bool
+    {
+        return Str::startsWith($use, [
+            Concerns\CanServeSite::class,
+            Concerns\InteractsWithWebDriverOptions::class,
+            Concerns\ProvidesBrowser::class,
+            \Laravel\Dusk\Concerns\ProvidesBrowser::class,
+            \Laravel\Dusk\Chrome\SupportsChrome::class,
+        ]) || parent::setUpTheTestEnvironmentTraitToBeIgnored($use);
+    }
+
+    /**
      * Get application providers.
      *
      * @param  \Illuminate\Foundation\Application  $app
@@ -188,6 +207,8 @@ abstract class TestCase extends Testbench
      */
     protected function driver(): RemoteWebDriver
     {
+        static::defineWebDriverOptions();
+
         if (DuskOptions::shouldUsesWithoutUI()) {
             DuskOptions::withoutUI();
         } elseif ($this->hasHeadlessDisabled()) {
