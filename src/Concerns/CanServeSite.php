@@ -8,6 +8,8 @@ use Opis\Closure\SerializableClosure;
 use Orchestra\Testbench\Dusk\DuskServer;
 use Orchestra\Testbench\Dusk\Options;
 
+use function Orchestra\Testbench\after_resolving;
+
 trait CanServeSite
 {
     /**
@@ -65,8 +67,8 @@ trait CanServeSite
      */
     public function beforeServingApplication(Closure $closure): void
     {
-        $this->afterApplicationCreated(function () use ($closure) {
-            $closure($this->app, $this->app['config']);
+        after_resolving($this->app, 'config', function ($config, $app) use ($closure) {
+            $closure($app, $config);
         });
 
         static::$server->stash([
