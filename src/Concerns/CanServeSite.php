@@ -99,8 +99,6 @@ trait CanServeSite
             $closure($app, $config);
         });
 
-        $closure($app, $app['config']);
-
         static::$server?->stash([
             'class' => static::class,
             'tweakApplication' => serialize(
