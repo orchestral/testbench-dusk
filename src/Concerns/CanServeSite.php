@@ -65,7 +65,9 @@ trait CanServeSite
      */
     public function beforeServingApplication(Closure $closure): void
     {
-        $closure($this->app, $this->app['config']);
+        $this->afterApplicationCreated(function () use ($closure) {
+            $closure($this->app, $this->app['config']);
+        });
 
         static::$server->stash([
             'class' => static::class,
