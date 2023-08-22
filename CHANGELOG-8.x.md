@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.9.1
+
+Released: 2023-08-22
+
+### Added
+
+* Added `Orchestra\Testbench\Dusk\Concerns\InteractsWithWebDriverOptions`.
+
+### Changes
+
+* Update minimum support for Testbench v8.9.1+. ([v8.9.0...v8.9.1](https://github.com/orchestral/testbench/compare/v8.9.0...v8.9.1))
+* Utilise `setUpTheTestEnvironmentTraitToBeIgnored()` method.
+
 ## 8.9.0
 
 Released: 2023-08-19

@@ -4,6 +4,8 @@ This changelog references the relevant changes (bug and security fixes) done to 
 
 ## 7.30.0
 
+Released: 2023-08-22
+
 ### Added
 
 * Added `Orchestra\Testbench\Dusk\Concerns\InteractsWithWebDriverOptions`.
