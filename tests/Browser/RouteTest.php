@@ -2,8 +2,11 @@
 
 namespace Orchestra\Testbench\Dusk\Tests\Browser;
 
+use Illuminate\Support\Env;
 use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Dusk\TestCase;
+
+use function Orchestra\Testbench\package_path;
 
 class RouteTest extends TestCase
 {
@@ -25,6 +28,10 @@ class RouteTest extends TestCase
 
         $router->get('environment', ['uses' => function () {
             return config('app.env');
+        }]);
+
+        $router->get('testbench-environment-value', ['uses' => function () {
+            return Env::get('TESTBENCH_WORKING_PATH');
         }]);
     }
 
@@ -73,5 +80,21 @@ class RouteTest extends TestCase
         });
 
         $this->removeApplicationTweaks();
+    }
+
+    /** @test */
+    public function can_use_multiple_browsers_can_persist_testbench_working_path_environment_variables()
+    {
+        $this->browse(function (Browser $browser, Browser $browserTwo) {
+            $browser->visit('testbench-environment-value')
+                ->assertSee(package_path())
+                ->visit('testbench-environment-value')
+                ->assertSee(package_path());
+
+            $browserTwo->visit('testbench-environment-value')
+                ->assertSee(package_path())
+                ->visit('testbench-environment-value')
+                ->assertSee(package_path());
+        });
     }
 }
