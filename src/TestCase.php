@@ -16,6 +16,7 @@ use Orchestra\Testbench\TestCase as Testbench;
 abstract class TestCase extends Testbench
 {
     use Concerns\CanServeSite,
+        Concerns\InteractsWithWebDriverOptions,
         Concerns\ProvidesBrowser;
 
     /**
@@ -102,6 +103,7 @@ abstract class TestCase extends Testbench
     {
         return Str::startsWith($use, [
             Concerns\CanServeSite::class,
+            Concerns\InteractsWithWebDriverOptions::class,
             Concerns\ProvidesBrowser::class,
             \Laravel\Dusk\Concerns\ProvidesBrowser::class,
             \Laravel\Dusk\Chrome\SupportsChrome::class,
@@ -189,6 +191,8 @@ abstract class TestCase extends Testbench
      */
     protected function driver(): RemoteWebDriver
     {
+        static::defineWebDriverOptions();
+
         if (DuskOptions::shouldUsesWithoutUI()) {
             DuskOptions::withoutUI();
         } elseif ($this->hasHeadlessDisabled()) {

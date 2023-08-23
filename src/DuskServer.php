@@ -7,6 +7,8 @@ use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
+use function Orchestra\Testbench\package_path;
+
 class DuskServer
 {
     /**
@@ -150,10 +152,8 @@ class DuskServer
 
         /** @var array<string, mixed> $environmentVariables */
         $environmentVariables = Collection::make($_ENV)
-            ->when(\defined('TESTBENCH_WORKING_PATH'), function ($collect) {
-                /** @phpstan-ignore-next-line */
-                return $collect->put('TESTBENCH_WORKING_PATH', TESTBENCH_WORKING_PATH);
-            })->all();
+            ->put('TESTBENCH_WORKING_PATH', package_path())
+            ->all();
 
         $this->process = Process::fromShellCommandline(
             $this->prepareCommand(), null, $environmentVariables
