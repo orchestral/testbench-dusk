@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.9.2
+
+Released: 2023-08-23
+
+### Fixes
+
+* Fixes usage with `Orchestra\Testbench\Concerns\WithWorkbench`.
+
 ## 8.9.1
 
 Released: 2023-08-22
