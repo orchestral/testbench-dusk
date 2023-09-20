@@ -10,8 +10,11 @@ $files = new Illuminate\Filesystem\Filesystem();
 $files->delete("{$workingPath}/laravel/.env");
 $files->deleteDirectory("{$workingPath}/skeleton");
 
+
+$files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/server.php", "{$workingPath}/laravel/server.php");
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/.gitignore", "{$workingPath}/laravel/.gitignore");
 $files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit.xml", "{$workingPath}/stubs/phpunit.xml");
+$files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit9.xml", "{$workingPath}/stubs/phpunit9.xml");
 
 Symfony\Component\Process\Process::fromShellCommandline(
     'composer create-project "laravel/laravel:10.x-dev" skeleton --no-scripts --no-plugins --quiet --no-install', $workingPath
@@ -47,7 +50,6 @@ transform([
     PHP_EOL.'DB_PASSWORD=' => PHP_EOL.'# DB_PASSWORD=',
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/.env.example"));
 
-$files->copy("{$workingPath}/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php", "{$workingPath}/laravel/server.php");
 transform([
     "getcwd()" => "__DIR__.'/public'",
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/server.php"));
