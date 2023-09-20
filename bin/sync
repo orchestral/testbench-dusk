@@ -10,7 +10,6 @@ $files = new Illuminate\Filesystem\Filesystem();
 $files->delete("{$workingPath}/laravel/.env");
 $files->deleteDirectory("{$workingPath}/skeleton");
 
-
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/server.php", "{$workingPath}/laravel/server.php");
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/.gitignore", "{$workingPath}/laravel/.gitignore");
 $files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit.xml", "{$workingPath}/stubs/phpunit.xml");
@@ -50,10 +49,6 @@ transform([
     PHP_EOL.'DB_PASSWORD=' => PHP_EOL.'# DB_PASSWORD=',
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/.env.example"));
 
-transform([
-    "getcwd()" => "__DIR__.'/public'",
-], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/server.php"));
-// awk '{sub(/ Package Service Providers.../," Dusk Service Provider\n         \*\/\n        Laravel\\Dusk\\DuskServiceProvider::class,\n\n        \/\*\n         * Package Service Providers...")}1' laravel/config/app.php > laravel/config/app.stub && mv laravel/config/app.stub laravel/config/app.php
 transform([
     "env('APP_ENV', 'production')" => "env('APP_ENV', 'testing')",
     PHP_EOL.'        App\Providers' => PHP_EOL.'        // App\Providers',
