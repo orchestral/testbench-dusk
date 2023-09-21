@@ -2,21 +2,16 @@
 
 namespace Orchestra\Testbench\Dusk\Tests\Browser;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
+use Orchestra\Testbench\Concerns\WithLaravelMigrations;
+use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase;
 use Orchestra\Testbench\Factories\UserFactory;
 
 class AuthTest extends TestCase
 {
-    /**
-     * Define database migrations.
-     *
-     * @return void
-     */
-    protected function defineDatabaseMigrations()
-    {
-        $this->loadLaravelMigrations(config('database.default'));
-    }
+    use DatabaseMigrations, WithLaravelMigrations, WithWorkbench;
 
     /** @test */
     public function can_authenticate_user()

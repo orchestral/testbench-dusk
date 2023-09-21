@@ -74,7 +74,10 @@
             "@php vendor/bin/pint",
             "@php vendor/bin/phpstan analyse"
         ],
-        "test": "@php vendor/bin/phpunit -c ./ --color",
+        "test": [
+            "@build",
+            "@php vendor/bin/phpunit -c ./ --color"
+        ],
         "ci": [
             "@prepare",
             "@dusk:install-chromedriver",

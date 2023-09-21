@@ -159,6 +159,8 @@ trait CanServeSite
             after_resolving($app, 'config', static function ($config, $app) use ($closure) {
                 $closure($app, $config);
             });
+
+            $app['config'];
         }
 
         return $app;
@@ -183,6 +185,10 @@ trait CanServeSite
      */
     protected function setUpDuskServer(): void
     {
+        if (! static::$cachedConfigurationForWorkbench) {
+            static::setupBeforeClassUsingWorkbench();
+        }
+
         if (! $this->app) {
             $this->refreshApplication();
         }
