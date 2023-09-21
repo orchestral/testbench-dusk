@@ -5,7 +5,10 @@ $workingPath = getcwd();
 
 require __DIR__.'/../vendor/autoload.php';
 
+$input = new Symfony\Component\Console\Input\ArgvInput();
 $files = new Illuminate\Filesystem\Filesystem();
+
+$version = ($input->hasParameterOption('--dev') && $input->hasParameterOption('--stable') === false) ? '10.x-dev' : '^10.0';
 
 $files->delete("{$workingPath}/laravel/.env");
 $files->deleteDirectory("{$workingPath}/skeleton");
@@ -16,7 +19,7 @@ $files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit.xml", "{$workingP
 $files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit9.xml", "{$workingPath}/stubs/phpunit9.xml");
 
 Symfony\Component\Process\Process::fromShellCommandline(
-    'composer create-project "laravel/laravel:10.x-dev" skeleton --no-scripts --no-plugins --quiet --no-install', $workingPath
+    'composer create-project "laravel/laravel:'.$version.'" skeleton --no-scripts --no-plugins --quiet --no-install', $workingPath
 )->mustRun();
 
 Illuminate\Support\Collection::make([
