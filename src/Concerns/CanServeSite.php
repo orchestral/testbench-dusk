@@ -79,6 +79,10 @@ trait CanServeSite
                     : new SerializableClosure($closure)
             ),
         ]);
+
+        $this->beforeApplicationDestroyed(function () {
+            $this->removeApplicationTweaks();
+        });
     }
 
     /**
@@ -152,6 +156,9 @@ trait CanServeSite
      */
     protected function setUpDuskServer(): void
     {
+        static::cachedUsesForTestCase();
+        static::cachedConfigurationForWorkbench();
+
         if (! $this->app) {
             $this->refreshApplication();
         }
