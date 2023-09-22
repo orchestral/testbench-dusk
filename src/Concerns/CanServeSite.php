@@ -185,9 +185,8 @@ trait CanServeSite
      */
     protected function setUpDuskServer(): void
     {
-        if (! static::$cachedConfigurationForWorkbench) {
-            static::setupBeforeClassUsingWorkbench();
-        }
+        static::cachedUsesForTestCase();
+        static::cachedConfigurationForWorkbench();
 
         if (! $this->app) {
             $this->refreshApplication();
