@@ -75,7 +75,6 @@ class RouteTest extends TestCase
         });
     }
 
-
     /** @test */
     public function application_tweak_doesnt_persist_between_test()
     {
