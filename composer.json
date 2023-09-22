@@ -64,6 +64,10 @@
         "prepare": "@php vendor/bin/testbench package:discover --ansi",
         "build": "@php vendor/bin/testbench workbench:build --ansi",
         "dusk:install-chromedriver": "@php vendor/bin/dusk-updater detect --auto-update --ansi",
+        "serve": [
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ],
         "lint": [
             "@php vendor/bin/pint",
             "@php vendor/bin/phpstan analyse"
@@ -72,10 +76,6 @@
             "@php drop-sqlite-db",
             "@php create-sqlite-db",
             "@php vendor/bin/phpunit -c ./ --color"
-        ],
-        "serve": [
-            "@build",
-            "@php vendor/bin/testbench serve"
         ],
         "ci": [
             "@prepare",
