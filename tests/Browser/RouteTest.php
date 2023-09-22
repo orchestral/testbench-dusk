@@ -58,17 +58,19 @@ class RouteTest extends TestCase
     {
         $this->browse(function (Browser $browser, Browser $browserTwo) {
             $browser->visit('hello')
-                ->assertSee('hello world');
+                ->assertSee('hello world')
+                ->blank();
 
             $browserTwo->visit('hello')
-                ->assertSee('hello world');
+                ->assertSee('hello world')
+                ->blank();
         });
     }
 
     /** @test */
     public function can_tweak_the_application_within_a_test()
     {
-        $this->tweakApplication(function ($app, $config) {
+        $this->beforeServingApplication(function ($app, $config) {
             $config->set('new_config_item', 'Fantastic!');
         });
 
@@ -78,8 +80,12 @@ class RouteTest extends TestCase
             $browser->visit('config')
                 ->assertSee('Fantastic!');
         });
+    }
 
-        $this->removeApplicationTweaks();
+    /** @test */
+    public function application_tweak_doesnt_persist_between_test()
+    {
+        $this->assertNull($this->app['config']->get('new_config_item'));
     }
 
     /** @test */
