@@ -134,9 +134,13 @@ abstract class TestCase extends Testbench
      */
     protected function getApplicationProviders($app)
     {
-        return array_merge(parent::getApplicationProviders($app), [
-            DuskServiceProvider::class,
-        ]);
+        $providers = parent::getApplicationProviders($app);
+
+        if (! \in_array(DuskServiceProvider::class, $providers)) {
+            array_push($providers, DuskServiceProvider::class);
+        }
+
+        return $providers;
     }
 
     /**
