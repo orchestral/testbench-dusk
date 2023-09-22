@@ -1,0 +1,5 @@
+providers:
+  - Workbench\App\Providers\RouteServiceProvider
+
+migrations:
+  - workbench/database/migrations

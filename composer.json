@@ -27,7 +27,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Orchestra\\Testbench\\Dusk\\Tests\\": "tests/"
+            "Orchestra\\Testbench\\Dusk\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/"
         }
     },
     "bin": [

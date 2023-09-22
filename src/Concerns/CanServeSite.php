@@ -134,6 +134,8 @@ trait CanServeSite
             });
         }
 
+        ray($this->app['config']['app.providers']);
+
         return $this->app;
     }
 
@@ -156,8 +158,8 @@ trait CanServeSite
      */
     protected function setUpDuskServer(): void
     {
-        static::cachedUsesForTestCase();
-        static::cachedConfigurationForWorkbench();
+        ray(static::cachedUsesForTestCase());
+        ray(static::cachedConfigurationForWorkbench());
 
         if (! $this->app) {
             $this->refreshApplication();
