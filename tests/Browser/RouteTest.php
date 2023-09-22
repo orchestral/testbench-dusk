@@ -6,6 +6,7 @@ use Illuminate\Support\Env;
 use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase;
+
 use function Orchestra\Testbench\package_path;
 
 class RouteTest extends TestCase
