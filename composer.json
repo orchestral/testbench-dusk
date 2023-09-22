@@ -43,7 +43,7 @@
         "laravel/dusk": "^7.11",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^2.3",
-        "orchestra/testbench": ">=8.11.0 <8.12.0",
+        "orchestra/testbench": "^8.12",
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
@@ -74,7 +74,11 @@
             "@php vendor/bin/pint",
             "@php vendor/bin/phpstan analyse"
         ],
-        "test": "@php vendor/bin/phpunit -c ./ --color",
+        "test": [
+            "@php drop-sqlite-db",
+            "@php create-sqlite-db",
+            "@php vendor/bin/phpunit -c ./ --color"
+        ],
         "ci": [
             "@prepare",
             "@dusk:install-chromedriver",
