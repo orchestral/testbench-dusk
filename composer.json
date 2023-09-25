@@ -44,9 +44,6 @@
         "orchestra/testbench": "^6.35",
         "php-webdriver/webdriver": "^1.9"
     },
-    "require-dev": {
-        "laravel/laravel": "8.x-dev"
-    },
     "extra": {
         "branch-alias": {
             "dev-master": "6.0-dev"
