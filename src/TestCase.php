@@ -258,6 +258,8 @@ abstract class TestCase extends Testbench
      * @beforeClass
      *
      * @return void
+     *
+     * @codeCoverageIgnore
      */
     public static function prepare()
     {
