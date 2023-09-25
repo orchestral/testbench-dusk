@@ -158,7 +158,6 @@ class DuskServer
             ->put('TESTBENCH_WORKING_PATH', package_path())
             ->all();
 
-        ray($environmentVariables);
         $this->process = Process::fromShellCommandline(
             $this->prepareCommand(), null, $environmentVariables
         );
