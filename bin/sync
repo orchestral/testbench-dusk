@@ -60,4 +60,6 @@ transform([
     "'model' => App\Models\User::class" => "'model' => Illuminate\Foundation\Auth\User::class",
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/config/auth.php"));
 
+$files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit.xml", "{$workingPath}/stubs/phpunit.xml");
+
 $files->deleteDirectory("{$workingPath}/skeleton");

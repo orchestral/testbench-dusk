@@ -240,6 +240,8 @@ abstract class TestCase extends Testbench
      * @beforeClass
      *
      * @return void
+     *
+     * @codeCoverageIgnore
      */
     public static function prepare()
     {
@@ -250,6 +252,8 @@ abstract class TestCase extends Testbench
      * Begin a server for the tests.
      *
      * @return void
+     *
+     * @codeCoverageIgnore
      */
     public static function setUpBeforeClass(): void
     {
@@ -262,6 +266,8 @@ abstract class TestCase extends Testbench
      * Clean up the testing environment before the next test case.
      *
      * @return void
+     *
+     * @codeCoverageIgnore
      */
     public static function tearDownAfterClass(): void
     {
@@ -274,6 +280,8 @@ abstract class TestCase extends Testbench
      * Determine whether the Dusk command has disabled headless mode.
      *
      * @return bool
+     *
+     * @codeCoverageIgnore
      */
     protected function hasHeadlessDisabled()
     {
