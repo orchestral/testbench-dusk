@@ -2,6 +2,16 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.12.0
+
+Released: 2023-09-26
+
+### Changes
+
+* Update minimum support for Testbench v8.12.0+. ([v8.11.0...v8.12.0](https://github.com/orchestral/testbench/compare/v8.11.0...v8.12.0))
+* Improves integration with `Orchestra\Testbench\Concerns\WithWorkbench` trait.
+* Use `Orchestra\Testbench\Foundation\Env::forward()` to handle sending environment variables via Symfony Process.
+
 ## 8.11.0
 
 Released: 2023-08-29
