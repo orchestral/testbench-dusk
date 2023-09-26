@@ -3,10 +3,11 @@
 namespace Orchestra\Testbench\Dusk;
 
 use Illuminate\Support\Collection;
-use Orchestra\Testbench\Foundation\Env;
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
+use Orchestra\Testbench\Foundation\Env;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
+
 use function Orchestra\Testbench\package_path;
 
 class DuskServer
