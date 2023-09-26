@@ -153,7 +153,8 @@ class DuskServer
 
         /** @var array<string, mixed> $environmentVariables */
         $environmentVariables = Collection::make($_ENV)
-            ->transform(function ($value, $key) {
+            ->keys()
+            ->transform(static function ($key) {
                 return Env::forward($key);
             })
             ->put('TESTBENCH_WORKING_PATH', package_path())

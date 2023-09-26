@@ -67,7 +67,7 @@ trait CanServeSite
      */
     public function beforeServingApplication(Closure $closure): void
     {
-        after_resolving($this->app, 'config', function ($config, $app) use ($closure) {
+        after_resolving($this->app, 'config', static function ($config, $app) use ($closure) {
             $closure($app, $config);
         });
 
@@ -129,7 +129,7 @@ trait CanServeSite
         if ($serializedClosure) {
             $closure = unserialize($serializedClosure)->getClosure();
 
-            after_resolving($this->app, 'config', function ($config, $app) use ($closure) {
+            after_resolving($this->app, 'config', static function ($config, $app) use ($closure) {
                 $closure($app, $config);
             });
         }
