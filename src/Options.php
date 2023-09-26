@@ -73,7 +73,7 @@ class Options
     public static function removeArgument(string $argument)
     {
         if (static::hasArgument($argument)) {
-            static::$arguments = array_values(array_filter(static::$arguments, function ($option) use ($argument) {
+            static::$arguments = array_values(array_filter(static::$arguments, static function ($option) use ($argument) {
                 return $option !== $argument;
             }));
         }
@@ -224,7 +224,7 @@ class Options
      */
     public static function getChromeOptions()
     {
-        return tap(new ChromeOptions(), function ($option) {
+        return tap(new ChromeOptions(), static function ($option) {
             if (static::$w3cCompliant === false) {
                 $option->setExperimentalOption('w3c', static::$w3cCompliant);
             }
