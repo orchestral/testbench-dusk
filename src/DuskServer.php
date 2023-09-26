@@ -4,6 +4,7 @@ namespace Orchestra\Testbench\Dusk;
 
 use Illuminate\Support\Collection;
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
+use Orchestra\Testbench\Foundation\Env;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
@@ -152,6 +153,9 @@ class DuskServer
 
         /** @var array<string, mixed> $environmentVariables */
         $environmentVariables = Collection::make($_ENV)
+            ->transform(function ($value, $key) {
+                return Env::forward($key);
+            })
             ->put('TESTBENCH_WORKING_PATH', package_path())
             ->all();
 

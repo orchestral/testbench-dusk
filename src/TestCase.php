@@ -118,9 +118,13 @@ abstract class TestCase extends Testbench
      */
     protected function getApplicationProviders($app)
     {
-        return array_merge(parent::getApplicationProviders($app), [
-            DuskServiceProvider::class,
-        ]);
+        $providers = parent::getApplicationProviders($app);
+
+        if (! \in_array(DuskServiceProvider::class, $providers)) {
+            array_push($providers, DuskServiceProvider::class);
+        }
+
+        return $providers;
     }
 
     /**
@@ -236,6 +240,8 @@ abstract class TestCase extends Testbench
      * @beforeClass
      *
      * @return void
+     *
+     * @codeCoverageIgnore
      */
     public static function prepare()
     {
@@ -246,6 +252,8 @@ abstract class TestCase extends Testbench
      * Begin a server for the tests.
      *
      * @return void
+     *
+     * @codeCoverageIgnore
      */
     public static function setUpBeforeClass(): void
     {
@@ -258,6 +266,8 @@ abstract class TestCase extends Testbench
      * Clean up the testing environment before the next test case.
      *
      * @return void
+     *
+     * @codeCoverageIgnore
      */
     public static function tearDownAfterClass(): void
     {
@@ -270,6 +280,8 @@ abstract class TestCase extends Testbench
      * Determine whether the Dusk command has disabled headless mode.
      *
      * @return bool
+     *
+     * @codeCoverageIgnore
      */
     protected function hasHeadlessDisabled()
     {

@@ -1,5 +1,13 @@
+providers:
+  - Workbench\App\Providers\RouteServiceProvider
+
+migrations:
+  - workbench/database/migrations
+
 workbench:
   start: '/'
+  welcome: true
   build:
     - drop-sqlite-db
     - create-sqlite-db
+    - migrate:refresh

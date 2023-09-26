@@ -2,6 +2,25 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.12.0
+
+Released: 2023-09-26
+
+### Changes
+
+* Update minimum support for Testbench v8.12.0+. ([v8.11.0...v8.12.0](https://github.com/orchestral/testbench/compare/v8.11.0...v8.12.0))
+* Improves integration with `Orchestra\Testbench\Concerns\WithWorkbench` trait.
+* Use `Orchestra\Testbench\Foundation\Env::forward()` to handle sending environment variables via Symfony Process.
+
+## 8.11.0
+
+Released: 2023-08-29
+
+### Changes
+
+* Update minimum support for Testbench v8.11.0+. ([v8.10.0...v8.11.0](https://github.com/orchestral/testbench/compare/v8.10.0...v8.11.0))
+* Update minimum support for Laravel Dusk v7.11.0+. ([v7.9.0...v7.11.0](https://github.com/laravel/dusk/compare/v7.9.0...v7.11.0))
+
 ## 8.10.0
 
 Released: 2023-08-29
@@ -71,6 +90,7 @@ Released: 2023-08-08
 ### Changes
 
 * Update minimum support for Testbench v8.6.0+. ([v8.5.7...v8.6.0](https://github.com/orchestral/testbench/compare/v8.5.7...v8.6.0))
+* Update minimum support for Laravel Dusk v7.9.0+. ([v7.8.0...v7.9.0](https://github.com/laravel/dusk/compare/v7.8.0...v7.9.0))
 * Autoload `Laravel\Dusk\DuskServiceProvider` service provider.
 
 ## 8.6.7

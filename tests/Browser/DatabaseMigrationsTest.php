@@ -2,13 +2,15 @@
 
 namespace Orchestra\Testbench\Dusk\Tests\Browser;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Schema;
+use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase;
-
-use function Orchestra\Testbench\workbench_path;
 
 class DatabaseMigrationsTest extends TestCase
 {
+    use DatabaseMigrations, WithWorkbench;
+
     protected function setUp(): void
     {
         $this->beforeApplicationDestroyed(function () {
@@ -16,16 +18,6 @@ class DatabaseMigrationsTest extends TestCase
         });
 
         parent::setUp();
-    }
-
-    /**
-     * Define database migrations.
-     *
-     * @return void
-     */
-    protected function defineDatabaseMigrations()
-    {
-        $this->loadMigrationsFrom(workbench_path('database/migrations'));
     }
 
     /** @test */
