@@ -27,9 +27,7 @@ trait ProvidesBrowser
 
         $this->prepareDirectories();
 
-        Browser::$userResolver = function () {
-            return $this->user();
-        };
+        Browser::$userResolver = fn () => $this->user();
     }
 
     /**

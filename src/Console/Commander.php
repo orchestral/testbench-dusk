@@ -21,7 +21,7 @@ class Commander extends Testbench
      */
     protected function resolveApplicationCallback()
     {
-        return function ($app) {
+        return static function ($app) {
             $app->register(TestbenchServiceProvider::class);
         };
     }
