@@ -77,9 +77,11 @@ class DuskCommand extends Command
             'phpunit.dusk.xml.dist',
             'phpunit.xml',
             'phpunit.xml.dist',
-        ])->map(fn ($file) => "{$workingPath}/{$file}")
-            ->filter(fn ($file) => file_exists($file))
-            ->first();
+        ])->map(static function ($file) use ($workingPath) {
+            return "{$workingPath}/{$file}";
+        })->filter(static function ($file) {
+            return file_exists($file);
+        })->first();
 
         return ! \is_null($file) ? array_merge(['-c', $file], $options) : $options;
     }
@@ -99,9 +101,11 @@ class DuskCommand extends Command
             'phpunit.dusk.xml.dist',
             'phpunit.xml',
             'phpunit.xml.dist',
-        ])->map(fn ($file) => "{$workingPath}/{$file}")
-            ->filter(fn ($file) => file_exists($file))
-            ->first();
+        ])->map(static function ($file) use ($workingPath) {
+            return "{$workingPath}/{$file}";
+        })->filter(static function ($file) {
+            return file_exists($file);
+        })->first();
 
         if (\is_null($file)) {
             $phpunitStub = phpunit_version_compare('10.0', '>=') ? 'phpunit.xml' : 'phpunit9.xml';
