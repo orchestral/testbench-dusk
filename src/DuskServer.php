@@ -3,11 +3,11 @@
 namespace Orchestra\Testbench\Dusk;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 use Orchestra\Testbench\Foundation\Env;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
-
 use function Orchestra\Testbench\package_path;
 
 class DuskServer
@@ -166,6 +166,9 @@ class DuskServer
 
         $this->process->setWorkingDirectory($this->laravelPublicPath());
         $this->process->start();
+        $this->process->waitUntil(function ($type, $output) {
+            return Str::contains($output ?? '', "Development Server (http://{$this->host}:{$this->port}) started");
+        });
     }
 
     /**
