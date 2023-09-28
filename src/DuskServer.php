@@ -41,11 +41,11 @@ class DuskServer
     protected $port;
 
     /**
-     * Laravel public working path.
+     * Laravel working path.
      *
      * @var string|null
      */
-    protected $laravelPublicPath;
+    protected $laravelPath;
 
     /**
      * Construct a new server.
@@ -62,12 +62,12 @@ class DuskServer
     /**
      * Set Laravel working path.
      *
-     * @param  string|null  $publicPath
+     * @param  string|null  $laravelPath
      * @return void
      */
-    public function setPublicPath(?string $publicPath = null): void
+    public function setLaravelPath(?string $laravelPath = null): void
     {
-        $this->laravelPublicPath = $publicPath;
+        $this->laravelPath = $laravelPath;
     }
 
     /**
@@ -164,10 +164,19 @@ class DuskServer
             $this->prepareCommand(), null, $environmentVariables
         );
 
-        $this->process->setWorkingDirectory($this->laravelPublicPath());
-        $this->process->start();
-        $this->process->waitUntil(function ($type, $output) {
-            return Str::contains($output ?? '', "Development Server (http://{$this->host}:{$this->port}) started");
+        $duskServerHost = $this->host;
+        $duskServerPort = $this->port;
+        $duskServerLog = "{$this->laravelPath()}/storage/logs/dusk-server.log";
+
+        $this->process->setWorkingDirectory("{$this->laravelPath()}/public");
+        $this->process->start(static function ($type, $buffer) use ($duskServerLog) {
+            file_put_contents("{$duskServerLog}/storage/logs/dusk-server.log", $buffer, FILE_APPEND);
+        });
+
+        $this->process->waitUntil(static function ($type, $buffer) use ($duskServerHost, $duskServerPort) {
+            return Str::contains(
+                $buffer ?? '', "Development Server (http://{$duskServerHost}:{$duskServerPort}) started"
+            );
         });
     }
 
@@ -220,9 +229,9 @@ class DuskServer
      *
      * @return string
      */
-    public function laravelPublicPath(): string
+    public function laravelPath(): string
     {
-        return $this->laravelPublicPath ?: (string) realpath(__DIR__.'/../laravel/public');
+        return $this->laravelPath ?: (string) realpath(__DIR__.'/../laravel/public');
     }
 
     /**
