@@ -8,6 +8,7 @@ use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 use Orchestra\Testbench\Foundation\Env;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
+
 use function Orchestra\Testbench\package_path;
 
 class DuskServer
@@ -170,7 +171,6 @@ class DuskServer
 
         $this->process->setWorkingDirectory("{$this->laravelPath()}/public");
         $this->process->start(static function ($type, $buffer) use ($laravelPath) {
-
             file_put_contents("{$laravelPath}/storage/logs/dusk-server.log", $buffer, FILE_APPEND);
         });
 
