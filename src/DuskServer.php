@@ -52,24 +52,6 @@ class DuskServer
     protected $laravelPath;
 
     /**
-     * The environment variables that should be passed from host machine to the PHP server process.
-     *
-     * @var array<int, string>
-     */
-    public static $passthroughVariables = [
-        'APP_ENV',
-        'APP_BASE_PATH',
-        'LARAVEL_SAIL',
-        'PATH',
-        'PHP_CLI_SERVER_WORKERS',
-        'PHP_IDE_CONFIG',
-        'SYSTEMROOT',
-        'XDEBUG_CONFIG',
-        'XDEBUG_MODE',
-        'XDEBUG_SESSION',
-    ];
-
-    /**
      * Construct a new server.
      *
      * @param  string  $host
