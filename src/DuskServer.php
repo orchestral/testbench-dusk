@@ -166,11 +166,12 @@ class DuskServer
 
         $duskServerHost = $this->host;
         $duskServerPort = $this->port;
-        $duskServerLog = "{$this->laravelPath()}/storage/logs/dusk-server.log";
+        $laravelPath = $this->laravelPath();
 
         $this->process->setWorkingDirectory("{$this->laravelPath()}/public");
-        $this->process->start(static function ($type, $buffer) use ($duskServerLog) {
-            file_put_contents("{$duskServerLog}/storage/logs/dusk-server.log", $buffer, FILE_APPEND);
+        $this->process->start(static function ($type, $buffer) use ($laravelPath) {
+
+            file_put_contents("{$laravelPath}/storage/logs/dusk-server.log", $buffer, FILE_APPEND);
         });
 
         $this->process->waitUntil(static function ($type, $buffer) use ($duskServerHost, $duskServerPort) {
