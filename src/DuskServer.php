@@ -10,6 +10,9 @@ use Symfony\Component\Process\Process;
 
 use function Orchestra\Testbench\package_path;
 
+/**
+ * @internal
+ */
 class DuskServer
 {
     /**
@@ -154,8 +157,8 @@ class DuskServer
         /** @var array<string, mixed> $environmentVariables */
         $environmentVariables = Collection::make($_ENV)
             ->keys()
-            ->transform(static function ($key) {
-                return Env::forward($key);
+            ->mapWithKeys(static function (string $key) {
+                return [$key => Env::forward($key)];
             })
             ->put('TESTBENCH_WORKING_PATH', package_path())
             ->all();
