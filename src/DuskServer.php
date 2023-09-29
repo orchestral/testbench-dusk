@@ -52,6 +52,24 @@ class DuskServer
     protected $laravelPath;
 
     /**
+     * The environment variables that should be passed from host machine to the PHP server process.
+     *
+     * @var array<int, string>
+     */
+    public static $passthroughVariables = [
+        'APP_ENV',
+        'APP_BASE_PATH',
+        'LARAVEL_SAIL',
+        'PATH',
+        'PHP_CLI_SERVER_WORKERS',
+        'PHP_IDE_CONFIG',
+        'SYSTEMROOT',
+        'XDEBUG_CONFIG',
+        'XDEBUG_MODE',
+        'XDEBUG_SESSION',
+    ];
+
+    /**
      * Construct a new server.
      *
      * @param  string  $host
@@ -82,7 +100,9 @@ class DuskServer
      */
     public function stash($content): void
     {
-        $this->writeLine('Stashing: '.json_encode($content));
+        if (isset($content['class'])) {
+            $this->writeLine('Stashing: '.$content['class']);
+        }
 
         file_put_contents($this->temp(), json_encode($content));
     }
@@ -160,8 +180,10 @@ class DuskServer
         /** @var array<string, mixed> $environmentVariables */
         $environmentVariables = Collection::make($_ENV)
             ->keys()
-            ->transform(static function ($key) {
-                return Env::forward($key);
+            ->mapsWithKey(static function ($key) {
+                return \in_array($key, static::$passthroughVariables)
+                    ? [$key => Env::forward($key)]
+                    : [$key => false];
             })
             ->put('TESTBENCH_WORKING_PATH', package_path())
             ->all();
@@ -175,12 +197,7 @@ class DuskServer
         $duskServerLog = sprintf('%s/storage/logs/dusk-server.log', $this->laravelPath());
 
         $this->process->setWorkingDirectory("{$this->laravelPath()}/public");
-        $this->process->start(function ($type, $buffer) {
-            ray($buffer);
-            if (! Str::contains($buffer, ['Accepted', 'Closing'])) {
-                $this->write($buffer);
-            }
-        });
+        $this->process->start();
 
         $this->process->waitUntil(function ($type, $buffer) {
             return tap(
