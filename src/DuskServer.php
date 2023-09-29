@@ -231,7 +231,7 @@ class DuskServer
      */
     public function laravelPath(): string
     {
-        return $this->laravelPath ?: (string) realpath(__DIR__.'/../laravel/public');
+        return $this->laravelPath ?: (string) realpath(__DIR__.'/../laravel');
     }
 
     /**
