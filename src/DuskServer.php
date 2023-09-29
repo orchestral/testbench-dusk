@@ -180,7 +180,7 @@ class DuskServer
         /** @var array<string, mixed> $environmentVariables */
         $environmentVariables = Collection::make($_ENV)
             ->keys()
-            ->mapsWithKey(static function ($key) {
+            ->mapWithKeys(static function ($key) {
                 return \in_array($key, static::$passthroughVariables)
                     ? [$key => Env::forward($key)]
                     : [$key => false];
@@ -205,7 +205,7 @@ class DuskServer
                     $buffer ?? '', "Development Server (http://{$this->host}:{$this->port}) started"
                 ),
                 function (bool $started) {
-                    $this->writeLine("Dusk Server started");
+                    $this->writeLine('Dusk Server started');
                 }
             );
         });
