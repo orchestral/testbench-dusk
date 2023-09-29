@@ -11,6 +11,9 @@ use Symfony\Component\Process\Process;
 
 use function Orchestra\Testbench\package_path;
 
+/**
+ * @internal
+ */
 class DuskServer
 {
     /**
@@ -79,6 +82,8 @@ class DuskServer
      */
     public function stash($content): void
     {
+        $this->writeLine('Stashing: '.json_encode($content));
+
         file_put_contents($this->temp(), json_encode($content));
     }
 
@@ -167,16 +172,24 @@ class DuskServer
 
         $duskServerHost = $this->host;
         $duskServerPort = $this->port;
-        $laravelPath = $this->laravelPath();
+        $duskServerLog = sprintf('%s/storage/logs/dusk-server.log', $this->laravelPath());
 
         $this->process->setWorkingDirectory("{$this->laravelPath()}/public");
-        $this->process->start(static function ($type, $buffer) use ($laravelPath) {
-            file_put_contents("{$laravelPath}/storage/logs/dusk-server.log", $buffer, FILE_APPEND);
+        $this->process->start(function ($type, $buffer) {
+            ray($buffer);
+            if (! Str::contains($buffer, ['Accepted', 'Closing'])) {
+                $this->write($buffer);
+            }
         });
 
-        $this->process->waitUntil(static function ($type, $buffer) use ($duskServerHost, $duskServerPort) {
-            return Str::contains(
-                $buffer ?? '', "Development Server (http://{$duskServerHost}:{$duskServerPort}) started"
+        $this->process->waitUntil(function ($type, $buffer) {
+            return tap(
+                Str::contains(
+                    $buffer ?? '', "Development Server (http://{$this->host}:{$this->port}) started"
+                ),
+                function (bool $started) {
+                    $this->writeLine("Dusk Server started");
+                }
             );
         });
     }
@@ -243,6 +256,16 @@ class DuskServer
     public function getProcess()
     {
         return $this->process;
+    }
+
+    public function write(string $message): void
+    {
+        file_put_contents("{$this->laravelPath()}/storage/logs/dusk-server.log", $message, FILE_APPEND);
+    }
+
+    public function writeLine(string $message): void
+    {
+        file_put_contents("{$this->laravelPath()}/storage/logs/dusk-server.log", $message.PHP_EOL, FILE_APPEND);
     }
 
     /**
