@@ -1,6 +1,2 @@
 parameters:
-	ignoreErrors:
-		-
-			message: "#^Parameter \\#1 \\$key of method Illuminate\\\\Support\\\\Collection\\<int,\\(int\\|string\\)\\>\\:\\:put\\(\\) expects int, string given\\.$#"
-			count: 1
-			path: src/DuskServer.php
+	ignoreErrors: []
