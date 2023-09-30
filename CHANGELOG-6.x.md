@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.37.2
+
+Released: 2023-09-30
+
+### Fixes
+
+* Fixes forwarding environment variables using `Env::forward()`.
+
 ## 6.37.1
 
 Released: 2023-09-27
