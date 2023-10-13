@@ -12,7 +12,7 @@ class PackageManifest extends \Orchestra\Testbench\Foundation\PackageManifest
      *
      * @var array<int, string>
      */
-    protected $requiredPackages = [
+    protected array $requiredPackages = [
         'laravel/dusk',
         'spatie/laravel-ray',
     ];

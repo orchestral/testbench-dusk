@@ -44,7 +44,7 @@
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^2.3",
         "orchestra/testbench": "^9.0",
-        "php-webdriver/webdriver": "^1.9"
+        "php-webdriver/webdriver": "dev-symfony7 as 1.10.0"
     },
     "require-dev": {
         "laravel/pint": "^1.6",
