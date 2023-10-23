@@ -5,10 +5,11 @@ namespace Orchestra\Testbench\Dusk\Tests\Unit;
 use Illuminate\Foundation\Auth\User;
 use Laravel\Dusk\DuskServiceProvider;
 use Orchestra\Testbench\Dusk\TestCase as TestbenchDuskTestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class DefaultConfigurationTest extends TestbenchDuskTestCase
 {
-    /** @test */
+    #[Test]
     public function it_populate_expected_testing_config()
     {
         tap($this->app['config']['database.connections.testing'], function ($config) {
@@ -21,26 +22,26 @@ class DefaultConfigurationTest extends TestbenchDuskTestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function it_loads_dusk_service_provider()
     {
         $this->assertContains(DuskServiceProvider::class, array_values($this->app['config']['app.providers']));
         $this->assertContains(DuskServiceProvider::class, array_keys($this->app->getLoadedProviders()));
     }
 
-    /** @test */
+    #[Test]
     public function it_populate_expected_auth_defaults()
     {
         $this->assertSame(User::class, $this->app['config']['auth.providers.users.model']);
     }
 
-    /** @test */
+    #[Test]
     public function it_populate_expected_cache_defaults()
     {
         $this->assertSame('file', $this->app['config']['cache.default']);
     }
 
-    /** @test */
+    #[Test]
     public function it_populate_expected_session_defaults()
     {
         $this->assertSame('file', $this->app['config']['session.driver']);

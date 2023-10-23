@@ -4,10 +4,11 @@ namespace Orchestra\Testbench\Dusk\Tests\Unit\Concerns;
 
 use Orchestra\Testbench\Dusk\Concerns\CanServeSite;
 use Orchestra\Testbench\Dusk\Tests\Unit\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CanServeSiteTest extends TestCase
 {
-    /** @test * */
+    #[Test]
     public function it_starts_and_stops_a_server()
     {
         $dummy = new CanServeSiteDummy();
@@ -27,7 +28,7 @@ class CanServeSiteTest extends TestCase
         $this->assertFalse($this->isServerUp());
     }
 
-    /** @test * */
+    #[Test]
     public function it_stops_an_existing_server_and_starts_a_new_one_with_consecutive_serve_requests()
     {
         $dummy = new CanServeSiteDummy();

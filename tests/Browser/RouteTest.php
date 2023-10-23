@@ -5,6 +5,7 @@ namespace Orchestra\Testbench\Dusk\Tests\Browser;
 use Illuminate\Support\Env;
 use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Dusk\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 use function Orchestra\Testbench\package_path;
 
@@ -35,7 +36,7 @@ class RouteTest extends TestCase
         }]);
     }
 
-    /** @test */
+    #[Test]
     public function can_use_dusk()
     {
         $this->browse(function (Browser $browser) {
@@ -44,7 +45,7 @@ class RouteTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function can_return_correct_application_environment()
     {
         $this->browse(function (Browser $browser) {
@@ -53,7 +54,7 @@ class RouteTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function can_use_multiple_browsers()
     {
         $this->browse(function (Browser $browser, Browser $browserTwo) {
@@ -67,7 +68,7 @@ class RouteTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function can_tweak_the_application_within_a_test()
     {
         $this->beforeServingApplication(function ($app, $config) {
@@ -82,13 +83,13 @@ class RouteTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function application_tweak_doesnt_persist_between_test()
     {
         $this->assertNull($this->app['config']->get('new_config_item'));
     }
 
-    /** @test */
+    #[Test]
     public function can_use_multiple_browsers_can_persist_testbench_working_path_environment_variables()
     {
         $this->browse(function (Browser $browser, Browser $browserTwo) {

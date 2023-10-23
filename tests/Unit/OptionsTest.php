@@ -3,6 +3,7 @@
 namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
 use Orchestra\Testbench\Dusk\Options;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 class OptionsTest extends PHPUnitTestCase
@@ -15,7 +16,7 @@ class OptionsTest extends PHPUnitTestCase
         Options::resetArguments();
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_chrome_options_without_ui()
     {
         Options::withoutUI();
@@ -26,7 +27,7 @@ class OptionsTest extends PHPUnitTestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_chrome_options_with_ui()
     {
         Options::withUI();
@@ -34,7 +35,7 @@ class OptionsTest extends PHPUnitTestCase
         $this->assertNotContains('args', Options::getChromeOptions()->toArray());
     }
 
-    /** @test */
+    #[Test]
     public function it_tells_us_if_we_want_ui()
     {
         Options::withoutUI();
@@ -46,7 +47,7 @@ class OptionsTest extends PHPUnitTestCase
         $this->assertTrue(Options::hasUI());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_use_no_zygote_argument()
     {
         Options::noZygote();
@@ -57,7 +58,7 @@ class OptionsTest extends PHPUnitTestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_use_ignore_ssl_errors_argument()
     {
         Options::ignoreSslErrors();
@@ -68,7 +69,7 @@ class OptionsTest extends PHPUnitTestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_use_window_size_argument()
     {
         Options::windowSize(2048, 1080);
@@ -79,7 +80,7 @@ class OptionsTest extends PHPUnitTestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_use_remote_debugging_port_argument()
     {
         Options::remoteDebuggingPort(9095);
@@ -90,7 +91,7 @@ class OptionsTest extends PHPUnitTestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_use_user_agent_argument()
     {
         Options::userAgent('Dusk');

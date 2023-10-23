@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class DatabaseMigrationsTest extends TestCase
 {
@@ -20,7 +21,7 @@ class DatabaseMigrationsTest extends TestCase
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function it_can_migrate_and_reset_the_database()
     {
         $this->assertTrue(Schema::hasTable('tests'));

@@ -6,12 +6,13 @@ use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase;
 use Orchestra\Workbench\Http\Middleware\CatchDefaultRoute;
+use PHPUnit\Framework\Attributes\Test;
 
 class WorkbenchTest extends TestCase
 {
     use WithWorkbench;
 
-    /** @test */
+    #[Test]
     public function it_can_browse_the_default_page()
     {
         $this->beforeServingApplication(function ($app) {
@@ -24,7 +25,7 @@ class WorkbenchTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function it_can_browse_the_welcome_page()
     {
         $this->browse(function ($browser) {

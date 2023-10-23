@@ -4,10 +4,11 @@ namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
 use Orchestra\Testbench\Dusk\DuskServer;
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
+use PHPUnit\Framework\Attributes\Test;
 
 class DuskServerTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_provides_the_laravel_public_directory()
     {
         $this->assertEquals(
@@ -16,7 +17,7 @@ class DuskServerTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_provides_the_laravel_public_directory_from_custom_location()
     {
         $server = new DuskServer();
@@ -28,7 +29,7 @@ class DuskServerTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_fails_when_there_is_a_server_on_the_host_and_port_already()
     {
         try {
@@ -56,7 +57,7 @@ class DuskServerTest extends TestCase
         $this->fail('A server existed but we tried to set a new one up anyway');
     }
 
-    /** @test */
+    #[Test]
     public function an_early_exit_does_not_leave_an_orphan_server()
     {
         switch ($pid = pcntl_fork()) {

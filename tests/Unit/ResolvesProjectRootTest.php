@@ -3,11 +3,12 @@
 namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
 use Orchestra\Testbench\Dusk\TestCase as TestbenchDuskTestCase;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase as PHPUnitTestcase;
 
 class ResolvesProjectRootTest extends PHPUnitTestCase
 {
-    /** @test */
+    #[Test]
     public function it_finds_the_correct_path_for_the_browser_tests()
     {
         $this->assertEquals(

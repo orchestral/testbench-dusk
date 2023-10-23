@@ -7,12 +7,13 @@ use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Concerns\WithLaravelMigrations;
 use Orchestra\Testbench\Dusk\TestCase;
 use Orchestra\Testbench\Factories\UserFactory;
+use PHPUnit\Framework\Attributes\Test;
 
 class AuthTest extends TestCase
 {
     use DatabaseMigrations, WithLaravelMigrations;
 
-    /** @test */
+    #[Test]
     public function can_authenticate_user()
     {
         $user = UserFactory::new()->create();
