@@ -63,4 +63,8 @@ transform([
     "'model' => App\Models\User::class" => "'model' => Illuminate\Foundation\Auth\User::class",
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/config/auth.php"));
 
+transform([
+    "env('BCRYPT_ROUNDS', 12)," => "env('BCRYPT_ROUNDS', 10),",
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/config/hashing.php"));
+
 $files->deleteDirectory("{$workingPath}/skeleton");
