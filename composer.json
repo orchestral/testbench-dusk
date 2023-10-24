@@ -89,6 +89,6 @@
     "config": {
         "sort-packages": true
     },
-    "prefer-stable": true,
+    "prefer-stable": false,
     "minimum-stability": "dev"
 }
