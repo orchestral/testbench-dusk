@@ -22,6 +22,7 @@ jobs:
           - "~10.1.0"
           - "~10.2.0"
           - "~10.3.0"
+          - "~10.4.0"
         dependencies:
           - "highest"
           - "lowest"
@@ -62,7 +63,7 @@ jobs:
         run: vendor/laravel/dusk/bin/chromedriver-linux &
 
       - name: Execute tests
-        run: vendor/bin/phpunit -c phpunit.xml --fail-on-warning --fail-on-deprecation --fail-on-notice
+        run: vendor/bin/phpunit --fail-on-warning --fail-on-deprecation --fail-on-notice
         env:
           RAY_ENABLED: false
 
