@@ -56,7 +56,7 @@ jobs:
           composer show -D
 
       - name: Create database
-        run: php ./create-sqlite-db
+        run: php testbench-dusk package:create-sqlite-db
 
       - name: Start Chrome Driver
         run: vendor/laravel/dusk/bin/chromedriver-linux &
