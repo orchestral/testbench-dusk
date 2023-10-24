@@ -10,6 +10,7 @@ $files = new Illuminate\Filesystem\Filesystem();
 $files->delete("{$workingPath}/laravel/.env");
 $files->deleteDirectory("{$workingPath}/skeleton");
 
+$files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/bootstrap/app.php", "{$workingPath}/laravel/bootstrap/app.php");
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/server.php", "{$workingPath}/laravel/server.php");
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/.gitignore", "{$workingPath}/laravel/.gitignore");
 $files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit.xml", "{$workingPath}/stubs/phpunit.xml");
