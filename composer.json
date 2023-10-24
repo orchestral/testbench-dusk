@@ -39,7 +39,7 @@
     "require": {
         "php": "^8.0",
         "konsulting/project-root": "^1.1",
-        "laravel/dusk": "^7.7",
+        "laravel/dusk": "^7.11.3",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^1.7.1 || ^2.2.1",
         "orchestra/testbench": "^7.34",
