@@ -12,7 +12,7 @@ class Commander extends Testbench
      *
      * @var string
      */
-    protected $environmentFile = '.env.dusk';
+    protected string $environmentFile = '.env.dusk';
 
     /**
      * Resolve application implementation.
