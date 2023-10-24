@@ -17,6 +17,7 @@ jobs:
         php:
           - 8.1
           - 8.2
+          - 8.3
         experimental:
           - true
 
@@ -24,7 +25,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
