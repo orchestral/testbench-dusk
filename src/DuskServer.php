@@ -3,7 +3,6 @@
 namespace Orchestra\Testbench\Dusk;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 use Orchestra\Testbench\Foundation\Env;
 use Symfony\Component\Process\PhpExecutableFinder;
