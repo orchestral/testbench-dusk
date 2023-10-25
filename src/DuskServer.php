@@ -82,10 +82,6 @@ class DuskServer
      */
     public function stash($content): void
     {
-        if (isset($content['class'])) {
-            $this->writeLine('Stashing: '.$content['class']);
-        }
-
         file_put_contents($this->temp(), json_encode($content));
     }
 
@@ -172,23 +168,8 @@ class DuskServer
             $this->prepareCommand(), null, $environmentVariables
         );
 
-        $duskServerHost = $this->host;
-        $duskServerPort = $this->port;
-        $duskServerLog = sprintf('%s/storage/logs/dusk-server.log', $this->laravelPath());
-
         $this->process->setWorkingDirectory("{$this->laravelPath()}/public");
         $this->process->start();
-
-        $this->process->waitUntil(function ($type, $buffer) {
-            return tap(
-                Str::contains(
-                    $buffer ?? '', "Development Server (http://{$this->host}:{$this->port}) started"
-                ),
-                function (bool $started) {
-                    $this->writeLine('Dusk Server started');
-                }
-            );
-        });
     }
 
     /**
@@ -253,16 +234,6 @@ class DuskServer
     public function getProcess()
     {
         return $this->process;
-    }
-
-    public function write(string $message): void
-    {
-        file_put_contents("{$this->laravelPath()}/storage/logs/dusk-server.log", $message, FILE_APPEND);
-    }
-
-    public function writeLine(string $message): void
-    {
-        file_put_contents("{$this->laravelPath()}/storage/logs/dusk-server.log", $message.PHP_EOL, FILE_APPEND);
     }
 
     /**

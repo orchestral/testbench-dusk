@@ -40,10 +40,11 @@
         "php": "^8.1",
         "composer-runtime-api": "^2.2",
         "konsulting/project-root": "^1.1",
-        "laravel/dusk": "^7.11",
+        "laravel/dusk": "^7.11.3",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^2.3",
-        "orchestra/testbench": "8.x-dev",
+        "orchestra/testbench": ">=8.14.0 <8.15.0",
+        "orchestra/testbench-core": "^8.14.1",
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
@@ -75,8 +76,8 @@
             "@php vendor/bin/phpstan analyse"
         ],
         "test": [
-            "@php drop-sqlite-db",
-            "@php create-sqlite-db",
+            "@php testbench-dusk package:drop-sqlite-db",
+            "@php testbench-dusk package:create-sqlite-db",
             "@php vendor/bin/phpunit -c ./ --color"
         ],
         "ci": [
@@ -89,6 +90,6 @@
     "config": {
         "sort-packages": true
     },
-    "prefer-stable": true,
+    "prefer-stable": false,
     "minimum-stability": "dev"
 }

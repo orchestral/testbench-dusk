@@ -13,6 +13,7 @@ $version = ($input->hasParameterOption('--dev') && $input->hasParameterOption('-
 $files->delete("{$workingPath}/laravel/.env");
 $files->deleteDirectory("{$workingPath}/skeleton");
 
+$files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/bootstrap/app.php", "{$workingPath}/laravel/bootstrap/app.php");
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/server.php", "{$workingPath}/laravel/server.php");
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/.gitignore", "{$workingPath}/laravel/.gitignore");
 $files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit.xml", "{$workingPath}/stubs/phpunit.xml");
@@ -61,5 +62,9 @@ transform([
 transform([
     "'model' => App\Models\User::class" => "'model' => Illuminate\Foundation\Auth\User::class",
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/config/auth.php"));
+
+transform([
+    "env('BCRYPT_ROUNDS', 12)," => "env('BCRYPT_ROUNDS', 10),",
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/config/hashing.php"));
 
 $files->deleteDirectory("{$workingPath}/skeleton");
