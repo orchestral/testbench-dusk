@@ -8,6 +8,7 @@ use Orchestra\Testbench\Foundation\Env;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
+use function Orchestra\Testbench\defined_environment_variables;
 use function Orchestra\Testbench\package_path;
 
 /**
@@ -154,17 +155,8 @@ class DuskServer
     {
         $this->guardServerStarting();
 
-        /** @var array<string, mixed> $environmentVariables */
-        $environmentVariables = Collection::make($_ENV)
-            ->keys()
-            ->mapWithKeys(static function (string $key) {
-                return [$key => Env::forward($key)];
-            })
-            ->put('TESTBENCH_WORKING_PATH', package_path())
-            ->all();
-
         $this->process = Process::fromShellCommandline(
-            $this->prepareCommand(), null, $environmentVariables
+            $this->prepareCommand(), null, defined_environment_variables()
         );
 
         $this->process->setWorkingDirectory($this->laravelPublicPath());
