@@ -75,8 +75,8 @@
             "@php vendor/bin/phpstan analyse"
         ],
         "test": [
-            "@php drop-sqlite-db",
-            "@php create-sqlite-db",
+            "@php testbench-dusk package:drop-sqlite-db",
+            "@php testbench-dusk package:create-sqlite-db",
             "@php vendor/bin/phpunit -c ./ --color"
         ],
         "ci": [
