@@ -43,8 +43,8 @@
         "laravel/dusk": "^7.11.3",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^2.3",
-        "orchestra/testbench": ">=8.14.0 <8.15.0",
-        "orchestra/testbench-core": "^8.14.3",
+        "orchestra/testbench": "8.x-dev",
+        "orchestra/testbench-core": "^8.15",
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
