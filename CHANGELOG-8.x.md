@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.15.0
+
+Released: 2023-11-10
+
+### Changes
+
+* Update minimum support for Testbench v8.15.0+. ([v8.14.0...v8.15.0](https://github.com/orchestral/testbench/compare/v8.14.0...v8.15.0))
+* Refactor `Orchetra\Testbench\Dusk\DuskServer`.
+
 ## 8.14.2
 
 Released: 2023-11-02
