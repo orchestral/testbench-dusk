@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.39.0
+
+Released: 2023-11-10
+
+### Changes
+
+* Update minimum support for Testbench v6.38.0+. ([v6.37.0...v6.38.0](https://github.com/orchestral/testbench/compare/v6.37.0...v6.38.0))
+* Refactor `Orchetra\Testbench\Dusk\DuskServer`.
+
 ## 6.38.0
 
 Released: 2023-10-24
