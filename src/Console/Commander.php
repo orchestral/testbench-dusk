@@ -19,6 +19,7 @@ class Commander extends Testbench
      *
      * @return \Closure(\Illuminate\Foundation\Application):void
      */
+    #[\Override]
     protected function resolveApplicationCallback()
     {
         return static function ($app) {
@@ -31,6 +32,7 @@ class Commander extends Testbench
      *
      * @return string
      */
+    #[\Override]
     public static function applicationBasePath()
     {
         return $_ENV['APP_BASE_PATH'] ?? realpath(__DIR__.'/../../laravel');
