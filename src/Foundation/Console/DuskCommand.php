@@ -46,6 +46,7 @@ class DuskCommand extends Command
      *
      * @return mixed
      */
+    #[\Override]
     public function handle()
     {
         $this->callSilent('package:dusk-purge');
@@ -59,6 +60,7 @@ class DuskCommand extends Command
      * @param  array  $options
      * @return array
      */
+    #[\Override]
     protected function phpunitArguments($options)
     {
         if ($this->shouldUseCollisionPrinter()) {
@@ -91,6 +93,7 @@ class DuskCommand extends Command
      *
      * @return void
      */
+    #[\Override]
     protected function writeConfiguration()
     {
         /** @phpstan-ignore-next-line */
@@ -124,6 +127,7 @@ class DuskCommand extends Command
      *
      * @return void
      */
+    #[\Override]
     protected function removeConfiguration()
     {
         /** @phpstan-ignore-next-line */
