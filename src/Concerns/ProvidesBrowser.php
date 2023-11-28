@@ -5,6 +5,10 @@ namespace Orchestra\Testbench\Dusk\Concerns;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Chrome\SupportsChrome;
 use Laravel\Dusk\Concerns\ProvidesBrowser as Concern;
+use Orchestra\Testbench\Concerns\HandlesAttributes;
+use Orchestra\Testbench\Dusk\Attributes\BeforeServing;
+use Orchestra\Testbench\Dusk\Attributes\RestartServer;
+use Orchestra\Testbench\Exceptions\ApplicationNotAvailableException;
 
 use function Orchestra\Testbench\Dusk\find_test_directory;
 use function Orchestra\Testbench\Dusk\prepare_debug_directories;
@@ -28,6 +32,19 @@ trait ProvidesBrowser
         $this->prepareDirectories();
 
         Browser::$userResolver = fn () => $this->user();
+
+        if (\is_null($app = $this->app)) {
+            throw ApplicationNotAvailableException::make(__METHOD__);
+        }
+
+        if (static::usesTestingConcern(HandlesAttributes::class)) {
+            $this->parseTestMethodAttributes($this->app, RestartServer::class);
+            $this->parseTestMethodAttributes($this->app, BeforeServing::class)
+                ->take(1)
+                ->each(function ($callback) {
+                    $this->beforeServingApplication($callback);
+                });
+        }
     }
 
     /**
