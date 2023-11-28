@@ -6,6 +6,7 @@ use Laravel\Dusk\Browser;
 use Laravel\Dusk\Chrome\SupportsChrome;
 use Laravel\Dusk\Concerns\ProvidesBrowser as Concern;
 use Orchestra\Testbench\Concerns\HandlesAttributes;
+use Orchestra\Testbench\Dusk\Attributes\BeforeServing;
 use Orchestra\Testbench\Dusk\Attributes\RestartServer;
 use Orchestra\Testbench\Exceptions\ApplicationNotAvailableException;
 
@@ -37,7 +38,12 @@ trait ProvidesBrowser
         }
 
         if (static::usesTestingConcern(HandlesAttributes::class)) {
-            $this->parseTestMethodAttributes($app, RestartServer::class);
+            $this->parseTestMethodAttributes($this->app, RestartServer::class);
+            $this->parseTestMethodAttributes($this->app, BeforeServing::class)
+                ->take(1)
+                ->each(function ($callback) {
+                    $this->beforeServingApplication($callback);
+                });
         }
     }
 

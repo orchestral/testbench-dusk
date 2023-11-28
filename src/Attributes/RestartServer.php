@@ -7,7 +7,7 @@ use Closure;
 use Orchestra\Testbench\Contracts\Attributes\Actionable as ActionableContract;
 
 #[Attribute(Attribute::TARGET_CLASS | Attribute::TARGET_METHOD)]
-class RestartServer implements ActionableContract
+final class RestartServer implements ActionableContract
 {
     /**
      * Handle the attribute.

@@ -81,29 +81,26 @@ trait CanServeSite
     /**
      * Make tweaks to the application, both inside the test and on the test server.
      *
-     * @param  \Closure(\Illuminate\Foundation\Application, \Illuminate\Contracts\Config\Repository):void  $closure
+     * @param  (\Closure(\Illuminate\Foundation\Application, \Illuminate\Contracts\Config\Repository):(void))|string  $closure
      * @return void
      */
-    public function beforeServingApplication(Closure $closure): void
+    public function beforeServingApplication(Closure|string $closure): void
     {
-        /** @var \Illuminate\Foundation\Application $app */
-        $app = $this->app;
-
-        after_resolving($app, 'config', static function ($config, $app) use ($closure) {
-            /**
-             * @var \Illuminate\Foundation\Application $app
-             * @var \Illuminate\Contracts\Config\Repository $config
-             */
-            $closure($app, $config);
+        after_resolving($this->app, 'config', function ($config, $app) use ($closure) {
+            \is_string($closure) && method_exists($this, $closure)
+                ? $this->{$closure}($app, $config)
+                : $closure($app, $config);
         });
 
         static::$server?->stash([
             'class' => static::class,
-            'tweakApplication' => serialize(
-                class_exists(SerializableClosureFactory::class)
-                    ? SerializableClosureFactory::make($closure)
-                    : new SerializableClosure($closure)
-            ),
+            'tweakApplication' => \is_string($closure)
+                ? serialize($closure)
+                : serialize(
+                    class_exists(SerializableClosureFactory::class)
+                        ? SerializableClosureFactory::make($closure)
+                        : new SerializableClosure($closure)
+                ),
         ]);
 
         $this->beforeApplicationDestroyed(function () {
@@ -153,13 +150,15 @@ trait CanServeSite
         /** @var \Illuminate\Foundation\Application $app */
         $app = $this->app;
 
-        $serializedClosure = static::$server->getStash('tweakApplication');
+        $serializedClosure = unserialize(static::$server->getStash('tweakApplication'));
 
         if ($serializedClosure) {
-            $closure = unserialize($serializedClosure)->getClosure();
+            $closure = \is_string($serializedClosure) ? $serializedClosure : $serializedClosure->getClosure();
 
-            after_resolving($app, 'config', static function ($config, $app) use ($closure) {
-                $closure($app, $config);
+            after_resolving($this->app, 'config', function ($config, $app) use ($closure) {
+                \is_string($closure) && method_exists($this, $closure)
+                    ? $this->{$closure}($app, $config)
+                    : $closure($app, $config);
             });
         }
 
