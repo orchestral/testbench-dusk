@@ -45,6 +45,16 @@ trait CanServeSite
     }
 
     /**
+     * Start serving on a given host and port.
+     *
+     * @return void
+     */
+    public static function startServing(): void
+    {
+        static::serve(static::getBaseServeHost(), static::getBaseServePort());
+    }
+
+    /**
      * Stop serving on a given host and port. As a safety net, we will
      * shut down all servers if we.
      *
@@ -55,6 +65,17 @@ trait CanServeSite
         if (isset(static::$server)) {
             static::$server->stop();
         }
+    }
+
+    /**
+     * Reload serving on a given host and port.
+     *
+     * @return void
+     */
+    public static function reloadServing(): void
+    {
+        static::stopServing();
+        static::startServing();
     }
 
     /**

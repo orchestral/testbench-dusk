@@ -276,7 +276,7 @@ abstract class TestCase extends Testbench
     {
         parent::setUpBeforeClass();
 
-        static::serve(static::getBaseServeHost(), static::getBaseServePort());
+        static::startServing();
     }
 
     /**
