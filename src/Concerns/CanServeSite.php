@@ -81,7 +81,7 @@ trait CanServeSite
     /**
      * Make tweaks to the application, both inside the test and on the test server.
      *
-     * @param  (\Closure(\Illuminate\Foundation\Application):(void))|string  $closure
+     * @param  (\Closure(\Illuminate\Foundation\Application, \Illuminate\Contracts\Config\Repository):(void))|string  $closure
      * @return void
      */
     public function beforeServingApplication($closure): void
@@ -111,7 +111,7 @@ trait CanServeSite
     /**
      * Make tweaks to the application, both inside the test and on the test server.
      *
-     * @param  \Closure(\Illuminate\Foundation\Application):void  $closure
+     * @param  \Closure(\Illuminate\Foundation\Application, \Illuminate\Contracts\Config\Repository):(void)  $closure
      * @return void
      */
     public function tweakApplication(Closure $closure): void
