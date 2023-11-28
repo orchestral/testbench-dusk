@@ -9,7 +9,6 @@ use Orchestra\Testbench\Contracts\Attributes\Actionable as ActionableContract;
 #[Attribute(Attribute::TARGET_CLASS | Attribute::TARGET_METHOD)]
 final class BeforeServing implements ActionableContract
 {
-
     /**
      * The target method.
      *

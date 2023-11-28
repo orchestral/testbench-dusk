@@ -8,6 +8,7 @@ use Laravel\Dusk\Concerns\ProvidesBrowser as Concern;
 use Orchestra\Testbench\Concerns\HandlesAttributes;
 use Orchestra\Testbench\Dusk\Attributes\BeforeServing;
 use Orchestra\Testbench\Dusk\Attributes\RestartServer;
+
 use function Orchestra\Testbench\Dusk\find_test_directory;
 use function Orchestra\Testbench\Dusk\prepare_debug_directories;
 
