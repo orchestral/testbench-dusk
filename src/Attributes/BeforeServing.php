@@ -31,15 +31,10 @@ final class BeforeServing implements ActionableContract
      *
      * @param  \Illuminate\Foundation\Application  $app
      * @param  \Closure(string, array<int, mixed>):void  $action
+     * @return string
      */
-    public function handle($app, Closure $action): void
+    public function handle($app, Closure $action)
     {
-        return function ($app, $config) use ($action) {
-            /**
-             * @var \Illuminate\Foundation\Application $app
-             * @var \Illuminate\Contracts\Config\Repository $config
-             */
-            \call_user_func($action, $this->method, [$app, $config]);
-        };
+        return $this->method;
     }
 }
