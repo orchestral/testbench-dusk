@@ -13,6 +13,7 @@ class AuthTest extends TestCase
     use DatabaseMigrations, WithLaravelMigrations;
 
     /** @test */
+    #[\Orchestra\Testbench\Dusk\Attributes\RestartServer]
     public function can_authenticate_user()
     {
         $user = UserFactory::new()->create();

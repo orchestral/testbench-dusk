@@ -5,7 +5,8 @@ namespace Orchestra\Testbench\Dusk\Concerns;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Chrome\SupportsChrome;
 use Laravel\Dusk\Concerns\ProvidesBrowser as Concern;
-
+use Orchestra\Testbench\Concerns\HandlesAttributes;
+use Orchestra\Testbench\Dusk\Attributes\RestartServer;
 use function Orchestra\Testbench\Dusk\find_test_directory;
 use function Orchestra\Testbench\Dusk\prepare_debug_directories;
 
@@ -30,6 +31,10 @@ trait ProvidesBrowser
         Browser::$userResolver = function () {
             return $this->user();
         };
+
+        if (static::usesTestingConcern(HandlesAttributes::class)) {
+            $this->parseTestMethodAttributes($this->app, RestartServer::class);
+        }
     }
 
     /**
