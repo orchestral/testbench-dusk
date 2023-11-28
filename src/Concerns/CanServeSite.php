@@ -86,10 +86,13 @@ trait CanServeSite
      */
     public function beforeServingApplication(Closure|string $closure): void
     {
-        after_resolving($this->app, 'config', function ($config, $app) use ($closure) {
+        /** @var \Illuminate\Foundation\Application $app */
+        $app = $this->app;
+
+        after_resolving($app, 'config', function ($config, $app) use ($closure) {
             \is_string($closure) && method_exists($this, $closure)
                 ? $this->{$closure}($app, $config)
-                : $closure($app, $config);
+                : value($closure, $app, $config);
         });
 
         static::$server?->stash([
@@ -153,12 +156,13 @@ trait CanServeSite
         $serializedClosure = unserialize(static::$server->getStash('tweakApplication'));
 
         if ($serializedClosure) {
+            /** @var (\Closure(\Illuminate\Foundation\Application, \Illuminate\Contracts\Config\Repository):(void))|string $closure */
             $closure = \is_string($serializedClosure) ? $serializedClosure : $serializedClosure->getClosure();
 
-            after_resolving($this->app, 'config', function ($config, $app) use ($closure) {
+            after_resolving($app, 'config', function ($config, $app) use ($closure) {
                 \is_string($closure) && method_exists($this, $closure)
                     ? $this->{$closure}($app, $config)
-                    : $closure($app, $config);
+                    : value($closure, $app, $config);
             });
         }
 
