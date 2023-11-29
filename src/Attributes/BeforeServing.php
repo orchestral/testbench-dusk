@@ -33,7 +33,7 @@ final class BeforeServing implements ActionableContract
      * @param  \Closure(string, array<int, mixed>):void  $action
      * @return string
      */
-    public function handle($app, Closure $action)
+    public function handle($app, Closure $action): string
     {
         return $this->method;
     }
