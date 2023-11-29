@@ -30,7 +30,7 @@ require is_file(__DIR__.'/../vendor/autoload.php')
 $orchestraServer = new DuskServer($_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT']);
 $originatingTestClass = $orchestraServer->getStash('class');
 
-$app = (new $originatingTestClass())->getFreshApplicationToServe($orchestraServer);
+$app = (new $originatingTestClass())->createServingApplication($orchestraServer);
 
 // Emulation of mod_rewrite, but we use the applications set base path
 if ($uri !== '/' && file_exists($app->basePath().'/public'.$uri)) {

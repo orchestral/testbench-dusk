@@ -141,7 +141,7 @@ trait CanServeSite
      * @param  \Orchestra\Testbench\Dusk\DuskServer  $server
      * @return \Illuminate\Foundation\Application
      */
-    public function getFreshApplicationToServe(DuskServer $server)
+    public function createServingApplicationForDuskServer(DuskServer $server)
     {
         static::$server = $server;
 
@@ -160,6 +160,21 @@ trait CanServeSite
         }
 
         return $this->app;
+    }
+
+    /**
+     * Build up a fresh application to serve, intended for use when we want to
+     * replicate the Application state during a Dusk test when we start our
+     * test server. See the main server file 'server.php'.
+     *
+     * @param  \Orchestra\Testbench\Dusk\DuskServer  $server
+     * @return \Illuminate\Foundation\Application
+     *
+     * @deprecated
+     */
+    public function getFreshApplicationToServe(DuskServer $server)
+    {
+        return $this->createServingApplicationForDuskServer($server);
     }
 
     /**
