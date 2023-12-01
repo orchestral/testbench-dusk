@@ -140,6 +140,8 @@ trait CanServeSite
      *
      * @param  \Orchestra\Testbench\Dusk\DuskServer  $server
      * @return \Illuminate\Foundation\Application
+     *
+     * @codeCoverageIgnore
      */
     public function createServingApplicationForDuskServer(DuskServer $server)
     {
@@ -171,6 +173,8 @@ trait CanServeSite
      * @return \Illuminate\Foundation\Application
      *
      * @deprecated
+     *
+     * @codeCoverageIgnore
      */
     public function getFreshApplicationToServe(DuskServer $server)
     {
