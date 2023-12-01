@@ -197,6 +197,8 @@ trait CanServeSite
      * DB content mid test. Using this method means we can be explicit.
      *
      * @return void
+     *
+     * @codeCoverageIgnore
      */
     protected function setUpDuskServer(): void
     {
