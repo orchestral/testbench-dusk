@@ -1,6 +1,5 @@
 providers:
   - Workbench\App\Providers\RouteServiceProvider
-  - Laravel\Dusk\DuskServiceProvider
 
 migrations:
   - workbench/database/migrations
