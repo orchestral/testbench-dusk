@@ -7,6 +7,7 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\ApplicationBuilder;
 use Laravel\Dusk\DuskServiceProvider;
 use Orchestra\Testbench\Dusk\Foundation\PackageManifest;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
@@ -185,14 +186,22 @@ abstract class TestCase extends Testbench
     #[\Override]
     protected function resolveApplication()
     {
-        return tap(new Application($this->getBasePath()), function ($app) {
-            $app->bind(
-                'Illuminate\Foundation\Bootstrap\LoadConfiguration',
-                Bootstrap\LoadConfiguration::class
-            );
+        return tap(
+            (new ApplicationBuilder(new Application($this->getBasePath())))
+                ->withMiddleware(function ($middleware) {
+                    //
+                })
+                ->withCommands()
+                ->create(),
+            function ($app) {
+                $app->bind(
+                    'Illuminate\Foundation\Bootstrap\LoadConfiguration',
+                    Bootstrap\LoadConfiguration::class
+                );
 
-            PackageManifest::swap($app, $this);
-        });
+                PackageManifest::swap($app, $this);
+            }
+        );
     }
 
     /**
