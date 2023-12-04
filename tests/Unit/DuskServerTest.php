@@ -12,8 +12,8 @@ class DuskServerTest extends TestCase
     public function it_provides_the_laravel_public_directory()
     {
         $this->assertEquals(
-            realpath(__DIR__.'/../../laravel/public'),
-            (new DuskServer())->laravelPublicPath()
+            realpath(__DIR__.'/../../laravel'),
+            (new DuskServer())->laravelPath()
         );
     }
 
@@ -21,11 +21,11 @@ class DuskServerTest extends TestCase
     public function it_provides_the_laravel_public_directory_from_custom_location()
     {
         $server = new DuskServer();
-        $server->setPublicPath('/dir/project/laravel/public');
+        $server->setLaravelPath('/dir/project/laravel');
 
         $this->assertEquals(
-            '/dir/project/laravel/public',
-            $server->laravelPublicPath()
+            '/dir/project/laravel',
+            $server->laravelPath()
         );
     }
 

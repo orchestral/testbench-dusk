@@ -44,17 +44,13 @@
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^2.4",
         "orchestra/testbench": "^9.0",
-        "php-webdriver/webdriver": "^1.15.1"
+        "php-webdriver/webdriver": "^1.15.1",
+        "symfony/polyfill-php83": "^1.28"
     },
     "require-dev": {
         "laravel/pint": "^1.6",
         "phpstan/phpstan": "^1.10.7",
         "phpunit/phpunit": "^10.1"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "8.0-dev"
-        }
     },
     "scripts": {
         "post-autoload-dump": [
@@ -89,6 +85,6 @@
     "config": {
         "sort-packages": true
     },
-    "prefer-stable": false,
+    "prefer-stable": true,
     "minimum-stability": "dev"
 }

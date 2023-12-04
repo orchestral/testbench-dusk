@@ -84,6 +84,7 @@ abstract class TestCase extends Testbench
      *
      * @return void
      */
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -98,6 +99,7 @@ abstract class TestCase extends Testbench
      * @param  class-string  $use
      * @return bool
      */
+    #[\Override]
     protected function setUpTheTestEnvironmentTraitToBeIgnored(string $use): bool
     {
         return \in_array($use, [
@@ -115,6 +117,7 @@ abstract class TestCase extends Testbench
      * @param  \Illuminate\Foundation\Application  $app
      * @return array<int, class-string>
      */
+    #[\Override]
     protected function getApplicationProviders($app)
     {
         $providers = parent::getApplicationProviders($app);
@@ -129,6 +132,7 @@ abstract class TestCase extends Testbench
     /**
      * Setup parallel testing callback.
      */
+    #[\Override]
     protected function setUpParallelTestingCallbacks(): void
     {
         // Not supported at the moment.
@@ -137,6 +141,7 @@ abstract class TestCase extends Testbench
     /**
      * Teardown parallel testing callback.
      */
+    #[\Override]
     protected function tearDownParallelTestingCallbacks(): void
     {
         // Not supported at the moment.
@@ -164,6 +169,8 @@ abstract class TestCase extends Testbench
      * Get base path.
      *
      * @return string
+     *
+     * @deprecated
      */
     protected function getBasePath()
     {
@@ -175,6 +182,7 @@ abstract class TestCase extends Testbench
      *
      * @return \Illuminate\Foundation\Application
      */
+    #[\Override]
     protected function resolveApplication()
     {
         return tap(new Application($this->getBasePath()), function ($app) {
@@ -254,6 +262,7 @@ abstract class TestCase extends Testbench
      *
      * @codeCoverageIgnore
      */
+    #[\Override]
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
@@ -268,6 +277,7 @@ abstract class TestCase extends Testbench
      *
      * @codeCoverageIgnore
      */
+    #[\Override]
     public static function tearDownAfterClass(): void
     {
         static::stopServing();

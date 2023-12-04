@@ -2,13 +2,11 @@
 
 namespace Orchestra\Testbench\Dusk;
 
-use Illuminate\Support\Collection;
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
-use Orchestra\Testbench\Foundation\Env;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
-use function Orchestra\Testbench\package_path;
+use function Orchestra\Testbench\defined_environment_variables;
 
 /**
  * @internal
@@ -44,11 +42,11 @@ class DuskServer
     protected $port;
 
     /**
-     * Laravel public working path.
+     * Laravel working path.
      *
      * @var string|null
      */
-    protected $laravelPublicPath;
+    protected $laravelPath;
 
     /**
      * Construct a new server.
@@ -65,12 +63,12 @@ class DuskServer
     /**
      * Set Laravel working path.
      *
-     * @param  string|null  $publicPath
+     * @param  string|null  $laravelPath
      * @return void
      */
-    public function setPublicPath(?string $publicPath = null): void
+    public function setLaravelPath(?string $laravelPath = null): void
     {
-        $this->laravelPublicPath = $publicPath;
+        $this->laravelPath = $laravelPath;
     }
 
     /**
@@ -154,20 +152,11 @@ class DuskServer
     {
         $this->guardServerStarting();
 
-        /** @var array<string, mixed> $environmentVariables */
-        $environmentVariables = Collection::make($_ENV)
-            ->keys()
-            ->mapWithKeys(static function (string $key) {
-                return [$key => Env::forward($key)];
-            })
-            ->put('TESTBENCH_WORKING_PATH', package_path())
-            ->all();
-
         $this->process = Process::fromShellCommandline(
-            $this->prepareCommand(), null, $environmentVariables
+            $this->prepareCommand(), null, defined_environment_variables()
         );
 
-        $this->process->setWorkingDirectory($this->laravelPublicPath());
+        $this->process->setWorkingDirectory("{$this->laravelPath()}/public");
         $this->process->start();
     }
 
@@ -220,9 +209,9 @@ class DuskServer
      *
      * @return string
      */
-    public function laravelPublicPath(): string
+    public function laravelPath(): string
     {
-        return $this->laravelPublicPath ?: (string) realpath(__DIR__.'/../laravel/public');
+        return $this->laravelPath ?: (string) realpath(__DIR__.'/../laravel');
     }
 
     /**
