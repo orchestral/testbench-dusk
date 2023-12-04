@@ -32,7 +32,7 @@ $orchestraServer = new DuskServer($_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT
 /** @var class-string<\Orchestra\Testbench\Dusk\TestCase> $originatingTestClass */
 $originatingTestClass = $orchestraServer->getStash('class');
 
-$app = (new $originatingTestClass('laravel'))->getFreshApplicationToServe($orchestraServer);
+$app = (new $originatingTestClass('laravel'))->createServingApplicationForDuskServer($orchestraServer);
 
 // Emulation of mod_rewrite, but we use the applications set base path
 if ($uri !== '/' && file_exists($app->basePath().'/public'.$uri)) {

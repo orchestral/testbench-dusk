@@ -1,6 +1,45 @@
-# Change for 8.x
+# Changes for 8.x
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
+
+## 8.16.0
+
+Released: 2023-12-04
+
+### Added
+
+* Added the following attributes:
+  - `Orchestra\Testbench\Dusk\Attributes\BeforeServing`
+  - `Orchestra\Testbench\Dusk\Attributes\RestartServer`
+* Backport `startServing()` and `reloadServing()` to `Orchestra\Testbench\Dusk\CanServeSite` trait.
+* Add `createServingApplicationForDuskServer` method to `Orchestra\Testbench\Dusk\CanServeSite` trait.
+
+### Changes
+
+* Update minimum support for Testbench v8.16.0+. ([v8.15.0...v8.16.0](https://github.com/orchestral/testbench/compare/v8.15.0...v8.16.0))
+* Allow passing method name to `Orchestra\Testbench\Dusk\CanServeSite::beforeServingApplication()` method.
+* Add `#[Override]` attribute to relevant methods, this require `symfony/polyfill-php83` as backward compatibility for PHP 8.1 and 8.2.
+
+### Deprecated
+
+* Deprecate `getFreshApplicationToServe` method on `Orchestra\Testbench\Dusk\CanServeSite` trait, use `createServingApplicationForDuskServer` instead.
+
+## 8.15.0
+
+Released: 2023-11-10
+
+### Changes
+
+* Update minimum support for Testbench v8.15.0+. ([v8.14.0...v8.15.0](https://github.com/orchestral/testbench/compare/v8.14.0...v8.15.0))
+* Refactor `Orchetra\Testbench\Dusk\DuskServer`.
+
+## 8.14.2
+
+Released: 2023-11-02
+
+### Changes
+
+* Update skeleton to match v10.2.8.
 
 ## 8.14.1
 

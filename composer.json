@@ -44,7 +44,8 @@
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^2.3",
         "orchestra/testbench": "8.x-dev",
-        "php-webdriver/webdriver": "^1.9"
+        "php-webdriver/webdriver": "^1.9",
+        "symfony/polyfill-php83": "^1.28"
     },
     "require-dev": {
         "laravel/pint": "^1.6",
@@ -89,6 +90,6 @@
     "config": {
         "sort-packages": true
     },
-    "prefer-stable": false,
+    "prefer-stable": true,
     "minimum-stability": "dev"
 }

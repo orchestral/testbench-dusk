@@ -10,6 +10,9 @@ use Orchestra\Testbench\Dusk\Options;
 
 use function Orchestra\Testbench\after_resolving;
 
+/**
+ * @internal
+ */
 trait CanServeSite
 {
     /**
@@ -81,29 +84,29 @@ trait CanServeSite
     /**
      * Make tweaks to the application, both inside the test and on the test server.
      *
-     * @param  \Closure(\Illuminate\Foundation\Application, \Illuminate\Contracts\Config\Repository):void  $closure
+     * @param  (\Closure(\Illuminate\Foundation\Application, \Illuminate\Contracts\Config\Repository):(void))|string  $closure
      * @return void
      */
-    public function beforeServingApplication(Closure $closure): void
+    public function beforeServingApplication(Closure|string $closure): void
     {
         /** @var \Illuminate\Foundation\Application $app */
         $app = $this->app;
 
-        after_resolving($app, 'config', static function ($config, $app) use ($closure) {
-            /**
-             * @var \Illuminate\Foundation\Application $app
-             * @var \Illuminate\Contracts\Config\Repository $config
-             */
-            $closure($app, $config);
+        after_resolving($app, 'config', function ($config, $app) use ($closure) {
+            \is_string($closure) && method_exists($this, $closure)
+                ? $this->{$closure}($app, $config)
+                : value($closure, $app, $config);
         });
 
         static::$server?->stash([
             'class' => static::class,
-            'tweakApplication' => serialize(
-                class_exists(SerializableClosureFactory::class)
-                    ? SerializableClosureFactory::make($closure)
-                    : new SerializableClosure($closure)
-            ),
+            'tweakApplication' => \is_string($closure)
+                ? serialize($closure)
+                : serialize(
+                    class_exists(SerializableClosureFactory::class)
+                        ? SerializableClosureFactory::make($closure)
+                        : new SerializableClosure($closure)
+                ),
         ]);
 
         $this->beforeApplicationDestroyed(function () {
@@ -143,8 +146,10 @@ trait CanServeSite
      *
      * @param  \Orchestra\Testbench\Dusk\DuskServer  $server
      * @return \Illuminate\Foundation\Application
+     *
+     * @codeCoverageIgnore
      */
-    public function getFreshApplicationToServe(DuskServer $server)
+    public function createServingApplicationForDuskServer(DuskServer $server)
     {
         static::$server = $server;
 
@@ -153,17 +158,37 @@ trait CanServeSite
         /** @var \Illuminate\Foundation\Application $app */
         $app = $this->app;
 
-        $serializedClosure = static::$server->getStash('tweakApplication');
+        $serializedClosure = unserialize(static::$server->getStash('tweakApplication'));
 
         if ($serializedClosure) {
-            $closure = unserialize($serializedClosure)->getClosure();
+            /** @var (\Closure(\Illuminate\Foundation\Application, \Illuminate\Contracts\Config\Repository):(void))|string $closure */
+            $closure = \is_string($serializedClosure) ? $serializedClosure : $serializedClosure->getClosure();
 
-            after_resolving($app, 'config', static function ($config, $app) use ($closure) {
-                $closure($app, $config);
+            after_resolving($app, 'config', function ($config, $app) use ($closure) {
+                \is_string($closure) && method_exists($this, $closure)
+                    ? $this->{$closure}($app, $config)
+                    : value($closure, $app, $config);
             });
         }
 
         return $app;
+    }
+
+    /**
+     * Build up a fresh application to serve, intended for use when we want to
+     * replicate the Application state during a Dusk test when we start our
+     * test server. See the main server file 'server.php'.
+     *
+     * @param  \Orchestra\Testbench\Dusk\DuskServer  $server
+     * @return \Illuminate\Foundation\Application
+     *
+     * @deprecated
+     *
+     * @codeCoverageIgnore
+     */
+    public function getFreshApplicationToServe(DuskServer $server)
+    {
+        return $this->createServingApplicationForDuskServer($server);
     }
 
     /**
@@ -182,6 +207,8 @@ trait CanServeSite
      * DB content mid test. Using this method means we can be explicit.
      *
      * @return void
+     *
+     * @codeCoverageIgnore
      */
     protected function setUpDuskServer(): void
     {
