@@ -43,7 +43,7 @@
         "laravel/dusk": "^7.11.3",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^2.3",
-        "orchestra/testbench": "8.x-dev",
+        "orchestra/testbench": ">=8.16.0 <8.17.0",
         "php-webdriver/webdriver": "^1.9",
         "symfony/polyfill-php83": "^1.28"
     },
@@ -90,6 +90,6 @@
     "config": {
         "sort-packages": true
     },
-    "prefer-stable": false,
+    "prefer-stable": true,
     "minimum-stability": "dev"
 }

@@ -2,6 +2,27 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.35.0
+
+Released: 2023-12-04
+
+### Added
+
+* Added the following attributes:
+  - `Orchestra\Testbench\Dusk\Attributes\BeforeServing`
+  - `Orchestra\Testbench\Dusk\Attributes\RestartServer`
+* Backport `startServing()` and `reloadServing()` to `Orchestra\Testbench\Dusk\CanServeSite` trait.
+* Add `createServingApplicationForDuskServer` method to `Orchestra\Testbench\Dusk\CanServeSite` trait.
+
+### Changes
+
+* Update minimum support for Testbench v7.36.0+. ([v7.35.0...v7.36.0](https://github.com/orchestral/testbench/compare/v7.35.0...v7.36.0))
+* Allow passing method name to `Orchestra\Testbench\Dusk\CanServeSite::beforeServingApplication()` method.
+
+### Deprecated
+
+* Deprecate `getFreshApplicationToServe` method on `Orchestra\Testbench\Dusk\CanServeSite` trait, use `createServingApplicationForDuskServer` instead.
+
 ## 7.34.0
 
 Released: 2023-11-10
