@@ -19,6 +19,10 @@ Released: 2023-12-04
 * Update minimum support for Testbench v6.39.0+. ([v6.38.0...v6.39.0](https://github.com/orchestral/testbench/compare/v6.38.0...v6.39.0))
 * Allow passing method name to `Orchestra\Testbench\Dusk\CanServeSite::beforeServingApplication()` method.
 
+### Deprecated
+
+* Deprecate `getFreshApplicationToServe` method on `Orchestra\Testbench\Dusk\CanServeSite` trait, use `createServingApplicationForDuskServer` instead.
+
 ## 6.39.0
 
 Released: 2023-11-10
