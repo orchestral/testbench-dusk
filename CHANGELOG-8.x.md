@@ -13,6 +13,7 @@ Released: 2023-12-04
   - `Orchestra\Testbench\Dusk\Attributes\RestartServer`
 * Backport `startServing()` and `reloadServing()` to `Orchestra\Testbench\Dusk\CanServeSite` trait.
 * Add `createServingApplicationForDuskServer` method to `Orchestra\Testbench\Dusk\CanServeSite` trait.
+* Added new PHPUnit Attribute to run the default `laravel`, `cache`, `notifications`, `queue` and `session` database migrations using `Orchestra\Testbench\Attributes\WithMigration`.
 
 ### Changes
 
