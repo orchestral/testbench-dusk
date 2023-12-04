@@ -185,7 +185,7 @@ abstract class TestCase extends Testbench
     #[\Override]
     protected function resolveApplication()
     {
-        return tap(new Application($this->getBasePath()), function ($app) {
+        return tap($this->resolveDefaultApplication(), function ($app) {
             $app->bind(
                 'Illuminate\Foundation\Bootstrap\LoadConfiguration',
                 Bootstrap\LoadConfiguration::class
