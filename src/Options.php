@@ -4,6 +4,9 @@ namespace Orchestra\Testbench\Dusk;
 
 use Facebook\WebDriver\Chrome\ChromeOptions;
 
+/**
+ * @api
+ */
 class Options
 {
     /**

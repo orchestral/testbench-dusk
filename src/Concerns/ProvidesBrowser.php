@@ -15,11 +15,13 @@ use function Orchestra\Testbench\Dusk\prepare_debug_directories;
 
 trait ProvidesBrowser
 {
-    use Concern,
-        SupportsChrome;
+    use Concern;
+    use SupportsChrome;
 
     /**
      * Setup the browser environment.
+     *
+     * @internal
      *
      * @return void
      *
@@ -49,6 +51,8 @@ trait ProvidesBrowser
 
     /**
      * Ensure the directories we need for dusk exist, and set them for the Browser to use.
+     *
+     * @internal
      *
      * @return void
      *

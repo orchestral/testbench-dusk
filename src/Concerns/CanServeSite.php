@@ -10,6 +10,9 @@ use Orchestra\Testbench\Dusk\Options;
 
 use function Orchestra\Testbench\after_resolving;
 
+/**
+ * @internal
+ */
 trait CanServeSite
 {
     /**
@@ -143,8 +146,10 @@ trait CanServeSite
      *
      * @param  \Orchestra\Testbench\Dusk\DuskServer  $server
      * @return \Illuminate\Foundation\Application
+     *
+     * @codeCoverageIgnore
      */
-    public function getFreshApplicationToServe(DuskServer $server)
+    public function createServingApplicationForDuskServer(DuskServer $server)
     {
         static::$server = $server;
 
@@ -170,6 +175,23 @@ trait CanServeSite
     }
 
     /**
+     * Build up a fresh application to serve, intended for use when we want to
+     * replicate the Application state during a Dusk test when we start our
+     * test server. See the main server file 'server.php'.
+     *
+     * @param  \Orchestra\Testbench\Dusk\DuskServer  $server
+     * @return \Illuminate\Foundation\Application
+     *
+     * @deprecated
+     *
+     * @codeCoverageIgnore
+     */
+    public function getFreshApplicationToServe(DuskServer $server)
+    {
+        return $this->createServingApplicationForDuskServer($server);
+    }
+
+    /**
      * Return the current instance of server.
      *
      * @return \Orchestra\Testbench\Dusk\DuskServer|null
@@ -185,6 +207,8 @@ trait CanServeSite
      * DB content mid test. Using this method means we can be explicit.
      *
      * @return void
+     *
+     * @codeCoverageIgnore
      */
     protected function setUpDuskServer(): void
     {
