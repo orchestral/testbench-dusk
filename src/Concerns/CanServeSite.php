@@ -10,6 +10,9 @@ use Orchestra\Testbench\Dusk\Options;
 
 use function Orchestra\Testbench\after_resolving;
 
+/**
+ * @internal
+ */
 trait CanServeSite
 {
     /**

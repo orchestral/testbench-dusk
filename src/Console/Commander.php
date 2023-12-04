@@ -5,6 +5,9 @@ namespace Orchestra\Testbench\Dusk\Console;
 use Orchestra\Testbench\Console\Commander as Testbench;
 use Orchestra\Testbench\Dusk\Foundation\TestbenchServiceProvider;
 
+/**
+ * @internal
+ */
 class Commander extends Testbench
 {
     /**
