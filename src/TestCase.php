@@ -187,12 +187,7 @@ abstract class TestCase extends Testbench
     protected function resolveApplication()
     {
         return tap(
-            (new ApplicationBuilder(new Application($this->getBasePath())))
-                ->withMiddleware(function ($middleware) {
-                    //
-                })
-                ->withCommands()
-                ->create(),
+            $this->resolveDefaultApplication(),
             function ($app) {
                 $app->bind(
                     'Illuminate\Foundation\Bootstrap\LoadConfiguration',
