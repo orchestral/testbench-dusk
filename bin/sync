@@ -89,8 +89,7 @@ Illuminate\Support\Collection::make([
 
 transform([
     "env('APP_ENV', 'production')" => "env('APP_ENV', 'testing')",
-    PHP_EOL.'        App\Providers' => PHP_EOL.'        // App\Providers',
-    PHP_EOL.'         * Package Service Providers...' => PHP_EOL.'         * Dusk Service Provider'.PHP_EOL.'         */'.PHP_EOL.'        Laravel\Dusk\DuskServiceProvider::class,'.PHP_EOL.PHP_EOL.'        /*'.PHP_EOL.'         * Package Service Providers...'
+    '        // Package Service Providers...' => '        // Dusk Service Provider...'.PHP_EOL.'        Laravel\Dusk\DuskServiceProvider::class,'.PHP_EOL.PHP_EOL.'        // Package Service Providers..'
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/config/app.php"));
 
 transform([

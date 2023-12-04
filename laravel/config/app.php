@@ -143,7 +143,7 @@ return [
 
     'maintenance' => [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
-        'store' => env('APP_MAINTENANCE_STORE', 'redis'),
+        'store'  => env('APP_MAINTENANCE_STORE', 'redis'),
     ],
 
     /*
@@ -158,7 +158,10 @@ return [
     */
 
     'providers' => ServiceProvider::defaultProviders()->merge([
-        // Package Service Providers...
+        // Dusk Service Provider...
+        Laravel\Dusk\DuskServiceProvider::class,
+
+        // Package Service Providers..
     ])->merge([
         // Application Service Providers...
         // App\Providers\AppServiceProvider::class,
