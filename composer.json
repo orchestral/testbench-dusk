@@ -40,11 +40,10 @@
         "php": "^8.1",
         "composer-runtime-api": "^2.2",
         "konsulting/project-root": "^1.1",
-        "laravel/dusk": "^7.11.3",
+        "laravel/dusk": "^7.12",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^2.3",
-        "orchestra/testbench": ">=8.16.0 <8.17.0",
-        "orchestra/testbench-core": "^8.16.1",
+        "orchestra/testbench": ">=8.17.0 <8.18.0",
         "php-webdriver/webdriver": "^1.9",
         "symfony/polyfill-php83": "^1.28"
     },
