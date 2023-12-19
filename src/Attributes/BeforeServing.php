@@ -10,20 +10,13 @@ use Orchestra\Testbench\Contracts\Attributes\Actionable as ActionableContract;
 final class BeforeServing implements ActionableContract
 {
     /**
-     * The target method.
-     *
-     * @var string
-     */
-    public $method;
-
-    /**
      * Construct a new attribute.
      *
      * @param  string  $method
      */
-    public function __construct(string $method)
+    public function __construct(public string $method)
     {
-        $this->method = $method;
+        //
     }
 
     /**
