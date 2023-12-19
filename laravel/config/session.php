@@ -11,14 +11,14 @@ return [
     |
     | This option controls the default session "driver" that will be used by
     | incoming requests. Laravel supports a variety of storage drivers to
-    | choose from for session storage. File storage is used by default.
+    | choose from for session storage. Database storage is the default.
     |
     | Supported: "file", "cookie", "database", "apc",
     |            "memcached", "redis", "dynamodb", "array"
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'file'),
+    'driver' => env('SESSION_DRIVER', 'cookie'),
 
     /*
     |--------------------------------------------------------------------------
@@ -198,19 +198,6 @@ return [
     */
 
     'same_site' => env('SESSION_SAME_SITE', 'lax'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Partitioned Cookies
-    |--------------------------------------------------------------------------
-    |
-    | Setting this value to true will tie the cookie to the top-level site for
-    | a cross-site context. Partitioned cookies are accepted by the browser
-    | when flagged "secure" and the Same-Site attribute is set to "none".
-    |
-    */
-
-    'partitioned' => false,
 
     /*
     |--------------------------------------------------------------------------
