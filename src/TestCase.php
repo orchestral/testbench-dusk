@@ -12,6 +12,8 @@ use Orchestra\Testbench\Dusk\Foundation\PackageManifest;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
 use Orchestra\Testbench\TestCase as Testbench;
 
+use function Illuminate\Filesystem\join_paths;
+
 abstract class TestCase extends Testbench
 {
     use Concerns\CanServeSite;
@@ -66,7 +68,7 @@ abstract class TestCase extends Testbench
      */
     public static function applicationBasePath()
     {
-        return static::applicationBasePathUsingWorkbench() ?? (string) realpath(__DIR__.'/../laravel');
+        return static::applicationBasePathUsingWorkbench() ?? (string) realpath(join_paths(__DIR__, '..', 'laravel'));
     }
 
     /**
