@@ -4,10 +4,10 @@ namespace Orchestra\Testbench\Dusk\Attributes;
 
 use Attribute;
 use Closure;
-use Orchestra\Testbench\Contracts\Attributes\Actionable as ActionableContract;
+use Orchestra\Testbench\Contracts\Attributes\Invokable as InvokableContract;
 
 #[Attribute(Attribute::TARGET_CLASS | Attribute::TARGET_METHOD)]
-final class BeforeServing implements ActionableContract
+final class BeforeServing implements InvokableContract
 {
     /**
      * The target method.
@@ -30,10 +30,9 @@ final class BeforeServing implements ActionableContract
      * Handle the attribute.
      *
      * @param  \Illuminate\Foundation\Application  $app
-     * @param  \Closure(string, array<int, mixed>):void  $action
      * @return string
      */
-    public function handle($app, Closure $action): string
+    public function __invoke($app): string
     {
         return $this->method;
     }
