@@ -4,7 +4,7 @@ This changelog references the relevant changes (bug and security fixes) done to 
 
 ## 8.19.0
 
-Released: 2023-12-19
+Released: 2023-12-28
 
 ### Changes
 
