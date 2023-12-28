@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.38.0
+
+Released: 2023-12-28
+
+### Changes
+
+* Update minimum support for Testbench v7.39.0+. ([v7.38.0...v7.39.0](https://github.com/orchestral/testbench/compare/v7.38.0...v7.39.0))
+* Update minimum support for Laravel Dusk v7.12.0+. ([v7.11.3...v7.12.0](https://github.com/laravel/dusk/compare/v7.11.3...v7.12.0))
+
 ## 7.37.0
 
 Released: 2023-12-19
