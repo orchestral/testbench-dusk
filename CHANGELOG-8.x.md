@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.19.1
+
+Released: 2024-01-03
+
+### Changes
+
+* Update skeleton to match v10.3.1.
+
 ## 8.19.0
 
 Released: 2023-12-28
