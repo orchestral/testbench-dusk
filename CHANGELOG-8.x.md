@@ -2,6 +2,31 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.19.1
+
+Released: 2024-01-03
+
+### Changes
+
+* Update skeleton to match v10.3.1.
+
+## 8.19.0
+
+Released: 2023-12-28
+
+### Changes
+
+* Update minimum support for Testbench v8.19.0+. ([v8.18.0...v8.19.0](https://github.com/orchestral/testbench/compare/v8.18.0...v8.19.0))
+* Utilise `Illuminate\Filesystem\join_paths()` function.
+
+## 8.18.0
+
+Released: 2023-12-19
+
+### Changes
+
+* Update minimum support for Testbench v8.18.0+. ([v8.17.0...v8.18.0](https://github.com/orchestral/testbench/compare/v8.17.0...v8.18.0))
+
 ## 8.17.0
 
 Released: 2023-12-06

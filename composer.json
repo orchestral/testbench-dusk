@@ -22,7 +22,7 @@
             "Orchestra\\Testbench\\Dusk\\": "src/"
         },
         "files": [
-            "src/helpers.php"
+            "src/functions.php"
         ]
     },
     "autoload-dev": {
