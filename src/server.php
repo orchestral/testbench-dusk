@@ -2,6 +2,8 @@
 
 use Orchestra\Testbench\Dusk\DuskServer;
 
+use function Illuminate\Filesystem\join_paths;
+
 // Simple server script, which pulls in large part from the framework.
 // It has been adapted so we can reconstruct the application to the
 // required state on each request (based on the calling Test Class)
@@ -35,7 +37,7 @@ $originatingTestClass = $orchestraServer->getStash('class');
 $app = (new $originatingTestClass('laravel'))->createServingApplicationForDuskServer($orchestraServer);
 
 // Emulation of mod_rewrite, but we use the applications set base path
-if ($uri !== '/' && file_exists($app->basePath().'/public'.$uri)) {
+if ($uri !== '/' && file_exists(join_paths($app->basePath(), 'public', $uri))) {
     return false;
 }
 

@@ -6,6 +6,7 @@ use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
+use function Illuminate\Filesystem\join_paths;
 use function Orchestra\Testbench\defined_environment_variables;
 
 /**
@@ -89,7 +90,7 @@ class DuskServer
      */
     protected function temp(): string
     {
-        return \dirname(__DIR__).'/tmp/'.$this->host.'__'.$this->port;
+        return join_paths(\dirname(__DIR__), 'tmp', $this->host.'__'.$this->port);
     }
 
     /**
@@ -156,7 +157,7 @@ class DuskServer
             $this->prepareCommand(), null, defined_environment_variables()
         );
 
-        $this->process->setWorkingDirectory("{$this->laravelPath()}/public");
+        $this->process->setWorkingDirectory(join_paths($this->laravelPath(), 'public'));
         $this->process->start();
     }
 
@@ -211,7 +212,7 @@ class DuskServer
      */
     public function laravelPath(): string
     {
-        return $this->laravelPath ?: (string) realpath(__DIR__.'/../laravel');
+        return $this->laravelPath ?: (string) realpath(join_paths(__DIR__, '..', 'laravel'));
     }
 
     /**

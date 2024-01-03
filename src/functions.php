@@ -6,6 +6,8 @@ use Illuminate\Support\LazyCollection;
 use Konsulting\ProjectRoot;
 use Laravel\Dusk\Browser;
 
+use function Illuminate\Filesystem\join_paths;
+
 /**
  * Find test directory.
  *
@@ -13,7 +15,7 @@ use Laravel\Dusk\Browser;
  */
 function find_test_directory($path = __DIR__): string
 {
-    return ProjectRoot::forPackage('testbench-dusk')->resolve($path).'/tests/Browser';
+    return join_paths(ProjectRoot::forPackage('testbench-dusk')->resolve($path), 'tests', 'Browser');
 }
 
 /**
@@ -29,20 +31,20 @@ function prepare_debug_directories(): void
 
     LazyCollection::make(['screenshots', 'console', 'source'])
         ->map(static function ($directory) use ($path) {
-            return $path.DIRECTORY_SEPARATOR.$directory;
+            return join_paths($path, $directory);
         })->each(static function ($directory) {
             if (! is_dir($directory)) {
                 mkdir($directory, 0777, true);
             }
         })->each(static function ($directory) {
-            if (! is_file("{$directory}/.gitignore")) {
-                copy((string) realpath(__DIR__.'/../stubs/gitignore.stub'), "{$directory}/.gitignore");
+            if (! is_file(join_paths($directory, '.gitignore'))) {
+                copy((string) realpath(join_paths(__DIR__, '..', 'stubs', 'gitignore.stub')), join_paths($directory, '.gitignore'));
             }
         });
 
-    Browser::$storeScreenshotsAt = $path.'/screenshots';
-    Browser::$storeConsoleLogAt = $path.'/console';
-    Browser::$storeSourceAt = $path.'/source';
+    Browser::$storeScreenshotsAt = join_paths($path, 'screenshots');
+    Browser::$storeConsoleLogAt = join_paths($path, 'console');
+    Browser::$storeSourceAt = join_paths($path, 'source');
 
     \define('TESTBENCH_DIRECTORY_STUBBED', true);
 }
