@@ -35,6 +35,6 @@ class DatabaseMigrationsTest extends TestCase
     {
         $this->assertTrue(Schema::hasTable('users'));
         $this->assertTrue(Schema::hasTable('notifications'));
-        $this->assertFalse(Schema::hasTable('sessions'));
+        $this->assertTrue(Schema::hasTable('sessions'));
     }
 }
