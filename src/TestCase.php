@@ -11,6 +11,7 @@ use Laravel\Dusk\DuskServiceProvider;
 use Orchestra\Testbench\Dusk\Foundation\PackageManifest;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
 use Orchestra\Testbench\TestCase as Testbench;
+use PHPUnit\Framework\Attributes\BeforeClass;
 
 use function Illuminate\Filesystem\join_paths;
 
@@ -246,12 +247,11 @@ abstract class TestCase extends Testbench
     /**
      * Prepare for Dusk test execution.
      *
-     * @beforeClass
-     *
      * @return void
      *
      * @codeCoverageIgnore
      */
+    #[BeforeClass]
     public static function prepare()
     {
         static::startChromeDriver(['port' => 9515]);
