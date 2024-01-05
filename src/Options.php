@@ -3,6 +3,7 @@
 namespace Orchestra\Testbench\Dusk;
 
 use Facebook\WebDriver\Chrome\ChromeOptions;
+use Orchestra\Testbench\Foundation\Env;
 
 /**
  * @api
@@ -14,35 +15,35 @@ class Options
      *
      * @var bool
      */
-    public static $ui = true;
+    public static bool $ui = true;
 
     /**
      * Headless mode.
      *
      * @var string|null
      */
-    public static $headlessMode = null;
+    public static ?string $headlessMode = null;
 
     /**
      * Set W3C compliant.
      *
      * @var bool
      */
-    public static $w3cCompliant = false;
+    public static bool $w3cCompliant = false;
 
     /**
      * Testbench should provide application server.
      *
      * @var bool
      */
-    public static $providesApplicationServer = true;
+    public static bool $providesApplicationServer = true;
 
     /**
      * A list of remote web driver arguments.
      *
      * @var array<int, string>
      */
-    public static $arguments = [];
+    public static array $arguments = [];
 
     /**
      * Reset arguments.
@@ -130,7 +131,7 @@ class Options
      */
     public static function shouldUsesWithoutUI(): bool
     {
-        return env('CI', false) == true;
+        return Env::get('CI', false) == true;
     }
 
     /**

@@ -20,7 +20,7 @@ trait CanServeSite
      *
      * @var \Orchestra\Testbench\Dusk\DuskServer|null
      */
-    protected static $server;
+    protected static ?DuskServer $server = null;
 
     /**
      * Begin serving on a given host and port.
@@ -31,7 +31,7 @@ trait CanServeSite
      *
      * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      */
-    public static function serve($host = '127.0.0.1', $port = 8001): void
+    public static function serve(string $host = '127.0.0.1', int $port = 8001): void
     {
         static::stopServing();
 

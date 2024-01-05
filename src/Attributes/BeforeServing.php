@@ -13,8 +13,9 @@ final class BeforeServing implements InvokableContract
      *
      * @param  string  $method
      */
-    public function __construct(public string $method)
-    {
+    public function __construct(
+        public readonly string $method
+    ) {
         //
     }
 

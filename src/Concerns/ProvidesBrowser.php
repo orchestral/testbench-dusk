@@ -27,7 +27,7 @@ trait ProvidesBrowser
      *
      * @throws \Exception
      */
-    protected function setUpTheBrowserEnvironment()
+    protected function setUpTheBrowserEnvironment(): void
     {
         Browser::$baseUrl = $this->baseUrl();
 
@@ -58,7 +58,7 @@ trait ProvidesBrowser
      *
      * @throws \Exception
      */
-    protected function prepareDirectories()
+    protected function prepareDirectories(): void
     {
         prepare_debug_directories();
     }
@@ -71,7 +71,7 @@ trait ProvidesBrowser
      *
      * @throws \Exception
      */
-    protected function resolveBrowserTestsPath($path = __DIR__)
+    protected function resolveBrowserTestsPath(string $path = __DIR__): string
     {
         return find_test_directory($path);
     }

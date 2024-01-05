@@ -25,7 +25,7 @@ class ResolvesProjectRootTest extends PHPUnitTestCase
 
 class DummyTestCase extends TestbenchDuskTestCase
 {
-    public function resolveBrowserTestsPath($path = __DIR__)
+    public function resolveBrowserTestsPath(string $path = __DIR__): string
     {
         return parent::resolveBrowserTestsPath($path);
     }

@@ -39,7 +39,7 @@ abstract class TestCase extends Testbench
      *
      * @var bool
      */
-    protected static $hasRegisteredShutdown = false;
+    protected static bool $hasRegisteredShutdown = false;
 
     /**
      * The base server port.

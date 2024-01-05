@@ -19,35 +19,14 @@ class DuskServer
      *
      * @var \Symfony\Component\Process\Process|null
      */
-    protected $process;
-
-    /**
-     * Array of file pointers.
-     *
-     * @var array
-     */
-    protected $pipes;
-
-    /**
-     * Server host.
-     *
-     * @var string
-     */
-    protected $host;
-
-    /**
-     * Server port.
-     *
-     * @var int
-     */
-    protected $port;
+    protected ?Process $process = null;
 
     /**
      * Laravel working path.
      *
      * @var string|null
      */
-    protected $laravelPath;
+    protected ?string $laravelPath = null;
 
     /**
      * Construct a new server.
@@ -55,10 +34,11 @@ class DuskServer
      * @param  string  $host
      * @param  int  $port
      */
-    public function __construct($host = '127.0.0.1', $port = 8001)
-    {
-        $this->host = $host;
-        $this->port = $port;
+    public function __construct(
+        protected string $host = '127.0.0.1',
+        protected int $port = 8001
+    ) {
+        //
     }
 
     /**
