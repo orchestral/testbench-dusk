@@ -7,15 +7,16 @@ use Konsulting\ProjectRoot;
 use Laravel\Dusk\Browser;
 
 use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Testbench\package_path;
 
 /**
  * Find test directory.
  *
- * @param  string  $path
+ * @param  string|null  $path
  */
-function find_test_directory($path = __DIR__): string
+function find_test_directory(): string
 {
-    return join_paths(ProjectRoot::forPackage('testbench-dusk')->resolve($path), 'tests', 'Browser');
+    return join_paths(package_path(), 'tests', 'Browser');
 }
 
 /**
