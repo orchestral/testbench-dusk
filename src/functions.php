@@ -13,7 +13,7 @@ use function Illuminate\Filesystem\join_paths;
  *
  * @param  string  $path
  */
-function find_test_directory($path = __DIR__): string
+function find_test_directory(string $path = __DIR__): string
 {
     return join_paths(ProjectRoot::forPackage('testbench-dusk')->resolve($path), 'tests', 'Browser');
 }
