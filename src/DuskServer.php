@@ -70,7 +70,7 @@ class DuskServer
      */
     protected function temp(): string
     {
-        return join_paths(\dirname(__DIR__), 'tmp', $this->host.'__'.$this->port);
+        return join_paths(\dirname(__DIR__), 'tmp', sprintf('%s__%d', $this->host, $this->port));
     }
 
     /**
@@ -150,7 +150,7 @@ class DuskServer
      *
      * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      */
-    protected function guardServerStarting()
+    protected function guardServerStarting(): void
     {
         /** @var resource|null $socket */
         $socket = rescue(function () {
@@ -163,7 +163,7 @@ class DuskServer
 
         if ($socket) {
             fclose($socket);
-            throw new UnableToStartServer($this->host.':'.$this->port);
+            throw new UnableToStartServer(sprintf('%s:%d', $this->host, $this->port));
         }
     }
 
@@ -200,7 +200,7 @@ class DuskServer
      *
      * @return \Symfony\Component\Process\Process|null
      */
-    public function getProcess()
+    public function getProcess(): ?Process
     {
         return $this->process;
     }
@@ -210,7 +210,7 @@ class DuskServer
      *
      * @return bool
      */
-    protected function isWindows()
+    protected function isWindows(): bool
     {
         return strtoupper(substr(PHP_OS, 0, 3)) === 'WIN';
     }
