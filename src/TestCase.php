@@ -10,6 +10,7 @@ use Illuminate\Foundation\Application;
 use Laravel\Dusk\DuskServiceProvider;
 use Orchestra\Testbench\Dusk\Foundation\PackageManifest;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
+use Orchestra\Testbench\Foundation\Env;
 use Orchestra\Testbench\TestCase as Testbench;
 
 use function Illuminate\Filesystem\join_paths;
@@ -296,6 +297,6 @@ abstract class TestCase extends Testbench
      */
     protected function hasHeadlessDisabled()
     {
-        return env('DUSK_HEADLESS_DISABLED', false) == true;
+        return Env::get('DUSK_HEADLESS_DISABLED', false) == true;
     }
 }
