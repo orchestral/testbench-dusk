@@ -35,7 +35,7 @@ trait CanServeSite
     {
         static::stopServing();
 
-        if (Options::$providesApplicationServer !== true) {
+        if (Options::$providesApplicationServer === false) {
             return;
         }
 
@@ -89,6 +89,10 @@ trait CanServeSite
      */
     public function beforeServingApplication(Closure|string $closure): void
     {
+        if (Options::$providesApplicationServer === false) {
+            return;
+        }
+
         /** @var \Illuminate\Foundation\Application $app */
         $app = $this->app;
 
