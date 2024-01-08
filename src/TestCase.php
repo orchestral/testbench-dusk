@@ -205,8 +205,6 @@ abstract class TestCase extends Testbench
      */
     protected function driver(): RemoteWebDriver
     {
-        static::defineWebDriverOptions();
-
         if (DuskOptions::shouldUsesWithoutUI()) {
             DuskOptions::withoutUI();
         } elseif ($this->hasHeadlessDisabled()) {
