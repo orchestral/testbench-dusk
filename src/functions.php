@@ -3,19 +3,17 @@
 namespace Orchestra\Testbench\Dusk;
 
 use Illuminate\Support\LazyCollection;
-use Konsulting\ProjectRoot;
 use Laravel\Dusk\Browser;
 
 use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Testbench\package_path;
 
 /**
  * Find test directory.
- *
- * @param  string  $path
  */
-function find_test_directory(string $path = __DIR__): string
+function find_test_directory(): string
 {
-    return join_paths(ProjectRoot::forPackage('testbench-dusk')->resolve($path), 'tests', 'Browser');
+    return package_path(join_paths('tests', 'Browser'));
 }
 
 /**
