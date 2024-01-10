@@ -3,10 +3,10 @@
 namespace Orchestra\Testbench\Dusk\Foundation\Console;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use Laravel\Dusk\Console\DuskCommand as Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 
+use function Illuminate\Filesystem\join_paths;
 use function Orchestra\Testbench\phpunit_version_compare;
 
 #[AsCommand(name: 'package:dusk', description: 'Run the package Dusk tests')]
@@ -67,9 +67,7 @@ class DuskCommand extends Command
             $options[] = '--no-output';
         }
 
-        $options = array_values(array_filter($options, static function ($option) {
-            return ! Str::startsWith($option, '--env=');
-        }));
+        $options = array_values(array_filter($options, static fn ($option) => ! str_starts_with($option, '--env=')));
 
         /** @phpstan-ignore-next-line */
         $workingPath = TESTBENCH_WORKING_PATH;
@@ -79,11 +77,9 @@ class DuskCommand extends Command
             'phpunit.dusk.xml.dist',
             'phpunit.xml',
             'phpunit.xml.dist',
-        ])->map(static function ($file) use ($workingPath) {
-            return "{$workingPath}/{$file}";
-        })->filter(static function ($file) {
-            return file_exists($file);
-        })->first();
+        ])->map(static fn ($file) => join_paths($workingPath, $file))
+            ->filter(static fn ($file) => file_exists($file))
+            ->first();
 
         return ! \is_null($file) ? array_merge(['-c', $file], $options) : $options;
     }
@@ -104,17 +100,18 @@ class DuskCommand extends Command
             'phpunit.dusk.xml.dist',
             'phpunit.xml',
             'phpunit.xml.dist',
-        ])->map(static function ($file) use ($workingPath) {
-            return "{$workingPath}/{$file}";
-        })->filter(static function ($file) {
-            return file_exists($file);
-        })->first();
+        ])->map(static fn ($file) => join_paths($workingPath, $file))
+            ->filter(static fn ($file) => file_exists($file))
+            ->first();
 
         if (\is_null($file)) {
             $phpunitStub = phpunit_version_compare('10.0', '>=') ? 'phpunit.xml' : 'phpunit9.xml';
 
             /** @phpstan-ignore-next-line */
-            copy(realpath(__DIR__.'/../../../stubs/'.$phpunitStub), $workingPath.'/phpunit.dusk.xml');
+            copy(
+                (string) realpath(join_paths(__DIR__, '..', '..', '..', 'stubs', $phpunitStub)),
+                join_paths($workingPath, 'phpunit.dusk.xml')
+            );
 
             return;
         }
@@ -131,7 +128,7 @@ class DuskCommand extends Command
     protected function removeConfiguration()
     {
         /** @phpstan-ignore-next-line */
-        if (! $this->hasPhpUnitConfiguration && file_exists($file = TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml')) {
+        if (! $this->hasPhpUnitConfiguration && file_exists($file = join_paths(TESTBENCH_WORKING_PATH, 'phpunit.dusk.xml'))) {
             @unlink($file);
         }
     }

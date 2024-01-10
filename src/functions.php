@@ -28,9 +28,8 @@ function prepare_debug_directories(): void
     $path = find_test_directory();
 
     LazyCollection::make(['screenshots', 'console', 'source'])
-        ->map(static function ($directory) use ($path) {
-            return join_paths($path, $directory);
-        })->each(static function ($directory) {
+        ->map(static fn ($directory) => join_paths($path, $directory))
+        ->each(static function ($directory) {
             if (! is_dir($directory)) {
                 mkdir($directory, 0777, true);
             }
