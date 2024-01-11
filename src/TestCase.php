@@ -50,7 +50,7 @@ abstract class TestCase extends Testbench
      */
     public static function getBaseServePort()
     {
-        return static::$baseServePort;
+        return Env::get('DUSK_SERVE_PORT') ?? static::$baseServePort;
     }
 
     /**
@@ -60,7 +60,7 @@ abstract class TestCase extends Testbench
      */
     public static function getBaseServeHost()
     {
-        return static::$baseServeHost;
+        return Env::get('DUSK_SERVE_HOST') ?? static::$baseServeHost;
     }
 
     /**
@@ -206,8 +206,6 @@ abstract class TestCase extends Testbench
      */
     protected function driver(): RemoteWebDriver
     {
-        static::defineWebDriverOptions();
-
         if (DuskOptions::shouldUsesWithoutUI()) {
             DuskOptions::withoutUI();
         } elseif ($this->hasHeadlessDisabled()) {
@@ -215,7 +213,7 @@ abstract class TestCase extends Testbench
         }
 
         return RemoteWebDriver::create(
-            $_ENV['DUSK_DRIVER_URL'] ?? 'http://localhost:9515',
+            Env::get('DUSK_DRIVER_URL') ?? 'http://localhost:9515',
             DesiredCapabilities::chrome()->setCapability(
                 ChromeOptions::CAPABILITY,
                 DuskOptions::getChromeOptions()

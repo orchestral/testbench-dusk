@@ -77,9 +77,7 @@ class Options
     public static function removeArgument(string $argument)
     {
         if (static::hasArgument($argument)) {
-            static::$arguments = array_values(array_filter(static::$arguments, static function ($option) use ($argument) {
-                return $option !== $argument;
-            }));
+            static::$arguments = array_values(array_filter(static::$arguments, static fn ($option) => $option !== $argument));
         }
 
         return new static();

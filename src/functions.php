@@ -3,7 +3,6 @@
 namespace Orchestra\Testbench\Dusk;
 
 use Illuminate\Support\LazyCollection;
-use Konsulting\ProjectRoot;
 use Laravel\Dusk\Browser;
 
 use function Illuminate\Filesystem\join_paths;
@@ -11,12 +10,10 @@ use function Orchestra\Testbench\package_path;
 
 /**
  * Find test directory.
- *
- * @param  string|null  $path
  */
 function find_test_directory(): string
 {
-    return join_paths(package_path(), 'tests', 'Browser');
+    return package_path(join_paths('tests', 'Browser'));
 }
 
 /**
@@ -31,9 +28,8 @@ function prepare_debug_directories(): void
     $path = find_test_directory();
 
     LazyCollection::make(['screenshots', 'console', 'source'])
-        ->map(static function ($directory) use ($path) {
-            return join_paths($path, $directory);
-        })->each(static function ($directory) {
+        ->map(static fn ($directory) => join_paths($path, $directory))
+        ->each(static function ($directory) {
             if (! is_dir($directory)) {
                 mkdir($directory, 0777, true);
             }
