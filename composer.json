@@ -39,7 +39,6 @@
     "require": {
         "php": "^8.1",
         "composer-runtime-api": "^2.2",
-        "konsulting/project-root": "^1.1",
         "laravel/dusk": "^7.12",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^2.3",

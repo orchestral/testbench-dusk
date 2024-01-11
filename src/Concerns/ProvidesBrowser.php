@@ -10,7 +10,6 @@ use Orchestra\Testbench\Dusk\Attributes\BeforeServing;
 use Orchestra\Testbench\Dusk\Attributes\RestartServer;
 use Orchestra\Testbench\Exceptions\ApplicationNotAvailableException;
 
-use function Orchestra\Testbench\Dusk\find_test_directory;
 use function Orchestra\Testbench\Dusk\prepare_debug_directories;
 
 trait ProvidesBrowser
@@ -61,19 +60,6 @@ trait ProvidesBrowser
     protected function prepareDirectories()
     {
         prepare_debug_directories();
-    }
-
-    /**
-     * Figure out where the test directory is, if we're an included package, or the root one.
-     *
-     * @param  string  $path
-     * @return string
-     *
-     * @throws \Exception
-     */
-    protected function resolveBrowserTestsPath($path = __DIR__)
-    {
-        return find_test_directory($path);
     }
 
     /**
