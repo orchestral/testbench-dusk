@@ -107,7 +107,6 @@ class DuskCommand extends Command
         if (\is_null($file)) {
             $phpunitStub = phpunit_version_compare('10.0', '>=') ? 'phpunit.xml' : 'phpunit9.xml';
 
-            /** @phpstan-ignore-next-line */
             copy(
                 (string) realpath(join_paths(__DIR__, '..', '..', '..', 'stubs', $phpunitStub)),
                 join_paths($workingPath, 'phpunit.dusk.xml')
