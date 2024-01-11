@@ -2,6 +2,7 @@
 
 namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase as PHPUnitTestcase;
 
 use function Illuminate\Filesystem\join_paths;
@@ -9,7 +10,7 @@ use function Orchestra\Testbench\Dusk\find_test_directory;
 
 class FindTestDirectoryHelpersTest extends PHPUnitTestCase
 {
-    /** @test */
+    #[Test]
     public function it_finds_the_correct_path_for_the_browser_tests()
     {
         $this->assertEquals(
