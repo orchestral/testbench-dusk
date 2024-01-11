@@ -5,10 +5,8 @@ namespace Orchestra\Testbench\Dusk\Tests\Browser;
 use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Dusk\Attributes\BeforeServing;
 use Orchestra\Testbench\Dusk\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
-/**
- * @requires PHP >= 8.0
- */
 class AttributeBeforeServingTest extends TestCase
 {
     /**
@@ -24,7 +22,7 @@ class AttributeBeforeServingTest extends TestCase
         }]);
     }
 
-    /** @test */
+    #[Test]
     #[BeforeServing('defineCustomConfiguration')]
     public function can_tweak_the_application_within_a_test()
     {
@@ -36,7 +34,7 @@ class AttributeBeforeServingTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function application_tweak_doesnt_persist_between_test()
     {
         $this->assertNull($this->app['config']->get('new_config_item'));
