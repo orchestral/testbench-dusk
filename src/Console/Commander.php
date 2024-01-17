@@ -5,7 +5,7 @@ namespace Orchestra\Testbench\Dusk\Console;
 use Orchestra\Testbench\Console\Commander as Testbench;
 use Orchestra\Testbench\Dusk\Foundation\TestbenchServiceProvider;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Testbench\Dusk\default_skeleton_path;
 
 class Commander extends Testbench
 {
@@ -37,6 +37,6 @@ class Commander extends Testbench
     #[\Override]
     public static function applicationBasePath()
     {
-        return $_ENV['APP_BASE_PATH'] ?? realpath(join_paths(__DIR__, '..', '..', 'laravel'));
+        return $_ENV['APP_BASE_PATH'] ?? default_skeleton_path();
     }
 }

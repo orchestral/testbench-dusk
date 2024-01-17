@@ -9,6 +9,14 @@ use function Illuminate\Filesystem\join_paths;
 use function Orchestra\Testbench\package_path;
 
 /**
+ * Get the default skeleton path
+ */
+function default_skeleton_path(string $path = ''): string
+{
+    return (string) realpath(join_paths(__DIR__, '..', 'laravel', $path));
+}
+
+/**
  * Find test directory.
  */
 function find_test_directory(): string
