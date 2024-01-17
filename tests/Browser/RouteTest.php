@@ -10,12 +10,8 @@ use function Orchestra\Testbench\package_path;
 
 class RouteTest extends TestCase
 {
-    /**
-     * Define routes setup.
-     *
-     * @param  \Illuminate\Routing\Router  $router
-     * @return void
-     */
+    /** {@inheritDoc} */
+    #[\Override]
     protected function defineRoutes($router)
     {
         $router->get('hello', ['uses' => function () {

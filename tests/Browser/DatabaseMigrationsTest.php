@@ -13,6 +13,8 @@ class DatabaseMigrationsTest extends TestCase
 {
     use DatabaseMigrations, WithWorkbench;
 
+    /** {@inheritDoc} */
+    #[\Override]
     protected function setUp(): void
     {
         $this->beforeApplicationDestroyed(function () {

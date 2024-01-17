@@ -134,10 +134,11 @@ class DuskServer
         $this->guardServerStarting();
 
         $this->process = Process::fromShellCommandline(
-            $this->prepareCommand(), null, defined_environment_variables()
+            command: $this->prepareCommand(),
+            cwd: join_paths($this->laravelPath(), 'public'),
+            env: defined_environment_variables()
         );
 
-        $this->process->setWorkingDirectory(join_paths($this->laravelPath(), 'public'));
         $this->process->start();
     }
 

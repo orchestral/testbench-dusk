@@ -6,6 +6,8 @@ use Orchestra\Testbench\Dusk\Concerns\CanServeSite;
 use Orchestra\Testbench\Dusk\Tests\Unit\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
+use function Orchestra\Testbench\Dusk\default_skeleton_path;
+
 class CanServeSiteTest extends TestCase
 {
     #[Test]
@@ -63,7 +65,7 @@ class CanServeSiteDummy
      */
     public static function applicationBasePath()
     {
-        return __DIR__.'/../../../laravel';
+        return default_skeleton_path();
     }
 
     /**

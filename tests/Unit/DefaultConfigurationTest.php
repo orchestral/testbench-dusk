@@ -38,13 +38,13 @@ class DefaultConfigurationTest extends TestbenchDuskTestCase
     #[Test]
     public function it_populate_expected_cache_defaults()
     {
-        $this->assertSame('array', $this->app['config']['cache.default']);
+        $this->assertSame('database', $this->app['config']['cache.default']);
     }
 
     #[Test]
     public function it_populate_expected_session_defaults()
     {
-        $this->assertSame('array', $this->app['config']['session.driver']);
+        $this->assertSame('cookie', $this->app['config']['session.driver']);
         $this->assertFalse($this->app['config']['session.expire_on_close']);
     }
 }

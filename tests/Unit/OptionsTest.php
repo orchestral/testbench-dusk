@@ -8,9 +8,8 @@ use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 class OptionsTest extends PHPUnitTestCase
 {
-    /**
-     * Teardown the test environment.
-     */
+    /** {@inheritDoc} */
+    #[\Override]
     protected function tearDown(): void
     {
         Options::resetArguments();
