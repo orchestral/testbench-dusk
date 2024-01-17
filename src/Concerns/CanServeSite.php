@@ -10,9 +10,6 @@ use Orchestra\Testbench\Dusk\Options;
 
 use function Orchestra\Testbench\after_resolving;
 
-/**
- * @internal
- */
 trait CanServeSite
 {
     /**
@@ -24,6 +21,8 @@ trait CanServeSite
 
     /**
      * Begin serving on a given host and port.
+     *
+     * @internal
      *
      * @param  string  $host
      * @param  int  $port
@@ -50,6 +49,8 @@ trait CanServeSite
     /**
      * Start serving on a given host and port.
      *
+     * @api
+     *
      * @return void
      */
     public static function startServing(): void
@@ -60,6 +61,8 @@ trait CanServeSite
     /**
      * Stop serving on a given host and port. As a safety net, we will
      * shut down all servers if we.
+     *
+     * @api
      *
      * @return void
      */
@@ -73,6 +76,8 @@ trait CanServeSite
     /**
      * Reload serving on a given host and port.
      *
+     * @api
+     *
      * @return void
      */
     public static function reloadServing(): void
@@ -83,6 +88,8 @@ trait CanServeSite
 
     /**
      * Make tweaks to the application, both inside the test and on the test server.
+     *
+     * @api
      *
      * @param  (\Closure(\Illuminate\Foundation\Application, \Illuminate\Contracts\Config\Repository):(void))|string  $closure
      * @return void
@@ -121,6 +128,8 @@ trait CanServeSite
     /**
      * Make tweaks to the application, both inside the test and on the test server.
      *
+     * @api
+     *
      * @param  \Closure(\Illuminate\Foundation\Application, \Illuminate\Contracts\Config\Repository):void  $closure
      * @return void
      */
@@ -136,6 +145,8 @@ trait CanServeSite
      *
      * It could be added to the tearDown method if used a lot.
      *
+     * @internal
+     *
      * @return void
      */
     public function removeApplicationTweaks(): void
@@ -147,6 +158,8 @@ trait CanServeSite
      * Build up a fresh application to serve, intended for use when we want to
      * replicate the Application state during a Dusk test when we start our
      * test server. See the main server file 'server.php'.
+     *
+     * @internal
      *
      * @param  \Orchestra\Testbench\Dusk\DuskServer  $server
      * @return \Illuminate\Foundation\Application
@@ -183,6 +196,8 @@ trait CanServeSite
      * replicate the Application state during a Dusk test when we start our
      * test server. See the main server file 'server.php'.
      *
+     * @internal
+     *
      * @param  \Orchestra\Testbench\Dusk\DuskServer  $server
      * @return \Illuminate\Foundation\Application
      *
@@ -198,6 +213,8 @@ trait CanServeSite
     /**
      * Return the current instance of server.
      *
+     * @api
+     *
      * @return \Orchestra\Testbench\Dusk\DuskServer|null
      */
     public function getServer()
@@ -209,6 +226,8 @@ trait CanServeSite
      * Server specific setup. It may share alot with the main setUp() method, but
      * should exclude things like DB migrations so we don't end up wiping the
      * DB content mid test. Using this method means we can be explicit.
+     *
+     * @api
      *
      * @return void
      *

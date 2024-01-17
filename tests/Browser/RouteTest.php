@@ -2,7 +2,6 @@
 
 namespace Orchestra\Testbench\Dusk\Tests\Browser;
 
-use Illuminate\Support\Env;
 use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Dusk\TestCase;
 use PHPUnit\Framework\Attributes\Test;
@@ -32,7 +31,7 @@ class RouteTest extends TestCase
         }]);
 
         $router->get('testbench-environment-value', ['uses' => function () {
-            return Env::get('TESTBENCH_WORKING_PATH');
+            return package_path();
         }]);
     }
 

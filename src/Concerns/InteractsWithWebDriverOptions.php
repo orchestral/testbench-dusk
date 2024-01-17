@@ -9,6 +9,8 @@ trait InteractsWithWebDriverOptions
     /**
      * Prepare the testing environment web driver options.
      *
+     * @internal
+     *
      * @return void
      *
      * @codeCoverageIgnore
@@ -21,6 +23,8 @@ trait InteractsWithWebDriverOptions
 
     /**
      * Prepare the testing environment web driver options.
+     *
+     * @api
      *
      * @return void
      */

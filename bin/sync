@@ -32,13 +32,13 @@ Illuminate\Support\Collection::make([
     'database/migrations/0001_01_01_000002_create_jobs_table.php',
     'resources/views/*',
     'public/index.php',
-    'tests/CreatesApplication.php',
 ])->transform(fn ($file) => "{$workingPath}/skeleton/{$file}")
 ->map(fn ($file) => str_contains($file, '*') ? [...$files->glob($file)] : $file)
 ->flatten()
 ->each(function ($file) use ($files, $workingPath) {
     $files->copy($file, "{$workingPath}/laravel".Illuminate\Support\Str::after($file, "{$workingPath}/skeleton"));
 });
+$files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/tests/CreatesApplication.php", "{$workingPath}/laravel/tests/CreatesApplication.php");
 $files->move("{$workingPath}/laravel/database/migrations/0001_01_01_000000_create_users_table.php", "{$workingPath}/laravel/migrations/0001_01_01_000000_testbench_create_users_table.php");
 $files->move("{$workingPath}/laravel/database/migrations/0001_01_01_000001_create_cache_table.php", "{$workingPath}/laravel/migrations/0001_01_01_000001_testbench_create_cache_table.php");
 $files->move("{$workingPath}/laravel/database/migrations/0001_01_01_000002_create_jobs_table.php", "{$workingPath}/laravel/migrations/0001_01_01_000002_testbench_create_jobs_table.php");

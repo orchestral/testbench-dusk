@@ -2,6 +2,7 @@
 
 namespace Orchestra\Testbench\Dusk;
 
+use Closure;
 use Exception;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
@@ -44,6 +45,8 @@ abstract class TestCase extends Testbench
     /**
      * The base server port.
      *
+     * @api
+     *
      * @return int
      */
     public static function getBaseServePort()
@@ -53,6 +56,8 @@ abstract class TestCase extends Testbench
 
     /**
      * The base server host.
+     *
+     * @api
      *
      * @return string
      */
@@ -64,6 +69,8 @@ abstract class TestCase extends Testbench
     /**
      * Get Application's base path.
      *
+     * @api
+     *
      * @return string
      */
     public static function applicationBasePath()
@@ -73,6 +80,8 @@ abstract class TestCase extends Testbench
 
     /**
      * Get Application's base URL.
+     *
+     * @api
      *
      * @return string
      */
@@ -98,6 +107,8 @@ abstract class TestCase extends Testbench
     /**
      * Determine trait should be ignored from being autoloaded.
      *
+     * @internal
+     *
      * @param  class-string  $use
      * @return bool
      */
@@ -116,6 +127,8 @@ abstract class TestCase extends Testbench
     /**
      * Get application providers.
      *
+     * @api
+     *
      * @param  \Illuminate\Foundation\Application  $app
      * @return array<int, class-string>
      */
@@ -133,6 +146,10 @@ abstract class TestCase extends Testbench
 
     /**
      * Setup parallel testing callback.
+     *
+     * @internal
+     *
+     * @return void
      */
     #[\Override]
     protected function setUpParallelTestingCallbacks(): void
@@ -142,6 +159,10 @@ abstract class TestCase extends Testbench
 
     /**
      * Teardown parallel testing callback.
+     *
+     * @internal
+     *
+     * @return void
      */
     #[\Override]
     protected function tearDownParallelTestingCallbacks(): void
@@ -153,6 +174,8 @@ abstract class TestCase extends Testbench
      * Make sure we close down any chrome processes when we temrinate early, unlike normal
      * Dusk, we also close down all the server processes - so keeping the chome browser
      * open doesn't help, nor does it help when we're running in headless mode :).
+     *
+     * @internal
      *
      * @return void
      */
@@ -168,37 +191,29 @@ abstract class TestCase extends Testbench
     }
 
     /**
-     * Get base path.
-     *
-     * @return string
-     *
-     * @deprecated
-     */
-    protected function getBasePath()
-    {
-        return static::applicationBasePath();
-    }
-
-    /**
      * Resolve application implementation.
      *
-     * @return \Illuminate\Foundation\Application
+     * @internal
+     *
+     * @return \Closure(\Illuminate\Foundation\Application): void
      */
     #[\Override]
-    protected function resolveApplication()
+    protected function resolveApplicationResolvingCallback(): Closure
     {
-        return tap($this->resolveDefaultApplication(), function ($app) {
+        return function ($app) {
             $app->bind(
                 'Illuminate\Foundation\Bootstrap\LoadConfiguration',
                 Bootstrap\LoadConfiguration::class
             );
 
             PackageManifest::swap($app, $this);
-        });
+        };
     }
 
     /**
      * Create the RemoteWebDriver instance.
+     *
+     * @api
      *
      * @return \Facebook\WebDriver\Remote\RemoteWebDriver
      */
@@ -222,6 +237,8 @@ abstract class TestCase extends Testbench
     /**
      * Determine the application's base URL.
      *
+     * @api
+     *
      * @return string
      */
     protected function baseUrl()
@@ -231,6 +248,8 @@ abstract class TestCase extends Testbench
 
     /**
      * Get a callback that returns the default user to authenticate.
+     *
+     * @api
      *
      * @return callable
      *
@@ -244,6 +263,8 @@ abstract class TestCase extends Testbench
     /**
      * Prepare for Dusk test execution.
      *
+     * @internal
+     *
      * @return void
      *
      * @codeCoverageIgnore
@@ -256,6 +277,8 @@ abstract class TestCase extends Testbench
 
     /**
      * Begin a server for the tests.
+     *
+     * @internal
      *
      * @return void
      *
@@ -272,6 +295,8 @@ abstract class TestCase extends Testbench
     /**
      * Clean up the testing environment before the next test case.
      *
+     * @internal
+     *
      * @return void
      *
      * @codeCoverageIgnore
@@ -286,6 +311,8 @@ abstract class TestCase extends Testbench
 
     /**
      * Determine whether the Dusk command has disabled headless mode.
+     *
+     * @api
      *
      * @return bool
      *
