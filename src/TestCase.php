@@ -66,7 +66,7 @@ abstract class TestCase extends Testbench
      */
     public static function applicationBasePath()
     {
-        return static::applicationBasePathUsingWorkbench() ?? (string) realpath(__DIR__.'/../laravel');
+        return static::applicationBasePathUsingWorkbench() ?? default_skeleton_path();
     }
 
     /**
