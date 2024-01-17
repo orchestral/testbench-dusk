@@ -5,6 +5,8 @@ namespace Orchestra\Testbench\Dusk\Console;
 use Orchestra\Testbench\Console\Commander as Testbench;
 use Orchestra\Testbench\Dusk\Foundation\TestbenchServiceProvider;
 
+use function Orchestra\Testbench\Dusk\default_skeleton_path;
+
 class Commander extends Testbench
 {
     /**
@@ -26,6 +28,6 @@ class Commander extends Testbench
      */
     protected function getBasePathFromTrait()
     {
-        return __DIR__.'/../../laravel';
+        return default_skeleton_path();
     }
 }

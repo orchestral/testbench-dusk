@@ -3,7 +3,6 @@
 namespace Orchestra\Testbench\Dusk\Attributes;
 
 use Attribute;
-use Closure;
 use Orchestra\Testbench\Contracts\Attributes\Invokable as InvokableContract;
 
 #[Attribute(Attribute::TARGET_CLASS | Attribute::TARGET_METHOD)]

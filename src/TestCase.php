@@ -66,13 +66,11 @@ abstract class TestCase extends Testbench
      */
     public static function applicationBasePath()
     {
-        return static::applicationBasePathUsingWorkbench() ?? realpath(__DIR__.'/../laravel');
+        return static::applicationBasePathUsingWorkbench() ?? default_skeleton_path();
     }
 
     /**
      * Get Application's base URL.
-     *
-     * @var string
      *
      * @return string
      */
@@ -84,11 +82,9 @@ abstract class TestCase extends Testbench
     /**
      * Determine the application's base URL.
      *
-     * @var string
-     *
      * @return string
      *
-     * @deprecated To be removed on 7.0.0, use static::applicationBaseUrl() instead.
+     * @deprecated Use static::applicationBaseUrl() instead.
      */
     public static function baseServeUrl()
     {
