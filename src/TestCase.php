@@ -16,6 +16,7 @@ use Orchestra\Testbench\TestCase as Testbench;
 use PHPUnit\Framework\Attributes\BeforeClass;
 
 use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Testbench\Dusk\default_skeleton_path;
 
 abstract class TestCase extends Testbench
 {
@@ -83,14 +84,15 @@ abstract class TestCase extends Testbench
     /**
      * Get the default application bootstrap file path (if exists).
      *
-     * @api
+     * @internal
      *
+     * @param  string  $filename
      * @return string
      */
     #[\Override]
-    protected function getDefaultApplicationBootstrapFile()
+    protected function getDefaultApplicationBootstrapFile(string $filename): string
     {
-        return default_skeleton_path(join_paths('bootstrap', 'app.php'));
+        return default_skeleton_path(join_paths('bootstrap', $filename));
     }
 
     /**
@@ -210,19 +212,18 @@ abstract class TestCase extends Testbench
      *
      * @internal
      *
-     * @return \Closure(\Illuminate\Foundation\Application): void
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
      */
     #[\Override]
-    protected function resolveApplicationResolvingCallback(): Closure
+    protected function resolveApplicationResolvingCallback($app): void
     {
-        return function ($app) {
-            $app->bind(
-                'Illuminate\Foundation\Bootstrap\LoadConfiguration',
-                Bootstrap\LoadConfiguration::class
-            );
+        $app->bind(
+            'Illuminate\Foundation\Bootstrap\LoadConfiguration',
+            Bootstrap\LoadConfiguration::class
+        );
 
-            PackageManifest::swap($app, $this);
-        };
+        PackageManifest::swap($app, $this);
     }
 
     /**
