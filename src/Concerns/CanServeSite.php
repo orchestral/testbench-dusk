@@ -221,6 +221,19 @@ trait CanServeSite
     }
 
     /**
+     * The base server host.
+     * Teardown the concern.
+     *
+     * @return void
+     *
+     * @codeCoverageIgnore
+     */
+    protected static function tearDownAfterClassCanServeSite(): void
+    {
+        static::$server = null;
+    }
+
+    /**
      * The base server port.
      *
      * @return int
@@ -228,7 +241,7 @@ trait CanServeSite
     abstract public static function getBaseServePort();
 
     /**
-     * The base server host.
+     * Get base server host.
      *
      * @return string
      */
