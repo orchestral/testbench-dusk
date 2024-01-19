@@ -173,7 +173,7 @@ abstract class TestCase extends Testbench
      * @param  \Illuminate\Foundation\Application  $app
      * @return void
      */
-    protected function resolveApplicationResolvingCallback($app): void
+    private function resolveApplicationResolvingCallback($app): void
     {
         $app->bind(
             'Illuminate\Foundation\Bootstrap\LoadConfiguration',
