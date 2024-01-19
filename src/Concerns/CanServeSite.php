@@ -221,7 +221,6 @@ trait CanServeSite
     }
 
     /**
-     * The base server host.
      * Teardown the concern.
      *
      * @return void
