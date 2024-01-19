@@ -12,7 +12,7 @@ Released: 2024-01-19
 
 ### Changes
 
-* Update minimum support for Testbench v7.40.0+. ([v7.39.0...v7.40.0](https://github.com/orchestral/testbench/compare/v7.39.0...v7.40.0))
+* Update minimum support for Testbench v8.21.0+. ([v8.20.0...v8.21.0](https://github.com/orchestral/testbench/compare/v8.20.0...v8.21.0))
 * Increase server timeout to `6000` seconds instead of `60` seconds.
 * Clear `$server` static method during `tearDownAfterClass`.
 
