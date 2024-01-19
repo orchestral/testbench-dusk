@@ -171,20 +171,19 @@ abstract class TestCase extends Testbench
     }
 
     /**
-     * Resolve application implementation.
+     * Resolve application resolving callback.
      *
-     * @return \Illuminate\Foundation\Application
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
      */
-    protected function resolveApplication()
+    protected function resolveApplicationResolvingCallback($app)
     {
-        return tap(new Application($this->getBasePath()), function ($app) {
-            $app->bind(
-                'Illuminate\Foundation\Bootstrap\LoadConfiguration',
-                Bootstrap\LoadConfiguration::class
-            );
+        $app->bind(
+            'Illuminate\Foundation\Bootstrap\LoadConfiguration',
+            Bootstrap\LoadConfiguration::class
+        );
 
-            PackageManifest::swap($app, $this);
-        });
+        PackageManifest::swap($app, $this);
     }
 
     /**

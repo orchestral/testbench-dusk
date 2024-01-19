@@ -42,7 +42,8 @@
         "laravel/dusk": "^7.12",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^1.7.1 || ^2.2.1",
-        "orchestra/testbench": "^7.39",
+        "orchestra/testbench": "^7.40",
+        "orchestra/testbench-core": "^7.40",
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
@@ -92,5 +93,6 @@
     "config": {
         "sort-packages": true
     },
-    "minimum-stability": "stable"
+    "prefer-stable": true,
+    "minimum-stability": "dev"
 }
