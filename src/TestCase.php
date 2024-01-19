@@ -173,16 +173,6 @@ abstract class TestCase extends Testbench
     }
 
     /**
-     * Get base path.
-     *
-     * @return string
-     */
-    protected function getBasePath()
-    {
-        return static::applicationBasePath();
-    }
-
-    /**
      * Resolve application resolving callback.
      *
      * @param  \Illuminate\Foundation\Application  $app
@@ -247,20 +237,6 @@ abstract class TestCase extends Testbench
     }
 
     /**
-     * Prepare for Dusk test execution.
-     *
-     * @beforeClass
-     *
-     * @return void
-     *
-     * @codeCoverageIgnore
-     */
-    public static function prepare()
-    {
-        static::startChromeDriver(['port' => 9515]);
-    }
-
-    /**
      * Begin a server for the tests.
      *
      * @return void
@@ -271,6 +247,7 @@ abstract class TestCase extends Testbench
     {
         parent::setUpBeforeClass();
 
+        static::startChromeDriver(['port' => 9515]);
         static::startServing();
     }
 
