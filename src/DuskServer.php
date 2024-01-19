@@ -43,6 +43,13 @@ class DuskServer
     protected $port;
 
     /**
+     * Server process timeout.
+     *
+     * @var int
+     */
+    protected $timeout;
+
+    /**
      * Laravel working path.
      *
      * @var string|null
@@ -54,11 +61,13 @@ class DuskServer
      *
      * @param  string  $host
      * @param  int  $port
+     * @param  int  $timeout
      */
-    public function __construct($host = '127.0.0.1', $port = 8001)
+    public function __construct($host = '127.0.0.1', $port = 8001, $timeout = 6000)
     {
         $this->host = $host;
         $this->port = $port;
+        $this->timeout = $timeout;
     }
 
     /**
@@ -154,10 +163,12 @@ class DuskServer
         $this->guardServerStarting();
 
         $this->process = Process::fromShellCommandline(
-            $this->prepareCommand(), null, defined_environment_variables()
+            command: $this->prepareCommand(),
+            cwd: join_paths($this->laravelPath(), 'public'),
+            env: defined_environment_variables(),
+            timeout: $this->timeout
         );
 
-        $this->process->setWorkingDirectory(join_paths($this->laravelPath(), 'public'));
         $this->process->start();
     }
 

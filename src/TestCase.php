@@ -65,6 +65,7 @@ abstract class TestCase extends Testbench
      *
      * @return string
      */
+    #[\Override]
     public static function applicationBasePath()
     {
         return static::applicationBasePathUsingWorkbench() ?? default_skeleton_path();
@@ -167,33 +168,19 @@ abstract class TestCase extends Testbench
     }
 
     /**
-     * Get base path.
+     * Resolve application resolving callback.
      *
-     * @return string
-     *
-     * @deprecated
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
      */
-    protected function getBasePath()
+    protected function resolveApplicationResolvingCallback($app): void
     {
-        return static::applicationBasePath();
-    }
+        $app->bind(
+            'Illuminate\Foundation\Bootstrap\LoadConfiguration',
+            Bootstrap\LoadConfiguration::class
+        );
 
-    /**
-     * Resolve application implementation.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    #[\Override]
-    protected function resolveApplication()
-    {
-        return tap($this->resolveDefaultApplication(), function ($app) {
-            $app->bind(
-                'Illuminate\Foundation\Bootstrap\LoadConfiguration',
-                Bootstrap\LoadConfiguration::class
-            );
-
-            PackageManifest::swap($app, $this);
-        });
+        PackageManifest::swap($app, $this);
     }
 
     /**
@@ -241,20 +228,6 @@ abstract class TestCase extends Testbench
     }
 
     /**
-     * Prepare for Dusk test execution.
-     *
-     * @beforeClass
-     *
-     * @return void
-     *
-     * @codeCoverageIgnore
-     */
-    public static function prepare()
-    {
-        static::startChromeDriver(['port' => 9515]);
-    }
-
-    /**
      * Begin a server for the tests.
      *
      * @return void
@@ -266,6 +239,7 @@ abstract class TestCase extends Testbench
     {
         parent::setUpBeforeClass();
 
+        static::startChromeDriver(['port' => 9515]);
         static::startServing();
     }
 
