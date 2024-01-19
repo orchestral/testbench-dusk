@@ -33,10 +33,12 @@ class DuskServer
      *
      * @param  string  $host
      * @param  int  $port
+     * @param  int  $timeout
      */
     public function __construct(
-        protected string $host = '127.0.0.1',
-        protected int $port = 8001
+        protected readonly string $host = '127.0.0.1',
+        protected readonly int $port = 8001,
+        protected readonly int $timeout = 6000
     ) {
         //
     }
@@ -136,7 +138,8 @@ class DuskServer
         $this->process = Process::fromShellCommandline(
             command: $this->prepareCommand(),
             cwd: join_paths($this->laravelPath(), 'public'),
-            env: defined_environment_variables()
+            env: defined_environment_variables(),
+            timeout: $this->timeout
         );
 
         $this->process->start();

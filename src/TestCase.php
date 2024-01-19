@@ -2,7 +2,6 @@
 
 namespace Orchestra\Testbench\Dusk;
 
-use Closure;
 use Exception;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
@@ -16,7 +15,6 @@ use Orchestra\Testbench\TestCase as Testbench;
 use PHPUnit\Framework\Attributes\BeforeClass;
 
 use function Illuminate\Filesystem\join_paths;
-use function Orchestra\Testbench\Dusk\default_skeleton_path;
 
 abstract class TestCase extends Testbench
 {
@@ -76,6 +74,7 @@ abstract class TestCase extends Testbench
      *
      * @return string
      */
+    #[\Override]
     public static function applicationBasePath()
     {
         return static::applicationBasePathUsingWorkbench() ?? default_skeleton_path();
@@ -208,7 +207,7 @@ abstract class TestCase extends Testbench
     }
 
     /**
-     * Resolve application implementation.
+     * Resolve application resolving callback.
      *
      * @internal
      *
@@ -277,6 +276,7 @@ abstract class TestCase extends Testbench
     }
 
     /**
+<<<<<<< HEAD
      * Prepare for Dusk test execution.
      *
      * @internal
@@ -292,6 +292,8 @@ abstract class TestCase extends Testbench
     }
 
     /**
+=======
+>>>>>>> 8.x
      * Begin a server for the tests.
      *
      * @internal
@@ -305,6 +307,7 @@ abstract class TestCase extends Testbench
     {
         parent::setUpBeforeClass();
 
+        static::startChromeDriver(['port' => 9515]);
         static::startServing();
     }
 
