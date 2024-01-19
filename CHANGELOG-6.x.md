@@ -2,6 +2,20 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.43.0
+
+Released: 2024-01-19
+
+### Added
+
+* Added `Orchestra\Testbench\Dusk\default_skeleton_path()` helper function.
+
+### Changes
+
+* Update minimum support for Testbench v6.47.0+. ([v6.41.0...v6.47.0](https://github.com/orchestral/testbench/compare/v6.41.0...v6.47.0))
+* Increase server timeout to `6000` seconds instead of `60` seconds.
+* Clear `$server` static method during `tearDownAfterClass`.
+
 ## 6.42.0
 
 Released: 2023-12-19
