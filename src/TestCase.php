@@ -276,24 +276,6 @@ abstract class TestCase extends Testbench
     }
 
     /**
-<<<<<<< HEAD
-     * Prepare for Dusk test execution.
-     *
-     * @internal
-     *
-     * @return void
-     *
-     * @codeCoverageIgnore
-     */
-    #[BeforeClass]
-    public static function prepare()
-    {
-        static::startChromeDriver(['port' => 9515]);
-    }
-
-    /**
-=======
->>>>>>> 8.x
      * Begin a server for the tests.
      *
      * @internal
