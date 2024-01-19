@@ -247,6 +247,7 @@ abstract class TestCase extends Testbench
     {
         parent::setUpBeforeClass();
 
+        static::setUpBeforeClassForInteractsWithWebDriverOptions();
         static::startChromeDriver(['port' => 9515]);
         static::startServing();
     }
@@ -263,6 +264,7 @@ abstract class TestCase extends Testbench
         static::stopServing();
 
         parent::tearDownAfterClass();
+        static::tearDownAfterClassCanServeSite();
     }
 
     /**

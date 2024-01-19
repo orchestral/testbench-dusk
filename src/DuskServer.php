@@ -162,10 +162,13 @@ class DuskServer
         $this->guardServerStarting();
 
         $this->process = Process::fromShellCommandline(
-            $this->prepareCommand(), null, defined_environment_variables(), null, $this->timeout
+            $this->prepareCommand(),
+            "{$this->laravelPath()}/public",
+            defined_environment_variables(),
+            null,
+            $this->timeout
         );
 
-        $this->process->setWorkingDirectory("{$this->laravelPath()}/public");
         $this->process->start();
     }
 

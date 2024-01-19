@@ -68,8 +68,6 @@ trait CanServeSite
         if (isset(static::$server)) {
             static::$server->stop();
         }
-
-        static::$server = null;
     }
 
     /**
@@ -213,6 +211,18 @@ trait CanServeSite
         if (! $this->app) {
             $this->refreshApplication();
         }
+    }
+
+    /**
+     * Teardown the concern.
+     *
+     * @return void
+     *
+     * @codeCoverageIgnore
+     */
+    protected static function tearDownAfterClassCanServeSite(): void
+    {
+        static::$server = null;
     }
 
     /**
