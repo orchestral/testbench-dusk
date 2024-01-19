@@ -221,7 +221,7 @@ trait CanServeSite
     }
 
     /**
-     * Teardown the concern.
+     * Teardown the test environment.
      *
      * @return void
      *
