@@ -307,6 +307,7 @@ abstract class TestCase extends Testbench
         static::stopServing();
 
         parent::tearDownAfterClass();
+        static::tearDownAfterClassCanServeSite();
     }
 
     /**
