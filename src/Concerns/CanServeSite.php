@@ -3,7 +3,6 @@
 namespace Orchestra\Testbench\Dusk\Concerns;
 
 use Closure;
-use Illuminate\Queue\SerializableClosureFactory;
 use Laravel\SerializableClosure\SerializableClosure;
 use Orchestra\Testbench\Dusk\DuskServer;
 use Orchestra\Testbench\Dusk\Options;
@@ -113,11 +112,7 @@ trait CanServeSite
             'class' => static::class,
             'tweakApplication' => \is_string($closure)
                 ? serialize($closure)
-                : serialize(
-                    class_exists(SerializableClosureFactory::class)
-                        ? SerializableClosureFactory::make($closure)
-                        : new SerializableClosure($closure)
-                ),
+                : serialize(new SerializableClosure($closure)),
         ]);
 
         $this->beforeApplicationDestroyed(function () {
