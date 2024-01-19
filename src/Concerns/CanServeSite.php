@@ -71,8 +71,6 @@ trait CanServeSite
         if (isset(static::$server)) {
             static::$server->stop();
         }
-
-        static::$server = null;
     }
 
     /**
