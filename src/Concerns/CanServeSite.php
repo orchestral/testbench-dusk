@@ -105,9 +105,13 @@ trait CanServeSite
             'class' => static::class,
             'tweakApplication' => \is_string($closure)
                 ? serialize($closure)
+<<<<<<< HEAD
                 : serialize(
                     new SerializableClosure($closure)
                 ),
+=======
+                : serialize(new SerializableClosure($closure)),
+>>>>>>> develop
         ]);
 
         $this->beforeApplicationDestroyed(function () {
