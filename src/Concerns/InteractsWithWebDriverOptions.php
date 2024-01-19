@@ -2,8 +2,6 @@
 
 namespace Orchestra\Testbench\Dusk\Concerns;
 
-use PHPUnit\Framework\Attributes\BeforeClass;
-
 trait InteractsWithWebDriverOptions
 {
     /**
@@ -13,7 +11,6 @@ trait InteractsWithWebDriverOptions
      *
      * @codeCoverageIgnore
      */
-    #[BeforeClass]
     public static function setUpBeforeClassForInteractsWithWebDriverOptions()
     {
         static::defineWebDriverOptions();
