@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.43.1
+
+Released: 2024-01-22
+
+### Changes
+
+* Update minimum support for Testbench v6.42.1+. ([v6.42.0...v6.42.1](https://github.com/orchestral/testbench/compare/v6.42.0...v6.42.1))
+
 ## 6.43.0
 
 Released: 2024-01-19
@@ -12,7 +20,7 @@ Released: 2024-01-19
 
 ### Changes
 
-* Update minimum support for Testbench v6.47.0+. ([v6.41.0...v6.47.0](https://github.com/orchestral/testbench/compare/v6.41.0...v6.47.0))
+* Update minimum support for Testbench v6.42.0+. ([v6.41.0...v6.42.0](https://github.com/orchestral/testbench/compare/v6.41.0...v6.42.0))
 * Increase server timeout to `6000` seconds instead of `60` seconds.
 * Clear `$server` static method during `tearDownAfterClass`.
 
