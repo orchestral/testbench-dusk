@@ -44,7 +44,7 @@ class DefaultConfigurationTest extends TestbenchDuskTestCase
     #[Test]
     public function it_populate_expected_session_defaults()
     {
-        $this->assertSame('cookie', $this->app['config']['session.driver']);
+        $this->assertSame('database', $this->app['config']['session.driver']);
         $this->assertFalse($this->app['config']['session.expire_on_close']);
     }
 }

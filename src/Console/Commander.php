@@ -17,6 +17,13 @@ class Commander extends Testbench
     protected string $environmentFile = '.env.dusk';
 
     /**
+     * The testbench implementation class.
+     *
+     * @var class-string<\Orchestra\Testbench\Foundation\Application>
+     */
+    protected static string $testbench = \Orchestra\Testbench\Dusk\Foundation\Application::class;
+
+    /**
      * List of providers.
      *
      * @var array<int, class-string<\Illuminate\Support\ServiceProvider>>
