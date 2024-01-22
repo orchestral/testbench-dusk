@@ -1,4 +1,4 @@
-# Change for 5.x
+# Changes for 5.x
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
@@ -145,7 +145,7 @@ Released: 2020-10-20
 
 * Fixes missing `$workingPath`.
 
-## 5.4.0 
+## 5.4.0
 
 Released: 2020-10-20
 
