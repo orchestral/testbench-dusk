@@ -74,11 +74,12 @@ trait ProvidesBrowser
     }
 
     /**
-     * Determine the application's base URL.
+     * Get Application's base URL.
      *
-     * @var string
+     *
+     * @return string
      */
-    abstract protected function baseUrl();
+    abstract public static function applicationBaseUrl();
 
     /**
      * Get a callback that returns the default user to authenticate.

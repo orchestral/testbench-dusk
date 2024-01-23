@@ -53,7 +53,14 @@ class DuskServer
      *
      * @var string|null
      */
-    protected $laravelPath;
+    protected $basePath = null;
+
+    /**
+     * Laravel working URL.
+     *
+     * @var string|null
+     */
+    protected $baseUrl = null;
 
     /**
      * Construct a new server.
@@ -72,12 +79,14 @@ class DuskServer
     /**
      * Set Laravel working path.
      *
-     * @param  string|null  $laravelPath
+     * @param  string|null  $basePath
+     * @param  string|null  $baseUrl
      * @return void
      */
-    public function setLaravelPath(?string $laravelPath = null): void
+    public function setLaravel(?string $basePath = null, ?string $baseUrl = null): void
     {
-        $this->laravelPath = $laravelPath;
+        $this->basePath = $basePath;
+        $this->baseUrl = $baseUrl;
     }
 
     /**
@@ -163,8 +172,10 @@ class DuskServer
 
         $this->process = Process::fromShellCommandline(
             $this->prepareCommand(),
-            "{$this->laravelPath()}/public",
-            defined_environment_variables(),
+            "{$this->basePath()}/public",
+            array_merge(defined_environment_variables(), [
+                'APP_URL' => $this->baseUrl(),
+            ]),
             null,
             $this->timeout
         );
@@ -212,16 +223,23 @@ class DuskServer
     }
 
     /**
-     * Figure out the path to the laravel application
-     * For testbench purposes, this exists in the
-     * core package.
+     * Figure out the path to the laravel application path for Testbench purposes.
      *
-     * @param  string|null  $root
      * @return string
      */
-    public function laravelPath(): string
+    public function basePath(): string
     {
-        return $this->laravelPath ?: (string) realpath(__DIR__.'/../laravel');
+        return $this->basePath ?? default_skeleton_path();
+    }
+
+    /**
+     * Figure out the path to the laravel application URL for testbench purposes.
+     *
+     * @return string
+     */
+    public function baseUrl(): string
+    {
+        return $this->baseUrl ?? sprintf('http://%s:%d', $this->host, $this->port);
     }
 
     /**
