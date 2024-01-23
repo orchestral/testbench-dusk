@@ -4,6 +4,7 @@ namespace Orchestra\Testbench\Dusk\Tests\Unit\Concerns;
 
 use Orchestra\Testbench\Dusk\Concerns\CanServeSite;
 use Orchestra\Testbench\Dusk\Tests\Unit\TestCase;
+
 use function Orchestra\Testbench\Dusk\default_skeleton_path;
 
 class CanServeSiteTest extends TestCase
