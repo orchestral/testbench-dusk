@@ -101,7 +101,7 @@ abstract class TestCase extends Testbench
      */
     public static function applicationBaseUrl()
     {
-        return sprintf('http://%s:%d', static::getBaseServeHost(), static::getBaseServePort());
+        return Env::get('DUSK_SERVE_URL') ?? sprintf('http://%s:%d', self::getBaseServeHost(), self::getBaseServePort());
     }
 
     /**
@@ -244,18 +244,6 @@ abstract class TestCase extends Testbench
                 DuskOptions::getChromeOptions()
             )
         );
-    }
-
-    /**
-     * Determine the application's base URL.
-     *
-     * @api
-     *
-     * @return string
-     */
-    protected function baseUrl()
-    {
-        return Env::get('DUSK_SERVE_URL') ?? static::applicationBaseUrl();
     }
 
     /**
