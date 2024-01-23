@@ -10,6 +10,7 @@ use Illuminate\Foundation\Application;
 use Laravel\Dusk\DuskServiceProvider;
 use Orchestra\Testbench\Dusk\Foundation\PackageManifest;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
+use Orchestra\Testbench\Foundation\Env;
 use Orchestra\Testbench\TestCase as Testbench;
 
 abstract class TestCase extends Testbench
@@ -46,7 +47,7 @@ abstract class TestCase extends Testbench
      */
     public static function getBaseServePort()
     {
-        return static::$baseServePort;
+        return Env::get('DUSK_SERVE_PORT') ?? static::$baseServePort;
     }
 
     /**
@@ -56,7 +57,7 @@ abstract class TestCase extends Testbench
      */
     public static function getBaseServeHost()
     {
-        return static::$baseServeHost;
+        return Env::get('DUSK_SERVE_HOST') ?? static::$baseServeHost;
     }
 
     /**
@@ -76,7 +77,7 @@ abstract class TestCase extends Testbench
      */
     public static function applicationBaseUrl()
     {
-        return sprintf('http://%s:%d', static::getBaseServeHost(), static::getBaseServePort());
+        return Env::get('DUSK_SERVE_URL') ?? sprintf('http://%s:%d', static::getBaseServeHost(), static::getBaseServePort());
     }
 
     /**
@@ -192,7 +193,7 @@ abstract class TestCase extends Testbench
         }
 
         return RemoteWebDriver::create(
-            $_ENV['DUSK_DRIVER_URL'] ?? 'http://localhost:9515',
+            Env::get('DUSK_DRIVER_URL') ?? 'http://localhost:9515',
             DesiredCapabilities::chrome()->setCapability(
                 ChromeOptions::CAPABILITY,
                 DuskOptions::getChromeOptions()
@@ -262,6 +263,6 @@ abstract class TestCase extends Testbench
      */
     protected function hasHeadlessDisabled()
     {
-        return env('DUSK_HEADLESS_DISABLED', false) == true;
+        return Env::get('DUSK_HEADLESS_DISABLED', false) == true;
     }
 }

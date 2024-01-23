@@ -39,7 +39,7 @@ trait CanServeSite
         }
 
         $server = new DuskServer($host, $port);
-        $server->setLaravelPath(static::applicationBasePath());
+        $server->setLaravel(basePath: self::applicationBasePath(), baseUrl: self::applicationBaseUrl());
         $server->stash(['class' => static::class]);
         $server->start();
 
@@ -240,4 +240,19 @@ trait CanServeSite
      * @return string
      */
     abstract public static function getBaseServeHost();
+
+    /**
+     * Get Application's base path.
+     *
+     * @return string
+     */
+    abstract public static function applicationBasePath();
+
+    /**
+     * Get Application's base URL.
+     *
+     *
+     * @return string
+     */
+    abstract public static function applicationBaseUrl();
 }
