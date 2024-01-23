@@ -13,10 +13,10 @@ class Application extends \Orchestra\Testbench\Foundation\Application
      * @internal
      *
      * @param  string  $filename
-     * @return string
+     * @return string|false
      */
-    protected function getDefaultApplicationBootstrapFile(string $filename): string
+    protected function getDefaultApplicationBootstrapFile(string $filename): string|false
     {
-        return default_skeleton_path(join_paths('bootstrap', $filename));
+        return realpath(default_skeleton_path(join_paths('bootstrap', $filename)));
     }
 }

@@ -84,12 +84,12 @@ abstract class TestCase extends Testbench
      * @internal
      *
      * @param  string  $filename
-     * @return string
+     * @return string|false
      */
     #[\Override]
-    protected function getDefaultApplicationBootstrapFile(string $filename): string
+    protected function getDefaultApplicationBootstrapFile(string $filename): string|false
     {
-        return default_skeleton_path(join_paths('bootstrap', $filename));
+        return realpath(default_skeleton_path(join_paths('bootstrap', $filename)));
     }
 
     /**
