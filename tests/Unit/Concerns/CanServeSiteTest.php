@@ -69,6 +69,18 @@ class CanServeSiteDummy
     }
 
     /**
+     * Get Application's base URL.
+     *
+     * @var string
+     *
+     * @return string
+     */
+    public static function applicationBaseUrl()
+    {
+        return sprintf('http://$s:$d', static::getBaseServeHost(), static::getBaseServePort());
+    }
+
+    /**
      * The base server port.
      *
      * @return int
