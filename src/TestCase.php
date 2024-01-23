@@ -255,7 +255,7 @@ abstract class TestCase extends Testbench
      */
     protected function baseUrl()
     {
-        return static::applicationBaseUrl();
+        return Env::get('DUSK_SERVE_URL') ?? static::applicationBaseUrl();
     }
 
     /**
