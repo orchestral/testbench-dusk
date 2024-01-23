@@ -205,7 +205,7 @@ abstract class TestCase extends Testbench
         }
 
         return RemoteWebDriver::create(
-            $_ENV['DUSK_DRIVER_URL'] ?? 'http://localhost:9515',
+            Env::get('DUSK_DRIVER_URL') ?? 'http://localhost:9515',
             DesiredCapabilities::chrome()->setCapability(
                 ChromeOptions::CAPABILITY,
                 DuskOptions::getChromeOptions()
@@ -277,7 +277,6 @@ abstract class TestCase extends Testbench
      */
     protected function hasHeadlessDisabled()
     {
-        return (isset($_SERVER['DUSK_HEADLESS_DISABLED']) && $_SERVER['DUSK_HEADLESS_DISABLED'] == true)
-            || (isset($_ENV['DUSK_HEADLESS_DISABLED']) && $_ENV['DUSK_HEADLESS_DISABLED'] == true);
+        return Env::get('DUSK_HEADLESS_DISABLED', false) == true;
     }
 }
