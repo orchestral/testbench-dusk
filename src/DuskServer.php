@@ -46,6 +46,13 @@ class DuskServer
     ];
 
     /**
+     * List of local IPv6 hosts.
+     *
+     * @var array<int, string>
+     */
+    protected $localIpv6Hosts = ['::0', '[::0]'];
+
+    /**
      * Construct a new server.
      *
      * @param  string  $host
@@ -92,8 +99,9 @@ class DuskServer
     protected function temp(): string
     {
         return join_paths(
-            \dirname(__DIR__), 'tmp',
-            sprintf('%s__%d', ! in_array($this->host, $this->localIpv6Hosts) ? $this->host : 'localhost', $this->port)
+            \dirname(__DIR__),
+            'tmp',
+            sprintf('%s__%d', ! \in_array($this->host, $this->localIpv6Hosts) ? $this->host : 'localhost', $this->port),
         );
     }
 
