@@ -263,4 +263,19 @@ trait CanServeSite
      * @return string
      */
     abstract public static function getBaseServeHost();
+
+    /**
+     * Get Application's base path.
+     *
+     * @return string
+     */
+    abstract public static function applicationBasePath();
+
+    /**
+     * Get Application's base URL.
+     *
+     *
+     * @return string
+     */
+    abstract public static function applicationBaseUrl();
 }

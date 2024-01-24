@@ -8,6 +8,8 @@ use PHPUnit\Framework\Attributes\Test;
 
 use function Orchestra\Testbench\Dusk\default_skeleton_path;
 
+use function Orchestra\Testbench\Dusk\default_skeleton_path;
+
 class CanServeSiteTest extends TestCase
 {
     #[Test]
@@ -77,7 +79,7 @@ class CanServeSiteDummy
      */
     public static function applicationBaseUrl()
     {
-        return sprintf('http://$s:$d', static::getBaseServeHost(), static::getBaseServePort());
+        return sprintf('http://%s:%d', self::getBaseServeHost(), self::getBaseServePort());
     }
 
     /**

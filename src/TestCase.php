@@ -50,7 +50,7 @@ abstract class TestCase extends Testbench
      */
     public static function getBaseServePort()
     {
-        return Env::get('DUSK_SERVE_PORT') ?? static::$baseServePort;
+        return Env::get('DUSK_SERVE_PORT') ?? self::$baseServePort;
     }
 
     /**
@@ -62,7 +62,7 @@ abstract class TestCase extends Testbench
      */
     public static function getBaseServeHost()
     {
-        return Env::get('DUSK_SERVE_HOST') ?? static::$baseServeHost;
+        return Env::get('DUSK_SERVE_HOST') ?? self::$baseServeHost;
     }
 
     /**
