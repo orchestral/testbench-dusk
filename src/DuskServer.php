@@ -2,6 +2,8 @@
 
 namespace Orchestra\Testbench\Dusk;
 
+use Illuminate\Support\ProcessUtils;
+use Laravel\Dusk\OperatingSystem;
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
@@ -157,7 +159,7 @@ class DuskServer
 
         $this->process = Process::fromShellCommandline(
             command: $this->prepareCommand(),
-            cwd: $this->basePath(),
+            cwd: join_paths($this->basePath(), 'public'),
             env: array_merge(defined_environment_variables(), [
                 'APP_BASE_PATH' => $this->basePath(),
                 'APP_URL' => $this->baseUrl(),
@@ -202,11 +204,12 @@ class DuskServer
     protected function prepareCommand(): string
     {
         return sprintf(
-            (($this->isWindows() ? '' : 'exec ').'%s -S %s:%s %s -t public'),
-            '"'.(new PhpExecutableFinder())->find(false).'"',
+            ((OperatingSystem::onWindows() ? '' : 'exec ').'%s -S %s:%s %s -t %s'),
+            ProcessUtils::escapeArgument((string) (new PhpExecutableFinder())->find(false)),
             $this->host,
             $this->port,
-            '"'.__DIR__.'/server.php'.'"',
+            ProcessUtils::escapeArgument(join_paths(__DIR__, 'server.php')),
+            ProcessUtils::escapeArgument(join_paths($this->basePath(), 'public')),
         );
     }
 
