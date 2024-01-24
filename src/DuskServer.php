@@ -114,10 +114,10 @@ class DuskServer
      */
     protected function temp(): string
     {
-        return join('/', [
+        return implode('/', [
             \dirname(__DIR__),
             'tmp',
-            sprintf('%s__%d', ! in_array($this->host, $this->localIpv6Hosts) ? $this->host : 'localhost', $this->port)
+            sprintf('%s__%d', ! \in_array($this->host, $this->localIpv6Hosts) ? $this->host : 'localhost', $this->port),
         ]);
     }
 
