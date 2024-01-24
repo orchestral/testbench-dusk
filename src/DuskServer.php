@@ -151,12 +151,9 @@ class DuskServer
      */
     public function restart(): void
     {
-        if (! isset($this->process)) {
-            $this->start();
-        } else {
-            $this->stop();
-            $this->process = $this->process?->restart();
-        }
+        $this->stop();
+        $this->clearOutput();
+        $this->startServer();
     }
 
     /**
