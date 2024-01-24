@@ -247,6 +247,8 @@ trait CanServeSite
      */
     protected static function tearDownAfterClassCanServeSite(): void
     {
+        static::stopServing();
+
         static::$server = null;
     }
 
