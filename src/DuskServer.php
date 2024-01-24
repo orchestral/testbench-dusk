@@ -137,7 +137,7 @@ class DuskServer
      */
     public function stop(): void
     {
-        if (! $this->process) {
+        if (! isset($this->process)) {
             return;
         }
 
@@ -151,11 +151,11 @@ class DuskServer
      */
     public function restart(): void
     {
-        if ($this->process) {
-            $this->stop();
-            $this->process = $this->process->restart();
-        } else {
+        if (! isset($this->process)) {
             $this->start();
+        } else {
+            $this->stop();
+            $this->process = $this->process?->restart();
         }
     }
 
