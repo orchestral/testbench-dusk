@@ -295,6 +295,8 @@ abstract class TestCase extends Testbench
 
         parent::tearDownAfterClass();
         static::tearDownAfterClassCanServeSite();
+
+        static::$server = null;
     }
 
     /**
