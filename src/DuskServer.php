@@ -35,7 +35,12 @@ class DuskServer
      */
     protected ?string $baseUrl = null;
 
-    protected array $localIp6Hosts = [
+    /**
+     * List of local IPv6 hosts.
+     *
+     * @var array<int, string>
+     */
+    protected array $localIpv6Hosts = [
         '::0',
         '[::0]',
     ];
@@ -88,7 +93,7 @@ class DuskServer
     {
         return join_paths(
             \dirname(__DIR__), 'tmp',
-            sprintf('%s__%d', ! in_array($this->host, $this->localIp6Hosts) ? $this->host : 'localhost', $this->port)
+            sprintf('%s__%d', ! in_array($this->host, $this->localIpv6Hosts) ? $this->host : 'localhost', $this->port)
         );
     }
 
@@ -102,7 +107,7 @@ class DuskServer
     {
         $content = json_decode((string) file_get_contents($this->temp()), true);
 
-        return $key ? (isset($content[$key]) ? $content[$key] : null) : $content;
+        return $key ? ($content[$key] ?? null) : $content;
     }
 
     /**
