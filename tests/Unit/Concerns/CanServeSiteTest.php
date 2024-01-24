@@ -8,8 +8,6 @@ use PHPUnit\Framework\Attributes\Test;
 
 use function Orchestra\Testbench\Dusk\default_skeleton_path;
 
-use function Orchestra\Testbench\Dusk\default_skeleton_path;
-
 class CanServeSiteTest extends TestCase
 {
     #[Test]

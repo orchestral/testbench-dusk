@@ -35,6 +35,11 @@ class DuskServer
      */
     protected ?string $baseUrl = null;
 
+    protected array $localIp6Hosts = [
+        '::0',
+        '[::0]',
+    ];
+
     /**
      * Construct a new server.
      *
@@ -81,7 +86,10 @@ class DuskServer
      */
     protected function temp(): string
     {
-        return join_paths(\dirname(__DIR__), 'tmp', sprintf('%s__%d', $this->host, $this->port));
+        return join_paths(
+            \dirname(__DIR__), 'tmp',
+            sprintf('%s__%d', ! in_array($this->host, $this->localIp6Hosts) ? $this->host : 'localhost', $this->port)
+        );
     }
 
     /**
