@@ -159,6 +159,7 @@ class DuskServer
             command: $this->prepareCommand(),
             cwd: join_paths($this->basePath(), 'public'),
             env: array_merge(defined_environment_variables(), [
+                'APP_BASE_PATH' => $this->basePath(),
                 'APP_URL' => $this->baseUrl(),
             ]),
             timeout: $this->timeout
