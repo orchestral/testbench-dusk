@@ -291,8 +291,10 @@ abstract class TestCase extends Testbench
     #[\Override]
     public static function tearDownAfterClass(): void
     {
-        parent::tearDownAfterClass();
+        static::tearDownAfterClassProvidesBrowser();
         static::tearDownAfterClassCanServeSite();
+
+        parent::tearDownAfterClass();
     }
 
     /**

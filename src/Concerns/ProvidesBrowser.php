@@ -63,6 +63,20 @@ trait ProvidesBrowser
     }
 
     /**
+     * Teardown the test environment.
+     *
+     * @return void
+     *
+     * @codeCoverageIgnore
+     */
+    protected static function tearDownAfterClassProvidesBrowser(): void
+    {
+        static::tearDownDuskClass();
+
+        static::$afterClassCallbacks = [];
+    }
+
+    /**
      * Get Application's base URL.
      *
      * @api
