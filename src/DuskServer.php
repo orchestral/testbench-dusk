@@ -63,6 +63,13 @@ class DuskServer
     protected $baseUrl = null;
 
     /**
+     * List of local IPv6 hosts.
+     *
+     * @var array<int, string>
+     */
+    protected $localIpv6Hosts = ['::0', '[::0]'];
+
+    /**
      * Construct a new server.
      *
      * @param  string  $host
@@ -107,7 +114,11 @@ class DuskServer
      */
     protected function temp(): string
     {
-        return \dirname(__DIR__).'/tmp/'.$this->host.'__'.$this->port;
+        return join('/', [
+            \dirname(__DIR__),
+            'tmp',
+            sprintf('%s__%d', ! in_array($this->host, $this->localIpv6Hosts) ? $this->host : 'localhost', $this->port)
+        ]);
     }
 
     /**
