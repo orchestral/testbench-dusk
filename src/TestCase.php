@@ -105,7 +105,7 @@ abstract class TestCase extends Testbench
     }
 
     /**
-     * Register the base URL with Dusk.
+     * Setup the test environment.
      *
      * @return void
      */
@@ -116,6 +116,21 @@ abstract class TestCase extends Testbench
 
         $this->setUpTheBrowserEnvironment();
         $this->registerShutdownFunction();
+    }
+
+    /**
+     * Teardown the test environment.
+     *
+     * @return void
+     */
+    #[\Override]
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        if (static::$server) {
+            static::$server->clearOutput();
+        }
     }
 
     /**

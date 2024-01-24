@@ -160,6 +160,18 @@ class DuskServer
     }
 
     /**
+     * Clear the php server output.
+     *
+     * @return void
+     */
+    public function clearOutput(): void
+    {
+        if (isset($this->process)) {
+            $this->process->clearOutput();
+        }
+    }
+
+    /**
      * Start the server. Execute the command and open a
      * pointer to it. Tuck away the output as it's
      * not relevant for us during our testing.
