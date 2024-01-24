@@ -168,6 +168,7 @@ class DuskServer
     {
         if (isset($this->process)) {
             $this->process->clearOutput();
+            $this->process->clearErrorOutput();
         }
     }
 
