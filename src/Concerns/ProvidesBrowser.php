@@ -28,7 +28,7 @@ trait ProvidesBrowser
      */
     protected function setUpTheBrowserEnvironment(): void
     {
-        Browser::$baseUrl = self::applicationBaseUrl();
+        Browser::$baseUrl = static::applicationBaseUrl();
 
         $this->prepareDirectories();
 

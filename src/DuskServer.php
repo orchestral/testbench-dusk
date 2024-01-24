@@ -156,7 +156,7 @@ class DuskServer
         $this->guardServerStarting();
 
         $this->process = Process::fromShellCommandline(
-            command: $this->prepareCommand(),
+            command: ray()->pass($this->prepareCommand()),
             cwd: join_paths($this->basePath(), 'public'),
             env: array_merge(defined_environment_variables(), [
                 'APP_BASE_PATH' => $this->basePath(),
@@ -202,11 +202,12 @@ class DuskServer
     protected function prepareCommand(): string
     {
         return sprintf(
-            (($this->isWindows() ? '' : 'exec ').'%s -S %s:%s %s'),
+            (($this->isWindows() ? '' : 'exec ').'%s -S %s:%s %s -t %s'),
             '"'.(new PhpExecutableFinder())->find(false).'"',
             $this->host,
             $this->port,
-            '"'.__DIR__.'/server.php'.'"'
+            '"'.__DIR__.'/server.php'.'"',
+            '"'.join_paths($this->basePath(), 'public').'"',
         );
     }
 
