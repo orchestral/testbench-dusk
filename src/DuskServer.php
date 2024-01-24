@@ -40,17 +40,7 @@ class DuskServer
      *
      * @var array<int, string>
      */
-    protected array $localIpv6Hosts = [
-        '::0',
-        '[::0]',
-    ];
-
-    /**
-     * List of local IPv6 hosts.
-     *
-     * @var array<int, string>
-     */
-    protected $localIpv6Hosts = ['::0', '[::0]'];
+    protected array $localIpv6Hosts = ['::0', '[::0]'];
 
     /**
      * Construct a new server.
