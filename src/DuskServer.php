@@ -145,6 +145,20 @@ class DuskServer
     }
 
     /**
+     * Stop the php server.
+     *
+     * @return void
+     */
+    public function restart(): void
+    {
+        if (! $this->process) {
+            $this->start();
+        } else {
+            $this->process = $this->process->restart();
+        }
+    }
+
+    /**
      * Start the server. Execute the command and open a
      * pointer to it. Tuck away the output as it's
      * not relevant for us during our testing.

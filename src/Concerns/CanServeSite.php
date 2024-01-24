@@ -81,8 +81,12 @@ trait CanServeSite
      */
     public static function reloadServing(): void
     {
-        static::stopServing();
-        static::startServing();
+        if (isset(static::$server)) {
+            static::$server->stop();
+            static::$server->restart();
+        } else {
+            static::startServing();
+        }
     }
 
     /**
