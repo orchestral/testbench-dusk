@@ -254,9 +254,9 @@ abstract class TestCase extends Testbench
     {
         static::setUpBeforeClassForInteractsWithWebDriverOptions();
 
-        if (! isset($_ENV['DUSK_DRIVER_URL'])) {
-            static::startChromeDriver(['port' => 9515]);
-        }
+        // if (! isset($_ENV['DUSK_DRIVER_URL'])) {
+        static::startChromeDriver(['port' => 9515]);
+        // }
 
         parent::setUpBeforeClass();
         static::startServing();
