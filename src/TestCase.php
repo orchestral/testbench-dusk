@@ -242,7 +242,7 @@ abstract class TestCase extends Testbench
     }
 
     /**
-     * Begin a server for the tests.
+     * Setup the test environment.
      *
      * @return void
      *
@@ -262,7 +262,7 @@ abstract class TestCase extends Testbench
     }
 
     /**
-     * Clean up the testing environment before the next test case.
+     * Teardown the test environment.
      *
      * @return void
      *
