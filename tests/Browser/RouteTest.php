@@ -18,45 +18,34 @@ class RouteTest extends TestCase
      */
     protected function defineRoutes($router)
     {
-        $router->get('hello', ['uses' => function () {
-            return 'hello world';
-        }]);
-
-        $router->get('config', ['uses' => function () {
-            return config('new_config_item');
-        }]);
-
-        $router->get('environment', ['uses' => function () {
-            return config('app.env');
-        }]);
-
-        $router->get('testbench-environment-value', ['uses' => function () {
-            return Env::get('TESTBENCH_WORKING_PATH');
-        }]);
+        $router->get('hello', ['uses' => static fn () => 'hello world']);
+        $router->get('config', ['uses' => static fn () => config('new_config_item')]);
+        $router->get('environment', ['uses' => static fn () => config('app.env')]);
+        $router->get('testbench-environment-value', ['uses' => static fn () => Env::get('TESTBENCH_WORKING_PATH')]);
     }
 
     /** @test */
     public function can_use_dusk()
     {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('hello')
-                ->assertSee('hello world');
-        });
+        $this->browse(static fn (Browser $browser) => $browser
+            ->visit('hello')
+            ->assertSee('hello world')
+        );
     }
 
     /** @test */
     public function can_return_correct_application_environment()
     {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('environment')
-                ->assertSee('testing');
-        });
+        $this->browse(static fn (Browser $browser) => $browser
+            ->visit('environment')
+            ->assertSee('testing')
+        );
     }
 
     /** @test */
     public function can_use_multiple_browsers()
     {
-        $this->browse(function (Browser $browser, Browser $browserTwo) {
+        $this->browse(static function (Browser $browser, Browser $browserTwo) {
             $browser->visit('hello')
                 ->assertSee('hello world')
                 ->blank();
@@ -70,16 +59,16 @@ class RouteTest extends TestCase
     /** @test */
     public function can_tweak_the_application_within_a_test()
     {
-        $this->beforeServingApplication(function ($app, $config) {
+        $this->beforeServingApplication(static function ($app, $config) {
             $config->set('new_config_item', 'Fantastic!');
         });
 
         $this->assertEquals('Fantastic!', config('new_config_item'));
 
-        $this->browse(function (Browser $browser, Browser $browserTwo) {
-            $browser->visit('config')
-                ->assertSee('Fantastic!');
-        });
+        $this->browse(fn (Browser $browser, Browser $browserTwo) => $browser
+            ->visit('config')
+            ->assertSee('Fantastic!')
+        );
     }
 
     /** @test */
@@ -91,7 +80,7 @@ class RouteTest extends TestCase
     /** @test */
     public function can_use_multiple_browsers_can_persist_testbench_working_path_environment_variables()
     {
-        $this->browse(function (Browser $browser, Browser $browserTwo) {
+        $this->browse(static function (Browser $browser, Browser $browserTwo) {
             $browser->visit('testbench-environment-value')
                 ->assertSee(package_path())
                 ->visit('testbench-environment-value')
@@ -105,7 +94,7 @@ class RouteTest extends TestCase
 
         static::reloadServing();
 
-        $this->browse(function (Browser $browser, Browser $browserTwo) {
+        $this->browse(static function (Browser $browser, Browser $browserTwo) {
             $browser->visit('testbench-environment-value')
                 ->assertSee(package_path())
                 ->visit('testbench-environment-value')

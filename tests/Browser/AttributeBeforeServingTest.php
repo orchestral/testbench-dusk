@@ -6,9 +6,6 @@ use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Dusk\Attributes\BeforeServing;
 use Orchestra\Testbench\Dusk\TestCase;
 
-/**
- * @requires PHP >= 8.0
- */
 class AttributeBeforeServingTest extends TestCase
 {
     /**
@@ -19,9 +16,7 @@ class AttributeBeforeServingTest extends TestCase
      */
     protected function defineRoutes($router)
     {
-        $router->get('config', ['uses' => function () {
-            return config('new_config_item');
-        }]);
+        $router->get('config', ['uses' => static fn () => config('new_config_item')]);
     }
 
     /** @test */
@@ -30,10 +25,10 @@ class AttributeBeforeServingTest extends TestCase
     {
         $this->assertEquals('Fantastic!', config('new_config_item'));
 
-        $this->browse(function (Browser $browser, Browser $browserTwo) {
-            $browser->visit('config')
-                ->assertSee('Fantastic!');
-        });
+        $this->browse(static fn (Browser $browser, Browser $browserTwo) => $browser
+            ->visit('config')
+            ->assertSee('Fantastic!')
+        );
     }
 
     /** @test */
