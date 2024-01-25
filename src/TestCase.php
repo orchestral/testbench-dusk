@@ -100,6 +100,7 @@ abstract class TestCase extends Testbench
      *
      * @return void
      */
+    #[\Override]
     protected function tearDown(): void
     {
         parent::tearDown();
