@@ -39,7 +39,7 @@ trait CanServeSite
         }
 
         $server = new DuskServer($host, $port);
-        $server->setLaravel(basePath: self::applicationBasePath(), baseUrl: self::applicationBaseUrl());
+        $server->setLaravel(basePath: static::applicationBasePath(), baseUrl: static::applicationBaseUrl());
         $server->stash(['class' => static::class]);
         $server->start();
 
@@ -76,8 +76,11 @@ trait CanServeSite
      */
     public static function reloadServing(): void
     {
-        static::stopServing();
-        static::startServing();
+        if (isset(static::$server)) {
+            static::$server->restart();
+        } else {
+            static::startServing();
+        }
     }
 
     /**
@@ -228,6 +231,8 @@ trait CanServeSite
      */
     protected static function tearDownAfterClassCanServeSite(): void
     {
+        static::stopServing();
+
         static::$server = null;
     }
 

@@ -28,7 +28,7 @@ trait ProvidesBrowser
      */
     protected function setUpTheBrowserEnvironment()
     {
-        Browser::$baseUrl = $this->baseUrl();
+        Browser::$baseUrl = static::applicationBaseUrl();
 
         $this->prepareDirectories();
 
@@ -63,7 +63,21 @@ trait ProvidesBrowser
     }
 
     /**
-     * Determine the application's base URL.
+     * Teardown the test environment.
+     *
+     * @return void
+     *
+     * @codeCoverageIgnore
+     */
+    protected static function tearDownAfterClassProvidesBrowser(): void
+    {
+        static::tearDownDuskClass();
+
+        static::$afterClassCallbacks = [];
+    }
+
+    /**
+     * Get Application's base URL.
      *
      *
      * @return string
