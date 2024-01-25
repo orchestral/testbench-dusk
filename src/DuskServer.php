@@ -2,6 +2,8 @@
 
 namespace Orchestra\Testbench\Dusk;
 
+use Illuminate\Support\ProcessUtils;
+use Laravel\Dusk\OperatingSystem;
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
@@ -161,11 +163,36 @@ class DuskServer
      */
     public function stop(): void
     {
-        if (! $this->process) {
+        if (! isset($this->process)) {
             return;
         }
 
         $this->process->stop();
+    }
+
+    /**
+     * Stop the php server.
+     *
+     * @return void
+     */
+    public function restart(): void
+    {
+        $this->stop();
+        $this->clearOutput();
+        $this->startServer();
+    }
+
+    /**
+     * Clear the php server output.
+     *
+     * @return void
+     */
+    public function clearOutput(): void
+    {
+        if (isset($this->process)) {
+            $this->process->clearOutput();
+            $this->process->clearErrorOutput();
+        }
     }
 
     /**
@@ -185,6 +212,7 @@ class DuskServer
             $this->prepareCommand(),
             "{$this->basePath()}/public",
             array_merge(defined_environment_variables(), [
+                'APP_BASE_PATH' => $this->basePath(),
                 'APP_URL' => $this->baseUrl(),
             ]),
             null,
@@ -225,11 +253,12 @@ class DuskServer
     protected function prepareCommand(): string
     {
         return sprintf(
-            (($this->isWindows() ? '' : 'exec ').'%s -S %s:%s %s'),
-            '"'.(new PhpExecutableFinder())->find(false).'"',
+            ((OperatingSystem::onWindows() ? '' : 'exec ').'%s -S %s:%s %s -t %s'),
+            ProcessUtils::escapeArgument((new PhpExecutableFinder())->find(false)),
             $this->host,
             $this->port,
-            '"'.__DIR__.'/server.php'.'"'
+            ProcessUtils::escapeArgument(__DIR__.'/server.php'),
+            ProcessUtils::escapeArgument("{$this->basePath()}/public")
         );
     }
 

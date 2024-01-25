@@ -28,7 +28,7 @@ trait ProvidesBrowser
      */
     protected function setUpTheBrowserEnvironment()
     {
-        Browser::$baseUrl = $this->baseUrl();
+        Browser::$baseUrl = static::applicationBaseUrl();
 
         $this->prepareDirectories();
 
@@ -71,6 +71,20 @@ trait ProvidesBrowser
     protected function resolveBrowserTestsPath($path = __DIR__)
     {
         return find_test_directory($path);
+    }
+
+    /**
+     * Teardown the test environment.
+     *
+     * @return void
+     *
+     * @codeCoverageIgnore
+     */
+    protected static function tearDownAfterClassProvidesBrowser(): void
+    {
+        static::tearDownDuskClass();
+
+        static::$afterClassCallbacks = [];
     }
 
     /**

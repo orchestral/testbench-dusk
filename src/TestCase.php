@@ -106,6 +106,20 @@ abstract class TestCase extends Testbench
     }
 
     /**
+     * Teardown the test environment.
+     *
+     * @return void
+     */
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        if (static::$server) {
+            static::$server->clearOutput();
+        }
+    }
+
+    /**
      * Determine trait should be ignored from being autoloaded.
      *
      * @param  class-string  $use
@@ -246,10 +260,13 @@ abstract class TestCase extends Testbench
      */
     public static function setUpBeforeClass(): void
     {
-        parent::setUpBeforeClass();
-
         static::setUpBeforeClassForInteractsWithWebDriverOptions();
-        static::startChromeDriver(['port' => 9515]);
+
+        if (! isset($_ENV['DUSK_DRIVER_URL'])) {
+            static::startChromeDriver(['port' => 9515]);
+        }
+
+        parent::setUpBeforeClass();
         static::startServing();
     }
 
@@ -262,10 +279,10 @@ abstract class TestCase extends Testbench
      */
     public static function tearDownAfterClass(): void
     {
-        static::stopServing();
+        static::tearDownAfterClassProvidesBrowser();
+        static::tearDownAfterClassCanServeSite();
 
         parent::tearDownAfterClass();
-        static::tearDownAfterClassCanServeSite();
     }
 
     /**
