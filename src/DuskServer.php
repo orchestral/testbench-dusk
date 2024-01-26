@@ -267,14 +267,4 @@ class DuskServer
     {
         return $this->process;
     }
-
-    /**
-     * Check if current OS is Windows.
-     *
-     * @return bool
-     */
-    protected function isWindows(): bool
-    {
-        return strtoupper(substr(PHP_OS, 0, 3)) === 'WIN';
-    }
 }

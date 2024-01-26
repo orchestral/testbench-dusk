@@ -243,7 +243,7 @@ trait CanServeSite
      *
      * @return void
      */
-    protected static function flushDuskServer()
+    protected static function flushDuskServer(): void
     {
         static::stopServing();
 
