@@ -19,9 +19,9 @@ class AuthTest extends TestCase
     {
         $user = UserFactory::new()->create();
 
-        $this->browse(function (Browser $browser) use ($user) {
-            $browser->loginAs($user, 'web')
-                ->assertAuthenticatedAs($user, 'web');
-        });
+        $this->browse(static fn (Browser $browser) => $browser
+            ->loginAs($user, 'web')
+            ->assertAuthenticatedAs($user, 'web')
+        );
     }
 }

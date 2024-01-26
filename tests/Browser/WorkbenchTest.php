@@ -15,22 +15,22 @@ class WorkbenchTest extends TestCase
     #[Test]
     public function it_can_browse_the_default_page()
     {
-        $this->beforeServingApplication(function ($app) {
+        $this->beforeServingApplication(static function ($app) {
             $app->make(HttpKernel::class)->pushMiddleware(CatchDefaultRoute::class);
         });
 
-        $this->browse(function ($browser) {
-            $browser->visit('/')
-                ->assertSee('Laravel');
-        });
+        $this->browse(static fn ($browser) => $browser
+            ->visit('/')
+            ->assertSee('Laravel')
+        );
     }
 
     #[Test]
     public function it_can_browse_the_welcome_page()
     {
-        $this->browse(function ($browser) {
-            $browser->visit('/welcome')
-                ->assertSee('Laravel');
-        });
+        $this->browse(static fn ($browser) => $browser
+            ->visit('/welcome')
+            ->assertSee('Laravel')
+        );
     }
 }

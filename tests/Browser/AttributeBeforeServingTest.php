@@ -13,9 +13,7 @@ class AttributeBeforeServingTest extends TestCase
     #[\Override]
     protected function defineRoutes($router)
     {
-        $router->get('config', ['uses' => function () {
-            return config('new_config_item');
-        }]);
+        $router->get('config', ['uses' => static fn () => config('new_config_item')]);
     }
 
     #[Test]
@@ -24,10 +22,10 @@ class AttributeBeforeServingTest extends TestCase
     {
         $this->assertEquals('Fantastic!', config('new_config_item'));
 
-        $this->browse(function (Browser $browser, Browser $browserTwo) {
-            $browser->visit('config')
-                ->assertSee('Fantastic!');
-        });
+        $this->browse(static fn (Browser $browser, Browser $browserTwo) => $browser
+            ->visit('config')
+            ->assertSee('Fantastic!')
+        );
     }
 
     #[Test]
