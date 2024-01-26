@@ -2,6 +2,22 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.44.0
+
+Unreleased
+
+### Added
+
+* Added support for using IPv6 host.
+* Added new configurable environment variables:
+  - `DUSK_SERVE_HOST` to set the web server host IP.
+  - `DUSK_SERVE_PORT` to set the web server port.
+  - `DUSK_SERVE_URL` to set the web server URL.
+  
+### Changes
+
+* Flush web server log and error outputs between tests.
+
 ## 6.43.1
 
 Released: 2024-01-22
