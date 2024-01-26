@@ -260,8 +260,8 @@ class DuskServer
             ProcessUtils::escapeArgument((string) (new PhpExecutableFinder())->find(false)),
             $this->host,
             $this->port,
-            ProcessUtils::escapeArgument(__DIR__.'/server.php'),
-            ProcessUtils::escapeArgument("{$this->basePath()}/public")
+            ProcessUtils::escapeArgument(join_paths(__DIR__, 'server.php')),
+            ProcessUtils::escapeArgument(join_paths($this->basePath(), 'public'))
         );
     }
 
