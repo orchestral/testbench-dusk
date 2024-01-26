@@ -81,11 +81,8 @@ trait CanServeSite
      */
     public static function reloadServing(): void
     {
-        if (isset(static::$server)) {
-            static::$server->restart();
-        } else {
-            static::startServing();
-        }
+        static::flushDuskServer();
+        static::startServing();
     }
 
     /**
@@ -242,6 +239,18 @@ trait CanServeSite
     }
 
     /**
+     * Stop the dusk server and flush any reference.
+     *
+     * @return void
+     */
+    protected static function flushDuskServer()
+    {
+        static::stopServing();
+
+        static::$server = null;
+    }
+
+    /**
      * Teardown the test environment.
      *
      * @return void
@@ -250,9 +259,7 @@ trait CanServeSite
      */
     protected static function tearDownAfterClassCanServeSite(): void
     {
-        static::stopServing();
-
-        static::$server = null;
+        static::flushDuskServer();
     }
 
     /**
