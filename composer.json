@@ -42,7 +42,7 @@
         "laravel/dusk": "^7.12",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^1.7.1 || ^2.2.1",
-        "orchestra/testbench": "^7.40.1",
+        "orchestra/testbench": "^7.41",
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
