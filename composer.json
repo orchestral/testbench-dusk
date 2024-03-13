@@ -39,10 +39,10 @@
     "require": {
         "php": "^8.1",
         "composer-runtime-api": "^2.2",
-        "laravel/dusk": "^7.12",
+        "laravel/dusk": "^7.13 || ^8.0",
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^2.3",
-        "orchestra/testbench": ">=8.21.1 <8.22.0",
+        "orchestra/testbench": "^8.22",
         "php-webdriver/webdriver": "^1.9",
         "symfony/polyfill-php83": "^1.28"
     },

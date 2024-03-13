@@ -100,15 +100,11 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, sqlite3, pdo_sqlite, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
           coverage: none
 
-      - name: Install PHPUnit ${{ matrix.phpunit }}
-        run: |
-          composer require "phpunit/phpunit:${{ matrix.phpunit }}" --dev --no-interaction --no-update
-
       - name: Install dependencies
         uses: "ramsey/composer-install@v3"
         with:
           dependency-versions: "${{ matrix.dependencies }}"
-          composer-options: "--prefer-dist --no-cache"
+          composer-options: "--prefer-dist --no-cache --with=phpunit/phpunit:${{ matrix.phpunit }}"
 
       - name: Installed dependencies
         run: |
