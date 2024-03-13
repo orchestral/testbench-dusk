@@ -9,6 +9,7 @@ Released: 2024-03-13
 ### Changes
 
 * Update minimum support for Testbench v7.41.0+. ([v7.40.1...v7.41.0](https://github.com/orchestral/testbench/compare/v7.40.1...v7.41.0))
+* Update minimum support for Laravel Dusk v7.13.0+. ([v7.12.0...v7.13.0](https://github.com/laravel/dusk/compare/v7.12.0...v7.13.0))
 
 ## 7.40.0
 
