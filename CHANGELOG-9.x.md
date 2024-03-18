@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 9.0.1
+
+Released: 2023-03-18
+
+### Changes
+
+* Update minimum support for Testbench Core v9.0.4+. ([v9.0.0...v9.0.4](https://github.com/orchestral/testbench-core/compare/v9.0.0...v9.0.4))
+* Update skeleton to match v11.0.3.
+
 ## 9.0.0
 
 Released: 2023-03-13
