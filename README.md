@@ -5,7 +5,7 @@ The Testbench Dusk Component is a simple package that is supposed to help you wr
 
 The package was developed by [Konsulting Ltd](https://github.com/konsulting) and transferred to the Orchestra namespace where we will assist with supporting it in the future. It is in early development and feedback is appreciated.
 
-[![tests](https://github.com/orchestral/testbench-dusk/workflows/tests/badge.svg?branch=8.x)](https://github.com/orchestral/testbench-dusk/actions?query=workflow%3Atests+branch%3A8.x)
+[![tests](https://github.com/orchestral/testbench-dusk/workflows/tests/badge.svg?branch=develop)](https://github.com/orchestral/testbench-dusk/actions?query=workflow%3Atests+branch%3Adevelop)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/testbench-dusk/v/stable)](https://packagist.org/packages/orchestra/testbench-dusk)
 [![Total Downloads](https://poser.pugx.org/orchestra/testbench-dusk/downloads)](https://packagist.org/packages/orchestra/testbench-dusk)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/testbench-dusk/v/unstable)](https://packagist.org/packages/orchestra/testbench-dusk)
@@ -28,14 +28,15 @@ The package was developed by [Konsulting Ltd](https://github.com/konsulting) and
  8.x      | 6.x
  9.x      | 7.x
  10.x     | 8.x
+ 11.x     | 9.x
 
 ## Getting Started
 
 Before going through the rest of this documentation, please take some time to read the following documentation:
 
-* [Package Development for Laravel](https://laravel.com/docs/9.0/packages)
+* [Package Development for Laravel](https://laravel.com/docs/packages)
 * [Orchestra Testbench Documentation](https://packages.tools/testbench/getting-started/introduction.html)
-* [Laravel Dusk Documentation](https://laravel.com/docs/9.0/dusk)
+* [Laravel Dusk Documentation](https://laravel.com/docs/dusk)
 
 ## Installation
 
