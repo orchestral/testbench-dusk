@@ -273,6 +273,8 @@ abstract class TestCase extends Testbench
     /**
      * Define the ChromeDriver.
      *
+     * @api     
+     *
      * @return void
      *
      * @codeCoverageIgnore
