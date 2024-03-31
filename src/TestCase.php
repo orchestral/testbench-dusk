@@ -277,7 +277,7 @@ abstract class TestCase extends Testbench
      *
      * @codeCoverageIgnore
      */
-    protected static function defineChromeDriver()
+    protected static function defineChromeDriver(): void
     {
         static::startChromeDriver(['port' => 9515]);
     }
