@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.42.0
+
+Released: 2024-03-31
+
+### Added
+
+* Add `defineChromeDriver()` method by @joshhanley in [#94](https://github.com/orchestral/testbench-dusk/pull/94).
+
+<!--
+#### New Contributors
+* @joshhanley made their first contribution in https://github.com/orchestral/testbench-dusk/pull/94
+-->
+
 ## 7.41.0
 
 Released: 2024-03-13
