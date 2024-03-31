@@ -2,18 +2,40 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 9.1.0
+
+Released: 2024-03-31
+
+### Added
+
+* Add `defineChromeDriver()` method by @joshhanley in [#94](https://github.com/orchestral/testbench-dusk/pull/94).
+
+<!--
+#### New Contributors
+* @joshhanley made their first contribution in https://github.com/orchestral/testbench-dusk/pull/94
+-->
+
+## 9.0.2
+
+Released: 2024-03-29
+
+### Changes
+
+* Update minimum support for Testbench v9.0.3+. ([v9.0.0...v9.0.3](https://github.com/orchestral/testbench/compare/v9.0.0...v9.0.3))
+* Update minimum support for Testbench Core v9.0.9+. ([v9.0.4...v9.0.9](https://github.com/orchestral/testbench-core/compare/v9.0.4...v9.0.9))
+
 ## 9.0.1
 
-Released: 2023-03-18
+Released: 2024-03-18
 
 ### Changes
 
 * Update minimum support for Testbench Core v9.0.4+. ([v9.0.0...v9.0.4](https://github.com/orchestral/testbench-core/compare/v9.0.0...v9.0.4))
-* Update skeleton to match v11.0.3.
+* Update skeleton to match v11.0.4.
 
 ## 9.0.0
 
-Released: 2023-03-13
+Released: 2024-03-13
 
 ### Changes
 
