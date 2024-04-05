@@ -17,7 +17,10 @@ $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/bootstrap/a
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/server.php", "{$workingPath}/laravel/server.php");
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/.gitignore", "{$workingPath}/laravel/.gitignore");
 $files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit.xml", "{$workingPath}/stubs/phpunit.xml");
-$files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit9.xml", "{$workingPath}/stubs/phpunit9.xml");
+
+if ($files->exists("{$workingPath}/vendor/laravel/dusk/stubs/phpunit9.xml")) {
+    $files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit9.xml", "{$workingPath}/stubs/phpunit9.xml");
+}
 
 Symfony\Component\Process\Process::fromShellCommandline(
     'composer create-project "laravel/laravel:'.$version.'" skeleton --no-scripts --no-plugins --quiet --no-install', $workingPath
