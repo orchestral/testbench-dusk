@@ -117,6 +117,7 @@ class DuskCommand extends Command
 
         $this->hasPhpUnitConfiguration = true;
     }
+
     /**
      * Get the PHP binary environment variables.
      *
@@ -125,7 +126,7 @@ class DuskCommand extends Command
     #[\Override]
     protected function env()
     {
-        return array_merge(parent::env(), [
+        return array_merge(parent::env() ?? [], [
             'APP_ENV' => 'testing',
             'TESTBENCH_PACKAGE_TESTER' => '(true)',
             'TESTBENCH_WORKING_PATH' => TESTBENCH_WORKING_PATH,
