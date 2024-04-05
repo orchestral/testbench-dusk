@@ -49,9 +49,11 @@ class DuskCommand extends Command
     #[\Override]
     public function handle()
     {
-        $this->callSilent('package:dusk-purge');
+        $this->call('package:dusk-purge');
 
-        return parent::handle();
+        parent::handle();
+
+        sleep(10);
     }
 
     /**
@@ -64,7 +66,7 @@ class DuskCommand extends Command
     protected function phpunitArguments($options)
     {
         if ($this->shouldUseCollisionPrinter()) {
-            $options[] = '--no-output';
+            // $options[] = '--no-output';
         }
 
         $options = array_values(array_filter($options, static fn ($option) => ! str_starts_with($option, '--env=')));
@@ -125,7 +127,7 @@ class DuskCommand extends Command
     #[\Override]
     protected function env()
     {
-        return array_merge($this->env(), [
+        return array_merge(parent::env(), [
             'TESTBENCH_PACKAGE_TESTER' => '(true)',
             'TESTBENCH_WORKING_PATH' => TESTBENCH_WORKING_PATH,
             'TESTBENCH_APP_BASE_PATH' => $this->laravel->basePath(),
