@@ -127,6 +127,8 @@ class DuskCommand extends Command
     {
         return array_merge($this->env(), [
             'TESTBENCH_PACKAGE_TESTER' => '(true)',
+            'TESTBENCH_WORKING_PATH' => TESTBENCH_WORKING_PATH,
+            'TESTBENCH_APP_BASE_PATH' => $this->laravel->basePath(),
         ]);
     }
 
