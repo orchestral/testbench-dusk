@@ -69,7 +69,7 @@ class PurgeCommand extends Command
         $path = TESTBENCH_WORKING_PATH."/{$relativePath}";
 
         if (! is_dir($path)) {
-            $this->warn(
+            $this->components->warn(
                 "Unable to purge missing directory [{$relativePath}].", OutputInterface::VERBOSITY_DEBUG
             );
 
@@ -80,6 +80,6 @@ class PurgeCommand extends Command
             @unlink($file->getRealPath());
         }
 
-        $this->info("Purged \"{$patterns}\" from [{$relativePath}] path.");
+        $this->components->task("Purged \"{$patterns}\" from [{$relativePath}] path.");
     }
 }
