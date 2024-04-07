@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 9.1.1
+
+Released: 2024-04-07
+
+### Changes
+
+* Append `APP_ENV`, `TESTBENCH_PACKAGE_TESTER`, `TESTBENCH_WORKING_PATH` and `TESTBENCH_APP_BASE_PATH` to `package:dusk` command.
+
 ## 9.1.0
 
 Released: 2024-03-31
