@@ -15,6 +15,7 @@ class Application extends \Orchestra\Testbench\Foundation\Application
      * @param  string  $filename
      * @return string|false
      */
+    #[\Override]
     protected function getDefaultApplicationBootstrapFile(string $filename): string|false
     {
         return realpath(default_skeleton_path(join_paths('bootstrap', $filename)));
