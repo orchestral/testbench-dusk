@@ -49,7 +49,7 @@ class DuskCommand extends Command
     #[\Override]
     public function handle()
     {
-        $this->call('package:dusk-purge');
+        $this->callSilent('package:dusk-purge');
 
         return parent::handle();
     }
