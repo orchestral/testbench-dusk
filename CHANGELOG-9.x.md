@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 9.1.2
+
+Released: 2024-05-09
+
+### Changes
+
+* Update skeleton to match v11.0.7.
+
 ## 9.1.1
 
 Released: 2024-04-07
