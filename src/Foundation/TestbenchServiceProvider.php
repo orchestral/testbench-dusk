@@ -6,6 +6,8 @@ use Composer\InstalledVersions;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\ServiceProvider;
 
+use function Orchestra\Testbench\package_path;
+
 class TestbenchServiceProvider extends ServiceProvider
 {
     /**
