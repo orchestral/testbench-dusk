@@ -6,6 +6,8 @@ use Composer\InstalledVersions;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\ServiceProvider;
 
+use function Orchestra\Testbench\package_path;
+
 class TestbenchServiceProvider extends ServiceProvider
 {
     /**
@@ -15,12 +17,10 @@ class TestbenchServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $workingPath = \defined('TESTBENCH_WORKING_PATH') ? TESTBENCH_WORKING_PATH : null;
-
         AboutCommand::add('Testbench', fn () => [
             'Core Version' => InstalledVersions::getPrettyVersion('orchestra/testbench-core'),
             'Dusk Version' => InstalledVersions::getPrettyVersion('orchestra/testbench-dusk'),
-            'Skeleton Path' => str_replace($workingPath, '', $this->app->basePath()),
+            'Skeleton Path' => str_replace(package_path(), '', $this->app->basePath()),
             'Version' => InstalledVersions::getPrettyVersion('orchestra/testbench'),
         ]);
     }
