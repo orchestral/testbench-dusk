@@ -7,6 +7,8 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 
+use function Orchestra\Testbench\package_path;
+
 #[AsCommand(name: 'package:dusk-purge', description: 'Purge the package debugging files for Dusk')]
 class PurgeCommand extends Command
 {
@@ -33,7 +35,7 @@ class PurgeCommand extends Command
     {
         parent::__construct();
 
-        if (! \defined('TESTBENCH_WORKING_PATH')) {
+        if (! \defined('TESTBENCH_CORE')) {
             $this->setHidden(true);
         }
     }
@@ -65,8 +67,7 @@ class PurgeCommand extends Command
      */
     protected function purgeDebuggingFiles(string $relativePath, string $patterns): void
     {
-        /** @phpstan-ignore constant.notFound */
-        $path = TESTBENCH_WORKING_PATH."/{$relativePath}";
+        $path = package_path($relativePath);
 
         if (! is_dir($path)) {
             $this->components->warn(

@@ -7,6 +7,8 @@ use Illuminate\Support\Str;
 use Laravel\Dusk\Console\DuskCommand as Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 
+use function Orchestra\Testbench\package_path;
+
 #[AsCommand(name: 'package:dusk', description: 'Run the package Dusk tests')]
 class DuskCommand extends Command
 {
@@ -34,7 +36,7 @@ class DuskCommand extends Command
     {
         parent::__construct();
 
-        if (! \defined('TESTBENCH_WORKING_PATH')) {
+        if (! \defined('TESTBENCH_CORE')) {
             $this->setHidden(true);
         }
     }
@@ -63,19 +65,14 @@ class DuskCommand extends Command
             return ! Str::startsWith($option, '--env=');
         }));
 
-        /** @phpstan-ignore constant.notFound */
-        $workingPath = TESTBENCH_WORKING_PATH;
-
         $file = Collection::make([
             'phpunit.dusk.xml',
             'phpunit.dusk.xml.dist',
             'phpunit.xml',
             'phpunit.xml.dist',
-        ])->map(static function ($file) use ($workingPath) {
-            return "{$workingPath}/{$file}";
-        })->filter(static function ($file) {
-            return file_exists($file);
-        })->first();
+        ])->map(static fn ($file) => package_path($file))
+        ->filter(static fn ($file) => file_exists($file))
+        ->first();
 
         return ! \is_null($file) ? array_merge(['-c', $file], $options) : $options;
     }
@@ -87,22 +84,17 @@ class DuskCommand extends Command
      */
     protected function writeConfiguration()
     {
-        /** @phpstan-ignore constant.notFound */
-        $workingPath = TESTBENCH_WORKING_PATH;
-
         $file = Collection::make([
             'phpunit.dusk.xml',
             'phpunit.dusk.xml.dist',
             'phpunit.xml',
             'phpunit.xml.dist',
-        ])->map(static function ($file) use ($workingPath) {
-            return "{$workingPath}/{$file}";
-        })->filter(static function ($file) {
-            return file_exists($file);
-        })->first();
+        ])->map(static fn ($file) => package_path($file))
+        ->filter(static fn ($file) => file_exists($file))
+        ->first();
 
         if (\is_null($file)) {
-            copy(realpath(__DIR__.'/../../../stubs/phpunit.xml'), "{$workingPath}/phpunit.dusk.xml");
+            copy((string) realpath(__DIR__.'/../../../stubs/phpunit.xml'), package_path('phpunit.dusk.xml'));
 
             return;
         }
@@ -117,8 +109,7 @@ class DuskCommand extends Command
      */
     protected function removeConfiguration()
     {
-        /** @phpstan-ignore constant.notFound */
-        if (! $this->hasPhpUnitConfiguration && file_exists($file = TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml')) {
+        if (! $this->hasPhpUnitConfiguration && file_exists($file = package_path('phpunit.dusk.xml'))) {
             @unlink($file);
         }
     }
