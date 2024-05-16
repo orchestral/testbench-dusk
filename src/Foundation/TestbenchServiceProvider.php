@@ -15,12 +15,10 @@ class TestbenchServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $workingPath = \defined('TESTBENCH_WORKING_PATH') ? TESTBENCH_WORKING_PATH : null;
-
         AboutCommand::add('Testbench', fn () => [
             'Dusk Version' => class_exists(InstalledVersions::class) ? InstalledVersions::getPrettyVersion('orchestra/testbench-dusk') : '<fg=yellow;options=bold>-</>',
             'Core Version' => class_exists(InstalledVersions::class) ? InstalledVersions::getPrettyVersion('orchestra/testbench-core') : '<fg=yellow;options=bold>-</>',
-            'Skeleton Path' => str_replace($workingPath, '', $this->app->basePath()),
+            'Skeleton Path' => str_replace(package_path(), '', $this->app->basePath()),
         ]);
     }
 

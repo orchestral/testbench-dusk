@@ -71,8 +71,8 @@ class DuskCommand extends Command
             'phpunit.xml',
             'phpunit.xml.dist',
         ])->map(static fn ($file) => package_path($file))
-        ->filter(static fn ($file) => file_exists($file))
-        ->first();
+            ->filter(static fn ($file) => file_exists($file))
+            ->first();
 
         return ! \is_null($file) ? array_merge(['-c', $file], $options) : $options;
     }
@@ -90,8 +90,8 @@ class DuskCommand extends Command
             'phpunit.xml',
             'phpunit.xml.dist',
         ])->map(static fn ($file) => package_path($file))
-        ->filter(static fn ($file) => file_exists($file))
-        ->first();
+            ->filter(static fn ($file) => file_exists($file))
+            ->first();
 
         if (\is_null($file)) {
             copy((string) realpath(__DIR__.'/../../../stubs/phpunit.xml'), package_path('phpunit.dusk.xml'));
