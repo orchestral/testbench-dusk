@@ -49,7 +49,7 @@
     },
     "require-dev": {
         "laravel/pint": "^1.6",
-        "phpstan/phpstan": "^1.10.7",
+        "phpstan/phpstan": "^1.11",
         "phpunit/phpunit": "^10.1"
     },
     "extra": {
@@ -73,7 +73,7 @@
         ],
         "lint": [
             "@php vendor/bin/pint",
-            "@php vendor/bin/phpstan analyse"
+            "@php vendor/bin/phpstan analyse --verbose"
         ],
         "test": [
             "@php testbench-dusk package:drop-sqlite-db",

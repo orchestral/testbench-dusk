@@ -69,7 +69,7 @@ class DuskCommand extends Command
 
         $options = array_values(array_filter($options, static fn ($option) => ! str_starts_with($option, '--env=')));
 
-        /** @phpstan-ignore-next-line */
+        /** @phpstan-ignore constant.notFound */
         $workingPath = TESTBENCH_WORKING_PATH;
 
         $file = Collection::make([
@@ -92,7 +92,7 @@ class DuskCommand extends Command
     #[\Override]
     protected function writeConfiguration()
     {
-        /** @phpstan-ignore-next-line */
+        /** @phpstan-ignore constant.notFound */
         $workingPath = TESTBENCH_WORKING_PATH;
 
         $file = Collection::make([
@@ -142,7 +142,7 @@ class DuskCommand extends Command
     #[\Override]
     protected function removeConfiguration()
     {
-        /** @phpstan-ignore-next-line */
+        /** @phpstan-ignore constant.notFound */
         if (! $this->hasPhpUnitConfiguration && file_exists($file = join_paths(TESTBENCH_WORKING_PATH, 'phpunit.dusk.xml'))) {
             @unlink($file);
         }
