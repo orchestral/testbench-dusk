@@ -63,7 +63,7 @@ class DuskCommand extends Command
             return ! Str::startsWith($option, '--env=');
         }));
 
-        /** @phpstan-ignore-next-line */
+        /** @phpstan-ignore constant.notFound */
         $workingPath = TESTBENCH_WORKING_PATH;
 
         $file = Collection::make([
@@ -87,7 +87,7 @@ class DuskCommand extends Command
      */
     protected function writeConfiguration()
     {
-        /** @phpstan-ignore-next-line */
+        /** @phpstan-ignore constant.notFound */
         $workingPath = TESTBENCH_WORKING_PATH;
 
         $file = Collection::make([
@@ -102,8 +102,7 @@ class DuskCommand extends Command
         })->first();
 
         if (\is_null($file)) {
-            /** @phpstan-ignore-next-line */
-            copy(realpath(__DIR__.'/../../../stubs/phpunit.xml'), TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml');
+            copy(realpath(__DIR__.'/../../../stubs/phpunit.xml'), "{$workingPath}/phpunit.dusk.xml");
 
             return;
         }
@@ -118,7 +117,7 @@ class DuskCommand extends Command
      */
     protected function removeConfiguration()
     {
-        /** @phpstan-ignore-next-line */
+        /** @phpstan-ignore constant.notFound */
         if (! $this->hasPhpUnitConfiguration && file_exists($file = TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml')) {
             @unlink($file);
         }
