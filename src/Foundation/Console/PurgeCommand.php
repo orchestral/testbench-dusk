@@ -65,11 +65,11 @@ class PurgeCommand extends Command
      */
     protected function purgeDebuggingFiles(string $relativePath, string $patterns): void
     {
-        /** @phpstan-ignore-next-line */
+        /** @phpstan-ignore constant.notFound */
         $path = TESTBENCH_WORKING_PATH."/{$relativePath}";
 
         if (! is_dir($path)) {
-            $this->warn(
+            $this->components->warn(
                 "Unable to purge missing directory [{$relativePath}].", OutputInterface::VERBOSITY_DEBUG
             );
 
@@ -80,6 +80,6 @@ class PurgeCommand extends Command
             @unlink($file->getRealPath());
         }
 
-        $this->info("Purged \"{$patterns}\" from [{$relativePath}] path.");
+        $this->components->task("Purged \"{$patterns}\" from [{$relativePath}] path.");
     }
 }
