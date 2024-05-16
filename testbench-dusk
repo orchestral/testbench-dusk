@@ -1,10 +1,6 @@
 #!/usr/bin/env php
 <?php
 
-define('TESTBENCH_CORE', true);
-define('TESTBENCH_DUSK', true);
-define('TESTBENCH_WORKING_PATH', $workingPath = getcwd());
-
 if (file_exists(__DIR__.'/vendor/autoload.php')) {
     // Development environment.
     require __DIR__.'/vendor/autoload.php';
@@ -12,6 +8,10 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
     // Installation environment.
     require __DIR__.'/../../autoload.php';
 }
+
+define('TESTBENCH_CORE', true);
+define('TESTBENCH_DUSK', true);
+define('TESTBENCH_WORKING_PATH', $workingPath = Orchestra\Testbench\Foundation\Env::get('TESTBENCH_WORKING_PATH', getcwd()));
 
 $config = ['env' => [], 'providers' => ['Laravel\Dusk\DuskServiceProvider']];
 
