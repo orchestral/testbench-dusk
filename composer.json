@@ -44,6 +44,9 @@
         "orchestra/testbench": "^6.43",
         "php-webdriver/webdriver": "^1.9"
     },
+    "require-dev": {
+        "phpstan/phpstan": "^1.11"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "6.0-dev"
@@ -56,6 +59,9 @@
         ],
         "prepare": "@php testbench-dusk package:discover --ansi",
         "dusk:install-chromedriver": "@php vendor/bin/dusk-updater detect --auto-update --ansi",
+        "lint": [
+            "@php vendor/bin/phpstan analyse --verbose"
+        ],
         "test": [
             "@php drop-sqlite-db",
             "@php create-sqlite-db",
@@ -63,6 +69,7 @@
         ],
         "ci": [
             "@dusk:install-chromedriver",
+            "@lint",
             "@test"
         ]
     },

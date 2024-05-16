@@ -11,7 +11,7 @@ use Orchestra\Testbench\Dusk\DuskServer;
 // application without having installed a "real" web server software here.
 
 $uri = urldecode(
-    parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
+    (string) parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
 );
 
 // =========================================================================================
@@ -28,6 +28,8 @@ require is_file(__DIR__.'/../vendor/autoload.php')
 // use it to retrieve the built application as specificed in all
 // the setup methods for the test class
 $orchestraServer = new DuskServer($_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT']);
+
+/** @var class-string<\Orchestra\Testbench\Dusk\TestCase> $originatingTestClass */
 $originatingTestClass = $orchestraServer->getStash('class');
 
 $app = (new $originatingTestClass())->createServingApplicationForDuskServer($orchestraServer);

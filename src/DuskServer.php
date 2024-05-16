@@ -18,7 +18,7 @@ class DuskServer
     /**
      * Process pointer reference.
      *
-     * @var Process
+     * @var \Symfony\Component\Process\Process|null
      */
     protected $process;
 
@@ -131,7 +131,7 @@ class DuskServer
      */
     public function getStash(?string $key = null)
     {
-        $content = json_decode(file_get_contents($this->temp()), true);
+        $content = json_decode((string) file_get_contents($this->temp()), true);
 
         return $key ? (isset($content[$key]) ? $content[$key] : null) : $content;
     }
@@ -227,6 +227,8 @@ class DuskServer
      * that we want to use.  Sometimes a server can be left oped when
      * PHP drops out, or the user may have another service running.
      *
+     * @return void
+     *
      * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      */
     protected function guardServerStarting()
@@ -254,7 +256,7 @@ class DuskServer
     {
         return sprintf(
             ((OperatingSystem::onWindows() ? '' : 'exec ').'%s -S %s:%s %s -t %s'),
-            ProcessUtils::escapeArgument((new PhpExecutableFinder())->find(false)),
+            ProcessUtils::escapeArgument((string) (new PhpExecutableFinder())->find(false)),
             $this->host,
             $this->port,
             ProcessUtils::escapeArgument(__DIR__.'/server.php'),

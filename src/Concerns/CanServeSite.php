@@ -18,7 +18,7 @@ trait CanServeSite
     /**
      * The server implementation.
      *
-     * @var \Orchestra\Testbench\Dusk\DuskServer
+     * @var \Orchestra\Testbench\Dusk\DuskServer|null
      */
     protected static $server;
 
@@ -89,10 +89,13 @@ trait CanServeSite
      */
     public function beforeServingApplication($closure): void
     {
-        after_resolving($this->app, 'config', function ($config, $app) use ($closure) {
+        /** @var \Illuminate\Foundation\Application $app */
+        $app = $this->app;
+
+        after_resolving($app, 'config', function ($config, $app) use ($closure) {
             \is_string($closure) && method_exists($this, $closure)
                 ? $this->{$closure}($app, $config)
-                : $closure($app, $config);
+                : value($closure, $app, $config);
         });
 
         static::$server->stash([

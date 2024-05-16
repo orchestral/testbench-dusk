@@ -67,7 +67,7 @@ class DuskCommand extends Command
             'phpunit.xml',
             'phpunit.xml.dist',
         ])->map(static function ($file) {
-            return TESTBENCH_WORKING_PATH."/{$file}";
+            return TESTBENCH_WORKING_PATH."/{$file}"; /** @phpstan-ignore constant.notFound */
         })->filter(static function ($file) {
             return file_exists($file);
         })->first();
@@ -88,13 +88,14 @@ class DuskCommand extends Command
             'phpunit.xml',
             'phpunit.xml.dist',
         ])->map(static function ($file) {
-            return TESTBENCH_WORKING_PATH."/{$file}";
+            return TESTBENCH_WORKING_PATH."/{$file}"; /** @phpstan-ignore constant.notFound */
         })->filter(static function ($file) {
             return file_exists($file);
         })->first();
 
         if (\is_null($file)) {
-            copy(realpath(__DIR__.'/../../../stubs/phpunit.xml'), TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml');
+            /** @phpstan-ignore constant.notFound */
+            copy((string) realpath(__DIR__.'/../../../stubs/phpunit.xml'), TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml');
 
             return;
         }
@@ -109,6 +110,7 @@ class DuskCommand extends Command
      */
     protected function removeConfiguration()
     {
+        /** @phpstan-ignore constant.notFound */
         if (! $this->hasPhpUnitConfiguration && file_exists($file = TESTBENCH_WORKING_PATH.'/phpunit.dusk.xml')) {
             @unlink($file);
         }

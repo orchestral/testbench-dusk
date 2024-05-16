@@ -12,13 +12,15 @@ class Commander extends Testbench
     /**
      * Resolve application implementation.
      *
-     * @return \Illuminate\Foundation\Application
+     * @return \Closure
      */
-    protected function resolveApplication()
+    protected function resolveApplicationCallback()
     {
-        return tap(parent::resolveApplication(), static function ($app) {
+        return static function ($app) {
+            \call_user_func(parent::resolveApplicationCallback(), $app);
+
             $app->register(TestbenchServiceProvider::class);
-        });
+        };
     }
 
     /**

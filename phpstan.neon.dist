@@ -1,0 +1,15 @@
+includes:
+  - ./phpstan-baseline.neon
+
+parameters:
+  paths:
+    - src
+
+  # The level 8 is the highest level
+  level: 8
+
+  ignoreErrors:
+    - identifier: missingType.iterableValue
+    - '#Unsafe usage of new static#'
+
+  treatPhpDocTypesAsCertain: false

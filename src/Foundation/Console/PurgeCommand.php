@@ -63,6 +63,7 @@ class PurgeCommand extends Command
      */
     protected function purgeDebuggingFiles(string $relativePath, string $patterns): void
     {
+        /** @phpstan-ignore constant.notFound */
         $path = TESTBENCH_WORKING_PATH."/{$relativePath}";
 
         if (! is_dir($path)) {

@@ -230,8 +230,6 @@ abstract class TestCase extends Testbench
     /**
      * Determine the application's base URL.
      *
-     * @var string
-     *
      * @return string
      */
     protected function baseUrl()
@@ -273,7 +271,7 @@ abstract class TestCase extends Testbench
     /**
      * Define the ChromeDriver.
      *
-     * @api     
+     * @api
      *
      * @return void
      *
