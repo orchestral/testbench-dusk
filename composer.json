@@ -49,6 +49,7 @@
     },
     "require-dev": {
         "laravel/pint": "^1.6",
+        "laravel/tinker": "^2.9",
         "phpstan/phpstan": "^1.11",
         "phpunit/phpunit": "^10.5 || ^11.0"
     },
@@ -83,6 +84,10 @@
         ]
     },
     "config": {
+        "preferred-install": {
+            "orchestra/testbench-core": "source",
+            "*": "auto"
+        },
         "sort-packages": true
     },
     "prefer-stable": true,

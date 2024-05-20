@@ -5,7 +5,7 @@ namespace Workbench\App\Providers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
-class RouteServiceProvider extends ServiceProvider
+class WorkbenchServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -24,6 +24,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::view('welcome', 'welcome');
+        Route::macro('text', function (string $url, string $content) {
+            return $this->get($url, function () use ($content) {
+                return response($content)->header('Content-Type', 'text/plain');
+            });
+        });
     }
 }
