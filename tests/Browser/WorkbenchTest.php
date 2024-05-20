@@ -28,8 +28,18 @@ class WorkbenchTest extends TestCase
     public function it_can_browse_the_welcome_page()
     {
         $this->browse(function ($browser) {
-            $browser->visit('/welcome')
+            $browser->visit('/')
                 ->assertSee('Laravel');
+        });
+    }
+
+    /** @test */
+    public function it_can_browse_routes_from_discovers_routes()
+    {
+        $this->browse(function ($browser) {
+            $browser->visit('/testbench')
+                ->assertSee('Alert Component')
+                ->assertSee('Notification Component');
         });
     }
 }
