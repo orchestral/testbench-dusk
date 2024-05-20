@@ -34,7 +34,7 @@ class WorkbenchTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_browse_routes_from_discovers_routes()
     {
         $this->browse(static fn ($browser) => $browser
