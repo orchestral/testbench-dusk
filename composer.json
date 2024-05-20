@@ -46,6 +46,7 @@
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
+        "laravel/tinker": "^2.9",
         "phpstan/phpstan": "^1.11"
     },
     "extra": {
@@ -75,6 +76,10 @@
         ]
     },
     "config": {
+        "preferred-install": {
+            "orchestra/testbench-core": "source",
+            "*": "auto"
+        },
         "sort-packages": true
     },
     "prefer-stable": true,

@@ -1,5 +1,14 @@
 providers:
-  - Workbench\App\Providers\RouteServiceProvider
+  - Workbench\App\Providers\WorkbenchServiceProvider
 
 migrations:
   - workbench/database/migrations
+
+workbench:
+  welcome: false
+  discovers:
+    config: true
+    web: true
+    api: true
+    commands: true
+    views: true
