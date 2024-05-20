@@ -1,13 +1,18 @@
 providers:
-  - Workbench\App\Providers\RouteServiceProvider
+  - Workbench\App\Providers\WorkbenchServiceProvider
 
 migrations:
   - workbench/database/migrations
 
 workbench:
-  start: '/'
-  welcome: true
+  welcome: false
   build:
     - drop-sqlite-db
     - create-sqlite-db
     - migrate:refresh
+  discovers:
+    config: true
+    web: true
+    api: true
+    commands: true
+    views: true
