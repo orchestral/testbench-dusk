@@ -114,22 +114,6 @@ class DuskCommand extends Command
     }
 
     /**
-     * Get the PHP binary environment variables.
-     *
-     * @return array|null
-     */
-    #[\Override]
-    protected function env()
-    {
-        return array_merge(parent::env() ?? [], [
-            'APP_ENV' => 'testing',
-            'TESTBENCH_PACKAGE_TESTER' => '(true)',
-            'TESTBENCH_WORKING_PATH' => TESTBENCH_WORKING_PATH,
-            'TESTBENCH_APP_BASE_PATH' => $this->laravel->basePath(),
-        ]);
-    }
-
-    /**
      * Remove the Dusk PHPUnit configuration.
      *
      * @return void
@@ -140,5 +124,21 @@ class DuskCommand extends Command
         if (! $this->hasPhpUnitConfiguration && file_exists($file = package_path('phpunit.dusk.xml'))) {
             @unlink($file);
         }
+    }
+
+    /**
+     * Get the PHP binary environment variables.
+     *
+     * @return array|null
+     */
+    #[\Override]
+    protected function env()
+    {
+        return array_merge(parent::env() ?? [], [
+            'APP_ENV' => 'testing',
+            'TESTBENCH_PACKAGE_TESTER' => '(true)',
+            'TESTBENCH_WORKING_PATH' => package_path(),
+            'TESTBENCH_APP_BASE_PATH' => $this->laravel->basePath(),
+        ]);
     }
 }
