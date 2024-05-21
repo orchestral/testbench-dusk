@@ -2,6 +2,16 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.25.0
+
+Released: 2024-05-21
+
+### Changes
+
+* Update minimum support for Testbench v8.23.0+. ([v8.22.0...v8.23.0](https://github.com/orchestral/testbench/compare/v8.22.0...v8.23.0))
+* Uses `TESTBENCH_WORKING_PATH` from environment variable before fallback to `getcwd()`.
+* PHPStan Improvements.
+
 ## 8.24.1
 
 Released: 2024-04-07

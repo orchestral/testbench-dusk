@@ -7,6 +7,7 @@ use Laravel\Dusk\Console\DuskCommand as Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Testbench\package_path;
 use function Orchestra\Testbench\phpunit_version_compare;
 
 #[AsCommand(name: 'package:dusk', description: 'Run the package Dusk tests')]
@@ -36,7 +37,7 @@ class DuskCommand extends Command
     {
         parent::__construct();
 
-        if (! \defined('TESTBENCH_WORKING_PATH')) {
+        if (! \defined('TESTBENCH_CORE')) {
             $this->setHidden(true);
         }
     }
@@ -69,15 +70,12 @@ class DuskCommand extends Command
 
         $options = array_values(array_filter($options, static fn ($option) => ! str_starts_with($option, '--env=')));
 
-        /** @phpstan-ignore-next-line */
-        $workingPath = TESTBENCH_WORKING_PATH;
-
         $file = Collection::make([
             'phpunit.dusk.xml',
             'phpunit.dusk.xml.dist',
             'phpunit.xml',
             'phpunit.xml.dist',
-        ])->map(static fn ($file) => join_paths($workingPath, $file))
+        ])->map(static fn ($file) => package_path($file))
             ->filter(static fn ($file) => file_exists($file))
             ->first();
 
@@ -92,15 +90,12 @@ class DuskCommand extends Command
     #[\Override]
     protected function writeConfiguration()
     {
-        /** @phpstan-ignore-next-line */
-        $workingPath = TESTBENCH_WORKING_PATH;
-
         $file = Collection::make([
             'phpunit.dusk.xml',
             'phpunit.dusk.xml.dist',
             'phpunit.xml',
             'phpunit.xml.dist',
-        ])->map(static fn ($file) => join_paths($workingPath, $file))
+        ])->map(static fn ($file) => package_path($file))
             ->filter(static fn ($file) => file_exists($file))
             ->first();
 
@@ -109,7 +104,7 @@ class DuskCommand extends Command
 
             copy(
                 (string) realpath(join_paths(__DIR__, '..', '..', '..', 'stubs', $phpunitStub)),
-                join_paths($workingPath, 'phpunit.dusk.xml')
+                package_path('phpunit.dusk.xml')
             );
 
             return;
@@ -142,8 +137,7 @@ class DuskCommand extends Command
     #[\Override]
     protected function removeConfiguration()
     {
-        /** @phpstan-ignore-next-line */
-        if (! $this->hasPhpUnitConfiguration && file_exists($file = join_paths(TESTBENCH_WORKING_PATH, 'phpunit.dusk.xml'))) {
+        if (! $this->hasPhpUnitConfiguration && file_exists($file = package_path('phpunit.dusk.xml'))) {
             @unlink($file);
         }
     }
