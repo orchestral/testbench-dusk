@@ -2,6 +2,16 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.43.0
+
+Released: 2024-05-21
+
+### Changes
+
+* Update minimum support for Testbench v7.42.0+. ([v7.41.0...v7.42.0](https://github.com/orchestral/testbench/compare/v7.41.0...v7.42.0))
+* Uses `TESTBENCH_WORKING_PATH` from environment variable before fallback to `getcwd()`.
+* PHPStan Improvements.
+
 ## 7.42.0
 
 Released: 2024-03-31
