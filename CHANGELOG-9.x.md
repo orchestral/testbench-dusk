@@ -2,6 +2,16 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 9.2.0
+
+Released: 2024-05-21
+
+### Changes
+
+* Update minimum support for Testbench v9.1.0+. ([v9.0.3...v9.1.0](https://github.com/orchestral/testbench/compare/v9.0.3...v9.1.0))
+* Uses `TESTBENCH_WORKING_PATH` from environment variable before fallback to `getcwd()`.
+* PHPStan Improvements.
+
 ## 9.1.2
 
 Released: 2024-05-09
