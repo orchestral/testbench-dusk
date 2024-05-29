@@ -3,11 +3,14 @@
 namespace Orchestra\Testbench\Dusk\Tests\Browser;
 
 use Illuminate\Contracts\Http\Kernel as HttpKernel;
+use Laravel\Dusk\Browser;
+use Orchestra\Testbench\Attributes\WithEnv;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase;
 use Orchestra\Workbench\Http\Middleware\CatchDefaultRoute;
 use PHPUnit\Framework\Attributes\Test;
 
+#[WithEnv('APP_DEBUG', true)]
 class WorkbenchTest extends TestCase
 {
     use WithWorkbench;
@@ -41,6 +44,17 @@ class WorkbenchTest extends TestCase
             ->visit('/testbench')
             ->assertSee('Alert Component')
             ->assertSee('Notification Component')
+        );
+    }
+
+    #[Test]
+    public function it_can_render_exception_page()
+    {
+        $this->browse(static fn ($browser) => $browser
+            ->visit('failed')
+            ->waitForText('Internal Server Error')
+            ->assertSee('RuntimeException')
+            ->assertSee('Bad route!')
         );
     }
 }
