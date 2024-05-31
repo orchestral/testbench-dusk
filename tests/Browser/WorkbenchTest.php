@@ -4,6 +4,7 @@ namespace Orchestra\Testbench\Dusk\Tests\Browser;
 
 use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Laravel\Dusk\Browser;
+use Orchestra\Testbench\Attributes\RequiresLaravel;
 use Orchestra\Testbench\Attributes\WithEnv;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase;
@@ -48,6 +49,7 @@ class WorkbenchTest extends TestCase
     }
 
     #[Test]
+    #[RequiresLaravel('>=11.9.2')]
     public function it_can_render_exception_page()
     {
         $this->browse(static fn ($browser) => $browser
