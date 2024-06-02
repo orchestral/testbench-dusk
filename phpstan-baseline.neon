@@ -1,6 +1,2 @@
 parameters:
-	ignoreErrors:
-		-
-			message: "#^Constant TESTBENCH_WORKING_PATH not found\\.$#"
-			count: 1
-			path: src/Foundation/Console/DuskCommand.php
+	ignoreErrors: []

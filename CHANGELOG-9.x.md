@@ -2,6 +2,16 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 9.3.0
+
+Released: 2024-06-02
+
+### Changes
+
+* Update minimum support for Testbench v9.1.1+. ([v9.1.0...v9.1.1](https://github.com/orchestral/testbench/compare/v9.1.0...v9.1.1))
+* Update minimum support for Testbench Core v9.1.2+. ([v9.1.0...v9.1.2](https://github.com/orchestral/testbench-core/compare/v9.1.0...v9.1.2))
+* Update configuration to match Laravel Framework v11.8.0.
+
 ## 9.2.0
 
 Released: 2024-05-21
@@ -9,6 +19,7 @@ Released: 2024-05-21
 ### Changes
 
 * Update minimum support for Testbench v9.1.0+. ([v9.0.3...v9.1.0](https://github.com/orchestral/testbench/compare/v9.0.3...v9.1.0))
+* Update minimum support for Testbench Core v9.1.0+. ([v9.0.9...v9.1.0](https://github.com/orchestral/testbench-core/compare/v9.0.9...v9.1.0))
 * Uses `TESTBENCH_WORKING_PATH` from environment variable before fallback to `getcwd()`.
 * PHPStan Improvements.
 
