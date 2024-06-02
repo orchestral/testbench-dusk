@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.47.1
+
+Released: 2024-06-02
+
+### Changes
+
+* Update minimum support for Testbench v6.44.1+. ([v6.44.0...v6.44.1](https://github.com/orchestral/testbench/compare/v6.44.0...v6.44.1))
+* Add `APP_ENV`, `TESTBENCH_PACKAGE_TESTER`, `TESTBENCH_WORKING_PATH` and `TESTBENCH_APP_BASE_PATH` environment variables to `package:dusk` command.
+
 ## 6.47.0
 
 Released: 2024-05-21
