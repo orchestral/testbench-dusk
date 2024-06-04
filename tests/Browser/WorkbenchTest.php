@@ -3,7 +3,6 @@
 namespace Orchestra\Testbench\Dusk\Tests\Browser;
 
 use Illuminate\Contracts\Http\Kernel as HttpKernel;
-use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Attributes\RequiresLaravel;
 use Orchestra\Testbench\Attributes\WithEnv;
 use Orchestra\Testbench\Concerns\WithWorkbench;
