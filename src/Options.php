@@ -46,6 +46,13 @@ class Options
     public static array $arguments = [];
 
     /**
+     * Apply `ChromeOptions` configuration using a callback.
+     *
+     * @var (\Closure(\Facebook\WebDriver\Chrome\ChromeOptions):(void)):null
+     */
+    public static $chromeOptionsCallback = null;
+
+    /**
      * Reset arguments.
      *
      * @return void
@@ -53,6 +60,19 @@ class Options
     public static function resetArguments(): void
     {
         static::$arguments = [];
+    }
+
+    /**
+     * Set `ChromeOptions` callback.
+     *
+     * @param  (\Closure(\Facebook\WebDriver\Chrome\ChromeOptions):(void)):null  $callback
+     * @return static
+     */
+    public static function using($callback)
+    {
+        static::$chromeOptionsCallback = $callback;
+
+        return new static();
     }
 
     /**
@@ -230,6 +250,8 @@ class Options
             if (static::$w3cCompliant === false) {
                 $option->setExperimentalOption('w3c', static::$w3cCompliant);
             }
+
+            value(static::$chromeOptionsCallback);
         })->addArguments(static::$arguments);
     }
 }
