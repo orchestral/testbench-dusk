@@ -47,7 +47,7 @@ class Options
     /**
      * Apply `ChromeOptions` configuration using a callback.
      *
-     * @var (\Closure(\Facebook\WebDriver\Chrome\ChromeOptions):(void)):null
+     * @var (\Closure(\Facebook\WebDriver\Chrome\ChromeOptions):(void))|null
      */
     public static $chromeOptionsCallback = null;
 
@@ -64,7 +64,7 @@ class Options
     /**
      * Set `ChromeOptions` callback.
      *
-     * @param  (\Closure(\Facebook\WebDriver\Chrome\ChromeOptions):(void)):null  $callback
+     * @param  (\Closure(\Facebook\WebDriver\Chrome\ChromeOptions):(void))|null  $callback
      * @return static
      */
     public static function using($callback)
