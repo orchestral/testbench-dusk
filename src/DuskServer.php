@@ -182,7 +182,7 @@ class DuskServer
     {
         $this->guardServerStarting();
 
-        $this->process = Process::fromShellCommandline(
+        $this->process = new Process(
             command: $this->prepareCommand(),
             cwd: join_paths($this->basePath(), 'public'),
             env: array_merge(defined_environment_variables(), [
@@ -224,18 +224,18 @@ class DuskServer
     /**
      * Prepare the command for starting the PHP server.
      *
-     * @return string
+     * @return array
      */
-    protected function prepareCommand(): string
+    protected function prepareCommand(): array
     {
-        return sprintf(
-            ((OperatingSystem::onWindows() ? '' : 'exec ').'%s -S %s:%s %s -t %s'),
-            ProcessUtils::escapeArgument((string) (new PhpExecutableFinder())->find(false)),
-            $this->host,
-            $this->port,
-            ProcessUtils::escapeArgument(join_paths(__DIR__, 'server.php')),
+        return [
+            (string) (new PhpExecutableFinder())->find(false),
+            '-S',
+            sprintf('%s:%s', $this->host, $this->port),
+            join_paths(__DIR__, 'server.php'),
+            '-t',
             ProcessUtils::escapeArgument(join_paths($this->basePath(), 'public')),
-        );
+        ];
     }
 
     /**
