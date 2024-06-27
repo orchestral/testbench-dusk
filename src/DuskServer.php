@@ -254,14 +254,14 @@ class DuskServer
      */
     protected function prepareCommand(): array
     {
-        return ray()->pass(array_filter([
+        return [
             (string) (new PhpExecutableFinder())->find(false),
             '-S',
             sprintf('%s:%s', $this->host, $this->port),
             __DIR__.'/server.php',
             '-t',
-            sprintf('%s', ProcessUtils::escapeArgument("{$this->basePath()}/public")),
-        ]));
+            "{$this->basePath()}/public",
+        ];
     }
 
     /**
