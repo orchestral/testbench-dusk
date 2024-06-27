@@ -234,7 +234,7 @@ class DuskServer
             sprintf('%s:%s', $this->host, $this->port),
             join_paths(__DIR__, 'server.php'),
             '-t',
-            ProcessUtils::escapeArgument(join_paths($this->basePath(), 'public')),
+            join_paths($this->basePath(), 'public'),
         ];
     }
 
