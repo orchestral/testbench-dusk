@@ -222,8 +222,6 @@ class DuskServer
     /**
      * Prepare the command for starting the PHP server.
      *
-     * @internal
-     *
      * @return array
      */
     protected function prepareCommand(): array
