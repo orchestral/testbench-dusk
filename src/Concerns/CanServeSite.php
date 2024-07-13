@@ -103,9 +103,13 @@ trait CanServeSite
         $app = $this->app;
 
         after_resolving($app, 'config', function ($config, $app) use ($closure) {
+            /**
+             * @var \Illuminate\Foundation\Application $app
+             * @var \Illuminate\Contracts\Config\Repository $config
+             */
             \is_string($closure) && method_exists($this, $closure)
-                ? $this->{$closure}($app, $config)
-                : value($closure, $app, $config);
+                ? call_user_func([$this, $closure], $app, $config) // @phpstan-ignore argument.type
+                : value($closure, $app, $config); // @phpstan-ignore argument.type
         });
 
         static::$server?->stash([
@@ -177,9 +181,13 @@ trait CanServeSite
             $closure = \is_string($serializedClosure) ? $serializedClosure : $serializedClosure->getClosure();
 
             after_resolving($app, 'config', function ($config, $app) use ($closure) {
+                /**
+                 * @var \Illuminate\Foundation\Application $app
+                 * @var \Illuminate\Contracts\Config\Repository $config
+                 */
                 \is_string($closure) && method_exists($this, $closure)
-                    ? $this->{$closure}($app, $config)
-                    : value($closure, $app, $config);
+                    ? call_user_func([$this, $closure], $app, $config) // @phpstan-ignore argument.type
+                    : value($closure, $app, $config); // @phpstan-ignore argument.type
             });
         }
 
