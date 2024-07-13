@@ -2,8 +2,6 @@
 
 namespace Orchestra\Testbench\Dusk;
 
-use Illuminate\Support\ProcessUtils;
-use Laravel\Dusk\OperatingSystem;
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
