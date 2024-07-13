@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.48.0
+
+Released: 2024-07-13
+
+### Added
+
+* Added `Orchestra\Testbench\Dusk\Options::using()` method to interacts with `Facebook\WebDriver\Chrome\ChromeOptions`.
+
+### Changes
+
+* Update minimum support for Testbench v6.45.0+. ([v6.44.1...v6.45.0](https://github.com/orchestral/testbench/compare/v6.44.1...v6.45.0))
+* Update minimum support for Testbench Core v6.51.0+. ([v6.50.1...v6.51.0](https://github.com/orchestral/testbench/compare/v6.50.1...v6.51.0))
+
 ## 6.47.1
 
 Released: 2024-06-02
