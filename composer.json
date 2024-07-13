@@ -43,7 +43,7 @@
         "laravel/serializable-closure": "^1.0",
         "orchestra/dusk-updater": "^2.4",
         "orchestra/testbench": "^9.2",
-        "orchestra/testbench-core": "9.x-dev",
+        "orchestra/testbench-core": ">=9.2.1 <9.3.0",
         "php-webdriver/webdriver": "^1.15.1",
         "symfony/polyfill-php83": "^1.28"
     },
