@@ -108,7 +108,7 @@ trait CanServeSite
              * @var \Illuminate\Contracts\Config\Repository $config
              */
             \is_string($closure) && method_exists($this, $closure)
-                ? call_user_func([$this, $closure], $app, $config) // @phpstan-ignore argument.type
+                ? \call_user_func([$this, $closure], $app, $config) // @phpstan-ignore argument.type
                 : value($closure, $app, $config); // @phpstan-ignore argument.type
         });
 
@@ -186,7 +186,7 @@ trait CanServeSite
                  * @var \Illuminate\Contracts\Config\Repository $config
                  */
                 \is_string($closure) && method_exists($this, $closure)
-                    ? call_user_func([$this, $closure], $app, $config) // @phpstan-ignore argument.type
+                    ? \call_user_func([$this, $closure], $app, $config) // @phpstan-ignore argument.type
                     : value($closure, $app, $config); // @phpstan-ignore argument.type
             });
         }
