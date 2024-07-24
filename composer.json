@@ -41,7 +41,7 @@
         "composer-runtime-api": "^2.2",
         "laravel/dusk": "^7.13 || ^8.1",
         "laravel/serializable-closure": "^1.0",
-        "orchestra/dusk-updater": "^2.3",
+        "orchestra/dusk-updater": "^2.5",
         "orchestra/testbench": "^8.24",
         "orchestra/testbench-core": "^8.25",
         "php-webdriver/webdriver": "^1.9",
