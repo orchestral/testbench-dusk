@@ -12,14 +12,14 @@ class DuskServerTest extends TestCase
     {
         $this->assertEquals(
             realpath(__DIR__.'/../../laravel'),
-            (new DuskServer())->basePath()
+            (new DuskServer)->basePath()
         );
     }
 
     /** @test */
     public function it_provides_the_laravel_public_directory_from_custom_location()
     {
-        $server = new DuskServer();
+        $server = new DuskServer;
         $server->setLaravel('/dir/project/laravel');
 
         $this->assertEquals(
@@ -32,8 +32,8 @@ class DuskServerTest extends TestCase
     public function it_fails_when_there_is_a_server_on_the_host_and_port_already()
     {
         try {
-            $a = new DuskServer();
-            $b = new DuskServer();
+            $a = new DuskServer;
+            $b = new DuskServer;
 
             $a->start();
             $this->waitForServerToStart();
@@ -68,7 +68,7 @@ class DuskServerTest extends TestCase
                 // We have everything from the script so far available
                 // So create a server and exit (to simluate a dd() or similar in a test)
                 // Once complete, the parent can check for the orpahn server.
-                (new DuskServer())->start();
+                (new DuskServer)->start();
                 $this->waitForServerToStart();
                 exit();
                 break;
@@ -76,7 +76,7 @@ class DuskServerTest extends TestCase
                 // @parent
                 pcntl_waitpid($pid, $status);
                 try {
-                    (new DuskServer())->start();
+                    (new DuskServer)->start();
                     $this->assertTrue(true, 'We did not end up with an orphan server');
                 } catch (UnableToStartServer $e) {
                     $this->fail('There was an orphan server. You\'ll need to remove it manually.');

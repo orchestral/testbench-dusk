@@ -12,7 +12,7 @@ class CanServeSiteTest extends TestCase
     /** @test * */
     public function it_starts_and_stops_a_server()
     {
-        $dummy = new CanServeSiteDummy();
+        $dummy = new CanServeSiteDummy;
 
         $dummy::serve('127.0.0.1', 8001);
 
@@ -32,7 +32,7 @@ class CanServeSiteTest extends TestCase
     /** @test * */
     public function it_stops_an_existing_server_and_starts_a_new_one_with_consecutive_serve_requests()
     {
-        $dummy = new CanServeSiteDummy();
+        $dummy = new CanServeSiteDummy;
 
         $dummy::serve('127.0.0.1', 8001);
 
