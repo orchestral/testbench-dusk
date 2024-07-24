@@ -254,7 +254,7 @@ class DuskServer
     protected function prepareCommand(): array
     {
         return [
-            (string) (new PhpExecutableFinder())->find(false),
+            (string) (new PhpExecutableFinder)->find(false),
             '-S',
             sprintf('%s:%s', $this->host, $this->port),
             join_paths(__DIR__, 'server.php'),

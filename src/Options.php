@@ -71,7 +71,7 @@ class Options
     {
         static::$chromeOptionsCallback = $callback;
 
-        return new static();
+        return new static;
     }
 
     /**
@@ -85,7 +85,7 @@ class Options
             array_push(static::$arguments, $argument);
         }
 
-        return new static();
+        return new static;
     }
 
     /**
@@ -99,7 +99,7 @@ class Options
             static::$arguments = array_values(array_filter(static::$arguments, static fn ($option) => $option !== $argument));
         }
 
-        return new static();
+        return new static;
     }
 
     /**
@@ -245,7 +245,7 @@ class Options
      */
     public static function getChromeOptions()
     {
-        return tap(new ChromeOptions(), static function ($option) {
+        return tap(new ChromeOptions, static function ($option) {
             if (static::$w3cCompliant === false) {
                 $option->setExperimentalOption('w3c', static::$w3cCompliant);
             }
