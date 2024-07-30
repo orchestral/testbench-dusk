@@ -207,6 +207,16 @@ class Options
     }
 
     /**
+     * Set the initial browser as maximized.
+     *
+     * @return static
+     */
+    public static function fullscreen()
+    {
+        return static::addArgument('--start-maximized');
+    }
+
+    /**
      * Set remote debugging port.
      *
      * @return static
