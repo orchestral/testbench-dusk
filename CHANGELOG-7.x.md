@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.45.0
+
+Released: 2024-07-30
+
+### Added
+
+* Added `Orchestra\Testbench\Dusk\Options::fullscreen()` helper method.
+* Added `--disable-search-engine-choice-screen` as default argument to ChromeOptions.
+
+### Changes
+
+* Bump minimum Dusk Updater versions to support ChromeDriver 127 and above.
+
 ## 7.44.0
 
 Released: 2024-07-13
