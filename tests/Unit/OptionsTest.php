@@ -52,7 +52,7 @@ class OptionsTest extends PHPUnitTestCase
         Options::noZygote();
 
         $this->assertEquals(
-            ['--no-sandbox', '--no-zygote'],
+            ['--disable-search-engine-choice-screen', '--no-sandbox', '--no-zygote'],
             Options::getChromeOptions()->toArray()['args']
         );
     }
@@ -63,7 +63,7 @@ class OptionsTest extends PHPUnitTestCase
         Options::ignoreSslErrors();
 
         $this->assertEquals(
-            ['--ignore-certificate-errors'],
+            ['--disable-search-engine-choice-screen', '--ignore-certificate-errors'],
             Options::getChromeOptions()->toArray()['args']
         );
     }
@@ -74,7 +74,7 @@ class OptionsTest extends PHPUnitTestCase
         Options::windowSize(2048, 1080);
 
         $this->assertEquals(
-            ['--window-size=2048,1080'],
+            ['--disable-search-engine-choice-screen', '--window-size=2048,1080'],
             Options::getChromeOptions()->toArray()['args']
         );
     }
@@ -85,7 +85,7 @@ class OptionsTest extends PHPUnitTestCase
         Options::remoteDebuggingPort(9095);
 
         $this->assertEquals(
-            ['--remote-debugging-port=9095'],
+            ['--disable-search-engine-choice-screen', '--remote-debugging-port=9095'],
             Options::getChromeOptions()->toArray()['args']
         );
     }
@@ -96,7 +96,7 @@ class OptionsTest extends PHPUnitTestCase
         Options::userAgent('Dusk');
 
         $this->assertEquals(
-            ['--user-agent=Dusk'],
+            ['--disable-search-engine-choice-screen', '--user-agent=Dusk'],
             Options::getChromeOptions()->toArray()['args']
         );
     }
