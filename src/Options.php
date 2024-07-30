@@ -51,7 +51,9 @@ class Options
      */
     public static function resetArguments(): void
     {
-        static::$arguments = [];
+        static::$arguments = [
+            '--disable-search-engine-choice-screen',
+        ];
     }
 
     /**
