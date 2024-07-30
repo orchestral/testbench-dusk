@@ -64,7 +64,6 @@
         ],
         "post-update-cmd": [
             "@clear",
-            "@php bin/sync",
             "@php vendor/bin/pint"
         ],
         "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
