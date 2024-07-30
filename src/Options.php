@@ -58,7 +58,9 @@ class Options
      */
     public static function resetArguments(): void
     {
-        static::$arguments = [];
+        static::$arguments = [
+            '--disable-search-engine-choice-screen',
+        ];
     }
 
     /**
@@ -215,6 +217,16 @@ class Options
     public static function windowSize(int $width, int $height)
     {
         return static::addArgument('--window-size='.$width.','.$height);
+    }
+
+    /**
+     * Set the initial browser as maximized.
+     *
+     * @return static
+     */
+    public static function fullscreen()
+    {
+        return static::addArgument('--start-maximized');
     }
 
     /**
