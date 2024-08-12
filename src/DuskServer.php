@@ -117,7 +117,7 @@ class DuskServer
         return implode('/', [
             \dirname(__DIR__),
             'tmp',
-            sprintf('%s__%d', ! \in_array($this->host, $this->localIpv6Hosts) ? $this->host : 'localhost', $this->port),
+            \sprintf('%s__%d', ! \in_array($this->host, $this->localIpv6Hosts) ? $this->host : 'localhost', $this->port),
         ]);
     }
 
@@ -254,7 +254,7 @@ class DuskServer
         return [
             (string) (new PhpExecutableFinder)->find(false),
             '-S',
-            sprintf('%s:%s', $this->host, $this->port),
+            \sprintf('%s:%s', $this->host, $this->port),
             __DIR__.'/server.php',
             '-t',
             "{$this->basePath()}/public",
@@ -278,7 +278,7 @@ class DuskServer
      */
     public function baseUrl(): string
     {
-        return $this->baseUrl ?? sprintf('http://%s:%d', $this->host, $this->port);
+        return $this->baseUrl ?? \sprintf('http://%s:%d', $this->host, $this->port);
     }
 
     /**
