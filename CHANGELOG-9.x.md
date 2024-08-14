@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 9.6.0
+
+Released: 2024-08-14
+
+### Changes
+
+* Update minimum support for Testbench v9.3.0+. ([v9.2.0...v9.3.0](https://github.com/orchestral/testbench/compare/v9.2.0...v9.3.0))
+* Update minimum support for Testbench Core v9.3.0+. ([v9.2.1...v9.3.0](https://github.com/orchestral/testbench-core/compare/v9.2.1...v9.3.0))
+
 ## 9.5.0
 
 Released: 2024-07-30
