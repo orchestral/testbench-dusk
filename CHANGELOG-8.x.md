@@ -2,6 +2,28 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.28.0
+
+Released: 2024-08-14
+
+### Changes
+
+* Update minimum support for Testbench v8.25.0+. ([v8.24.0...v8.25.0](https://github.com/orchestral/testbench/compare/v8.24.0...v8.25.0))
+* Update minimum support for Testbench Core v8.26.0+. ([v8.25.0...v8.26.0](https://github.com/orchestral/testbench/compare/v8.25.0...v8.26.0))
+
+## 8.27.0
+
+Released: 2024-07-30
+
+### Added
+
+* Added `Orchestra\Testbench\Dusk\Options::fullscreen()` helper method.
+* Added `--disable-search-engine-choice-screen` as default argument to ChromeOptions.
+
+### Changes
+
+* Bump minimum Dusk Updater versions to support ChromeDriver 127 and above.
+
 ## 8.26.0
 
 Released: 2024-07-13

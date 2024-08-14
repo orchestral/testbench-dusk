@@ -41,17 +41,24 @@
         "composer-runtime-api": "^2.2",
         "laravel/dusk": "^8.1",
         "laravel/serializable-closure": "^1.0",
-        "orchestra/dusk-updater": "^2.4",
+        "orchestra/dusk-updater": "^2.6",
         "orchestra/testbench": "9.x-dev",
         "orchestra/testbench-core": "9.x-dev",
         "php-webdriver/webdriver": "^1.15.1",
         "symfony/polyfill-php83": "^1.28"
     },
     "require-dev": {
-        "laravel/pint": "^1.6",
+        "laravel/pint": "^1.17",
         "laravel/tinker": "^2.9",
         "phpstan/phpstan": "^1.11",
         "phpunit/phpunit": "^10.5 || ^11.0"
+    },
+    "config": {
+        "preferred-install": {
+            "orchestra/testbench-core": "source",
+            "*": "auto"
+        },
+        "sort-packages": true
     },
     "scripts": {
         "post-autoload-dump": [
@@ -59,16 +66,16 @@
             "@prepare",
             "@dusk:install-chromedriver"
         ],
-        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
-        "prepare": "@php vendor/bin/testbench package:discover --ansi",
-        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "clear": "@php testbench-dusk package:purge-skeleton --ansi",
+        "prepare": "@php testbench-dusk package:discover --ansi",
+        "build": "@php testbench-dusk workbench:build --ansi",
         "dusk:install-chromedriver": "@php vendor/bin/dusk-updater detect --auto-update --ansi",
         "serve": [
             "@build",
-            "@php vendor/bin/testbench serve"
+            "@php testbench-dusk serve --ansi"
         ],
         "lint": [
-            "@php vendor/bin/pint",
+            "@php vendor/bin/pint --ansi",
             "@php vendor/bin/phpstan analyse --verbose"
         ],
         "test": [
@@ -83,6 +90,7 @@
             "@test"
         ]
     },
+<<<<<<< HEAD
     "config": {
         "preferred-install": {
             "orchestra/testbench-core": "source",
@@ -90,5 +98,8 @@
         },
         "sort-packages": true
     },
+=======
+    "prefer-stable": true,
+>>>>>>> develop
     "minimum-stability": "dev"
 }

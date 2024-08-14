@@ -59,7 +59,9 @@ class Options
      */
     public static function resetArguments(): void
     {
-        static::$arguments = [];
+        static::$arguments = [
+            '--disable-search-engine-choice-screen',
+        ];
     }
 
     /**
@@ -72,7 +74,7 @@ class Options
     {
         static::$chromeOptionsCallback = $callback;
 
-        return new static();
+        return new static;
     }
 
     /**
@@ -86,7 +88,7 @@ class Options
             array_push(static::$arguments, $argument);
         }
 
-        return new static();
+        return new static;
     }
 
     /**
@@ -100,7 +102,7 @@ class Options
             static::$arguments = array_values(array_filter(static::$arguments, static fn ($option) => $option !== $argument));
         }
 
-        return new static();
+        return new static;
     }
 
     /**
@@ -140,7 +142,7 @@ class Options
      */
     public static function hasUI(): bool
     {
-        return ! static::hasArgument(sprintf('--headless=%s', (static::$headlessMode ?? 'new'))) &&
+        return ! static::hasArgument(\sprintf('--headless=%s', (static::$headlessMode ?? 'new'))) &&
             ! static::hasArgument('--headless');
     }
 
@@ -165,7 +167,7 @@ class Options
             return static::addArgument('--headless');
         }
 
-        return static::addArgument(sprintf('--headless=%s', static::$headlessMode));
+        return static::addArgument(\sprintf('--headless=%s', static::$headlessMode));
     }
 
     /**
@@ -215,7 +217,17 @@ class Options
      */
     public static function windowSize(int $width, int $height)
     {
-        return static::addArgument(sprintf('--window-size=%d,%d', $width, $height));
+        return static::addArgument(\sprintf('--window-size=%d,%d', $width, $height));
+    }
+
+    /**
+     * Set the initial browser as maximized.
+     *
+     * @return static
+     */
+    public static function fullscreen()
+    {
+        return static::addArgument('--start-maximized');
     }
 
     /**
@@ -225,7 +237,7 @@ class Options
      */
     public static function remoteDebuggingPort(int $port = 9222)
     {
-        return static::addArgument(sprintf('--remote-debugging-port=%d', $port));
+        return static::addArgument(\sprintf('--remote-debugging-port=%d', $port));
     }
 
     /**
@@ -235,7 +247,7 @@ class Options
      */
     public static function userAgent(string $useragent)
     {
-        return static::addArgument(sprintf('--user-agent=%s', $useragent));
+        return static::addArgument(\sprintf('--user-agent=%s', $useragent));
     }
 
     /**
@@ -246,7 +258,7 @@ class Options
      */
     public static function getChromeOptions()
     {
-        return tap(new ChromeOptions(), static function ($option) {
+        return tap(new ChromeOptions, static function ($option) {
             if (static::$w3cCompliant === false) {
                 $option->setExperimentalOption('w3c', static::$w3cCompliant);
             }

@@ -101,7 +101,7 @@ abstract class TestCase extends Testbench
      */
     public static function applicationBaseUrl()
     {
-        return Env::get('DUSK_SERVE_URL') ?? sprintf('http://%s:%d', static::getBaseServeHost(), static::getBaseServePort());
+        return Env::get('DUSK_SERVE_URL') ?? \sprintf('http://%s:%d', static::getBaseServeHost(), static::getBaseServePort());
     }
 
     /**
