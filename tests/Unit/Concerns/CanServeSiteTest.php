@@ -77,7 +77,7 @@ class CanServeSiteDummy
      */
     public static function applicationBaseUrl()
     {
-        return sprintf('http://%s:%d', self::getBaseServeHost(), self::getBaseServePort());
+        return \sprintf('http://%s:%d', self::getBaseServeHost(), self::getBaseServePort());
     }
 
     /**

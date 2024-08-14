@@ -142,7 +142,7 @@ class Options
      */
     public static function hasUI(): bool
     {
-        return ! static::hasArgument(sprintf('--headless=%s', (static::$headlessMode ?? 'new'))) &&
+        return ! static::hasArgument(\sprintf('--headless=%s', (static::$headlessMode ?? 'new'))) &&
             ! static::hasArgument('--headless');
     }
 
@@ -167,7 +167,7 @@ class Options
             return static::addArgument('--headless');
         }
 
-        return static::addArgument(sprintf('--headless=%s', static::$headlessMode));
+        return static::addArgument(\sprintf('--headless=%s', static::$headlessMode));
     }
 
     /**
@@ -217,7 +217,7 @@ class Options
      */
     public static function windowSize(int $width, int $height)
     {
-        return static::addArgument(sprintf('--window-size=%d,%d', $width, $height));
+        return static::addArgument(\sprintf('--window-size=%d,%d', $width, $height));
     }
 
     /**
@@ -237,7 +237,7 @@ class Options
      */
     public static function remoteDebuggingPort(int $port = 9222)
     {
-        return static::addArgument(sprintf('--remote-debugging-port=%d', $port));
+        return static::addArgument(\sprintf('--remote-debugging-port=%d', $port));
     }
 
     /**
@@ -247,7 +247,7 @@ class Options
      */
     public static function userAgent(string $useragent)
     {
-        return static::addArgument(sprintf('--user-agent=%s', $useragent));
+        return static::addArgument(\sprintf('--user-agent=%s', $useragent));
     }
 
     /**
