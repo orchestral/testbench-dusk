@@ -41,9 +41,9 @@
         "konsulting/project-root": "^1.1",
         "laravel/dusk": "^7.13",
         "laravel/serializable-closure": "^1.0",
-        "orchestra/dusk-updater": "^1.9 || ^2.5",
-        "orchestra/testbench": "^7.43",
-        "orchestra/testbench-core": "^7.44",
+        "orchestra/dusk-updater": "^1.10 || ^2.6",
+        "orchestra/testbench": "^7.44",
+        "orchestra/testbench-core": "^7.45",
         "php-webdriver/webdriver": "^1.9"
     },
     "require-dev": {
@@ -51,10 +51,12 @@
         "laravel/tinker": "^2.9",
         "phpstan/phpstan": "^1.11"
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "8.0-dev"
-        }
+    "config": {
+        "preferred-install": {
+            "orchestra/testbench-core": "source",
+            "*": "auto"
+        },
+        "sort-packages": true
     },
     "scripts": {
         "post-autoload-dump": [
@@ -62,13 +64,13 @@
             "@prepare",
             "@dusk:install-chromedriver"
         ],
-        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
-        "prepare": "@php vendor/bin/testbench package:discover --ansi",
-        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "clear": "@php testbench-dusk package:purge-skeleton --ansi",
+        "prepare": "@php testbench-dusk package:discover --ansi",
+        "build": "@php testbench-dusk workbench:build --ansi",
         "dusk:install-chromedriver": "@php vendor/bin/dusk-updater detect --auto-update --ansi",
         "serve": [
             "@build",
-            "@php vendor/bin/testbench serve"
+            "@php testbench-dusk serve"
         ],
         "lint": [
             "@php vendor/bin/pint",
@@ -85,13 +87,6 @@
             "@lint",
             "@test"
         ]
-    },
-    "config": {
-        "preferred-install": {
-            "orchestra/testbench-core": "source",
-            "*": "auto"
-        },
-        "sort-packages": true
     },
     "prefer-stable": true,
     "minimum-stability": "dev"
