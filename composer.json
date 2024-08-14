@@ -90,16 +90,6 @@
             "@test"
         ]
     },
-<<<<<<< HEAD
-    "config": {
-        "preferred-install": {
-            "orchestra/testbench-core": "source",
-            "*": "auto"
-        },
-        "sort-packages": true
-    },
-=======
     "prefer-stable": true,
->>>>>>> develop
     "minimum-stability": "dev"
 }
