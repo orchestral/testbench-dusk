@@ -79,6 +79,21 @@ abstract class TestCase extends Testbench
     public static function applicationBaseUrl()
     {
         return Env::get('DUSK_SERVE_URL') ?? \sprintf('http://%s:%d', static::getBaseServeHost(), static::getBaseServePort());
+<<<<<<< HEAD
+=======
+    }
+
+    /**
+     * Determine the application's base URL.
+     *
+     * @return string
+     *
+     * @deprecated Use static::applicationBaseUrl() instead.
+     */
+    public static function baseServeUrl()
+    {
+        return static::applicationBaseUrl();
+>>>>>>> 6.x
     }
 
     /**
