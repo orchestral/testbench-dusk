@@ -39,7 +39,6 @@
         "konsulting/project-root": "^1.1",
         "laravel/dusk": "^6.22.3",
         "laravel/serializable-closure": "^1.0",
-        "opis/closure": "^3.6",
         "orchestra/dusk-updater": "^1.10 || ^2.6",
         "orchestra/testbench": "^6.45.1",
         "orchestra/testbench-core": "^6.51.2",
