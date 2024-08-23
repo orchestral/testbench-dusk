@@ -7,6 +7,8 @@ use Illuminate\Contracts\Config\Repository as RepositoryContract;
 use Illuminate\Contracts\Foundation\Application;
 use Symfony\Component\Finder\Finder;
 
+use function Orchestra\Testbench\join_paths;
+
 /**
  * @internal
  */
@@ -52,7 +54,7 @@ class LoadConfiguration
     protected function getConfigurationFiles(Application $app)
     {
         if (! is_dir($path = $app->basePath('config'))) {
-            $path = (string) realpath(__DIR__.'/../../laravel/config');
+            $path = (string) realpath(join_paths(__DIR__, '..', '..', 'laravel', 'config'));
         }
 
         foreach (Finder::create()->files()->name('*.php')->in($path) as $file) {

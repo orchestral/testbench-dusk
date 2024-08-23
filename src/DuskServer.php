@@ -7,6 +7,7 @@ use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
 use function Orchestra\Testbench\defined_environment_variables;
+use function Orchestra\Testbench\join_paths;
 
 /**
  * @internal
@@ -114,11 +115,11 @@ class DuskServer
      */
     protected function temp(): string
     {
-        return implode('/', [
+        return join_paths(
             \dirname(__DIR__),
             'tmp',
-            \sprintf('%s__%d', ! \in_array($this->host, $this->localIpv6Hosts) ? $this->host : 'localhost', $this->port),
-        ]);
+            \sprintf('%s__%d', ! \in_array($this->host, $this->localIpv6Hosts) ? $this->host : 'localhost', $this->port)
+        );
     }
 
     /**
