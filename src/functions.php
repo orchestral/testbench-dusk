@@ -21,8 +21,6 @@ function default_skeleton_path($path = ''): string
 
 /**
  * Find test directory.
- *
- * @param  string  $path
  */
 function find_test_directory(): string
 {
