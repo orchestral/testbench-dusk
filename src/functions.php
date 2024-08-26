@@ -4,9 +4,10 @@ namespace Orchestra\Testbench\Dusk;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\LazyCollection;
-use Konsulting\ProjectRoot;
 use Laravel\Dusk\Browser;
+
 use function Orchestra\Testbench\join_paths;
+use function Orchestra\Testbench\package_path;
 
 /**
  * Get the default skeleton path
@@ -23,9 +24,9 @@ function default_skeleton_path($path = ''): string
  *
  * @param  string  $path
  */
-function find_test_directory($path = __DIR__): string
+function find_test_directory(): string
 {
-    return join_paths(ProjectRoot::forPackage('testbench-dusk')->resolve($path), 'tests', 'Browser');
+    return package_path(join_paths('tests', 'Browser'));
 }
 
 /**
