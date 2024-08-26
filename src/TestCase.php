@@ -309,7 +309,7 @@ abstract class TestCase extends Testbench
      */
     protected static function defineChromeDriver(): void
     {
-        static::startChromeDriver(['port' => 9515]);
+        static::startChromeDriver(['--port=9515']);
     }
 
     /**

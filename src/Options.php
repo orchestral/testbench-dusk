@@ -43,7 +43,9 @@ class Options
      *
      * @var array<int, string>
      */
-    public static array $arguments = [];
+    public static array $arguments = [
+        '--disable-search-engine-choice-screen',
+    ];
 
     /**
      * Apply `ChromeOptions` configuration using a callback.
