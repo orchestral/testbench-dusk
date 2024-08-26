@@ -7,7 +7,7 @@ use Illuminate\Contracts\Config\Repository as RepositoryContract;
 use Illuminate\Contracts\Foundation\Application;
 use Symfony\Component\Finder\Finder;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Testbench\join_paths;
 
 /**
  * @internal

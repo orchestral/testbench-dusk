@@ -6,8 +6,8 @@ use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
-use function Illuminate\Filesystem\join_paths;
 use function Orchestra\Testbench\defined_environment_variables;
+use function Orchestra\Testbench\join_paths;
 
 /**
  * @internal

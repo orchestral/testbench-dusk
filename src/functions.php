@@ -5,7 +5,7 @@ namespace Orchestra\Testbench\Dusk;
 use Illuminate\Support\LazyCollection;
 use Laravel\Dusk\Browser;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Testbench\join_paths;
 use function Orchestra\Testbench\package_path;
 
 /**
@@ -13,6 +13,8 @@ use function Orchestra\Testbench\package_path;
  */
 function default_skeleton_path(string $path = ''): string
 {
+    $path = $path != '' ? ltrim($path, DIRECTORY_SEPARATOR) : '';
+
     return (string) realpath(join_paths(__DIR__, '..', 'laravel', $path));
 }
 

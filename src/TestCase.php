@@ -34,6 +34,13 @@ abstract class TestCase extends Testbench
     protected static $baseServePort = 8001;
 
     /**
+     * The ChromeDriver port to listen to.
+     *
+     * @var int
+     */
+    protected static $chromeDriverPort = 9515;
+
+    /**
      * Keep track of whether we've registered shutdown function.
      *
      * @var bool
@@ -212,7 +219,7 @@ abstract class TestCase extends Testbench
         }
 
         return RemoteWebDriver::create(
-            Env::get('DUSK_DRIVER_URL') ?? 'http://localhost:9515',
+            Env::get('DUSK_DRIVER_URL') ?? \sprintf('http://localhost:%d', static::$chromeDriverPort),
             DesiredCapabilities::chrome()->setCapability(
                 ChromeOptions::CAPABILITY,
                 DuskOptions::getChromeOptions()
@@ -273,7 +280,7 @@ abstract class TestCase extends Testbench
      */
     protected static function defineChromeDriver(): void
     {
-        static::startChromeDriver(['port' => 9515]);
+        static::startChromeDriver([\sprintf('--port=%d', static::$chromeDriverPort)]);
     }
 
     /**
