@@ -2,6 +2,20 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 6.51.0
+
+Released: 2024-08-26
+
+### Added
+
+* Added `Orchestra\Testbench\Dusk\TestCase::$chromeDriverPort` property with `9515` port as default.
+
+### Changes
+
+* Update minimum support for Testbench v6.46.0+. ([v6.45.1...v6.46.0](https://github.com/orchestral/testbench/compare/v6.45.1...v6.46.0))
+* Update minimum support for Testbench Core v6.52.0+. ([v6.51.2...v6.52.0](https://github.com/orchestral/testbench/compare/v6.51.2...v6.52.0))
+* Utilise `Orchestra\Testbench\join_paths()` function.
+
 ## 6.50.0
 
 Released: 2024-08-14

@@ -53,7 +53,7 @@ jobs:
         run: php testbench-dusk package:create-sqlite-db
 
       - name: Start Chrome Driver
-        run: vendor/laravel/dusk/bin/chromedriver-linux &
+        run: vendor/laravel/dusk/bin/chromedriver-linux --port=9515 &
 
       - name: Execute tests (with deprecations)
         run: vendor/bin/phpunit
