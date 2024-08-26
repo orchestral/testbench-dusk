@@ -2,6 +2,21 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.29.0
+
+Released: 2024-08-26
+
+### Added
+
+* Added `Orchestra\Testbench\Dusk\TestCase::$chromeDriverPort` property with `9515` port as default.
+
+### Changes
+
+* Update minimum support for Testbench v8.26.0+. ([v8.25.0...v8.26.0](https://github.com/orchestral/testbench/compare/v8.25.0...v8.26.0))
+* Update minimum support for Testbench Core v8.27.0+. ([v8.26.0...v8.27.0](https://github.com/orchestral/testbench/compare/v8.26.0...v8.27.0))
+* Utilise `Orchestra\Testbench\join_paths()` function.
+* Use `Laravel\SerializableClosure\SerializableClosure::unsigned()`.
+
 ## 8.28.0
 
 Released: 2024-08-14
