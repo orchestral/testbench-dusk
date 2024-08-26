@@ -2,20 +2,20 @@
 
 namespace Orchestra\Testbench\Dusk;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\LazyCollection;
 use Konsulting\ProjectRoot;
 use Laravel\Dusk\Browser;
-
 use function Orchestra\Testbench\join_paths;
 
 /**
  * Get the default skeleton path
+ *
+ * @param  array|string  $path
  */
-function default_skeleton_path(string $path = ''): string
+function default_skeleton_path($path = ''): string
 {
-    $path = $path != '' ? ltrim($path, DIRECTORY_SEPARATOR) : '';
-
-    return (string) realpath(join_paths(__DIR__, '..', 'laravel', $path));
+    return (string) realpath(join_paths(__DIR__, '..', 'laravel', ...Arr::wrap(\func_num_args() > 1 ? \func_get_args() : $path)));
 }
 
 /**
