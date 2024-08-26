@@ -61,19 +61,6 @@ trait ProvidesBrowser
     }
 
     /**
-     * Figure out where the test directory is, if we're an included package, or the root one.
-     *
-     * @param  string  $path
-     * @return string
-     *
-     * @throws \Exception
-     */
-    protected function resolveBrowserTestsPath($path = __DIR__)
-    {
-        return find_test_directory($path);
-    }
-
-    /**
      * Teardown the test environment.
      *
      * @return void
