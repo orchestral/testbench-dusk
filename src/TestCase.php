@@ -226,7 +226,7 @@ abstract class TestCase extends Testbench
         }
 
         return RemoteWebDriver::create(
-            Env::get('DUSK_DRIVER_URL') ?? sprintf('http://localhost:%d', static::$chromeDriverPort),
+            Env::get('DUSK_DRIVER_URL') ?? \sprintf('http://localhost:%d', static::$chromeDriverPort),
             DesiredCapabilities::chrome()->setCapability(
                 ChromeOptions::CAPABILITY,
                 DuskOptions::getChromeOptions()
@@ -286,7 +286,7 @@ abstract class TestCase extends Testbench
      */
     protected static function defineChromeDriver(): void
     {
-        static::startChromeDriver([sprintf('--port=%d', static::$chromeDriverPort)]);
+        static::startChromeDriver([\sprintf('--port=%d', static::$chromeDriverPort)]);
     }
 
     /**

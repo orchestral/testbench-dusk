@@ -36,7 +36,6 @@
     ],
     "require": {
         "php": "^7.3 || ^8.0",
-        "konsulting/project-root": "^1.1",
         "laravel/dusk": "^6.22.3",
         "laravel/serializable-closure": "^1.0",
         "opis/closure": "^3.6",
