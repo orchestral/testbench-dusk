@@ -3,9 +3,9 @@
 namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
 use Orchestra\Testbench\Dusk\TestCase as TestbenchDuskTestCase;
-use PHPUnit\Framework\TestCase as PHPUnitTestcase;
+use PHPUnit\Framework\TestCase;
 
-class ResolvesProjectRootTest extends PHPUnitTestCase
+class ResolvesProjectRootTest extends TestCase
 {
     /** @test */
     public function it_finds_the_correct_path_for_the_browser_tests()

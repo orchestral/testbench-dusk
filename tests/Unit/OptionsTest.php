@@ -3,9 +3,9 @@
 namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
 use Orchestra\Testbench\Dusk\Options;
-use PHPUnit\Framework\TestCase as PHPUnitTestCase;
+use PHPUnit\Framework\TestCase;
 
-class OptionsTest extends PHPUnitTestCase
+class OptionsTest extends TestCase
 {
     /**
      * Teardown the test environment.
