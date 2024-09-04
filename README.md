@@ -11,27 +11,6 @@ The package was developed by [Konsulting Ltd](https://github.com/konsulting) and
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/testbench-dusk/v/unstable)](https://packagist.org/packages/orchestra/testbench-dusk)
 [![License](https://poser.pugx.org/orchestra/testbench-dusk/license)](https://packagist.org/packages/orchestra/testbench-dusk)
 
-* [Version Compatibility](#version-compatibility)
-* [Getting Started](#getting-started)
-* [Installation](#installation)
-* [Usage](#usage)
-* [Advanced Usage](#advanced-usage)
-* [Troubleshooting](#troubleshooting)
-* [Changelog](https://github.com/orchestral/testbench-dusk/releases)
-
-## Version Compatibility
-
- Laravel  | Testbench Dusk
-:---------|:----------
- 5.4.x    | 3.4.x
- 5.5.x    | 3.5.x
- 5.6.x.   | 3.6.x
- 5.7.x.   | 3.7.x
- 5.8.x    | 3.8.x
- 6.x      | 4.x
- 7.x      | 5.x
- 8.x      | 6.x
-
 ## Official Documentation
 
 Documentation for Testbench Dusk can be found on the [packages.tools/testbench-dusk](https://packages.tools/testbench-dusk.html).
