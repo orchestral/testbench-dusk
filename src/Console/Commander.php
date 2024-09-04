@@ -22,11 +22,11 @@ class Commander extends Testbench
     }
 
     /**
-     * Get base path from trait.
+     * Get Application base path.
      *
      * @return string
      */
-    protected function getBasePathFromTrait()
+    public static function applicationBasePath()
     {
         return default_skeleton_path();
     }
