@@ -10,7 +10,8 @@ use Orchestra\Testbench\Factories\UserFactory;
 
 class AuthTest extends TestCase
 {
-    use DatabaseMigrations, WithLaravelMigrations;
+    use DatabaseMigrations;
+    use WithLaravelMigrations;
 
     /** @test */
     public function can_authenticate_user()

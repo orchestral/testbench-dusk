@@ -3,12 +3,15 @@
 namespace Orchestra\Testbench\Dusk\Tests\Unit\Concerns;
 
 use Orchestra\Testbench\Dusk\Concerns\CanServeSite;
-use Orchestra\Testbench\Dusk\Tests\Unit\TestCase;
+use Orchestra\Testbench\Dusk\Tests\Concerns\InteractsWithServer;
+use PHPUnit\Framework\TestCase;
 
 use function Orchestra\Testbench\Dusk\default_skeleton_path;
 
 class CanServeSiteTest extends TestCase
 {
+    use InteractsWithServer;
+
     /** @test * */
     public function it_starts_and_stops_a_server()
     {
