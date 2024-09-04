@@ -103,7 +103,7 @@ If you opt to use `sqlite`, you might want to set the default database connectio
  *
  * @return void
  */
-protected function getEnvironmentSetUp($app)
+protected function defineEnvironment($app)
 {
     $this->app['config']->set('database.default', 'sqlite');
 }
