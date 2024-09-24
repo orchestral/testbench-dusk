@@ -40,8 +40,10 @@ jobs:
 
       - name: Create database
         run: php ./create-sqlite-db
+
       - name: Start Chrome Driver
-        run: vendor/laravel/dusk/bin/chromedriver-linux &
+        run: vendor/laravel/dusk/bin/chromedriver-linux --port=9515 &
+
       - name: Execute tests
         run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
