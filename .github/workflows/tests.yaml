@@ -102,12 +102,16 @@ jobs:
         with:
           dependency-versions: "${{ matrix.dependencies }}"
           composer-options: "--prefer-dist --no-cache"
+
       - name: Create database
         run: php ./create-sqlite-db
+
       - name: Start Chrome Driver
         run: vendor/laravel/dusk/bin/chromedriver-linux &
+
       - name: Execute tests
         run: vendor/bin/phpunit
+
       - name: Upload Failed Screenshots
         uses: actions/upload-artifact@v4
         if: failure()
