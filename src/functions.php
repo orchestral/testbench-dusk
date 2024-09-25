@@ -20,14 +20,6 @@ function default_skeleton_path($path = ''): string
 }
 
 /**
- * Find test directory.
- */
-function find_test_directory(): string
-{
-    return package_path(join_paths('tests', 'Browser'));
-}
-
-/**
  * Prepare debug direcotories.
  */
 function prepare_debug_directories(): void
@@ -36,7 +28,7 @@ function prepare_debug_directories(): void
         return;
     }
 
-    $path = find_test_directory();
+    $path = package_path(join_paths('tests', 'Browser'));
 
     LazyCollection::make(['screenshots', 'console', 'source'])
         ->map(static function ($directory) use ($path) {
