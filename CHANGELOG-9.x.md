@@ -2,6 +2,20 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 9.8.0
+
+Released: 2024-09-25
+
+### Changes
+
+* Update minimum support for Testbench v9.5.0+. ([v9.4.0...v9.5.0](https://github.com/orchestral/testbench/compare/v9.4.0...v9.5.0))
+* Update minimum support for Testbench Core v9.5.1+. ([v9.4.0...v9.5.1](https://github.com/orchestral/testbench-core/compare/v9.4.0...v9.5.1))
+* Update `Orchestra\Testbench\default_skeleton_path()` to accept `array`.
+
+### Removed
+
+* Removed `Orchestra\Testbench\Dusk\find_test_directory()` function.
+
 ## 9.7.1
 
 Released: 2024-09-12
