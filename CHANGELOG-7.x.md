@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.48.0
+
+Released: 2024-09-25
+
+### Changes
+
+* Change `resolveApplicationResolvingCallback()` method visibility from `private` to `protected`.
+* Update `Orchestra\Testbench\default_skeleton_path()` to accept `array`.
+
+### Removed
+
+* Removed `Orchestra\Testbench\Dusk\find_test_directory()` function.
+
 ## 7.47.0
 
 Released: 2024-08-26
