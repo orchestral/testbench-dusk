@@ -8,6 +8,8 @@ Released: 2024-09-25
 
 ### Changes
 
+* Update minimum support for Testbench v6.47.0+. ([v6.46.0...v6.47.0](https://github.com/orchestral/testbench/compare/v6.46.0...v6.47.0))
+* Update minimum support for Testbench Core v6.53.0+. ([v6.52.0...v6.53.0](https://github.com/orchestral/testbench/compare/v6.52.0...v6.53.0))
 * Change `resolveApplicationResolvingCallback()` method visibility from `private` to `protected`.
 * Update `Orchestra\Testbench\default_skeleton_path()` to accept `array`.
 
