@@ -4,8 +4,8 @@ namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
-use function Orchestra\Testbench\Dusk\find_test_directory;
 use function Orchestra\Testbench\join_paths;
+use function Orchestra\Testbench\package_path;
 
 class ResolvesProjectRootTest extends TestCase
 {
@@ -14,7 +14,7 @@ class ResolvesProjectRootTest extends TestCase
     {
         $this->assertEquals(
             join_paths(realpath(join_paths(__DIR__, '..', '..')), 'tests', 'Browser'),
-            find_test_directory()
+            package_path('tests', 'Browser')
         );
     }
 }
