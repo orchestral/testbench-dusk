@@ -2,6 +2,7 @@
 
 namespace Orchestra\Testbench\Dusk;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\LazyCollection;
 use Laravel\Dusk\Browser;
 
@@ -10,20 +11,12 @@ use function Orchestra\Testbench\package_path;
 
 /**
  * Get the default skeleton path
+ *
+ * @param  array|string  $path
  */
-function default_skeleton_path(string $path = ''): string
+function default_skeleton_path($path = ''): string
 {
-    $path = $path != '' ? ltrim($path, DIRECTORY_SEPARATOR) : '';
-
-    return (string) realpath(join_paths(__DIR__, '..', 'laravel', $path));
-}
-
-/**
- * Find test directory.
- */
-function find_test_directory(): string
-{
-    return package_path(join_paths('tests', 'Browser'));
+    return (string) realpath(join_paths(__DIR__, '..', 'laravel', ...Arr::wrap(\func_num_args() > 1 ? \func_get_args() : $path)));
 }
 
 /**
@@ -35,7 +28,7 @@ function prepare_debug_directories(): void
         return;
     }
 
-    $path = find_test_directory();
+    $path = package_path(join_paths('tests', 'Browser'));
 
     LazyCollection::make(['screenshots', 'console', 'source'])
         ->map(static fn ($directory) => join_paths($path, $directory))

@@ -4,11 +4,11 @@ namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
 use Illuminate\Foundation\Auth\User;
 use Laravel\Dusk\DuskServiceProvider;
-use Orchestra\Testbench\Dusk\TestCase as TestbenchDuskTestCase;
+use Orchestra\Testbench\Dusk\TestCase;
 use Orchestra\Testbench\Foundation\Env;
 use PHPUnit\Framework\Attributes\Test;
 
-class DefaultConfigurationTest extends TestbenchDuskTestCase
+class DefaultConfigurationTest extends TestCase
 {
     #[Test]
     public function it_populate_expected_testing_config()
