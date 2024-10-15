@@ -5,6 +5,7 @@ namespace Orchestra\Testbench\Dusk;
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 use Orchestra\Testbench\Foundation\Env;
 use Symfony\Component\Process\Process;
+
 use function Illuminate\Support\php_binary;
 use function Orchestra\Testbench\defined_environment_variables;
 use function Orchestra\Testbench\join_paths;
@@ -186,7 +187,7 @@ class DuskServer
             env: array_merge(defined_environment_variables(), array_filter([
                 'APP_BASE_PATH' => $this->basePath(),
                 'APP_URL' => $this->baseUrl(),
-                'PHP_CLI_SERVER_WORKERS' => Env::get('PHP_CLI_SERVER_WORKERS')
+                'PHP_CLI_SERVER_WORKERS' => Env::get('PHP_CLI_SERVER_WORKERS'),
             ])),
             timeout: $this->timeout
         );
