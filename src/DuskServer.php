@@ -144,8 +144,7 @@ class DuskServer
      */
     public function start(): void
     {
-        $this->stop();
-        $this->startServer();
+        $this->restart();
 
         // We register the below, so if php is exited early, the child
         // process for the server is closed down, rather than left
@@ -162,11 +161,9 @@ class DuskServer
      */
     public function stop(): void
     {
-        if (! isset($this->process)) {
-            return;
+        if (isset($this->process)) {
+            $this->process->stop(5);
         }
-
-        $this->process->stop();
     }
 
     /**
@@ -213,6 +210,7 @@ class DuskServer
             array_merge(defined_environment_variables(), [
                 'APP_BASE_PATH' => $this->basePath(),
                 'APP_URL' => $this->baseUrl(),
+                'PHP_CLI_SERVER_WORKERS' => 1,
             ]),
             null,
             $this->timeout
