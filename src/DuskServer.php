@@ -119,6 +119,7 @@ class DuskServer
     public function start(): void
     {
         $this->stop();
+        $this->clearOutput();
         $this->startServer();
 
         // We register the below, so if php is exited early, the child
@@ -136,11 +137,9 @@ class DuskServer
      */
     public function stop(): void
     {
-        if (! isset($this->process)) {
-            return;
+        if (isset($this->process)) {
+            $this->process->stop(5);
         }
-
-        $this->process->stop();
     }
 
     /**
@@ -184,11 +183,10 @@ class DuskServer
         $this->process = new Process(
             command: $this->prepareCommand(),
             cwd: join_paths($this->basePath(), 'public'),
-            env: array_merge(defined_environment_variables(), array_filter([
+            env: array_merge(defined_environment_variables(), [
                 'APP_BASE_PATH' => $this->basePath(),
                 'APP_URL' => $this->baseUrl(),
-                'PHP_CLI_SERVER_WORKERS' => Env::get('PHP_CLI_SERVER_WORKERS'),
-            ])),
+            ]),
             timeout: $this->timeout
         );
 
@@ -206,6 +204,10 @@ class DuskServer
      */
     protected function guardServerStarting(): void
     {
+        if (Env::has('PHP_CLI_SERVER_WORKERS')) {
+            return;
+        }
+
         /** @var resource|null $socket */
         $socket = rescue(function () {
             $errorNumber = 0;

@@ -14,7 +14,7 @@ trait InteractsWithServer
             sleep(1);
             $i++;
 
-            if ($i >= 5) {
+            if ($i >= 10) {
                 throw new Exception('Waited too long for server to start.');
             }
         }
@@ -28,7 +28,7 @@ trait InteractsWithServer
             sleep(1);
             $i++;
 
-            if ($i >= 5) {
+            if ($i >= 10) {
                 throw new Exception('Waited too long for server to stop.');
             }
         }
@@ -36,7 +36,7 @@ trait InteractsWithServer
 
     protected function isServerUp()
     {
-        if ($socket = @fsockopen('127.0.0.1', 8001, $errorNumber, $errorString, $timeout = 1)) {
+        if ($socket = @fsockopen('127.0.0.1', 8002, $errorNumber, $errorString, $timeout = 1)) {
             fclose($socket);
 
             return true;

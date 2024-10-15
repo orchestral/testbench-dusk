@@ -18,7 +18,7 @@ class CanServeSiteTest extends TestCase
     {
         $dummy = new CanServeSiteDummy;
 
-        $dummy::serve('127.0.0.1', 8001);
+        $dummy::serve('127.0.0.1', 8002);
 
         $this->assertFalse($dummy->getServer()->getProcess()->isTerminated());
 
@@ -38,12 +38,12 @@ class CanServeSiteTest extends TestCase
     {
         $dummy = new CanServeSiteDummy;
 
-        $dummy::serve('127.0.0.1', 8001);
+        $dummy::serve('127.0.0.1', 8002);
 
         $duskServerOne = $dummy->getServer();
         // we don't bother waiting since that is tested in 'it_starts_and_stops_a_server'
 
-        $dummy::serve('127.0.0.1', 8001);
+        $dummy::serve('127.0.0.1', 8002);
 
         $duskServerTwo = $dummy->getServer();
 
@@ -90,7 +90,7 @@ class CanServeSiteDummy
      */
     public static function getBaseServePort()
     {
-        return 8001;
+        return 8002;
     }
 
     /**
