@@ -183,10 +183,11 @@ class DuskServer
         $this->process = new Process(
             command: $this->prepareCommand(),
             cwd: join_paths($this->basePath(), 'public'),
-            env: array_merge(defined_environment_variables(), [
+            env: array_merge(defined_environment_variables(), array_filter([
                 'APP_BASE_PATH' => $this->basePath(),
                 'APP_URL' => $this->baseUrl(),
-            ]),
+                'PHP_CLI_SERVER_WORKERS' => Env::get('PHP_CLI_SERVER_WORKERS')
+            ])),
             timeout: $this->timeout
         );
 
