@@ -17,9 +17,11 @@ jobs:
         php:
           - 8.2
           - 8.3
+          - 8.4
         phpunit:
-          - "~11.0.0"
           - "~10.5.0"
+          - "~11.3.0"
+          - "~11.4.0"
         dependencies:
           - "highest"
           - "lowest"
@@ -60,7 +62,7 @@ jobs:
         run: vendor/laravel/dusk/bin/chromedriver-linux --port=9515 &
 
       - name: Execute tests
-        run: vendor/bin/phpunit --fail-on-warning --fail-on-deprecation --fail-on-notice
+        run: vendor/bin/phpunit --fail-on-warning --fail-on-deprecation --fail-on-notice --display-deprecations
         env:
           RAY_ENABLED: false
 

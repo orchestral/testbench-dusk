@@ -18,9 +18,11 @@ jobs:
         php:
           - 8.2
           - 8.3
+          - 8.4
         phpunit:
-          - "~11.0.0"
           - "~10.5.0"
+          - "~11.3.0"
+          - "~11.4.0"
         dependencies:
           - "highest"
           - "lowest"
