@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Laravel\Dusk\Console\DuskCommand as Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 
+use function Orchestra\Testbench\join_paths;
 use function Orchestra\Testbench\package_path;
 
 #[AsCommand(name: 'package:dusk', description: 'Run the package Dusk tests')]
@@ -94,7 +95,7 @@ class DuskCommand extends Command
             ->first();
 
         if (\is_null($file)) {
-            copy((string) realpath(__DIR__.'/../../../stubs/phpunit.xml'), package_path('phpunit.dusk.xml'));
+            copy((string) realpath(join_paths(__DIR__, '..', '..', '..', 'stubs', 'phpunit.xml')), package_path('phpunit.dusk.xml'));
 
             return;
         }

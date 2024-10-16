@@ -7,6 +7,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 
+use function Orchestra\Testbench\join_paths;
 use function Orchestra\Testbench\package_path;
 
 #[AsCommand(name: 'package:dusk-purge', description: 'Purge the package debugging files for Dusk')]
@@ -48,15 +49,15 @@ class PurgeCommand extends Command
     public function handle()
     {
         $this->purgeDebuggingFiles(
-            'tests/Browser/screenshots', 'failure-*'
+            join_paths('tests', 'Browser', 'screenshots'), 'failure-*'
         );
 
         $this->purgeDebuggingFiles(
-            'tests/Browser/console', '*.log'
+            join_paths('tests', 'Browser', 'console'), '*.log'
         );
 
         $this->purgeDebuggingFiles(
-            'tests/Browser/source', '*.txt'
+            join_paths('tests', 'Browser', 'source'), '*.txt'
         );
 
         return self::SUCCESS;
