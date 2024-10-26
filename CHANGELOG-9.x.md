@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 9.8.1
+
+Released: 2024-10-26
+
+### Changes
+
+* Add optional support for `Illuminate\Support\php_binary` function.
+
 ## 9.8.0
 
 Released: 2024-09-25
