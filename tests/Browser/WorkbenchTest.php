@@ -3,10 +3,12 @@
 namespace Orchestra\Testbench\Dusk\Tests\Browser;
 
 use Illuminate\Contracts\Http\Kernel as HttpKernel;
+use Orchestra\Testbench\Attributes\WithConfig;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase;
 use Orchestra\Workbench\Http\Middleware\CatchDefaultRoute;
 
+#[WithConfig('app.key', 'AckfSECXIvnK5r28GVIWUAxmbBSjTsmF')]
 class WorkbenchTest extends TestCase
 {
     use WithWorkbench;
