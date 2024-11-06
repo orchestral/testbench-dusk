@@ -4,11 +4,13 @@ namespace Orchestra\Testbench\Dusk\Tests\Browser;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
+use Orchestra\Testbench\Attributes\WithConfig;
 use Orchestra\Testbench\Attributes\WithMigration;
 use Orchestra\Testbench\Dusk\TestCase;
 use Orchestra\Testbench\Factories\UserFactory;
 use PHPUnit\Framework\Attributes\Test;
 
+#[WithConfig('app.key', 'AckfSECXIvnK5r28GVIWUAxmbBSjTsmF')]
 class AuthTest extends TestCase
 {
     use DatabaseMigrations;

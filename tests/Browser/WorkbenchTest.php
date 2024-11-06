@@ -4,13 +4,14 @@ namespace Orchestra\Testbench\Dusk\Tests\Browser;
 
 use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Orchestra\Testbench\Attributes\RequiresLaravel;
-use Orchestra\Testbench\Attributes\WithEnv;
+use Orchestra\Testbench\Attributes\WithConfig;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase;
 use Orchestra\Workbench\Http\Middleware\CatchDefaultRoute;
 use PHPUnit\Framework\Attributes\Test;
 
-#[WithEnv('APP_DEBUG', true)]
+#[WithConfig('app.debug', true)]
+#[WithConfig('app.key', 'AckfSECXIvnK5r28GVIWUAxmbBSjTsmF')]
 class WorkbenchTest extends TestCase
 {
     use WithWorkbench;
