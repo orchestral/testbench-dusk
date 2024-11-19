@@ -49,6 +49,7 @@
     },
     "require-dev": {
         "laravel/pint": "^1.17",
+        "laravel/framework": "^11.33.2",
         "laravel/tinker": "^2.9",
         "phpstan/phpstan": "^2.0",
         "phpunit/phpunit": "^10.5.35 || ^11.3.6"
