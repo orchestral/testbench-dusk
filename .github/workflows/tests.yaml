@@ -12,8 +12,6 @@ jobs:
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        os:
-          -
         php:
           - '8.0'
           - 8.1
