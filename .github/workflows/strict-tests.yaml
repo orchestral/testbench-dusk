@@ -25,6 +25,9 @@ jobs:
           - "lowest"
         experimental:
           - false
+        exclude:
+          - php: 8.4
+            dependencies: "lowest"
 
     name: PHP:${{ matrix.php }} / PHPUnit:${{ matrix.phpunit }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
 
