@@ -6,6 +6,10 @@ This changelog references the relevant changes (bug and security fixes) done to 
 
 Released: 2024-11-19
 
+### Added
+
+* Added support for `laravel/serializable-closure` v2.
+
 ### Changes
 
 * Update minimum support for Testbench v9.6.0+. ([v9.5.0...v9.6.0](https://github.com/orchestral/testbench/compare/v9.5.0...v9.6.0))
