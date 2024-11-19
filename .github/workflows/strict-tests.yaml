@@ -8,15 +8,14 @@ on:
 
 jobs:
   strict-tests:
-    runs-on: ${{ matrix.os }}
+    runs-on: "ubuntu-latest"
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        os:
-          - "ubuntu-latest"
         php:
           - 8.2
           - 8.3
+          - 8.4
         phpunit:
           - "~10.5.0"
           - "~11.3.0"
@@ -27,7 +26,7 @@ jobs:
         experimental:
           - false
 
-    name: PHP:${{ matrix.php }} with PHPUnit:${{ matrix.phpunit }} on ${{ matrix.os }} (${{ matrix.dependencies }})
+    name: PHP:${{ matrix.php }} / PHPUnit:${{ matrix.phpunit }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
 
     steps:
       - name: Checkout code
