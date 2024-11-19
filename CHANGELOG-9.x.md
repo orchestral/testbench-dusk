@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 9.9.0
+
+Released: 2024-11-19
+
+### Changes
+
+* Update minimum support for Testbench v9.6.0+. ([v9.5.0...v9.6.0](https://github.com/orchestral/testbench/compare/v9.5.0...v9.6.0))
+* Update minimum support for Testbench Core v9.6.0+. ([v9.5.1...v9.6.0](https://github.com/orchestral/testbench-core/compare/v9.5.1...v9.6.0))
+
+### Fixes
+
+* Fixes default migrations for Laravel 11.
+
 ## 9.8.1
 
 Released: 2024-10-26
