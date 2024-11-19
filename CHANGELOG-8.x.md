@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.31.0
+
+Released: 2024-11-19
+
+### Added
+
+* Added support for `laravel/serializable-closure` v2.
+
+### Changes
+
+* Update minimum support for Testbench v8.28.0+. ([v8.27.0...v8.28.0](https://github.com/orchestral/testbench/compare/v8.27.0...v8.28.0))
+* Update minimum support for Testbench Core v8.29.0+. ([v8.28.1...v8.29.0](https://github.com/orchestral/testbench/compare/v8.28.1...v8.29.0))
+
 ## 8.30.0
 
 Released: 2024-09-25
