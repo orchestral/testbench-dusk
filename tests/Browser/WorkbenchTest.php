@@ -39,6 +39,16 @@ class WorkbenchTest extends TestCase
     }
 
     #[Test]
+    public function it_can_browse_the_health_page()
+    {
+        $this->browse(static fn ($browser) => $browser
+            ->visit('/up')
+            ->assertSee('HTTP request received')
+            ->assertSee('Response rendered in')
+        );
+    }
+
+    #[Test]
     public function it_can_browse_routes_from_discovers_routes()
     {
         $this->browse(static fn ($browser) => $browser

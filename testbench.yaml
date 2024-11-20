@@ -5,6 +5,7 @@ migrations:
   - workbench/database/migrations
 
 workbench:
+  health: true
   welcome: false
   build:
     - drop-sqlite-db
