@@ -45,13 +45,15 @@
         "orchestra/testbench": "^9.6.1",
         "orchestra/testbench-core": ">=9.6.2 <9.7.0",
         "php-webdriver/webdriver": "^1.15.1",
-        "symfony/polyfill-php83": "^1.31"
+        "symfony/polyfill-php83": "^1.31",
+        "symfony/polyfill-php84": "^1.31"
     },
     "require-dev": {
         "laravel/pint": "^1.17",
+        "laravel/framework": "^11.33.2",
         "laravel/tinker": "^2.9",
         "phpstan/phpstan": "^2.0",
-        "phpunit/phpunit": "^10.5 || ^11.0"
+        "phpunit/phpunit": "^10.5.35 || ^11.3.6"
     },
     "config": {
         "preferred-install": {

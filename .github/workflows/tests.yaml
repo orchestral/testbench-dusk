@@ -16,6 +16,7 @@ jobs:
         php:
           - 8.2
           - 8.3
+          - 8.4
         phpunit:
           - "~10.5.35"
           - "~11.3.6"
@@ -38,7 +39,7 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, sqlite3, pdo_sqlite, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
           coverage: none
-  
+
       - name: Install dependencies
         uses: "ramsey/composer-install@v3"
         with:
