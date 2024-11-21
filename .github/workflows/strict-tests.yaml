@@ -15,17 +15,15 @@ jobs:
         php:
           - 8.2
           - 8.3
+          - 8.4
         phpunit:
           - "~10.5.35"
           - "~11.3.6"
           - "~11.4.0"
-        dependencies:
-          - "highest"
-          - "lowest"
         experimental:
           - false
 
-    name: PHP:${{ matrix.php }} / PHPUnit:${{ matrix.phpunit }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
+    name: PHP:${{ matrix.php }} / PHPUnit:${{ matrix.phpunit }}
 
     steps:
       - name: Checkout code
@@ -45,7 +43,7 @@ jobs:
       - name: Install dependencies
         uses: "ramsey/composer-install@v3"
         with:
-          dependency-versions: "${{ matrix.dependencies }}"
+          dependency-versions: "highest"
           composer-options: "--prefer-dist --no-cache --with=phpunit/phpunit:${{ matrix.phpunit }}"
 
       - name: Installed dependencies
