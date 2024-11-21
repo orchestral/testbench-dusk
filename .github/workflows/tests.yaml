@@ -8,26 +8,26 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
-  tests-on-phpunit-10:
-    runs-on: ${{ matrix.os }}
+  tests:
+    runs-on: "ubuntu-latest"
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        os:
-          - "ubuntu-latest"
         php:
           - 8.2
           - 8.3
+          - 8.4
         phpunit:
-          - "~11.0.0"
-          - "~10.5.0"
+          - "~10.5.35"
+          - "~11.3.6"
+          - "~11.4.0"
         dependencies:
           - "highest"
           - "lowest"
         experimental:
           - false
 
-    name: PHP:${{ matrix.php }} with PHPUnit:${{ matrix.phpunit }} on ${{ matrix.os }} (${{ matrix.dependencies }})
+    name: PHP:${{ matrix.php }} / PHPUnit:${{ matrix.phpunit }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
 
     steps:
       - name: Checkout code
@@ -62,7 +62,7 @@ jobs:
           RAY_ENABLED: false
 
       - name: Upload Failed Screenshots
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: screenshots

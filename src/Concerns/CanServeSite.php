@@ -208,6 +208,7 @@ trait CanServeSite
      *
      * @codeCoverageIgnore
      */
+    #[\Deprecated('Use `createServingApplicationForDuskServer()` instead', since: '6.40.0')]
     public function getFreshApplicationToServe(DuskServer $server)
     {
         return $this->createServingApplicationForDuskServer($server);

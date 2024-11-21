@@ -4,14 +4,17 @@ namespace Orchestra\Testbench\Dusk\Tests\Browser;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Schema;
+use Orchestra\Testbench\Attributes\WithConfig;
 use Orchestra\Testbench\Attributes\WithMigration;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
+#[WithConfig('database.default', 'sqlite')]
 class DatabaseMigrationsTest extends TestCase
 {
-    use DatabaseMigrations, WithWorkbench;
+    use DatabaseMigrations;
+    use WithWorkbench;
 
     /** {@inheritDoc} */
     #[\Override]

@@ -6,6 +6,7 @@ use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
+use function Illuminate\Support\php_binary;
 use function Orchestra\Testbench\defined_environment_variables;
 use function Orchestra\Testbench\join_paths;
 
@@ -227,7 +228,7 @@ class DuskServer
     protected function prepareCommand(): array
     {
         return [
-            (string) (new PhpExecutableFinder)->find(false),
+            \function_exists(php_binary::class) ? php_binary() : (string) (new PhpExecutableFinder)->find(false), // @phpstan-ignore class.notFound
             '-S',
             \sprintf('%s:%s', $this->host, $this->port),
             join_paths(__DIR__, 'server.php'),

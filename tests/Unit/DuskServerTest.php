@@ -4,10 +4,14 @@ namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
 use Orchestra\Testbench\Dusk\DuskServer;
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
+use Orchestra\Testbench\Dusk\Tests\Concerns\InteractsWithServer;
 use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\TestCase;
 
 class DuskServerTest extends TestCase
 {
+    use InteractsWithServer;
+
     #[Test]
     public function it_provides_the_laravel_public_directory()
     {

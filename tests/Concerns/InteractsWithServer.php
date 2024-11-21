@@ -1,11 +1,10 @@
 <?php
 
-namespace Orchestra\Testbench\Dusk\Tests\Unit;
+namespace Orchestra\Testbench\Dusk\Tests\Concerns;
 
 use Exception;
-use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
-class TestCase extends PHPUnitTestCase
+trait InteractsWithServer
 {
     protected function waitForServerToStart()
     {
