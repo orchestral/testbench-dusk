@@ -29,15 +29,4 @@ class Commander extends \Orchestra\Testbench\Console\Commander
     protected array $providers = [
         TestbenchServiceProvider::class,
     ];
-
-    /**
-     * Get Application base path.
-     *
-     * @return string
-     */
-    #[\Override]
-    public static function applicationBasePath()
-    {
-        return $_ENV['APP_BASE_PATH'] ?? static::$testbench::applicationBasePath();
-    }
 }
