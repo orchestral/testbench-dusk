@@ -40,6 +40,6 @@ class Commander extends \Orchestra\Testbench\Console\Commander
     #[\Override]
     public static function applicationBasePath()
     {
-        return $_ENV['APP_BASE_PATH'] ?? default_skeleton_path();
+        return $_ENV['APP_BASE_PATH'] ?? static::$testbench::applicationBasePath();
     }
 }
