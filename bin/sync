@@ -8,12 +8,21 @@ require __DIR__.'/../vendor/autoload.php';
 $input = new Symfony\Component\Console\Input\ArgvInput();
 $files = new Illuminate\Filesystem\Filesystem();
 
-# @TODO
-// $version = ($input->hasParameterOption('--dev') && $input->hasParameterOption('--stable') === false) ? '11.x-dev' : '^11.0';
-$version = '11.x-dev';
 
-$files->delete("{$workingPath}/laravel/.env");
-$files->deleteDirectory("{$workingPath}/skeleton");
+$purgeSkeletonDirectories = static function () use ($files, $workingPath) {
+    $files->delete("{$workingPath}/laravel/.env");
+
+    $files->deleteDirectory("{$workingPath}/skeleton");
+};
+
+function line(string $code, int $tab = 0): string {
+    return implode('', [PHP_EOL, str_repeat(' ', ($tab * 4)), $code]);
+}
+
+$version = ($input->hasParameterOption('--dev') && $input->hasParameterOption('--stable') === false) ? '11.x-dev' : '^11.0';
+
+$purgeSkeletonDirectories();
+
 if ($files->isDirectory("{$workingPath}/laravel/migrations")) {
     $files->deleteDirectory("{$workingPath}/laravel/migrations");
 }
@@ -28,6 +37,10 @@ $files->copyDirectory("{$workingPath}/vendor/orchestra/testbench-core/workbench/
 $files->copyDirectory("{$workingPath}/vendor/orchestra/testbench-core/workbench/resources", "{$workingPath}/workbench/resources");
 $files->copyDirectory("{$workingPath}/vendor/orchestra/testbench-core/workbench/routes", "{$workingPath}/workbench/routes");
 $files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit.xml", "{$workingPath}/stubs/phpunit.xml");
+
+transform([
+    line('use Orchestra\Testbench\Foundation\Application;') => line('use Orchestra\Testbench\Dusk\Foundation\Application;'),
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/bootstrap/app.php"));
 
 Symfony\Component\Process\Process::fromShellCommandline(
     'composer create-project "laravel/laravel:'.$version.'" skeleton --no-scripts --no-plugins --quiet --no-install', $workingPath
@@ -126,4 +139,4 @@ transform([
     "env('SESSION_DRIVER', 'database')," => "env('SESSION_DRIVER', 'file'),",
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/config/session.php"));
 
-$files->deleteDirectory("{$workingPath}/skeleton");
+$purgeSkeletonDirectories();

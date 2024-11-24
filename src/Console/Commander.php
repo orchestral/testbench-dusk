@@ -5,8 +5,6 @@ namespace Orchestra\Testbench\Dusk\Console;
 use Orchestra\Testbench\Dusk\Foundation\Application as Testbench;
 use Orchestra\Testbench\Dusk\Foundation\TestbenchServiceProvider;
 
-use function Orchestra\Testbench\Dusk\default_skeleton_path;
-
 class Commander extends \Orchestra\Testbench\Console\Commander
 {
     /**

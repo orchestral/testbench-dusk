@@ -8,6 +8,19 @@ use function Orchestra\Testbench\Dusk\default_skeleton_path;
 class Application extends \Orchestra\Testbench\Foundation\Application
 {
     /**
+     * Get Application's base path.
+     *
+     * @api
+     *
+     * @return string
+     */
+    #[\Override]
+    public static function applicationBasePath()
+    {
+        return static::applicationBasePathUsingWorkbench() ?? default_skeleton_path();
+    }
+
+    /**
      * Get the default application bootstrap file path (if exists).
      *
      * @internal

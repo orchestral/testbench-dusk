@@ -1,6 +1,6 @@
 <?php
 
-use Orchestra\Testbench\Foundation\Application;
+use Orchestra\Testbench\Dusk\Foundation\Application;
 use Orchestra\Testbench\Foundation\Bootstrap\SyncTestbenchCachedRoutes;
 use Orchestra\Testbench\Foundation\Config;
 use Orchestra\Testbench\Workbench\Workbench;
