@@ -19,6 +19,10 @@ function line(string $code, int $tab = 0): string {
 
 $purgeSkeletonDirectories();
 
+if (! is_file($configureSkeleton = Orchestra\Testbench\join_paths($workingPath, 'vendor', 'orchestra', 'testbench-core', 'bin', 'configure-skeleton.php'))) {
+    throw new RuntimeException(sprintf('Misssing [%s] file from `orchestra/testbench-core`', $configureSkeleton));
+}
+
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/bootstrap/app.php", "{$workingPath}/laravel/bootstrap/app.php");
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/server.php", "{$workingPath}/laravel/server.php");
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/.gitignore", "{$workingPath}/laravel/.gitignore");
@@ -31,7 +35,7 @@ Symfony\Component\Process\Process::fromShellCommandline(
     'composer create-project "laravel/laravel:9.x-dev" skeleton --no-scripts --no-plugins --quiet --no-install', $workingPath
 )->mustRun();
 
-require Orchestra\Testbench\join_paths($workingPath, 'vendor', 'orchestra', 'testbench-core', 'bin', 'configure-skeleton.php');
+require $configureSkeleton;
 
 transform([
     line('App\Providers', 2) => line('// App\Providers', 2),
