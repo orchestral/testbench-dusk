@@ -43,7 +43,7 @@
         "laravel/serializable-closure": "^1.3 || ^2.0",
         "orchestra/dusk-updater": "^2.6",
         "orchestra/testbench": "^9.7",
-        "orchestra/testbench-core": ">=9.7.0 <9.8.0",
+        "orchestra/testbench-core": "^9.7.0",
         "php-webdriver/webdriver": "^1.15.1",
         "symfony/polyfill-php83": "^1.31",
         "symfony/polyfill-php84": "^1.31"
@@ -84,6 +84,11 @@
             "@php testbench-dusk package:drop-sqlite-db",
             "@php testbench-dusk package:create-sqlite-db",
             "@php vendor/bin/phpunit --no-coverage --no-configuration --dont-report-useless-tests --bootstrap vendor/autoload.php --color tests"
+        ],
+        "sync": [
+            "@clear",
+            "@php bin/sync",
+            "@lint"
         ],
         "ci": [
             "@prepare",

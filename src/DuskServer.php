@@ -187,6 +187,7 @@ class DuskServer
             env: array_merge(defined_environment_variables(), [
                 'APP_BASE_PATH' => $this->basePath(),
                 'APP_URL' => $this->baseUrl(),
+                'APP_ENV' => 'testing',
             ]),
             timeout: $this->timeout
         );

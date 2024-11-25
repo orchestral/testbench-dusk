@@ -5,8 +5,6 @@ namespace Orchestra\Testbench\Dusk\Console;
 use Orchestra\Testbench\Dusk\Foundation\Application as Testbench;
 use Orchestra\Testbench\Dusk\Foundation\TestbenchServiceProvider;
 
-use function Orchestra\Testbench\Dusk\default_skeleton_path;
-
 class Commander extends \Orchestra\Testbench\Console\Commander
 {
     /**
@@ -31,15 +29,4 @@ class Commander extends \Orchestra\Testbench\Console\Commander
     protected array $providers = [
         TestbenchServiceProvider::class,
     ];
-
-    /**
-     * Get Application base path.
-     *
-     * @return string
-     */
-    #[\Override]
-    public static function applicationBasePath()
-    {
-        return $_ENV['APP_BASE_PATH'] ?? default_skeleton_path();
-    }
 }
