@@ -47,7 +47,7 @@ transform([
 
 transform([
     line("'default' => env('CACHE_STORE', 'database'),", 1) => line("'default' => env('CACHE_STORE', 'file'),", 1)
-], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/config/hashing.php"));
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/config/cache.php"));
 
 transform([
     line("'default' => env('QUEUE_CONNECTION', 'database'),", 1) => line("'default' => env('QUEUE_CONNECTION', 'sync'),", 1)
