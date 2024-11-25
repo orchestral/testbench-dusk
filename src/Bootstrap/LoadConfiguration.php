@@ -19,12 +19,8 @@ final class LoadConfiguration extends \Orchestra\Testbench\Bootstrap\LoadConfigu
         //
     }
 
-    /**
-     * Get the application configuration path.
-     *
-     * @param  TLaravel  $app
-     * @return string
-     */
+    /** {@inheritDoc} */
+    #[\Override]
     protected function getConfigurationPath(Application $app): string
     {
         return is_dir($app->basePath('config'))
