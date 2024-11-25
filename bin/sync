@@ -46,6 +46,4 @@ transform([
     line('use Orchestra\Testbench\Foundation\Application;') => line('use Orchestra\Testbench\Dusk\Foundation\Application;'),
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/bootstrap/app.php"));
 
-$files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit.xml", "{$workingPath}/stubs/phpunit.xml");
-
 $purgeSkeletonDirectories();
