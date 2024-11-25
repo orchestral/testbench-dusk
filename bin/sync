@@ -50,10 +50,6 @@ transform([
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/config/app.php"));
 
 transform([
-    "env('BCRYPT_ROUNDS', 12)," => "env('BCRYPT_ROUNDS', 10),",
-], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/config/hashing.php"));
-
-transform([
     line('use Orchestra\Testbench\Foundation\Application;') => line('use Orchestra\Testbench\Dusk\Foundation\Application;'),
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/bootstrap/app.php"));
 
