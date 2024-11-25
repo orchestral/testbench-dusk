@@ -8,6 +8,7 @@ use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Foundation\Application;
 use Laravel\Dusk\DuskServiceProvider;
+use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\Foundation\PackageManifest;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
 use Orchestra\Testbench\Foundation\Env;
@@ -195,6 +196,7 @@ abstract class TestCase extends Testbench
      * @param  \Illuminate\Foundation\Application  $app
      * @return void
      */
+    #[\Override]
     protected function resolveApplicationResolvingCallback($app): void
     {
         $app->bind(
