@@ -192,7 +192,9 @@ abstract class TestCase extends Testbench
     {
         $app->bind(
             'Illuminate\Foundation\Bootstrap\LoadConfiguration',
-            Bootstrap\LoadConfiguration::class
+            static::usesTestingConcern() && ! static::usesTestingConcern(WithWorkbench::class)
+                ? 'Orchestra\Testbench\Dusk\Bootstrap\LoadConfiguration'
+                : 'Orchestra\Testbench\Dusk\Bootstrap\LoadConfigurationWithWorkbench'
         );
 
         PackageManifest::swap($app, $this);
