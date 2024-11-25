@@ -2,27 +2,22 @@
 
 namespace Orchestra\Testbench\Dusk\Bootstrap;
 
-use Illuminate\Config\Repository;
 use Illuminate\Contracts\Config\Repository as RepositoryContract;
 use Illuminate\Contracts\Foundation\Application;
-use Symfony\Component\Finder\Finder;
 
 use function Orchestra\Testbench\Dusk\default_skeleton_path;
-use function Orchestra\Testbench\join_paths;
 
 /**
  * @internal
  */
 final class LoadConfiguration extends \Orchestra\Testbench\Bootstrap\LoadConfiguration
 {
-
-    /** @{inheritDoc} */
+    /** {@inheritDoc} */
     #[\Override]
     protected function configureDefaultDatabaseConnection(RepositoryContract $config): void
     {
         //
     }
-
 
     /**
      * Get the application configuration path.

@@ -10,16 +10,16 @@ use function Orchestra\Testbench\Dusk\default_skeleton_path;
 /**
  * @internal
  */
-final class LoadConfigurationWithWorkbench extends \Orchestra\Testbench\Dusk\Bootstrap\LoadConfigurationWithWorkbench
+final class LoadConfigurationWithWorkbench extends \Orchestra\Testbench\Bootstrap\LoadConfigurationWithWorkbench
 {
-    /** @{inheritDoc} */
+    /** {@inheritDoc} */
     #[\Override]
     protected function configureDefaultDatabaseConnection(RepositoryContract $config): void
     {
         //
     }
 
-    /** @{inheritDoc} */
+    /** {@inheritDoc} */
     #[\Override]
     protected function getConfigurationPath(Application $app): string
     {
