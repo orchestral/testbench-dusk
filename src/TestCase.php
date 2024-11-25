@@ -8,6 +8,7 @@ use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Illuminate\Foundation\Application;
 use Laravel\Dusk\DuskServiceProvider;
+use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\Foundation\PackageManifest;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
 use Orchestra\Testbench\Foundation\Env;
@@ -72,6 +73,7 @@ abstract class TestCase extends Testbench
      *
      * @return string
      */
+    #[\Override]
     public static function applicationBasePath()
     {
         return static::applicationBasePathUsingWorkbench() ?? default_skeleton_path();
@@ -92,6 +94,7 @@ abstract class TestCase extends Testbench
      *
      * @return void
      */
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -105,6 +108,7 @@ abstract class TestCase extends Testbench
      *
      * @return void
      */
+    #[\Override]
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -120,6 +124,7 @@ abstract class TestCase extends Testbench
      * @param  class-string  $use
      * @return bool
      */
+    #[\Override]
     protected function setUpTheTestEnvironmentTraitToBeIgnored(string $use): bool
     {
         return \in_array($use, [
@@ -137,6 +142,7 @@ abstract class TestCase extends Testbench
      * @param  \Illuminate\Foundation\Application  $app
      * @return array<int, class-string>
      */
+    #[\Override]
     protected function getApplicationProviders($app)
     {
         $providers = parent::getApplicationProviders($app);
@@ -151,6 +157,7 @@ abstract class TestCase extends Testbench
     /**
      * Setup parallel testing callback.
      */
+    #[\Override]
     protected function setUpParallelTestingCallbacks(): void
     {
         // Not supported at the moment.
@@ -159,6 +166,7 @@ abstract class TestCase extends Testbench
     /**
      * Teardown parallel testing callback.
      */
+    #[\Override]
     protected function tearDownParallelTestingCallbacks(): void
     {
         // Not supported at the moment.
@@ -188,6 +196,7 @@ abstract class TestCase extends Testbench
      * @param  \Illuminate\Foundation\Application  $app
      * @return void
      */
+    #[\Override]
     protected function resolveApplicationResolvingCallback($app): void
     {
         $app->bind(
@@ -253,6 +262,7 @@ abstract class TestCase extends Testbench
      *
      * @codeCoverageIgnore
      */
+    #[\Override]
     public static function setUpBeforeClass(): void
     {
         static::setUpBeforeClassForInteractsWithWebDriverOptions();
@@ -286,6 +296,7 @@ abstract class TestCase extends Testbench
      *
      * @codeCoverageIgnore
      */
+    #[\Override]
     public static function tearDownAfterClass(): void
     {
         static::tearDownAfterClassProvidesBrowser();
