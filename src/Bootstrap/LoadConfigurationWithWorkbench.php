@@ -2,20 +2,16 @@
 
 namespace Orchestra\Testbench\Dusk\Bootstrap;
 
-use Illuminate\Config\Repository;
 use Illuminate\Contracts\Config\Repository as RepositoryContract;
 use Illuminate\Contracts\Foundation\Application;
-use Symfony\Component\Finder\Finder;
 
 use function Orchestra\Testbench\Dusk\default_skeleton_path;
-use function Orchestra\Testbench\join_paths;
 
 /**
  * @internal
  */
-final class LoadConfiguration extends \Orchestra\Testbench\Bootstrap\LoadConfiguration
+final class LoadConfigurationWithWorkbench extends \Orchestra\Testbench\Dusk\Bootstrap\LoadConfigurationWithWorkbench
 {
-
     /** @{inheritDoc} */
     #[\Override]
     protected function configureDefaultDatabaseConnection(RepositoryContract $config): void
@@ -23,13 +19,8 @@ final class LoadConfiguration extends \Orchestra\Testbench\Bootstrap\LoadConfigu
         //
     }
 
-
-    /**
-     * Get the application configuration path.
-     *
-     * @param  TLaravel  $app
-     * @return string
-     */
+    /** @{inheritDoc} */
+    #[\Override]
     protected function getConfigurationPath(Application $app): string
     {
         return is_dir($app->basePath('config'))
