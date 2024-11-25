@@ -42,6 +42,10 @@ transform([
     line(' * Package Service Providers...', 2) => line(' * Dusk Service Provider', 2).line(' */', 2).line('Laravel\Dusk\DuskServiceProvider::class,', 2).PHP_EOL.line('/*', 2).line(' * Package Service Providers...', 2),
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/config/app.php"));
 
+transform([
+    line('use Orchestra\Testbench\Foundation\Application;') => line('use Orchestra\Testbench\Dusk\Foundation\Application;'),
+], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/bootstrap/app.php"));
+
 $files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit.xml", "{$workingPath}/stubs/phpunit.xml");
 
 $purgeSkeletonDirectories();
