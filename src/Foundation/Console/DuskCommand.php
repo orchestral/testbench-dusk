@@ -30,9 +30,7 @@ class DuskCommand extends Command
      */
     protected $description = 'Run the package Dusk tests';
 
-    /**
-     * Create a new command instance.
-     */
+    /** {@inheritDoc} */
     public function __construct()
     {
         parent::__construct();
@@ -42,11 +40,8 @@ class DuskCommand extends Command
         }
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
+    /** {@inheritDoc} */
+    #[\Override]
     public function handle()
     {
         $this->callSilent('package:dusk-purge');
@@ -115,11 +110,8 @@ class DuskCommand extends Command
         }
     }
 
-    /**
-     * Get the PHP binary environment variables.
-     *
-     * @return array|null
-     */
+    /** {@inheritDoc} */
+    #[\Override]
     protected function env()
     {
         return array_merge(parent::env() ?? [], [
