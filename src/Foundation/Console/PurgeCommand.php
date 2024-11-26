@@ -27,11 +27,7 @@ class PurgeCommand extends Command
      */
     protected $description = 'Purge the package debugging files for Dusk';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
+    /** {@inheritDoc} */
     public function __construct()
     {
         parent::__construct();

@@ -5,10 +5,11 @@ $workingPath = getcwd();
 
 require __DIR__.'/../vendor/autoload.php';
 
-$input = new Symfony\Component\Console\Input\ArgvInput();
 $files = new Illuminate\Filesystem\Filesystem();
 
-$version = ($input->hasParameterOption('--dev') && $input->hasParameterOption('--stable') === false) ? '10.x-dev' : '^10.0';
+if (! is_file($configureSkeleton = Orchestra\Testbench\join_paths($workingPath, 'vendor', 'orchestra', 'testbench-core', 'bin', 'configure-skeleton.php'))) {
+    throw new RuntimeException(sprintf('Misssing [%s] file from `orchestra/testbench-core`', $configureSkeleton));
+}
 
 $purgeSkeletonDirectories = static function () use ($files, $workingPath) {
     $files->delete("{$workingPath}/laravel/.env");
@@ -20,11 +21,13 @@ function line(string $code, int $tab = 0): string {
     return implode('', [PHP_EOL, str_repeat(' ', ($tab * 4)), $code]);
 }
 
-$purgeSkeletonDirectories();
+/**
+ * ----------------------------------------------------------------------
+ * Prepare skeleton folder
+ * ----------------------------------------------------------------------
+ */
 
-if (! is_file($configureSkeleton = Orchestra\Testbench\join_paths($workingPath, 'vendor', 'orchestra', 'testbench-core', 'bin', 'configure-skeleton.php'))) {
-    throw new RuntimeException(sprintf('Misssing [%s] file from `orchestra/testbench-core`', $configureSkeleton));
-}
+$purgeSkeletonDirectories();
 
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/bootstrap/app.php", "{$workingPath}/laravel/bootstrap/app.php");
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/server.php", "{$workingPath}/laravel/server.php");
@@ -38,9 +41,11 @@ if ($files->exists("{$workingPath}/vendor/laravel/dusk/stubs/phpunit9.xml")) {
     $files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit9.xml", "{$workingPath}/stubs/phpunit9.xml");
 }
 
-Symfony\Component\Process\Process::fromShellCommandline(
-    'composer create-project "laravel/laravel:'.$version.'" skeleton --no-scripts --no-plugins --quiet --no-install', $workingPath
-)->mustRun();
+/**
+ * ----------------------------------------------------------------------
+ * Copy files from `laravel/laravel`
+ * ----------------------------------------------------------------------
+ */
 
 require $configureSkeleton;
 
@@ -52,5 +57,11 @@ transform([
 transform([
     line('use Orchestra\Testbench\Foundation\Application;') => line('use Orchestra\Testbench\Dusk\Foundation\Application;'),
 ], fn ($changes) => $files->replaceInFile(array_keys($changes), array_values($changes), "{$workingPath}/laravel/bootstrap/app.php"));
+
+/**
+ * ----------------------------------------------------------------------
+ * Cleanup
+ * ----------------------------------------------------------------------
+ */
 
 $purgeSkeletonDirectories();
