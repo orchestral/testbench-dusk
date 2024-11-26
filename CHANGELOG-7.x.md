@@ -2,6 +2,23 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.40.0 (Unreleased)
+
+### Added
+
+* Added `Orchestra\Testbench\Dusk\Bootstrap\LoadConfigurationWithWorkbench` class based on `Orchestra\Testbench\Bootstrap\LoadConfigurationWithWorkbench`.
+* Added `artisan` file to the default skeleton.
+
+### Changes
+
+* Change `Orchestra\Testbench\Dusk\Bootstrap\LoadConfiguration` class to extends `Orchestra\Testbench\Bootstrap\LoadConfiguration`.
+* Refactor `Orchestra\Testbench\Dusk\Console\Commander` based on Testbench Core.
+* Add multiple environment variables to Laravel 9 skeleton's configuration files based on changes made for Laravel 11.
+
+### Fixes
+
+* Fixed `bootstrap/app.php` to correctly extends `Orchestra\Testbench\Dusk\Foundation\Application`.
+
 ## 7.49.0
 
 Released: 2024-11-19
