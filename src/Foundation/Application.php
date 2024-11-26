@@ -13,6 +13,6 @@ class Application extends \Orchestra\Testbench\Foundation\Application
      */
     public static function applicationBasePath()
     {
-        return $_ENV['APP_BASE_PATH'] ?? default_skeleton_path();
+        return static::applicationBasePathUsingWorkbench() ?? default_skeleton_path();
     }
 }
