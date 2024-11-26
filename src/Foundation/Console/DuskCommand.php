@@ -30,9 +30,7 @@ class DuskCommand extends Command
      */
     protected $description = 'Run the package Dusk tests';
 
-    /**
-     * Create a new command instance.
-     */
+    /** {@inheritDoc} */
     public function __construct()
     {
         parent::__construct();
@@ -42,11 +40,7 @@ class DuskCommand extends Command
         }
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
+    /** {@inheritDoc} */
     #[\Override]
     public function handle()
     {
@@ -55,12 +49,7 @@ class DuskCommand extends Command
         return parent::handle();
     }
 
-    /**
-     * Get the array of arguments for running PHPUnit.
-     *
-     * @param  array  $options
-     * @return array
-     */
+    /** {@inheritDoc} */
     #[\Override]
     protected function phpunitArguments($options)
     {
@@ -82,11 +71,7 @@ class DuskCommand extends Command
         return ! \is_null($file) ? array_merge(['-c', $file], $options) : $options;
     }
 
-    /**
-     * Write the Dusk PHPUnit configuration.
-     *
-     * @return void
-     */
+    /** {@inheritDoc} */
     #[\Override]
     protected function writeConfiguration()
     {
@@ -113,11 +98,7 @@ class DuskCommand extends Command
         $this->hasPhpUnitConfiguration = true;
     }
 
-    /**
-     * Remove the Dusk PHPUnit configuration.
-     *
-     * @return void
-     */
+    /** {@inheritDoc} */
     #[\Override]
     protected function removeConfiguration()
     {
@@ -126,11 +107,7 @@ class DuskCommand extends Command
         }
     }
 
-    /**
-     * Get the PHP binary environment variables.
-     *
-     * @return array|null
-     */
+    /** {@inheritDoc} */
     #[\Override]
     protected function env()
     {
