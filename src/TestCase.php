@@ -13,7 +13,7 @@ use Orchestra\Testbench\Dusk\Options as DuskOptions;
 use Orchestra\Testbench\Foundation\Env;
 use Orchestra\Testbench\TestCase as Testbench;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Testbench\join_paths;
 
 abstract class TestCase extends Testbench
 {
