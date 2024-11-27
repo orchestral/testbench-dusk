@@ -6,6 +6,7 @@ migrations:
 
 workbench:
   welcome: false
+  auth: true
   build:
     - drop-sqlite-db
     - create-sqlite-db
