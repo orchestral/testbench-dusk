@@ -67,7 +67,7 @@ class DuskCommand extends Command
             'phpunit.xml',
             'phpunit.xml.dist',
         ])->map(static fn ($file) => package_path($file))
-            ->filter(static fn ($file) => file_exists($file))
+            ->filter(static fn ($file) => is_file($file))
             ->first();
 
         return ! \is_null($file) ? array_merge(['-c', $file], $options) : $options;
@@ -86,7 +86,7 @@ class DuskCommand extends Command
             'phpunit.xml',
             'phpunit.xml.dist',
         ])->map(static fn ($file) => package_path($file))
-            ->filter(static fn ($file) => file_exists($file))
+            ->filter(static fn ($file) => is_file($file))
             ->first();
 
         if (\is_null($file)) {
@@ -105,7 +105,7 @@ class DuskCommand extends Command
      */
     protected function removeConfiguration()
     {
-        if (! $this->hasPhpUnitConfiguration && file_exists($file = package_path('phpunit.dusk.xml'))) {
+        if (! $this->hasPhpUnitConfiguration && is_file($file = package_path('phpunit.dusk.xml'))) {
             @unlink($file);
         }
     }
