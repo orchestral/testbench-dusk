@@ -37,7 +37,7 @@ $files->copyDirectory("{$workingPath}/vendor/orchestra/testbench-core/workbench/
 $files->copyDirectory("{$workingPath}/vendor/orchestra/testbench-core/workbench/routes", "{$workingPath}/workbench/routes");
 $files->copy("{$workingPath}/vendor/laravel/dusk/stubs/phpunit.xml", "{$workingPath}/stubs/phpunit.xml");
 
-$files->put("{$workingPath}/laravel/bootstrap/.testbench-default-skeleton", '@testbench-dusk');
+$files->put("{$workingPath}/laravel/bootstrap/.testbench-default-skeleton", '@testbench-dusk'.PHP_EOL);
 
 /**
  * ----------------------------------------------------------------------

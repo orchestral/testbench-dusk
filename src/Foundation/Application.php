@@ -2,7 +2,6 @@
 
 namespace Orchestra\Testbench\Dusk\Foundation;
 
-use function Illuminate\Filesystem\join_paths;
 use function Orchestra\Testbench\Dusk\default_skeleton_path;
 
 class Application extends \Orchestra\Testbench\Foundation\Application
