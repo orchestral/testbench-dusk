@@ -17,18 +17,4 @@ class Application extends \Orchestra\Testbench\Foundation\Application
     {
         return static::applicationBasePathUsingWorkbench() ?? default_skeleton_path();
     }
-
-    /**
-     * Get the default application bootstrap file path (if exists).
-     *
-     * @internal
-     *
-     * @param  string  $filename
-     * @return string|false
-     */
-    #[\Override]
-    protected function getDefaultApplicationBootstrapFile(string $filename): string|false
-    {
-        return realpath(default_skeleton_path(join_paths('bootstrap', $filename)));
-    }
 }
