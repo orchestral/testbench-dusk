@@ -32,7 +32,7 @@ class TestbenchServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (file_exists($this->app->basePath('migrations'))) {
+        if (is_dir($this->app->basePath('migrations'))) {
             $this->loadMigrationsFrom($this->app->basePath('migrations'));
         }
 
@@ -44,6 +44,7 @@ class TestbenchServiceProvider extends ServiceProvider
                 Console\PurgeCommand::class,
                 Console\PurgeSkeletonCommand::class,
                 Console\ServeCommand::class,
+                Console\SyncSkeletonCommand::class,
             ]);
         }
     }
