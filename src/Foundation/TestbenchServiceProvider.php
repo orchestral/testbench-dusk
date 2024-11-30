@@ -32,10 +32,6 @@ class TestbenchServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (is_dir($this->app->basePath('migrations'))) {
-            $this->loadMigrationsFrom($this->app->basePath('migrations'));
-        }
-
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Console\CreateSqliteDbCommand::class,
