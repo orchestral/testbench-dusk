@@ -40,6 +40,7 @@ class TestbenchServiceProvider extends ServiceProvider
                 Console\PurgeCommand::class,
                 Console\PurgeSkeletonCommand::class,
                 Console\ServeCommand::class,
+                Console\SyncSkeletonCommand::class,
             ]);
         }
     }
