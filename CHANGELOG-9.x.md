@@ -2,7 +2,9 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
-## 9.10.0 (Unreleased)
+## 9.10.0
+
+Released: 2024-12-01
 
 ### Added
 
