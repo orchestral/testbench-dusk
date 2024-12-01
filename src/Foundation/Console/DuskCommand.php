@@ -30,9 +30,7 @@ class DuskCommand extends Command
      */
     protected $description = 'Run the package Dusk tests';
 
-    /**
-     * Create a new command instance.
-     */
+    /** {@inheritDoc} */
     public function __construct()
     {
         parent::__construct();
@@ -42,11 +40,7 @@ class DuskCommand extends Command
         }
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
+    /** {@inheritDoc} */
     #[\Override]
     public function handle()
     {
@@ -55,12 +49,7 @@ class DuskCommand extends Command
         return parent::handle();
     }
 
-    /**
-     * Get the array of arguments for running PHPUnit.
-     *
-     * @param  array  $options
-     * @return array
-     */
+    /** {@inheritDoc} */
     #[\Override]
     protected function phpunitArguments($options)
     {
@@ -76,17 +65,13 @@ class DuskCommand extends Command
             'phpunit.xml',
             'phpunit.xml.dist',
         ])->map(static fn ($file) => package_path($file))
-            ->filter(static fn ($file) => file_exists($file))
+            ->filter(static fn ($file) => is_file($file))
             ->first();
 
         return ! \is_null($file) ? array_merge(['-c', $file], $options) : $options;
     }
 
-    /**
-     * Write the Dusk PHPUnit configuration.
-     *
-     * @return void
-     */
+    /** {@inheritDoc} */
     #[\Override]
     protected function writeConfiguration()
     {
@@ -96,7 +81,7 @@ class DuskCommand extends Command
             'phpunit.xml',
             'phpunit.xml.dist',
         ])->map(static fn ($file) => package_path($file))
-            ->filter(static fn ($file) => file_exists($file))
+            ->filter(static fn ($file) => is_file($file))
             ->first();
 
         if (\is_null($file)) {
@@ -113,24 +98,16 @@ class DuskCommand extends Command
         $this->hasPhpUnitConfiguration = true;
     }
 
-    /**
-     * Remove the Dusk PHPUnit configuration.
-     *
-     * @return void
-     */
+    /** {@inheritDoc} */
     #[\Override]
     protected function removeConfiguration()
     {
-        if (! $this->hasPhpUnitConfiguration && file_exists($file = package_path('phpunit.dusk.xml'))) {
+        if (! $this->hasPhpUnitConfiguration && is_file($file = package_path('phpunit.dusk.xml'))) {
             @unlink($file);
         }
     }
 
-    /**
-     * Get the PHP binary environment variables.
-     *
-     * @return array|null
-     */
+    /** {@inheritDoc} */
     #[\Override]
     protected function env()
     {

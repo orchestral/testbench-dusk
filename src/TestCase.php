@@ -7,12 +7,13 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Laravel\Dusk\DuskServiceProvider;
+use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\Foundation\PackageManifest;
 use Orchestra\Testbench\Dusk\Options as DuskOptions;
 use Orchestra\Testbench\Foundation\Env;
 use Orchestra\Testbench\TestCase as Testbench;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Testbench\join_paths;
 
 abstract class TestCase extends Testbench
 {
@@ -239,7 +240,9 @@ abstract class TestCase extends Testbench
     {
         $app->bind(
             'Illuminate\Foundation\Bootstrap\LoadConfiguration',
-            Bootstrap\LoadConfiguration::class
+            static::usesTestingConcern() && ! static::usesTestingConcern(WithWorkbench::class)
+                ? 'Orchestra\Testbench\Dusk\Bootstrap\LoadConfiguration'
+                : 'Orchestra\Testbench\Dusk\Bootstrap\LoadConfigurationWithWorkbench'
         );
 
         PackageManifest::swap($app, $this);

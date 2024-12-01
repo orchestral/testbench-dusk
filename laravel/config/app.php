@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'testing'),
+    'env' => env('APP_ENV', 'workbench'),
 
     /*
     |--------------------------------------------------------------------------
@@ -167,7 +167,7 @@ return [
         // Dusk Service Provider...
         Laravel\Dusk\DuskServiceProvider::class,
 
-        // Package Service Providers..
+        // Package Service Providers...
     ])->merge([
         // Application Service Providers...
         // App\Providers\AppServiceProvider::class,

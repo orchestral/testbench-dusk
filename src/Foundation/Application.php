@@ -2,7 +2,6 @@
 
 namespace Orchestra\Testbench\Dusk\Foundation;
 
-use function Illuminate\Filesystem\join_paths;
 use function Orchestra\Testbench\Dusk\default_skeleton_path;
 
 class Application extends \Orchestra\Testbench\Foundation\Application
@@ -10,27 +9,11 @@ class Application extends \Orchestra\Testbench\Foundation\Application
     /**
      * Get Application's base path.
      *
-     * @api
-     *
      * @return string
      */
     #[\Override]
     public static function applicationBasePath()
     {
         return static::applicationBasePathUsingWorkbench() ?? default_skeleton_path();
-    }
-
-    /**
-     * Get the default application bootstrap file path (if exists).
-     *
-     * @internal
-     *
-     * @param  string  $filename
-     * @return string|false
-     */
-    #[\Override]
-    protected function getDefaultApplicationBootstrapFile(string $filename): string|false
-    {
-        return realpath(default_skeleton_path(join_paths('bootstrap', $filename)));
     }
 }

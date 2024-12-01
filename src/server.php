@@ -2,7 +2,7 @@
 
 use Orchestra\Testbench\Dusk\DuskServer;
 
-use function Illuminate\Filesystem\join_paths;
+use function Orchestra\Testbench\join_paths;
 
 // Simple server script, which pulls in large part from the framework.
 // It has been adapted so we can reconstruct the application to the

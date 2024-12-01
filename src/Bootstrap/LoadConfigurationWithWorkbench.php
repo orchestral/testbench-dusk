@@ -10,7 +10,7 @@ use function Orchestra\Testbench\Dusk\default_skeleton_path;
 /**
  * @internal
  */
-final class LoadConfiguration extends \Orchestra\Testbench\Bootstrap\LoadConfiguration
+final class LoadConfigurationWithWorkbench extends \Orchestra\Testbench\Bootstrap\LoadConfigurationWithWorkbench
 {
     /** {@inheritDoc} */
     #[\Override]
