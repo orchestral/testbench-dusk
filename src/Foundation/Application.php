@@ -7,7 +7,7 @@ use function Orchestra\Testbench\Dusk\default_skeleton_path;
 class Application extends \Orchestra\Testbench\Foundation\Application
 {
     /**
-     * Get Application base path.
+     * Get Application's base path.
      *
      * @return string
      */
