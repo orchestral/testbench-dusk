@@ -39,19 +39,19 @@
     "require": {
         "php": "^8.2",
         "composer-runtime-api": "^2.2",
-        "laravel/dusk": "^8.1",
+        "laravel/dusk": "dev-develop",
         "laravel/serializable-closure": "^1.3 || ^2.0",
         "orchestra/dusk-updater": "^2.6",
-        "orchestra/testbench": "9.x-dev",
-        "orchestra/testbench-core": "9.x-dev",
+        "orchestra/testbench": "10.x-dev",
+        "orchestra/testbench-core": "10.x-dev",
         "php-webdriver/webdriver": "^1.15.1",
         "symfony/polyfill-php83": "^1.31",
         "symfony/polyfill-php84": "^1.31"
     },
     "require-dev": {
         "laravel/pint": "^1.17",
-        "laravel/framework": "^11.33.2",
-        "laravel/tinker": "^2.9",
+        "laravel/framework": "12.x-dev",
+        "laravel/tinker": "dev-develop",
         "phpstan/phpstan": "^2.0",
         "phpunit/phpunit": "^10.5.35 || ^11.3.6"
     },
