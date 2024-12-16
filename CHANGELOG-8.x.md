@@ -2,7 +2,22 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
-## 8.32.0 (Unreleased)
+## 8.33.0
+
+Released: 2024-12-16
+
+### Added
+
+* Override Laravel's `vendor:publish` command.
+
+### Changes
+
+* Update minimum support for Testbench v8.30.0+. ([v8.28.0...v8.30.0](https://github.com/orchestral/testbench/compare/v8.28.0...v8.30.0))
+* Update minimum support for Testbench Core v8.31.0+. ([v8.30.0...v8.31.0](https://github.com/orchestral/testbench/compare/v8.30.0...v8.31.0))
+
+## 8.32.0
+
+Released: 2024-12-01
 
 ### Added
 
@@ -11,6 +26,8 @@ This changelog references the relevant changes (bug and security fixes) done to 
 
 ### Changes
 
+* Update minimum support for Testbench v8.29.0+. ([v8.28.0...v8.29.0](https://github.com/orchestral/testbench/compare/v8.28.0...v8.29.0))
+* Update minimum support for Testbench Core v8.30.0+. ([v8.29.0...v8.30.0](https://github.com/orchestral/testbench/compare/v8.29.0...v8.30.0))
 * Change `Orchestra\Testbench\Dusk\Bootstrap\LoadConfiguration` class to extends `Orchestra\Testbench\Bootstrap\LoadConfiguration`.
 * Refactor `Orchestra\Testbench\Dusk\Console\Commander` based on Testbench Core.
 * Add multiple environment variables to Laravel 10 skeleton's configuration files based on changes made for Laravel 11.
