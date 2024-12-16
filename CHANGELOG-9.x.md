@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 9.11.0
+
+Released: 2024-12-16
+
+### Added
+
+* Override Laravel's `vendor:publish` command.
+
+### Changes
+
+* Update minimum support for Testbench v9.8.0+. ([v9.7.0...v9.8.0](https://github.com/orchestral/testbench/compare/v9.7.0...v9.8.0))
+* Update minimum support for Testbench Core v9.8.0+. ([v9.7.0...v9.8.0](https://github.com/orchestral/testbench-core/compare/v9.7.0...v9.8.0))
+
 ## 9.10.0
 
 Released: 2024-12-01
