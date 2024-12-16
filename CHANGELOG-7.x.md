@@ -13,6 +13,8 @@ Released: 2024-12-01
 
 ### Changes
 
+* Update minimum support for Testbench v7.48.0+. ([v7.47.0...v7.48.0](https://github.com/orchestral/testbench/compare/v7.47.0...v7.48.0))
+* Update minimum support for Testbench Core v7.49.0+. ([v7.48.0...v7.49.0](https://github.com/orchestral/testbench/compare/v7.48.0...v7.49.0))
 * Change `Orchestra\Testbench\Dusk\Bootstrap\LoadConfiguration` class to extends `Orchestra\Testbench\Bootstrap\LoadConfiguration`.
 * Refactor `Orchestra\Testbench\Dusk\Console\Commander` based on Testbench Core.
 * Add multiple environment variables to Laravel 9 skeleton's configuration files based on changes made for Laravel 11.
