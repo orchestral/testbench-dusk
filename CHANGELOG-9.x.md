@@ -2,6 +2,16 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 9.11.2
+
+Released: 2025-01-22
+
+### Changes
+
+* Update `config/filesystems.php` configuration file.
+* Update `config/mail.php` configuration file.
+* Update `config/session.php` configuration file.
+
 ## 9.11.1
 
 Released: 2024-12-26
