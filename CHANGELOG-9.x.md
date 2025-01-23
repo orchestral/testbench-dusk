@@ -2,7 +2,40 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
-## 9.10.0 (Unreleased)
+## 9.11.2
+
+Released: 2025-01-22
+
+### Changes
+
+* Update `config/filesystems.php` configuration file.
+* Update `config/mail.php` configuration file.
+* Update `config/session.php` configuration file.
+
+## 9.11.1
+
+Released: 2024-12-26
+
+### Changes
+
+* Allow support for Testbench Core v9.9.0+.
+
+## 9.11.0
+
+Released: 2024-12-16
+
+### Added
+
+* Override Laravel's `vendor:publish` command.
+
+### Changes
+
+* Update minimum support for Testbench v9.8.0+. ([v9.7.0...v9.8.0](https://github.com/orchestral/testbench/compare/v9.7.0...v9.8.0))
+* Update minimum support for Testbench Core v9.8.0+. ([v9.7.0...v9.8.0](https://github.com/orchestral/testbench-core/compare/v9.7.0...v9.8.0))
+
+## 9.10.0
+
+Released: 2024-12-01
 
 ### Added
 
@@ -11,6 +44,8 @@ This changelog references the relevant changes (bug and security fixes) done to 
 
 ### Changes
 
+* Update minimum support for Testbench v9.7.0+. ([v9.6.1...v9.7.0](https://github.com/orchestral/testbench/compare/v9.6.1...v9.7.0))
+* Update minimum support for Testbench Core v9.7.0+. ([v9.6.2...v9.7.0](https://github.com/orchestral/testbench-core/compare/v9.6.2...v9.7.0))
 * Change `Orchestra\Testbench\Dusk\Bootstrap\LoadConfiguration` class to extends `Orchestra\Testbench\Bootstrap\LoadConfiguration`.
 * Refactor `Orchestra\Testbench\Dusk\Console\Commander` based on Testbench Core.
 * Add multiple environment variables to Laravel 10 skeleton's configuration files based on changes made for Laravel 11.
