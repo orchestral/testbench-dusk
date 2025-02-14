@@ -54,7 +54,7 @@ class DuskServer
         protected readonly string $host = '127.0.0.1',
         protected readonly int $port = 8001,
         protected readonly int $timeout = 6000
-    ) { }
+    ) {}
 
     /**
      * Set Laravel working path.
