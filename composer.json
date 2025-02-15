@@ -42,15 +42,15 @@
         "laravel/dusk": "^7.13 || ^8.1",
         "laravel/serializable-closure": "^1.3 || ^2.0",
         "orchestra/dusk-updater": "^2.6",
-        "orchestra/testbench": "^8.30",
-        "orchestra/testbench-core": "^8.31",
+        "orchestra/testbench": "^8.32",
+        "orchestra/testbench-core": "^8.33",
         "php-webdriver/webdriver": "^1.9",
         "symfony/polyfill-php83": "^1.31"
     },
     "require-dev": {
-        "laravel/pint": "^1.17",
+        "laravel/pint": "^1.20",
         "laravel/tinker": "^2.9",
-        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^10.1"
     },
     "config": {
