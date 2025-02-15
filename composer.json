@@ -49,11 +49,11 @@
         "symfony/polyfill-php84": "^1.31"
     },
     "require-dev": {
-        "laravel/pint": "^1.17",
+        "laravel/pint": "^1.20",
         "laravel/framework": "12.x-dev",
         "laravel/tinker": "^2.10.1",
-        "phpstan/phpstan": "^2.0",
-        "phpunit/phpunit": "^11.5.3 || ^12.0.0"
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^10.5.35 || ^11.3.6"
     },
     "config": {
         "preferred-install": {
