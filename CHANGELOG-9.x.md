@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 9.12.0
+
+Released: 2025-02-15
+
+### Changes
+
+* Allow support for Testbench Core v9.10.0+.
+* Update `config/database.php` configuration file.
+
 ## 9.11.2
 
 Released: 2025-01-22
