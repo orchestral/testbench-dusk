@@ -13,8 +13,6 @@ use Orchestra\Testbench\Dusk\Options as DuskOptions;
 use Orchestra\Testbench\Foundation\Env;
 use Orchestra\Testbench\TestCase as Testbench;
 
-use function Orchestra\Testbench\join_paths;
-
 abstract class TestCase extends Testbench
 {
     use Concerns\CanServeSite;
@@ -84,20 +82,6 @@ abstract class TestCase extends Testbench
     public static function applicationBasePath()
     {
         return static::applicationBasePathUsingWorkbench() ?? default_skeleton_path();
-    }
-
-    /**
-     * Get the default application bootstrap file path (if exists).
-     *
-     * @internal
-     *
-     * @param  string  $filename
-     * @return string|false
-     */
-    #[\Override]
-    protected function getDefaultApplicationBootstrapFile(string $filename): string|false
-    {
-        return realpath(default_skeleton_path(join_paths('bootstrap', $filename)));
     }
 
     /**
