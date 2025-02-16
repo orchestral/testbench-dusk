@@ -12,7 +12,7 @@ Released: 2024-12-16
 
 ## 8.33.0
 
-Released: 2024-12-16
+Released: 2024-12-15
 
 ### Added
 
