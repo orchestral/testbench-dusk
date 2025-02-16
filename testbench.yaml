@@ -11,10 +11,10 @@ workbench:
   welcome: false
   auth: true
   build:
+    - asset-publish
     - drop-sqlite-db
     - create-sqlite-db
     - migrate:refresh
-    - asset-publish
   discovers:
     config: true
     web: true
