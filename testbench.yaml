@@ -1,3 +1,5 @@
+laravel: "@testbench-dusk"
+
 providers:
   - Workbench\App\Providers\WorkbenchServiceProvider
 
@@ -8,6 +10,7 @@ workbench:
   welcome: false
   auth: true
   build:
+    - asset-publish
     - drop-sqlite-db
     - create-sqlite-db
     - migrate:refresh
@@ -17,3 +20,14 @@ workbench:
     api: true
     commands: true
     views: true
+  sync:
+    - from: storage
+      to: workbench/storage
+      reverse: true
+
+purge:
+  files:
+    - .env
+  directories:
+    - public/build
+    - public/vendor/*
