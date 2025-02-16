@@ -12,6 +12,8 @@ use function Orchestra\Testbench\package_path;
 /**
  * Get the default skeleton path
  *
+ * @no-named-arguments
+ *
  * @param  array|string  $path
  */
 function default_skeleton_path($path = ''): string
