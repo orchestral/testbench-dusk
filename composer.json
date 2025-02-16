@@ -72,6 +72,7 @@
         "build": "@php testbench-dusk workbench:build --ansi",
         "dusk:install-chromedriver": "@php vendor/bin/dusk-updater detect --auto-update --ansi",
         "serve": [
+            "@clear",
             "@build",
             "@php testbench-dusk serve --ansi"
         ],
