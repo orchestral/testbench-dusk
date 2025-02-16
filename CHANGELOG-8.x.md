@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.33.1
+
+Released: 2024-12-16
+
+### Changes
+
+* Supports `orchestra/dusk-updater` v3.
+
 ## 8.33.0
 
 Released: 2024-12-16
