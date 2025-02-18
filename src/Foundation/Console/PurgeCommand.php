@@ -7,7 +7,7 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 
-use function Orchestra\Testbench\join_paths;
+use function Orchestra\Sidekick\join_paths;
 use function Orchestra\Testbench\package_path;
 
 #[AsCommand(name: 'package:dusk-purge', description: 'Purge the package debugging files for Dusk')]
