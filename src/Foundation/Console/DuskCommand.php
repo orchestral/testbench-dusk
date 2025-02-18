@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 use Laravel\Dusk\Console\DuskCommand as Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 
-use function Orchestra\Testbench\join_paths;
+use function Orchestra\Sidekick\join_paths;
 use function Orchestra\Testbench\package_path;
 
 #[AsCommand(name: 'package:dusk', description: 'Run the package Dusk tests')]
