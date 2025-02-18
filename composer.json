@@ -44,7 +44,7 @@
         "orchestra/dusk-updater": "^2.7 || ^3.0",
         "orchestra/sidekick": "^1.0",
         "orchestra/testbench": "^9.10.0",
-        "orchestra/testbench-core": ">=9.10.0 <9.11.0",
+        "orchestra/testbench-core": "^9.11.0",
         "php-webdriver/webdriver": "^1.15.1",
         "symfony/polyfill-php83": "^1.31",
         "symfony/polyfill-php84": "^1.31"
