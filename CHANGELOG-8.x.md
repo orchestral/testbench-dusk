@@ -2,6 +2,16 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.34.0
+
+Released: 2024-12-19
+
+### Changes
+
+* Update minimum support for Testbench v8.33.0+. ([v8.30.0...v8.33.0](https://github.com/orchestral/testbench/compare/v8.30.0...v8.33.0))
+* Update minimum support for Testbench Core v8.34.0+. ([v8.33.0...v8.34.0](https://github.com/orchestral/testbench/compare/v8.33.0...v8.34.0))
+* Use `orchestra/sidekick`.
+
 ## 8.33.1
 
 Released: 2024-12-16
