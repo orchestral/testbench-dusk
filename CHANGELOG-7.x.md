@@ -4,7 +4,7 @@ This changelog references the relevant changes (bug and security fixes) done to 
 
 ## 7.52.0
 
-Released: 2024-12-16
+Released: 2024-12-19
 
 ### Changes
 
