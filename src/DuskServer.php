@@ -3,10 +3,10 @@
 namespace Orchestra\Testbench\Dusk;
 
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
-use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
 use function Orchestra\Sidekick\join_paths;
+use function Orchestra\Sidekick\php_binary;
 use function Orchestra\Testbench\defined_environment_variables;
 
 /**
@@ -255,7 +255,7 @@ class DuskServer
     protected function prepareCommand(): array
     {
         return [
-            (string) (new PhpExecutableFinder)->find(false),
+            php_binary(),
             '-S',
             \sprintf('%s:%s', $this->host, $this->port),
             join_paths(__DIR__, 'server.php'),
