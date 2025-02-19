@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 10.0.1
+
+Released: 2025-02-19
+
+### Changes
+
+* Use `orchestra/sidekick`.
+
 ## 10.0.0
 
 Released: 2025-02-16
