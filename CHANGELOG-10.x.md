@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 10.0.2
+
+Released: 2025-02-24
+
+### Changes
+
+* Update skeleton's configuration and welcome page.
+
 ## 10.0.1
 
 Released: 2025-02-19
