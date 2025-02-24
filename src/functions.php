@@ -6,11 +6,13 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\LazyCollection;
 use Laravel\Dusk\Browser;
 
-use function Orchestra\Testbench\join_paths;
+use function Orchestra\Sidekick\join_paths;
 use function Orchestra\Testbench\package_path;
 
 /**
  * Get the default skeleton path
+ *
+ * @no-named-arguments
  *
  * @param  array|string  $path
  */
