@@ -42,7 +42,7 @@
         "laravel/dusk": "^7.13 || ^8.1",
         "laravel/serializable-closure": "^1.3 || ^2.0",
         "orchestra/dusk-updater": "^2.7.1 || ^3.0.2",
-        "orchestra/sidekick": "^1.0.2",
+        "orchestra/sidekick": "^1.0.3",
         "orchestra/testbench": "^8.33.0",
         "orchestra/testbench-core": "^8.34.0",
         "php-webdriver/webdriver": "^1.9",
@@ -87,6 +87,11 @@
         "sync": [
             "@clear",
             "@php bin/sync",
+            "@lint"
+        ],
+        "sync-dev": [
+            "@clear",
+            "@php bin/sync --dev",
             "@lint"
         ],
         "ci": [

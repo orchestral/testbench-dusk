@@ -2,9 +2,17 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.53.0
+
+Released: 2025-02-25
+
+### Changes
+
+* Ensure `--disable-search-engine-choice-screen` and `--disable-smooth-scrolling` options applied by default.
+
 ## 7.52.0
 
-Released: 2024-12-19
+Released: 2025-02-19
 
 ### Changes
 
