@@ -7,7 +7,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 $files = new Illuminate\Filesystem\Filesystem();
 
-if (! is_file($configureSkeleton = Orchestra\Testbench\join_paths($workingPath, 'vendor', 'orchestra', 'testbench-core', 'bin', 'configure-skeleton.php'))) {
+if (! is_file($configureSkeleton = Orchestra\Sidekick\join_paths($workingPath, 'vendor', 'orchestra', 'testbench-core', 'bin', 'configure-skeleton.php'))) {
     throw new RuntimeException(sprintf('Misssing [%s] file from `orchestra/testbench-core`', $configureSkeleton));
 }
 

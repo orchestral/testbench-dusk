@@ -45,6 +45,7 @@ class Options
      */
     public static array $arguments = [
         '--disable-search-engine-choice-screen',
+        '--disable-smooth-scrolling',
     ];
 
     /**
@@ -63,6 +64,7 @@ class Options
     {
         static::$arguments = [
             '--disable-search-engine-choice-screen',
+            '--disable-smooth-scrolling',
         ];
     }
 
@@ -87,7 +89,7 @@ class Options
     public static function addArgument(string $argument)
     {
         if (! static::hasArgument($argument)) {
-            array_push(static::$arguments, $argument);
+            static::$arguments[] = $argument;
         }
 
         return new static;
