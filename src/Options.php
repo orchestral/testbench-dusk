@@ -42,7 +42,10 @@ class Options
      *
      * @var array<int, string>
      */
-    public static $arguments = [];
+    public static $arguments = [
+        '--disable-search-engine-choice-screen',
+        '--disable-smooth-scrolling',
+    ];
 
     /**
      * Apply `ChromeOptions` configuration using a callback.
@@ -60,6 +63,7 @@ class Options
     {
         static::$arguments = [
             '--disable-search-engine-choice-screen',
+            '--disable-smooth-scrolling',
         ];
     }
 
@@ -84,7 +88,7 @@ class Options
     public static function addArgument(string $argument)
     {
         if (! static::hasArgument($argument)) {
-            array_push(static::$arguments, $argument);
+            static::$arguments[] = $argument;
         }
 
         return new static;
