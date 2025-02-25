@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 9.14.0
+
+Released: 2025-02-25
+
+### Changes
+
+* Update minimum support for Testbench Core v9.11.1+. ([v9.11.0...v9.11.1](https://github.com/orchestral/testbench-core/compare/v9.11.0...v9.11.1))
+* Ensure `--disable-search-engine-choice-screen` and `--disable-smooth-scrolling` options applied by default.
+
 ## 9.13.0
 
 Released: 2024-12-19

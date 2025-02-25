@@ -21,7 +21,7 @@ class OptionsTest extends TestCase
         Options::withoutUI();
 
         $this->assertEquals(
-            ['--disable-search-engine-choice-screen', '--disable-gpu', '--headless=new'],
+            ['--disable-search-engine-choice-screen', '--disable-smooth-scrolling', '--disable-gpu', '--headless=new'],
             Options::getChromeOptions()->toArray()['args']
         );
     }
@@ -52,7 +52,7 @@ class OptionsTest extends TestCase
         Options::noZygote();
 
         $this->assertEquals(
-            ['--disable-search-engine-choice-screen', '--no-sandbox', '--no-zygote'],
+            ['--disable-search-engine-choice-screen', '--disable-smooth-scrolling', '--no-sandbox', '--no-zygote'],
             Options::getChromeOptions()->toArray()['args']
         );
     }
@@ -63,7 +63,7 @@ class OptionsTest extends TestCase
         Options::ignoreSslErrors();
 
         $this->assertEquals(
-            ['--disable-search-engine-choice-screen', '--ignore-certificate-errors'],
+            ['--disable-search-engine-choice-screen', '--disable-smooth-scrolling', '--ignore-certificate-errors'],
             Options::getChromeOptions()->toArray()['args']
         );
     }
@@ -74,7 +74,7 @@ class OptionsTest extends TestCase
         Options::windowSize(2048, 1080);
 
         $this->assertEquals(
-            ['--disable-search-engine-choice-screen', '--window-size=2048,1080'],
+            ['--disable-search-engine-choice-screen', '--disable-smooth-scrolling', '--window-size=2048,1080'],
             Options::getChromeOptions()->toArray()['args']
         );
     }
@@ -85,7 +85,7 @@ class OptionsTest extends TestCase
         Options::remoteDebuggingPort(9095);
 
         $this->assertEquals(
-            ['--disable-search-engine-choice-screen', '--remote-debugging-port=9095'],
+            ['--disable-search-engine-choice-screen', '--disable-smooth-scrolling', '--remote-debugging-port=9095'],
             Options::getChromeOptions()->toArray()['args']
         );
     }
@@ -96,7 +96,7 @@ class OptionsTest extends TestCase
         Options::userAgent('Dusk');
 
         $this->assertEquals(
-            ['--disable-search-engine-choice-screen', '--user-agent=Dusk'],
+            ['--disable-search-engine-choice-screen', '--disable-smooth-scrolling', '--user-agent=Dusk'],
             Options::getChromeOptions()->toArray()['args']
         );
     }
