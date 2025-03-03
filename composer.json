@@ -41,9 +41,9 @@
         "laravel/dusk": "^7.13",
         "laravel/serializable-closure": "^1.3",
         "orchestra/dusk-updater": "^2.7.1",
-        "orchestra/sidekick": "^1.0.3",
-        "orchestra/testbench": "^7.52.0",
-        "orchestra/testbench-core": "^7.53.0",
+        "orchestra/sidekick": "^1.0.5",
+        "orchestra/testbench": "^7.53.0",
+        "orchestra/testbench-core": "^7.54.0",
         "php-webdriver/webdriver": "^1.9",
         "symfony/polyfill-php83": "^1.31"
     },
