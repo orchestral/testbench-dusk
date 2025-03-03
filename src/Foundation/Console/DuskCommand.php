@@ -31,9 +31,10 @@ class DuskCommand extends Command
     protected $description = 'Run the package Dusk tests';
 
     /** {@inheritDoc} */
-    public function __construct()
+    #[\Override]
+    public function configure()
     {
-        parent::__construct();
+        parent::configure();
 
         if (! \defined('TESTBENCH_CORE')) {
             $this->setHidden(true);
