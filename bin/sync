@@ -30,6 +30,7 @@ function line(string $code, int $tab = 0): string {
 $purgeSkeletonDirectories();
 
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/bootstrap/app.php", "{$workingPath}/laravel/bootstrap/app.php");
+$files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/bootstrap/autoload.php", "{$workingPath}/laravel/bootstrap/autoload.php");
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/server.php", "{$workingPath}/laravel/server.php");
 $files->copy("{$workingPath}/vendor/orchestra/testbench-core/laravel/.gitignore", "{$workingPath}/laravel/.gitignore");
 $files->copyDirectory("{$workingPath}/vendor/orchestra/testbench-core/workbench/app/View", "{$workingPath}/workbench/app/View");
