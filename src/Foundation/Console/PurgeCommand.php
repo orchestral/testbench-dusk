@@ -28,9 +28,10 @@ class PurgeCommand extends Command
     protected $description = 'Purge the package debugging files for Dusk';
 
     /** {@inheritDoc} */
-    public function __construct()
+    #[\Override]
+    public function configure()
     {
-        parent::__construct();
+        parent::configure();
 
         if (! \defined('TESTBENCH_CORE')) {
             $this->setHidden(true);
