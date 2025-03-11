@@ -81,7 +81,7 @@ trait CanServeSite
     }
 
     /**
-     * Make tweaks to the application, both inside the test and on the test server.
+     * Configure application before served via Dusk.
      *
      * @param  (\Closure(\Illuminate\Foundation\Application, \Illuminate\Contracts\Config\Repository):(void))|string  $closure
      * @return void
@@ -105,8 +105,18 @@ trait CanServeSite
         ]);
 
         $this->beforeApplicationDestroyed(function () {
-            $this->removeApplicationTweaks();
+            $this->afterServingApplication();
         });
+    }
+
+    /**
+     * Reset application after served via Dusk.
+     *
+     * @return void
+     */
+    public function afterServingApplication(): void
+    {
+        static::$server?->stash(['class' => static::class]);
     }
 
     /**
@@ -114,6 +124,10 @@ trait CanServeSite
      *
      * @param  \Closure(\Illuminate\Foundation\Application, \Illuminate\Contracts\Config\Repository):void  $closure
      * @return void
+     *
+     * @deprecated 7.55.0 Use `beforeServingApplication()` instead.
+     *
+     * @codeCoverageIgnore
      */
     public function tweakApplication(Closure $closure): void
     {
@@ -128,10 +142,14 @@ trait CanServeSite
      * It could be added to the tearDown method if used a lot.
      *
      * @return void
+     *
+     * @deprecated 7.55.0 Use `afterServingApplication()` instead.
+     *
+     * @codeCoverageIgnore
      */
     public function removeApplicationTweaks(): void
     {
-        static::$server?->stash(['class' => static::class]);
+        $this->afterServingApplication();
     }
 
     /**
