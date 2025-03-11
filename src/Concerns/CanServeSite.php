@@ -105,7 +105,7 @@ trait CanServeSite
         ]);
 
         $this->beforeApplicationDestroyed(function () {
-            $this->removeApplicationTweaks();
+            $this->afterServingApplication();
         });
     }
 
