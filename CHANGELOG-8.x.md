@@ -2,7 +2,7 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
-## 8.35.0
+## 8.36.0
 
 Released: 2025-03-06
 
