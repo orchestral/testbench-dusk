@@ -146,6 +146,7 @@ trait CanServeSite
      *
      * @codeCoverageIgnore
      */
+    #[\Deprecated('Use `beforeServingApplication()` instead', since: '7.55.0')]
     public function tweakApplication(Closure $closure): void
     {
         $this->beforeServingApplication($closure);
@@ -166,6 +167,7 @@ trait CanServeSite
      *
      * @codeCoverageIgnore
      */
+    #[\Deprecated('Use `afterServingApplication()` instead', since: '7.55.0')]
     public function removeApplicationTweaks(): void
     {
         $this->afterServingApplication();
