@@ -2,6 +2,20 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 10.2.0
+
+Released: 2025-04-06
+
+### Changes
+
+* Update minimum support for Testbench v10.2.0+. ([v10.1.0...v10.2.0](https://github.com/orchestral/testbench/compare/v10.1.0...v10.2.0))
+* Update minimum support for Testbench Core v10.2.0+. ([v10.1.0...v10.2.0](https://github.com/orchestral/testbench/compare/v10.1.0...v10.2.0))
+* Add supports for PHPUnit 12.0 and 12.1.
+
+### Deprecated
+
+* Deprecate `tweakApplication()` method and use `beforeServingApplication()` method instead.
+* Deprecate `removeApplicationTweaks()` method and use `afterServingApplication()` method instead.
 
 ## 10.1.0
 
