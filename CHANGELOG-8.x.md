@@ -2,6 +2,24 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.37.0
+
+Released: 2025-04-06
+
+### Changes
+
+* Update minimum support for Testbench v8.35.0+. ([v8.34.0...v8.35.0](https://github.com/orchestral/testbench/compare/v8.34.0...v8.35.0))
+* Update minimum support for Testbench Core v8.36.0+. ([v8.35.0...v8.36.0](https://github.com/orchestral/testbench/compare/v8.35.0...v8.36.0))
+
+### Deprecated
+
+* Deprecate `tweakApplication()` method and use `beforeServingApplication()` method instead.
+* Deprecate `removeApplicationTweaks()` method and use `afterServingApplication()` method instead.
+
+### Removed
+
+* Remove unsupported `laravel/serializable-closure` v2.
+
 ## 8.36.0
 
 Released: 2025-03-06
