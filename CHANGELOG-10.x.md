@@ -2,6 +2,16 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 10.2.1
+
+Released: 2025-04-13
+
+### Changes
+
+* Update minimum support for Testbench v10.2.1+. ([v10.2.0...v10.2.1](https://github.com/orchestral/testbench/compare/v10.2.0...v10.2.1))
+* Update minimum support for Testbench Core v10.2.1+. ([v10.2.0...v10.2.1](https://github.com/orchestral/testbench/compare/v10.2.0...v10.2.1))
+* Remove `symfony/polyfill-php84`.
+
 ## 10.2.0
 
 Released: 2025-04-06
