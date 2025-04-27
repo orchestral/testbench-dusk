@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.37.1
+
+Released: 2025-04-27
+
+### Changes
+
+* Update minimum support for Testbench v8.35.1+. ([v8.35.0...v8.35.1](https://github.com/orchestral/testbench/compare/v8.35.0...v8.35.1))
+* Update minimum support for Testbench Core v8.36.1+. ([v8.36.0...v8.36.1](https://github.com/orchestral/testbench/compare/v8.36.0...v8.36.1))
+
 ## 8.37.0
 
 Released: 2025-04-06
