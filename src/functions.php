@@ -30,7 +30,7 @@ function prepare_debug_directories(): void
         return;
     }
 
-    $path = package_path(join_paths('tests', 'Browser'));
+    $path = package_path('tests', 'Browser');
 
     LazyCollection::make(['screenshots', 'console', 'source'])
         ->map(static fn ($directory) => join_paths($path, $directory))
