@@ -1,4 +1,5 @@
 {
+    "$schema": "https://getcomposer.org/schema.json",
     "name": "orchestra/testbench-dusk",
     "description": "Laravel Dusk Testing Helper for Packages Development",
     "type": "library",
