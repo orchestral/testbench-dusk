@@ -10,7 +10,7 @@ Released: 2025-05-12
 
 * Update minimum support for Testbench v8.36.0+. ([v8.35.1...v8.36.0](https://github.com/orchestral/testbench/compare/v8.35.1...v8.36.0))
 * Update minimum support for Testbench Core v8.37.0+. ([v8.36.1...v8.37.0](https://github.com/orchestral/testbench/compare/v8.36.1...v8.37.0))
-* 
+
 ## 8.37.1
 
 Released: 2025-04-27
