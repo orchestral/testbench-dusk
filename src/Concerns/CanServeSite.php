@@ -171,7 +171,7 @@ trait CanServeSite
         /** @var \Illuminate\Foundation\Application $app */
         $app = $this->app;
 
-        $serializedClosure = unserialize(static::$server->getStash('tweakApplication'));
+        $serializedClosure = unserialize($server->getStash('tweakApplication'));
 
         if ($serializedClosure) {
             /** @var (\Closure(\Illuminate\Foundation\Application, \Illuminate\Contracts\Config\Repository):(void))|string $closure */
