@@ -43,7 +43,7 @@
         "laravel/dusk": "^8.3.1",
         "laravel/serializable-closure": "^1.3|^2.0.4",
         "orchestra/dusk-updater": "^3.0.2",
-        "orchestra/sidekick": "~1.1.5|^1.2.0",
+        "orchestra/sidekick": "~1.1.16|^1.2.12",
         "orchestra/testbench": "10.x-dev",
         "orchestra/testbench-core": "10.x-dev",
         "php-webdriver/webdriver": "^1.15.1",

@@ -3,7 +3,7 @@
 namespace Orchestra\Testbench\Dusk;
 
 use Facebook\WebDriver\Chrome\ChromeOptions;
-use Orchestra\Testbench\Foundation\Env;
+use Orchestra\Sidekick\Env;
 
 /**
  * @api
