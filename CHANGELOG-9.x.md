@@ -11,7 +11,6 @@ Released: 2025-08-21
 * Update minimum support for Testbench v9.15.0+. ([v9.14.0...v9.15.0](https://github.com/orchestral/testbench/compare/v9.14.0...v9.15.0))
 * Update minimum support for Testbench Core v9.16.0+. ([v9.14.0...v9.16.0](https://github.com/orchestral/testbench-core/compare/v9.14.0...v9.16.0))
 
-
 ## 9.17.0
 
 Released: 2025-05-12
