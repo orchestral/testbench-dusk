@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 10.6.0
+
+Released: 2025-08-21
+
+### Changes
+
+* Update minimum support for Testbench v10.6.0+. ([v10.5.0...v10.6.0](https://github.com/orchestral/testbench/compare/v10.5.0...v10.6.0))
+
 ## 10.5.0
 
 Released: 2025-08-21
