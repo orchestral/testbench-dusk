@@ -75,7 +75,6 @@ class DuskServerTest extends TestCase
                 // Once complete, the parent can check for the orpahn server.
                 (new DuskServer)->start();
                 $this->waitForServerToStart();
-                exit();
                 break;
             default:
                 // @parent
