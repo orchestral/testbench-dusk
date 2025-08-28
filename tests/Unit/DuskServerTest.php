@@ -8,6 +8,8 @@ use Orchestra\Testbench\Dusk\Tests\Concerns\InteractsWithServer;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+use function Orchestra\Testbench\terminate;
+
 class DuskServerTest extends TestCase
 {
     use InteractsWithServer;
@@ -75,6 +77,7 @@ class DuskServerTest extends TestCase
                 // Once complete, the parent can check for the orpahn server.
                 (new DuskServer)->start();
                 $this->waitForServerToStart();
+                terminate($this);
                 break;
             default:
                 // @parent
