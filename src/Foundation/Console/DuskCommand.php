@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use Laravel\Dusk\Console\DuskCommand as Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 
+use function Orchestra\Sidekick\is_testbench_cli;
 use function Orchestra\Sidekick\join_paths;
 use function Orchestra\Testbench\package_path;
 use function Orchestra\Testbench\phpunit_version_compare;
@@ -36,7 +37,7 @@ class DuskCommand extends Command
     {
         parent::configure();
 
-        if (! \defined('TESTBENCH_CORE')) {
+        if (! is_testbench_cli()) {
             $this->setHidden(true);
         }
     }
