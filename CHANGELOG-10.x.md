@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 10.8.0
+
+Released: 2025-12-08
+
+### Changes
+
+* Update minimum support for Testbench v10.8.0+. ([v10.7.0...v10.8.0](https://github.com/orchestral/testbench/compare/v10.7.0...v10.8.0))
+* PHP 8.5 Compatibility.
+
 ## 10.7.0
 
 Released: 2025-12-08
