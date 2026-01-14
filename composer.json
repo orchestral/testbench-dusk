@@ -52,10 +52,13 @@
     "require-dev": {
         "laravel/pint": "^1.22",
         "laravel/tinker": "^2.9",
-        "phpstan/phpstan": "^2.1.14",
+        "phpstan/phpstan": "^2.1.33",
         "phpunit/phpunit": "^10.5.35|^11.3.6|^12.0.1"
     },
     "config": {
+        "audit": {
+            "block-insecure": false
+        },
         "preferred-install": {
             "orchestra/testbench-core": "source",
             "*": "auto"
