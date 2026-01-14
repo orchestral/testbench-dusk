@@ -54,6 +54,9 @@
         "phpstan/phpstan": "^2.1.33"
     },
     "config": {
+        "audit": {
+            "block-insecure": false
+        },
         "preferred-install": {
             "orchestra/testbench-core": "source",
             "*": "auto"
