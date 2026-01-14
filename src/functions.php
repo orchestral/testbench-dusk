@@ -6,7 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\LazyCollection;
 use Laravel\Dusk\Browser;
 
-use function Orchestra\Sidekick\join_paths;
+use function Orchestra\Sidekick\Filesystem\join_paths;
 use function Orchestra\Testbench\package_path;
 
 /**
