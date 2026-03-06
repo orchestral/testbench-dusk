@@ -7,7 +7,7 @@ use Laravel\SerializableClosure\SerializableClosure;
 use Orchestra\Testbench\Dusk\DuskServer;
 use Orchestra\Testbench\Dusk\Options;
 
-use function Orchestra\Testbench\after_resolving;
+use function Orchestra\Sidekick\after_resolving;
 
 trait CanServeSite
 {
