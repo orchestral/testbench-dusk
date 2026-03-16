@@ -19,18 +19,22 @@ jobs:
           - 8.5
         phpunit:
           - "~11.5.50"
-          - "~12.5.7"
+          - "~12.5.8"
+          - "~13.0.0"
         dependencies:
           - "highest"
           - "lowest"
         experimental:
           - false
+        exclude:
+          - php: 8.3
+            phpunit: "~13.0.0"
 
     name: PHP:${{ matrix.php }} / PHPUnit:${{ matrix.phpunit }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -40,7 +44,7 @@ jobs:
           coverage: none
 
       - name: Install dependencies
-        uses: "ramsey/composer-install@v3"
+        uses: ramsey/composer-install@v4
         with:
           dependency-versions: "${{ matrix.dependencies }}"
           composer-options: "--prefer-dist --no-cache --with=phpunit/phpunit:${{ matrix.phpunit }}"

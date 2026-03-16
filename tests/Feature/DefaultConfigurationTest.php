@@ -4,8 +4,8 @@ namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
 use Illuminate\Foundation\Auth\User;
 use Laravel\Dusk\DuskServiceProvider;
+use Orchestra\Sidekick\Env;
 use Orchestra\Testbench\Dusk\TestCase;
-use Orchestra\Testbench\Foundation\Env;
 use PHPUnit\Framework\Attributes\Test;
 
 class DefaultConfigurationTest extends TestCase
