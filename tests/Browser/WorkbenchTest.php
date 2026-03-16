@@ -26,7 +26,7 @@ class WorkbenchTest extends TestCase
         $this->browse(static fn ($browser) => $browser
             ->visit('/')
             ->pause(500)
-            ->assertSee('Laravel has an incredibly rich ecosystem.')
+            ->assertSee('Let\'s get started')
         );
     }
 
@@ -36,7 +36,7 @@ class WorkbenchTest extends TestCase
         $this->browse(static fn ($browser) => $browser
             ->visit('/')
             ->pause(500)
-            ->assertSee('Laravel has an incredibly rich ecosystem.')
+            ->assertSee('Let\'s get started')
         );
     }
 

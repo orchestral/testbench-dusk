@@ -4,7 +4,7 @@ namespace Orchestra\Testbench\Dusk\Tests\Browser;
 
 use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Dusk\TestCase;
-use Orchestra\Testbench\Foundation\Env;
+use Orchestra\Sidekick\Env;
 use PHPUnit\Framework\Attributes\Test;
 
 use function Orchestra\Testbench\package_path;

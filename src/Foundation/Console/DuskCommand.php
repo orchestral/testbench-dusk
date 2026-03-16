@@ -33,7 +33,7 @@ class DuskCommand extends Command
 
     /** {@inheritDoc} */
     #[\Override]
-    public function configure()
+    public function configure(): void
     {
         parent::configure();
 
