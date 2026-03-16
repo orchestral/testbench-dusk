@@ -53,11 +53,14 @@
         "laravel/pint": "^1.26",
         "laravel/tinker": "^2.10.1",
         "phpstan/phpstan": "^2.1.33",
-        "phpunit/phpunit": "^11.5.3|^12.0.1"
+        "phpunit/phpunit": "^11.5.3|^12.0.1|^13.0.0"
     },
     "config": {
         "audit": {
-            "block-insecure": false
+            "ignore": [
+                "CVE-2025-64500",
+                "GHSA-vvj3-c3rp-c85p"
+            ]
         },
         "preferred-install": {
             "orchestra/testbench-core": "source",
@@ -87,7 +90,7 @@
         "test": [
             "@php testbench-dusk package:drop-sqlite-db",
             "@php testbench-dusk package:create-sqlite-db",
-            "@php vendor/bin/phpunit --no-coverage --no-configuration --dont-report-useless-tests --bootstrap vendor/autoload.php --color tests"
+            "@php vendor/bin/phpunit --no-coverage --no-configuration --bootstrap vendor/autoload.php --color tests"
         ],
         "sync": [
             "@clear",
