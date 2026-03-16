@@ -3,8 +3,8 @@
 namespace Orchestra\Testbench\Dusk\Tests\Browser;
 
 use Laravel\Dusk\Browser;
-use Orchestra\Testbench\Dusk\TestCase;
 use Orchestra\Sidekick\Env;
+use Orchestra\Testbench\Dusk\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 
 use function Orchestra\Testbench\package_path;
