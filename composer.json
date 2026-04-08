@@ -45,7 +45,7 @@
         "orchestra/dusk-updater": "^3.0.2",
         "orchestra/sidekick": "~1.1.23|~1.2.20",
         "orchestra/testbench": "^11.0.0",
-        "orchestra/testbench-core": ">=11.0.0 <11.3.0",
+        "orchestra/testbench-core": ">=11.1.0 <11.3.0",
         "php-webdriver/webdriver": "^1.15.1"
     },
     "require-dev": {
