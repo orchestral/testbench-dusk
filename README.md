@@ -5,7 +5,8 @@ The Testbench Dusk Component is a simple package that is supposed to help you wr
 
 The package was developed by [Konsulting Ltd](https://github.com/konsulting) and transferred to the Orchestra namespace where we will assist with supporting it in the future. It is in early development and feedback is appreciated.
 
-[![analyse](https://github.com/orchestral/testbench-dusk/actions/workflows/analyse.yaml/badge.svg?branch=10.x)](https://github.com/orchestral/testbench-dusk/actions/workflows/analyse.yaml)
+[![tests](https://github.com/orchestral/testbench-dusk/actions/workflows/tests.yaml/badge.svg?branch=develop)](https://github.com/orchestral/testbench-dusk/actions/workflows/tests.yaml)
+[![analyse](https://github.com/orchestral/testbench-dusk/actions/workflows/analyse.yaml/badge.svg?branch=develop)](https://github.com/orchestral/testbench-dusk/actions/workflows/analyse.yaml)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/testbench-dusk/v/stable)](https://packagist.org/packages/orchestra/testbench-dusk)
 [![Total Downloads](https://poser.pugx.org/orchestra/testbench-dusk/downloads)](https://packagist.org/packages/orchestra/testbench-dusk)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/testbench-dusk/v/unstable)](https://packagist.org/packages/orchestra/testbench-dusk)
