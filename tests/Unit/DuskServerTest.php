@@ -61,6 +61,32 @@ class DuskServerTest extends TestCase
     }
 
     /** @test */
+    public function it_disables_process_output_so_the_server_pipe_cannot_fill()
+    {
+        $server = new DuskServer;
+
+        $server->start();
+        $this->waitForServerToStart();
+
+        try {
+            $process = $server->getProcess();
+
+            $this->assertNotNull($process);
+            $this->assertTrue(
+                $process->isOutputDisabled(),
+                'Server process must discard stdout/stderr so php -S cannot block when the pipe fills'
+            );
+
+            // clearOutput must remain safe when output is disabled (called from tearDown).
+            $server->clearOutput();
+            $this->assertTrue($this->isServerUp());
+        } finally {
+            $server->stop();
+            $this->waitForServerToStop();
+        }
+    }
+
+    /** @test */
     public function an_early_exit_does_not_leave_an_orphan_server()
     {
         switch ($pid = pcntl_fork()) {
