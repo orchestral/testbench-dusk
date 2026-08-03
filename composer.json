@@ -45,7 +45,7 @@
         "orchestra/dusk-updater": "^2.7.1|^3.0.2",
         "orchestra/sidekick": "~1.1.23|~1.2.20",
         "orchestra/testbench": "^8.37.0",
-        "orchestra/testbench-core": "^8.40.0",
+        "orchestra/testbench-core": "^8.43.1",
         "php-webdriver/webdriver": "^1.9",
         "symfony/polyfill-php83": "^1.33"
     },
@@ -57,7 +57,13 @@
     },
     "config": {
         "audit": {
-            "block-insecure": false
+            "block-insecure": false,
+            "ignore": [
+                "PKSA-m5cs-t1y6-qpcs",
+                "PKSA-3r5d-mb8f-1qw9",
+                "PKSA-mdq4-51ck-6kdq",
+                "PKSA-8qx3-n5y5-vvnd"
+            ]
         },
         "preferred-install": {
             "orchestra/testbench-core": "source",

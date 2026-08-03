@@ -184,24 +184,32 @@ class DuskServer
     /**
      * Clear the php server output.
      *
+     * No-op when output was disabled at start (the default), since
+     * Symfony Process redirects those streams to /dev/null.
+     *
      * @return void
      */
     public function clearOutput(): void
     {
-        if (isset($this->process)) {
-            $this->process->clearOutput();
-            $this->process->clearErrorOutput();
+        if (! isset($this->process) || $this->process->isOutputDisabled()) {
+            return;
         }
+
+        $this->process->clearOutput();
+        $this->process->clearErrorOutput();
     }
 
     /**
      * Start the server. Execute the command and open a
-     * pointer to it. Tuck away the output as it's
-     * not relevant for us during our testing.
+     * pointer to it. Output is discarded: the built-in PHP
+     * server logs every request to stderr, and if that pipe
+     * is never drained it fills and blocks the server.
      *
      * @return void
      *
      * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
+     *
+     * @see https://github.com/orchestral/testbench-dusk/issues/123
      */
     protected function startServer(): void
     {
@@ -217,6 +225,10 @@ class DuskServer
             ]),
             timeout: $this->timeout
         );
+
+        // Discard stdout/stderr so the OS pipe cannot fill and hang php -S
+        // mid-suite when request log volume exceeds the pipe buffer.
+        $this->process->disableOutput();
 
         $this->process->start();
     }
