@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.58.0
+
+Released: 2026-08-05
+
+### Changes
+
+* Update minimum support for Testbench Core v7.62.1+. ([v7.59.0...v7.62.1](https://github.com/orchestral/testbench/compare/v7.59.0...v7.59.0))
+* Prevents `Orchestra\Testbench\Dusk\DuskServer` hang when `php -S` pipe fills.
+
 ## 7.57.0
 
 Released: 2026-01-14
