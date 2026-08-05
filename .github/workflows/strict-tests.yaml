@@ -6,6 +6,9 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
+permissions:
+  contents: read
+
 jobs:
   strict-tests:
     runs-on: "ubuntu-latest"
@@ -20,17 +23,23 @@ jobs:
           - "~11.5.50"
           - "~12.5.8"
           - "~13.0.0"
+          - "~13.1.0"
+          - "~13.2.0"
         experimental:
           - false
         exclude:
           - php: 8.3
             phpunit: "~13.0.0"
+          - php: 8.3
+            phpunit: "~13.1.0"
+          - php: 8.3
+            phpunit: "~13.2.0"
 
     name: PHP:${{ matrix.php }} / PHPUnit:${{ matrix.phpunit }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -65,7 +74,7 @@ jobs:
           RAY_ENABLED: false
 
       - name: Upload Failed Screenshots
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: screenshots
