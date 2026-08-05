@@ -2,6 +2,16 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 11.3.0
+
+Released: 2026-08-05
+
+### Changes
+
+* Update minimum support for Testbench v11.1.0+. ([v11.0.0...v11.1.0](https://github.com/orchestral/testbench/compare/v11.0.0...v11.1.0))
+* Update minimum support for Testbench Core v11.3.5+. ([v11.3.0...v11.3.5](https://github.com/orchestral/testbench/compare/v11.3.0...v11.3.5))
+* Prevents `Orchestra\Testbench\Dusk\DuskServer` hang when `php -S` pipe fills.
+
 ## 11.2.0
 
 Released: 2026-04-23
