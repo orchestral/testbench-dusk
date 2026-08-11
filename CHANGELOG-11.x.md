@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 11.4.0
+
+Released: 2026-08-11
+
+### Changes
+
+* Update minimum support for Testbench v11.2.0+. ([v11.1.0...v11.2.0](https://github.com/orchestral/testbench/compare/v11.1.0...v11.2.0))
+* Update minimum support for Testbench Core v11.4.0+. ([v11.3.5...v11.4.0](https://github.com/orchestral/testbench/compare/v11.3.5...v11.4.0))
+
 ## 11.3.0
 
 Released: 2026-08-05
