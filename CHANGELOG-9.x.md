@@ -2,6 +2,16 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 9.21.0
+
+Released: 2026-09-24
+
+### Changes
+
+* Update minimum support for Testbench v9.18.0+. ([v9.17.0...v9.18.0](https://github.com/orchestral/testbench/compare/v9.17.0...v9.18.0))
+* Update minimum support for Testbench Core v9.23.0+. ([v9.22.1...v9.23.0](https://github.com/orchestral/testbench-core/compare/v9.22.1...v9.23.0))
+* Add `--pretend` option to `package:dusk-purge` command.
+
 ## 9.20.0
 
 Released: 2026-08-05
