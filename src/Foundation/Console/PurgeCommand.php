@@ -3,6 +3,7 @@
 namespace Orchestra\Testbench\Dusk\Foundation\Console;
 
 use Illuminate\Console\Command;
+use Orchestra\Sidekick\Console\Task;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
@@ -19,7 +20,8 @@ class PurgeCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'package:dusk-purge';
+    protected $signature = 'package:dusk-purge
+                                {--pretend : Outputs the operations but will not execute anything}';
 
     /**
      * The console command description.
@@ -66,20 +68,29 @@ class PurgeCommand extends Command
      */
     protected function purgeDebuggingFiles(string $relativePath, string $patterns): void
     {
+        /** @var bool $pretending */
+        $pretending = $this->option('pretend');
+
         $path = package_path($relativePath);
 
-        if (! is_dir($path)) {
-            $this->components->warn(
-                "Unable to purge missing directory [./{$relativePath}].", OutputInterface::VERBOSITY_DEBUG
-            );
+        Task::action(function () use ($path, $patterns) {
+            foreach (Finder::create()->files()->in($path)->name($patterns) as $file) {
+                @unlink($file->getRealPath());
+            }
 
-            return;
-        }
+            return true;
+        })->requirements(function () use ($path, $relativePath) {
+            if (! is_dir($path)) {
+                $this->components->warn(
+                    "Unable to purge missing directory [./{$relativePath}].", OutputInterface::VERBOSITY_DEBUG
+                );
 
-        foreach (Finder::create()->files()->in($path)->name($patterns) as $file) {
-            @unlink($file->getRealPath());
-        }
+                return false;
+            }
 
-        $this->components->task("Purged \"{$patterns}\" from [./{$relativePath}] path.");
+            return true;
+        })->response(function () use ($patterns, $relativePath) {
+            $this->components->task("Purged \"{$patterns}\" from [./{$relativePath}] path.");
+        })->dispatch($pretending);
     }
 }

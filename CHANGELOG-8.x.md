@@ -2,13 +2,23 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 8.41.0
+
+Released: 2026-09-24
+
+### Changes
+
+* Update minimum support for Testbench v8.39.0+. ([v8.37.0...v8.39.0](https://github.com/orchestral/testbench/compare/v8.37.0...v8.39.0))
+* Update minimum support for Testbench Core v8.44.0+. ([v8.43.1...v8.44.0](https://github.com/orchestral/testbench-core/compare/v8.43.1...v8.44.0))
+* Add `--pretend` option to `package:dusk-purge` command.
+
 ## 8.40.0
 
 Released: 2026-08-05
 
 ### Changes
 
-* Update minimum support for Testbench Core v8.43.1+. ([v8.40.0...v8.43.1](https://github.com/orchestral/testbench/compare/v8.40.0...v8.43.1))
+* Update minimum support for Testbench Core v8.43.1+. ([v8.40.0...v8.43.1](https://github.com/orchestral/testbench-core/compare/v8.40.0...v8.43.1))
 * Prevents `Orchestra\Testbench\Dusk\DuskServer` hang when `php -S` pipe fills.
 
 ## 8.39.0
@@ -18,7 +28,7 @@ Released: 2026-01-14
 ### Changes
 
 * Update minimum support for Testbench v8.37.0+. ([v8.36.0...v8.37.0](https://github.com/orchestral/testbench/compare/v8.36.0...v8.37.0))
-* Update minimum support for Testbench Core v8.40.0+. ([v8.37.0...v8.40.0](https://github.com/orchestral/testbench/compare/v8.37.0...v8.40.0))
+* Update minimum support for Testbench Core v8.40.0+. ([v8.37.0...v8.40.0](https://github.com/orchestral/testbench-core/compare/v8.37.0...v8.40.0))
 
 ## 8.38.0
 
@@ -27,7 +37,7 @@ Released: 2025-05-12
 ### Changes
 
 * Update minimum support for Testbench v8.36.0+. ([v8.35.1...v8.36.0](https://github.com/orchestral/testbench/compare/v8.35.1...v8.36.0))
-* Update minimum support for Testbench Core v8.37.0+. ([v8.36.1...v8.37.0](https://github.com/orchestral/testbench/compare/v8.36.1...v8.37.0))
+* Update minimum support for Testbench Core v8.37.0+. ([v8.36.1...v8.37.0](https://github.com/orchestral/testbench-core/compare/v8.36.1...v8.37.0))
 
 ## 8.37.1
 
@@ -36,7 +46,7 @@ Released: 2025-04-27
 ### Changes
 
 * Update minimum support for Testbench v8.35.1+. ([v8.35.0...v8.35.1](https://github.com/orchestral/testbench/compare/v8.35.0...v8.35.1))
-* Update minimum support for Testbench Core v8.36.1+. ([v8.36.0...v8.36.1](https://github.com/orchestral/testbench/compare/v8.36.0...v8.36.1))
+* Update minimum support for Testbench Core v8.36.1+. ([v8.36.0...v8.36.1](https://github.com/orchestral/testbench-core/compare/v8.36.0...v8.36.1))
 
 ## 8.37.0
 
@@ -45,7 +55,7 @@ Released: 2025-04-06
 ### Changes
 
 * Update minimum support for Testbench v8.35.0+. ([v8.34.0...v8.35.0](https://github.com/orchestral/testbench/compare/v8.34.0...v8.35.0))
-* Update minimum support for Testbench Core v8.36.0+. ([v8.35.0...v8.36.0](https://github.com/orchestral/testbench/compare/v8.35.0...v8.36.0))
+* Update minimum support for Testbench Core v8.36.0+. ([v8.35.0...v8.36.0](https://github.com/orchestral/testbench-core/compare/v8.35.0...v8.36.0))
 
 ### Deprecated
 
@@ -63,7 +73,7 @@ Released: 2025-03-06
 ### Changes
 
 * Update minimum support for Testbench v8.34.0+. ([v8.33.0...v8.34.0](https://github.com/orchestral/testbench/compare/v8.33.0...v8.34.0))
-* Update minimum support for Testbench Core v8.35.0+. ([v8.34.0...v8.35.0](https://github.com/orchestral/testbench/compare/v8.34.0...v8.35.0))
+* Update minimum support for Testbench Core v8.35.0+. ([v8.34.0...v8.35.0](https://github.com/orchestral/testbench-core/compare/v8.34.0...v8.35.0))
 * Improves vendor detection on the default skeleton.
 
 ## 8.35.0
@@ -81,7 +91,7 @@ Released: 2025-02-19
 ### Changes
 
 * Update minimum support for Testbench v8.33.0+. ([v8.30.0...v8.33.0](https://github.com/orchestral/testbench/compare/v8.30.0...v8.33.0))
-* Update minimum support for Testbench Core v8.34.0+. ([v8.33.0...v8.34.0](https://github.com/orchestral/testbench/compare/v8.33.0...v8.34.0))
+* Update minimum support for Testbench Core v8.34.0+. ([v8.33.0...v8.34.0](https://github.com/orchestral/testbench-core/compare/v8.33.0...v8.34.0))
 * Use `orchestra/sidekick`.
 
 ## 8.33.1
@@ -103,7 +113,7 @@ Released: 2024-12-15
 ### Changes
 
 * Update minimum support for Testbench v8.30.0+. ([v8.28.0...v8.30.0](https://github.com/orchestral/testbench/compare/v8.28.0...v8.30.0))
-* Update minimum support for Testbench Core v8.31.0+. ([v8.30.0...v8.31.0](https://github.com/orchestral/testbench/compare/v8.30.0...v8.31.0))
+* Update minimum support for Testbench Core v8.31.0+. ([v8.30.0...v8.31.0](https://github.com/orchestral/testbench-core/compare/v8.30.0...v8.31.0))
 
 ## 8.32.0
 
@@ -117,7 +127,7 @@ Released: 2024-12-01
 ### Changes
 
 * Update minimum support for Testbench v8.29.0+. ([v8.28.0...v8.29.0](https://github.com/orchestral/testbench/compare/v8.28.0...v8.29.0))
-* Update minimum support for Testbench Core v8.30.0+. ([v8.29.0...v8.30.0](https://github.com/orchestral/testbench/compare/v8.29.0...v8.30.0))
+* Update minimum support for Testbench Core v8.30.0+. ([v8.29.0...v8.30.0](https://github.com/orchestral/testbench-core/compare/v8.29.0...v8.30.0))
 * Change `Orchestra\Testbench\Dusk\Bootstrap\LoadConfiguration` class to extends `Orchestra\Testbench\Bootstrap\LoadConfiguration`.
 * Refactor `Orchestra\Testbench\Dusk\Console\Commander` based on Testbench Core.
 * Add multiple environment variables to Laravel 10 skeleton's configuration files based on changes made for Laravel 11.
@@ -137,7 +147,7 @@ Released: 2024-11-19
 ### Changes
 
 * Update minimum support for Testbench v8.28.0+. ([v8.27.0...v8.28.0](https://github.com/orchestral/testbench/compare/v8.27.0...v8.28.0))
-* Update minimum support for Testbench Core v8.29.0+. ([v8.28.1...v8.29.0](https://github.com/orchestral/testbench/compare/v8.28.1...v8.29.0))
+* Update minimum support for Testbench Core v8.29.0+. ([v8.28.1...v8.29.0](https://github.com/orchestral/testbench-core/compare/v8.28.1...v8.29.0))
 
 ## 8.30.0
 
@@ -146,7 +156,7 @@ Released: 2024-09-25
 ### Changes
 
 * Update minimum support for Testbench v8.27.0+. ([v8.26.0...v8.27.0](https://github.com/orchestral/testbench/compare/v8.26.0...v8.27.0))
-* Update minimum support for Testbench Core v8.28.1+. ([v8.27.0...v8.28.1](https://github.com/orchestral/testbench/compare/v8.27.0...v8.28.1))
+* Update minimum support for Testbench Core v8.28.1+. ([v8.27.0...v8.28.1](https://github.com/orchestral/testbench-core/compare/v8.27.0...v8.28.1))
 * Change `resolveApplicationResolvingCallback()` method visibility from `private` to `protected`.
 * Update `Orchestra\Testbench\default_skeleton_path()` to accept `array`.
 
@@ -165,7 +175,7 @@ Released: 2024-08-26
 ### Changes
 
 * Update minimum support for Testbench v8.26.0+. ([v8.25.0...v8.26.0](https://github.com/orchestral/testbench/compare/v8.25.0...v8.26.0))
-* Update minimum support for Testbench Core v8.27.0+. ([v8.26.0...v8.27.0](https://github.com/orchestral/testbench/compare/v8.26.0...v8.27.0))
+* Update minimum support for Testbench Core v8.27.0+. ([v8.26.0...v8.27.0](https://github.com/orchestral/testbench-core/compare/v8.26.0...v8.27.0))
 * Utilise `Orchestra\Testbench\join_paths()` function.
 * Use `Laravel\SerializableClosure\SerializableClosure::unsigned()`.
 
@@ -176,7 +186,7 @@ Released: 2024-08-14
 ### Changes
 
 * Update minimum support for Testbench v8.25.0+. ([v8.24.0...v8.25.0](https://github.com/orchestral/testbench/compare/v8.24.0...v8.25.0))
-* Update minimum support for Testbench Core v8.26.0+. ([v8.25.0...v8.26.0](https://github.com/orchestral/testbench/compare/v8.25.0...v8.26.0))
+* Update minimum support for Testbench Core v8.26.0+. ([v8.25.0...v8.26.0](https://github.com/orchestral/testbench-core/compare/v8.25.0...v8.26.0))
 
 ## 8.27.0
 
@@ -202,7 +212,7 @@ Released: 2024-07-13
 ### Changes
 
 * Update minimum support for Testbench v8.24.0+. ([v8.23.2...v8.24.0](https://github.com/orchestral/testbench/compare/v8.23.2...v8.24.0))
-* Update minimum support for Testbench Core v8.25.0+. ([v8.24.3...v8.25.0](https://github.com/orchestral/testbench/compare/v8.24.3...v8.25.0))
+* Update minimum support for Testbench Core v8.25.0+. ([v8.24.3...v8.25.0](https://github.com/orchestral/testbench-core/compare/v8.24.3...v8.25.0))
 
 ## 8.25.1
 
