@@ -2,13 +2,23 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/testbench-dusk`.
 
+## 7.59.0
+
+Released: 2026-09-25
+
+### Changes
+
+* Update minimum support for Testbench v7.58.0+. ([v7.55.0...v7.58.0](https://github.com/orchestral/testbench/compare/v7.55.0...v7.58.0))
+* Update minimum support for Testbench Core v7.63.0+. ([v7.62.1...v7.63.0](https://github.com/orchestral/testbench-core/compare/v7.62.1...v7.63.0))
+* Add `--pretend` option to `package:dusk-purge` command.
+
 ## 7.58.0
 
 Released: 2026-08-05
 
 ### Changes
 
-* Update minimum support for Testbench Core v7.62.1+. ([v7.59.0...v7.62.1](https://github.com/orchestral/testbench/compare/v7.59.0...v7.59.0))
+* Update minimum support for Testbench Core v7.62.1+. ([v7.59.0...v7.62.1](https://github.com/orchestral/testbench-core/compare/v7.59.0...v7.59.0))
 * Prevents `Orchestra\Testbench\Dusk\DuskServer` hang when `php -S` pipe fills.
 
 ## 7.57.0
@@ -18,7 +28,7 @@ Released: 2026-01-14
 ### Changes
 
 * Update minimum support for Testbench v7.56.0+. ([v7.55.0...v7.56.0](https://github.com/orchestral/testbench/compare/v7.55.0...v7.56.0))
-* Update minimum support for Testbench Core v7.59.0+. ([v7.56.0...v7.59.0](https://github.com/orchestral/testbench/compare/v7.56.0...v7.59.0))
+* Update minimum support for Testbench Core v7.59.0+. ([v7.56.0...v7.59.0](https://github.com/orchestral/testbench-core/compare/v7.56.0...v7.59.0))
 
 ## 7.56.0
 
@@ -27,7 +37,7 @@ Released: 2025-05-12
 ### Changes
 
 * Update minimum support for Testbench v7.55.0+. ([v7.54.0...v7.55.0](https://github.com/orchestral/testbench/compare/v7.54.0...v7.55.0))
-* Update minimum support for Testbench Core v7.56.0+. ([v7.55.0...v7.56.0](https://github.com/orchestral/testbench/compare/v7.55.0...v7.56.0))
+* Update minimum support for Testbench Core v7.56.0+. ([v7.55.0...v7.56.0](https://github.com/orchestral/testbench-core/compare/v7.55.0...v7.56.0))
 
 ## 7.55.0
 
@@ -36,7 +46,7 @@ Released: 2025-04-06
 ### Changes
 
 * Update minimum support for Testbench v7.54.0+. ([v7.53.0...v7.54.0](https://github.com/orchestral/testbench/compare/v7.53.0...v7.54.0))
-* Update minimum support for Testbench Core v7.55.0+. ([v7.54.0...v7.55.0](https://github.com/orchestral/testbench/compare/v7.54.0...v7.55.0))
+* Update minimum support for Testbench Core v7.55.0+. ([v7.54.0...v7.55.0](https://github.com/orchestral/testbench-core/compare/v7.54.0...v7.55.0))
 
 ### Deprecated
 
@@ -50,7 +60,7 @@ Released: 2025-03-06
 ### Changes
 
 * Update minimum support for Testbench v7.53.0+. ([v7.51.0...v7.53.0](https://github.com/orchestral/testbench/compare/v7.51.0...v7.53.0))
-* Update minimum support for Testbench Core v7.54.0+. ([v7.53.0...v7.54.0](https://github.com/orchestral/testbench/compare/v7.53.0...v7.54.0))
+* Update minimum support for Testbench Core v7.54.0+. ([v7.53.0...v7.54.0](https://github.com/orchestral/testbench-core/compare/v7.53.0...v7.54.0))
 * Improves vendor detection on the default skeleton.
 
 ## 7.53.0
@@ -68,7 +78,7 @@ Released: 2025-02-19
 ### Changes
 
 * Update minimum support for Testbench v7.51.0+. ([v7.49.0...v7.51.0](https://github.com/orchestral/testbench/compare/v7.49.0...v7.51.0))
-* Update minimum support for Testbench Core v7.53.0+. ([v7.50.0...v7.53.0](https://github.com/orchestral/testbench/compare/v7.50.0...v7.53.0))
+* Update minimum support for Testbench Core v7.53.0+. ([v7.50.0...v7.53.0](https://github.com/orchestral/testbench-core/compare/v7.50.0...v7.53.0))
 * Use `orchestra/sidekick`.
 
 ## 7.51.0
@@ -82,7 +92,7 @@ Released: 2024-12-16
 ### Changes
 
 * Update minimum support for Testbench v7.49.0+. ([v7.48.0...v7.49.0](https://github.com/orchestral/testbench/compare/v7.48.0...v7.49.0))
-* Update minimum support for Testbench Core v7.50.0+. ([v7.49.0...v7.50.0](https://github.com/orchestral/testbench/compare/v7.49.0...v7.50.0))
+* Update minimum support for Testbench Core v7.50.0+. ([v7.49.0...v7.50.0](https://github.com/orchestral/testbench-core/compare/v7.49.0...v7.50.0))
 
 ## 7.50.0
 
@@ -112,7 +122,7 @@ Released: 2024-11-19
 ### Changes
 
 * Update minimum support for Testbench v7.47.0+. ([v7.46.0...v7.47.0](https://github.com/orchestral/testbench/compare/v7.46.0...v7.47.0))
-* Update minimum support for Testbench Core v7.48.0+. ([v7.47.0...v7.48.0](https://github.com/orchestral/testbench/compare/v7.47.0...v7.48.0))
+* Update minimum support for Testbench Core v7.48.0+. ([v7.47.0...v7.48.0](https://github.com/orchestral/testbench-core/compare/v7.47.0...v7.48.0))
 
 ## 7.48.0
 
@@ -121,7 +131,7 @@ Released: 2024-09-25
 ### Changes
 
 * Update minimum support for Testbench v7.46.0+. ([v7.45.0...v7.46.0](https://github.com/orchestral/testbench/compare/v7.45.0...v7.46.0))
-* Update minimum support for Testbench Core v7.47.0+. ([v7.46.0...v7.47.0](https://github.com/orchestral/testbench/compare/v7.46.0...v7.47.0))
+* Update minimum support for Testbench Core v7.47.0+. ([v7.46.0...v7.47.0](https://github.com/orchestral/testbench-core/compare/v7.46.0...v7.47.0))
 * Change `resolveApplicationResolvingCallback()` method visibility from `private` to `protected`.
 * Update `Orchestra\Testbench\default_skeleton_path()` to accept `array`.
 
@@ -151,7 +161,7 @@ Released: 2024-08-14
 ### Changes
 
 * Update minimum support for Testbench v7.44.0+. ([v7.43.0...v7.44.0](https://github.com/orchestral/testbench/compare/v7.43.0...v7.44.0))
-* Update minimum support for Testbench Core v7.45.0+. ([v7.44.0...v7.45.0](https://github.com/orchestral/testbench/compare/v7.44.0...v7.45.0))
+* Update minimum support for Testbench Core v7.45.0+. ([v7.44.0...v7.45.0](https://github.com/orchestral/testbench-core/compare/v7.44.0...v7.45.0))
 
 ## 7.45.0
 
@@ -177,7 +187,7 @@ Released: 2024-07-13
 ### Changes
 
 * Update minimum support for Testbench v7.43.0+. ([v7.42.2...v7.43.0](https://github.com/orchestral/testbench/compare/v7.42.2...v7.43.0))
-* Update minimum support for Testbench Core v7.44.0+. ([v7.43.3...v7.44.0](https://github.com/orchestral/testbench/compare/v7.43.3...v7.44.0))
+* Update minimum support for Testbench Core v7.44.0+. ([v7.43.3...v7.44.0](https://github.com/orchestral/testbench-core/compare/v7.43.3...v7.44.0))
 
 ## 7.43.1
 
