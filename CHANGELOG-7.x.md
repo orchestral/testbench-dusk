@@ -4,7 +4,7 @@ This changelog references the relevant changes (bug and security fixes) done to 
 
 ## 7.59.0
 
-Released: 2026-09-25
+Released: 2026-09-24
 
 ### Changes
 
