@@ -2,7 +2,7 @@
 
 namespace Orchestra\Testbench\Dusk;
 
-use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
+use Orchestra\Testbench\Foundation\Process\RemoteWebServer;
 use Symfony\Component\Process\Process;
 
 use function Orchestra\Sidekick\Filesystem\join_paths;
@@ -12,15 +12,8 @@ use function Orchestra\Testbench\defined_environment_variables;
 /**
  * @internal
  */
-class DuskServer
+class DuskServer extends RemoteWebServer
 {
-    /**
-     * Process pointer reference.
-     *
-     * @var \Symfony\Component\Process\Process|null
-     */
-    protected ?Process $process = null;
-
     /**
      * Laravel working path.
      *
@@ -43,16 +36,16 @@ class DuskServer
     protected array $localIpv6Hosts = ['::0', '[::0]'];
 
     /**
-     * Construct a new server.
+     * Construct a new web server.
      *
      * @param  string  $host
      * @param  int  $port
      * @param  int  $timeout
      */
     public function __construct(
-        protected readonly string $host = '127.0.0.1',
-        protected readonly int $port = 8001,
-        protected readonly int $timeout = 6000
+        public readonly string $host = '127.0.0.1',
+        public readonly int $port = 8001,
+        public readonly int $timeout = 6000,
     ) {}
 
     /**
@@ -107,40 +100,6 @@ class DuskServer
     }
 
     /**
-     * Start a php server in a separate process.
-     *
-     * @return void
-     *
-     * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
-     */
-    public function start(): void
-    {
-        $this->stop();
-        $this->startServer();
-
-        // We register the below, so if php is exited early, the child
-        // process for the server is closed down, rather than left
-        // hanging around for the user to close themselves.
-        register_shutdown_function(function () {
-            $this->stop();
-        });
-    }
-
-    /**
-     * Stop the php server.
-     *
-     * @return void
-     */
-    public function stop(): void
-    {
-        if (! isset($this->process)) {
-            return;
-        }
-
-        $this->process->stop();
-    }
-
-    /**
      * Stop the php server.
      *
      * @return void
@@ -153,40 +112,18 @@ class DuskServer
     }
 
     /**
-     * Clear the php server output.
+     * {@inheritDoc}
      *
-     * No-op when output was disabled at start (the default), since
-     * Symfony Process redirects those streams to /dev/null.
-     *
-     * @return void
-     */
-    public function clearOutput(): void
-    {
-        if (! isset($this->process) || $this->process->isOutputDisabled()) {
-            return;
-        }
-
-        $this->process->clearOutput();
-        $this->process->clearErrorOutput();
-    }
-
-    /**
      * Start the server. Execute the command and open a
      * pointer to it. Output is discarded: the built-in PHP
      * server logs every request to stderr, and if that pipe
      * is never drained it fills and blocks the server.
      *
-     * @return void
-     *
-     * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
-     *
      * @see https://github.com/orchestral/testbench-dusk/issues/123
      */
-    protected function startServer(): void
+    protected function createWebServerProcess(): Process
     {
-        $this->guardServerStarting();
-
-        $this->process = new Process(
+        $process = new Process(
             command: $this->prepareCommand(),
             cwd: join_paths($this->basePath(), 'public'),
             env: array_merge(defined_environment_variables(), [
@@ -199,35 +136,9 @@ class DuskServer
 
         // Discard stdout/stderr so the OS pipe cannot fill and hang php -S
         // mid-suite when request log volume exceeds the pipe buffer.
-        $this->process->disableOutput();
+        $process->disableOutput();
 
-        $this->process->start();
-    }
-
-    /**
-     * Verify that there isn't an existing server on the host and port
-     * that we want to use.  Sometimes a server can be left oped when
-     * PHP drops out, or the user may have another service running.
-     *
-     * @return void
-     *
-     * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
-     */
-    protected function guardServerStarting(): void
-    {
-        /** @var resource|null $socket */
-        $socket = rescue(function () {
-            $errorNumber = 0;
-            $errorString = '';
-            $timeout = 1;
-
-            return @fsockopen($this->host, $this->port, $errorNumber, $errorString, $timeout);
-        }, null, false);
-
-        if ($socket) {
-            fclose($socket);
-            throw new UnableToStartServer(\sprintf('%s:%d', $this->host, $this->port));
-        }
+        return $process;
     }
 
     /**
@@ -268,12 +179,13 @@ class DuskServer
     }
 
     /**
-     * Get the current process.
+     * {@inheritDoc}
      *
-     * @return \Symfony\Component\Process\Process|null
+     * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      */
-    public function getProcess(): ?Process
+    #[\Override]
+    protected function throwUnableToStartWebServer(): never
     {
-        return $this->process;
+        throw new Exceptions\UnableToStartServer(\sprintf('%s:%d', $this->host, $this->port));
     }
 }

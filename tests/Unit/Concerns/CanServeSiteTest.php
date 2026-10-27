@@ -3,7 +3,7 @@
 namespace Orchestra\Testbench\Dusk\Tests\Unit\Concerns;
 
 use Orchestra\Testbench\Dusk\Concerns\CanServeSite;
-use Orchestra\Testbench\Dusk\Tests\Concerns\InteractsWithServer;
+use Orchestra\Testbench\Dusk\Foundation\DuskServerInspector;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
@@ -11,8 +11,6 @@ use function Orchestra\Testbench\Dusk\default_skeleton_path;
 
 class CanServeSiteTest extends TestCase
 {
-    use InteractsWithServer;
-
     #[Test]
     public function it_starts_and_stops_a_server()
     {
@@ -20,17 +18,23 @@ class CanServeSiteTest extends TestCase
 
         $dummy::serve('127.0.0.1', 8001);
 
-        $this->assertFalse($dummy->getServer()->getProcess()->isTerminated());
+        $server = $dummy->getServer();
+        $this->assertNotNull($server);
+        $inspector = new DuskServerInspector($server);
+
+        $process = $server->getProcess();
+        $this->assertNotNull($process);
+        $this->assertFalse($process->isTerminated());
 
         // It can take a little time to get up and running.
-        $this->waitForServerToStart();
-        $this->assertTrue($this->isServerUp());
+        $inspector->start();
+        $this->assertTrue($inspector->isRunning());
 
         $dummy::stopServing();
-        $this->waitForServerToStop();
+        $inspector->stop($inspector);
 
-        $this->assertTrue($dummy->getServer()->getProcess()->isTerminated());
-        $this->assertFalse($this->isServerUp());
+        $this->assertTrue($process->isTerminated());
+        $this->assertFalse($inspector->isRunning());
     }
 
     #[Test]
@@ -41,15 +45,21 @@ class CanServeSiteTest extends TestCase
         $dummy::serve('127.0.0.1', 8001);
 
         $duskServerOne = $dummy->getServer();
+        $this->assertNotNull($duskServerOne);
+        $processOne = $duskServerOne->getProcess();
+        $this->assertNotNull($processOne);
         // we don't bother waiting since that is tested in 'it_starts_and_stops_a_server'
 
         $dummy::serve('127.0.0.1', 8001);
 
         $duskServerTwo = $dummy->getServer();
+        $this->assertNotNull($duskServerTwo);
+        $processTwo = $duskServerTwo->getProcess();
+        $this->assertNotNull($processTwo);
 
         $this->assertNotSame($duskServerOne, $duskServerTwo);
-        $this->assertTrue($duskServerOne->getProcess()->isTerminated());
-        $this->assertFalse($duskServerTwo->getProcess()->isTerminated());
+        $this->assertTrue($processOne->isTerminated());
+        $this->assertFalse($processTwo->isTerminated());
 
         $dummy::stopServing();
     }
