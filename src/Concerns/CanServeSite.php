@@ -5,6 +5,7 @@ namespace Orchestra\Testbench\Dusk\Concerns;
 use Closure;
 use Laravel\SerializableClosure\SerializableClosure;
 use Orchestra\Testbench\Dusk\DuskServer;
+use Orchestra\Testbench\Foundation\Dusk\DuskServerInspector;
 use Orchestra\Testbench\Dusk\Options;
 use ReflectionClass;
 
@@ -18,6 +19,14 @@ trait CanServeSite
      * @var \Orchestra\Testbench\Dusk\DuskServer|null
      */
     protected static ?DuskServer $server = null;
+
+
+    /**
+     * The server implementation.
+     *
+     * @var \Orchestra\Testbench\Foundation\Dusk\DuskServerInspector|null
+     */
+    protected static ?DuskServerInspector $inspector = null;
 
     /**
      * Begin serving on a given host and port.
@@ -39,9 +48,12 @@ trait CanServeSite
         }
 
         $server = new DuskServer($host, $port);
+        static::$serverInpector = new ServerInspector($server);
+
         $server->setLaravel(basePath: static::applicationBasePath(), baseUrl: static::applicationBaseUrl());
         $server->stash(['class' => static::servingTestClass()]);
-        $server->start();
+
+        static::$serverInpector->start();
 
         static::$server = $server;
     }
@@ -94,7 +106,7 @@ trait CanServeSite
     public static function stopServing(): void
     {
         if (isset(static::$server)) {
-            static::$server->stop();
+            static::$serverInpector->start();
         }
     }
 
@@ -303,6 +315,7 @@ trait CanServeSite
         static::stopServing();
 
         static::$server = null;
+        static::$serverInspector = null;
     }
 
     /**
