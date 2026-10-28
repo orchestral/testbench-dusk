@@ -220,7 +220,7 @@ trait CanServeSite
     {
         static::$server = $server;
 
-        $this->setUpDuskServer();
+        $this->setUpApplicationForDuskServer();
 
         /** @var \Illuminate\Foundation\Application $app */
         $app = $this->app;
@@ -288,7 +288,7 @@ trait CanServeSite
      *
      * @codeCoverageIgnore
      */
-    protected function setUpDuskServer(): void
+    protected function setUpApplicationForDuskServer(): void
     {
         static::cachedUsesForTestCase();
         static::cachedConfigurationForWorkbench();
