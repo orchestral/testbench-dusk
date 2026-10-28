@@ -89,6 +89,8 @@ class RouteTest extends TestCase
                 ->assertSee(package_path());
         });
 
+        $this->closeAll();
+
         static::reloadServing();
 
         $this->browse(static function (Browser $browser, Browser $browserTwo) {
