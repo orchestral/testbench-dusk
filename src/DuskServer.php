@@ -8,6 +8,7 @@ use Symfony\Component\Process\Process;
 use function Orchestra\Sidekick\Filesystem\join_paths;
 use function Orchestra\Sidekick\php_binary;
 use function Orchestra\Testbench\defined_environment_variables;
+use function Orchestra\Testbench\package_path;
 
 /**
  * @internal
@@ -193,6 +194,7 @@ class DuskServer
                 'APP_BASE_PATH' => $this->basePath(),
                 'APP_URL' => $this->baseUrl(),
                 'APP_ENV' => 'testing',
+                'TESTBENCH_WORKING_PATH' => package_path(),
             ]),
             timeout: $this->timeout
         );
