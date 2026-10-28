@@ -292,7 +292,6 @@ trait CanServeSite
         $this->setUpApplicationForDuskServer();
     }
 
-
     /**
      * Server specific setup. It may share alot with the main setUp() method, but
      * should exclude things like DB migrations so we don't end up wiping the
