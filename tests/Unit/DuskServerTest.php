@@ -69,7 +69,7 @@ class DuskServerTest extends TestCase
             $this->assertNotNull($process);
             $this->assertTrue(
                 $process->isOutputDisabled(),
-                'Server process must discard stdout/stderr so the server cannot block when the pipe fills'
+                'Server process must discard stdout/stderr so php -S cannot block when the pipe fills'
             );
 
             // clearOutput must remain safe when output is disabled (called from tearDown).
