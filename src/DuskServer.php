@@ -209,6 +209,7 @@ class DuskServer extends RemoteWebServer
                 'APP_BASE_PATH' => $this->basePath(),
                 'APP_URL' => $this->baseUrl(),
                 'APP_ENV' => 'testing',
+                'TESTBENCH_WORKING_PATH' => package_path(),
                 static::TOKEN_ENVIRONMENT_NAME => $this->token,
             ]),
             timeout: $this->timeout
