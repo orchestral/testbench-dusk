@@ -9,6 +9,7 @@ use Symfony\Component\Process\Process;
 use function Orchestra\Sidekick\Filesystem\join_paths;
 use function Orchestra\Sidekick\php_binary;
 use function Orchestra\Testbench\defined_environment_variables;
+use function Orchestra\Testbench\package_path;
 
 /**
  * @internal
