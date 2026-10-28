@@ -45,7 +45,7 @@
         "orchestra/dusk-updater": "^3.3.0",
         "orchestra/sidekick": "~1.1.25|~1.2.22",
         "orchestra/testbench": "11.x-dev",
-        "orchestra/testbench-core": "11.x-dev",
+        "orchestra/testbench-core": "^11.7.0",
         "php-webdriver/webdriver": "^1.15.1"
     },
     "require-dev": {
@@ -84,8 +84,9 @@
             "@php vendor/bin/phpstan analyse --verbose"
         ],
         "test": [
-            "@php testbench-dusk package:drop-sqlite-db",
-            "@php testbench-dusk package:create-sqlite-db",
+            "@php testbench-dusk package:purge-skeleton --ansi",
+            "@php testbench-dusk package:drop-sqlite-db --ansi",
+            "@php testbench-dusk package:create-sqlite-db --ansi",
             "@php vendor/bin/phpunit --no-coverage --no-configuration --bootstrap vendor/autoload.php --color tests"
         ],
         "sync": [
