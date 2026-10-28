@@ -3,6 +3,7 @@
 namespace Orchestra\Testbench\Dusk;
 
 use Orchestra\Testbench\Foundation\Process\RemoteWebServer;
+use RuntimeException;
 use Symfony\Component\Process\Process;
 
 use function Orchestra\Sidekick\Filesystem\join_paths;
@@ -36,6 +37,28 @@ class DuskServer extends RemoteWebServer
     protected array $localIpv6Hosts = ['::0', '[::0]'];
 
     /**
+     * Path used to push stashed contents to the server.
+     */
+    public const STASH_PATH = '/__testbench_dusk/stash';
+
+    /**
+     * Environment variable used to share the push token with the server process.
+     */
+    public const TOKEN_ENVIRONMENT_NAME = 'TESTBENCH_DUSK_SERVER_TOKEN';
+
+    /**
+     * Stashed contents shared between the test and server process.
+     *
+     * @var mixed
+     */
+    protected $stashed = [];
+
+    /**
+     * Token used to authorize pushing contents to the server.
+     */
+    protected string $token = '';
+
+    /**
      * Construct a new web server.
      *
      * @param  string  $host
@@ -62,41 +85,96 @@ class DuskServer extends RemoteWebServer
     }
 
     /**
-     * Store some temp contents in a file for later use.
+     * Store contents to be shared with the running server.
+     *
+     * The contents are kept in memory and pushed directly to the server
+     * process (when it is running), otherwise it will be pushed on start.
      *
      * @param  mixed  $content
      * @return void
      */
     public function stash($content): void
     {
-        file_put_contents($this->temp(), json_encode($content));
+        $this->stashed = $content;
+
+        if ($this->process?->isRunning()) {
+            $this->pushStash();
+        }
     }
 
     /**
-     * Prepare the path of the temp file for a particular server.
+     * Receive the stashed contents sent from the test process.
      *
-     * @return string
+     * @internal
+     *
+     * @param  mixed  $content
+     * @return void
      */
-    protected function temp(): string
+    public function receive($content): void
     {
-        return join_paths(
-            \dirname(__DIR__),
-            'tmp',
-            \sprintf('%s__%d', ! \in_array($this->host, $this->localIpv6Hosts) ? $this->host : 'localhost', $this->port),
-        );
+        $this->stashed = $content;
     }
 
     /**
-     * Retrieve the contents of the relevant file.
+     * Determine whether the given token is allowed to push contents to the server.
+     *
+     * @internal
+     */
+    public function isAuthorized(?string $token): bool
+    {
+        $expected = getenv(static::TOKEN_ENVIRONMENT_NAME);
+
+        return \is_string($expected) && $expected !== '' && \is_string($token) && hash_equals($expected, $token);
+    }
+
+    /**
+     * Retrieve the stashed contents.
      *
      * @param  string|null  $key
      * @return mixed
      */
     public function getStash(?string $key = null)
     {
-        $content = json_decode((string) file_get_contents($this->temp()), true);
+        return $key ? ($this->stashed[$key] ?? null) : $this->stashed;
+    }
 
-        return $key ? ($content[$key] ?? null) : $content;
+    /**
+     * Push the stashed contents to the server process.
+     *
+     * @return void
+     *
+     * @throws \RuntimeException
+     */
+    protected function pushStash(): void
+    {
+        $host = \in_array($this->host, $this->localIpv6Hosts) ? '[::1]' : $this->host;
+
+        $response = @file_get_contents(\sprintf('http://%s:%d%s', $host, $this->port, static::STASH_PATH), false, stream_context_create([
+            'http' => [
+                'method' => 'POST',
+                'header' => \sprintf("Content-Type: application/json\r\nAuthorization: Bearer %s\r\n", $this->token),
+                'content' => json_encode($this->stashed),
+                'ignore_errors' => true,
+                'timeout' => 10,
+            ],
+        ]));
+
+        if ($response === false || ! str_contains($http_response_header[0] ?? '', ' 204')) {
+            throw new RuntimeException(\sprintf('Unable to push contents to server on %s:%d.', $this->host, $this->port));
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    #[\Override]
+    protected function startServer(): void
+    {
+        parent::startServer();
+
+        if ($this->stashed !== []) {
+            $this->pushStash();
+        }
     }
 
     /**
@@ -115,14 +193,15 @@ class DuskServer extends RemoteWebServer
      * {@inheritDoc}
      *
      * Start the server. Execute the command and open a
-     * pointer to it. Output is discarded: the built-in PHP
-     * server logs every request to stderr, and if that pipe
-     * is never drained it fills and blocks the server.
+     * pointer to it. Output is discarded so an
+     * undrained pipe can never fill and block the server.
      *
      * @see https://github.com/orchestral/testbench-dusk/issues/123
      */
     protected function createWebServerProcess(): Process
     {
+        $this->token = bin2hex(random_bytes(16));
+
         $process = new Process(
             command: $this->prepareCommand(),
             cwd: join_paths($this->basePath(), 'public'),
@@ -130,12 +209,13 @@ class DuskServer extends RemoteWebServer
                 'APP_BASE_PATH' => $this->basePath(),
                 'APP_URL' => $this->baseUrl(),
                 'APP_ENV' => 'testing',
+                static::TOKEN_ENVIRONMENT_NAME => $this->token,
             ]),
             timeout: $this->timeout
         );
 
-        // Discard stdout/stderr so the OS pipe cannot fill and hang php -S
-        // mid-suite when request log volume exceeds the pipe buffer.
+        // Discard stdout/stderr so the OS pipe cannot fill and hang the
+        // server mid-suite when output volume exceeds the pipe buffer.
         $process->disableOutput();
 
         return $process;
@@ -150,11 +230,9 @@ class DuskServer extends RemoteWebServer
     {
         return [
             php_binary(),
-            '-S',
-            \sprintf('%s:%s', $this->host, $this->port),
             join_paths(__DIR__, 'server.php'),
-            '-t',
-            join_paths($this->basePath(), 'public'),
+            $this->host,
+            (string) $this->port,
         ];
     }
 
