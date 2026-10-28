@@ -286,6 +286,24 @@ trait CanServeSite
      *
      * @codeCoverageIgnore
      */
+    #[\Deprecated('Use `setUpApplicationForDuskServer()` instead', since: '11.7.0')]
+    protected function setUpDuskServer(): void
+    {
+        $this->setUpApplicationForDuskServer();
+    }
+
+
+    /**
+     * Server specific setup. It may share alot with the main setUp() method, but
+     * should exclude things like DB migrations so we don't end up wiping the
+     * DB content mid test. Using this method means we can be explicit.
+     *
+     * @api
+     *
+     * @return void
+     *
+     * @codeCoverageIgnore
+     */
     protected function setUpApplicationForDuskServer(): void
     {
         static::cachedUsesForTestCase();
