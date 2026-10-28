@@ -39,6 +39,7 @@
     ],
     "require": {
         "php": "^8.3",
+        "amphp/http-server": "^3",
         "composer-runtime-api": "^2.2",
         "laravel/dusk": "^8.5.0",
         "laravel/serializable-closure": "^1.3|^2.0.7",

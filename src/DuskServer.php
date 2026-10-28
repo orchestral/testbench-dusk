@@ -150,6 +150,15 @@ class DuskServer extends RemoteWebServer
      */
     protected function prepareCommand(): array
     {
+        if (Options::$usesAmphpServer) {
+            return [
+                php_binary(),
+                join_paths(__DIR__, 'amphp-server.php'),
+                $this->host,
+                (string) $this->port,
+            ];
+        }
+
         return [
             php_binary(),
             '-S',
