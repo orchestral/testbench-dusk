@@ -218,7 +218,7 @@ trait CanServeSite
     {
         static::$server = $server;
 
-        $this->setUpApplicationForDuskServer();
+        $this->setUpDuskServer();
 
         /** @var \Illuminate\Foundation\Application $app */
         $app = $this->app;
@@ -286,7 +286,6 @@ trait CanServeSite
      *
      * @codeCoverageIgnore
      */
-    #[\Deprecated('Use `setUpApplicationForDuskServer()` instead', since: '11.7.0')]
     protected function setUpDuskServer(): void
     {
         $this->setUpApplicationForDuskServer();
@@ -297,7 +296,7 @@ trait CanServeSite
      * should exclude things like DB migrations so we don't end up wiping the
      * DB content mid test. Using this method means we can be explicit.
      *
-     * @api
+     * @internal
      *
      * @return void
      *
