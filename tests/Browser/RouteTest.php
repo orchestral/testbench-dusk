@@ -89,8 +89,6 @@ class RouteTest extends TestCase
                 ->assertSee(package_path());
         });
 
-        static::reloadServing();
-
         $this->browse(static function (Browser $browser, Browser $browserTwo) {
             $browser->visit('testbench-environment-value')
                 ->assertSee(package_path())
