@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Testbench\Dusk\Foundation;
+namespace Orchestra\Testbench\Dusk\Testing;
 
 use Orchestra\Testbench\Dusk\DuskServer;
 use RuntimeException;

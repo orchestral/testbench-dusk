@@ -4,7 +4,7 @@ namespace Orchestra\Testbench\Dusk\Tests\Unit;
 
 use Orchestra\Testbench\Dusk\DuskServer;
 use Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer;
-use Orchestra\Testbench\Dusk\Foundation\DuskServerInspector;
+use Orchestra\Testbench\Dusk\Testing\DuskServerInspector;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
@@ -106,7 +106,7 @@ class DuskServerTest extends TestCase
                     $inspector->start();
                     $started = true;
                     $this->assertTrue(true, 'We did not end up with an orphan server');
-                } catch (\RuntimeException $e) {
+                } catch (UnableToStartServer $e) {
                     $this->fail('There was an orphan server. You\'ll need to remove it manually.');
                 } finally {
                     $inspector->stop();

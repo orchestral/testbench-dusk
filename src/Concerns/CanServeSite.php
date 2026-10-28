@@ -5,8 +5,8 @@ namespace Orchestra\Testbench\Dusk\Concerns;
 use Closure;
 use Laravel\SerializableClosure\SerializableClosure;
 use Orchestra\Testbench\Dusk\DuskServer;
-use Orchestra\Testbench\Dusk\Foundation\DuskServerInspector;
 use Orchestra\Testbench\Dusk\Options;
+use Orchestra\Testbench\Dusk\Testing\DuskServerInspector;
 use ReflectionClass;
 
 use function Orchestra\Sidekick\after_resolving;

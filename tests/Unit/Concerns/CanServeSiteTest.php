@@ -3,7 +3,7 @@
 namespace Orchestra\Testbench\Dusk\Tests\Unit\Concerns;
 
 use Orchestra\Testbench\Dusk\Concerns\CanServeSite;
-use Orchestra\Testbench\Dusk\Foundation\DuskServerInspector;
+use Orchestra\Testbench\Dusk\Testing\DuskServerInspector;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
