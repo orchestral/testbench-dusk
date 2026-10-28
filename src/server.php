@@ -53,6 +53,18 @@ $handler = new ClosureRequestHandler(function (AmpRequest $ampRequest) use ($orc
     /** @var class-string<TestCase> $originatingTestClass */
     $originatingTestClass = $orchestraServer->getStash('class');
 
+    // Abstract base classes (e.g. when using Pest) need a concrete class to be instantiated.
+    if ((new ReflectionClass($originatingTestClass))->isAbstract()) {
+        /** @var class-string<TestCase> $concreteTestClass */
+        $concreteTestClass = 'TestbenchDuskServing'.md5($originatingTestClass);
+
+        if (! class_exists($concreteTestClass, false)) {
+            eval(sprintf('final class %s extends \\%s {}', $concreteTestClass, ltrim($originatingTestClass, '\\')));
+        }
+
+        $originatingTestClass = $concreteTestClass;
+    }
+
     $app = (new $originatingTestClass('laravel'))->createServingApplicationForDuskServer($orchestraServer);
 
     // Emulation of mod_rewrite, serve existing files from the public path.
