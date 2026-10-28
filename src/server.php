@@ -34,6 +34,18 @@ $orchestraServer = new DuskServer($_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT
 /** @var class-string<\Orchestra\Testbench\Dusk\TestCase> $originatingTestClass */
 $originatingTestClass = $orchestraServer->getStash('class');
 
+// Abstract base classes (e.g. when using Pest) need a concrete class to be instantiated.
+if ((new \ReflectionClass($originatingTestClass))->isAbstract()) {
+    /** @var class-string<\Orchestra\Testbench\Dusk\TestCase> $concreteTestClass */
+    $concreteTestClass = 'TestbenchDuskServing'.md5($originatingTestClass);
+
+    if (! class_exists($concreteTestClass, false)) {
+        eval(sprintf('final class %s extends \\%s {}', $concreteTestClass, ltrim($originatingTestClass, '\\')));
+    }
+
+    $originatingTestClass = $concreteTestClass;
+}
+
 $app = (new $originatingTestClass('laravel'))->createServingApplicationForDuskServer($orchestraServer);
 
 // Emulation of mod_rewrite, but we use the applications set base path

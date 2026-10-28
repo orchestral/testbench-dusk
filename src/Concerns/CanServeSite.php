@@ -7,6 +7,7 @@ use Laravel\SerializableClosure\SerializableClosure;
 use Orchestra\Testbench\Dusk\DuskServer;
 use Orchestra\Testbench\Dusk\Foundation\DuskServerInspector;
 use Orchestra\Testbench\Dusk\Options;
+use ReflectionClass;
 
 use function Orchestra\Sidekick\after_resolving;
 
@@ -41,11 +42,36 @@ trait CanServeSite
         $server = new DuskServer($host, $port);
 
         $server->setLaravel(basePath: static::applicationBasePath(), baseUrl: static::applicationBaseUrl());
-        $server->stash(['class' => static::class]);
+        $server->stash(['class' => static::servingTestClass()]);
 
         $server->start();
 
         static::$server = $server;
+    }
+
+    /**
+     * Resolve the test class the server process should instantiate.
+     *
+     * Classes generated at runtime (e.g. by Pest using `eval()`) do not exist
+     * in the server process, so the nearest ancestor declared in a file is used.
+     *
+     * @internal
+     *
+     * @return class-string<\Orchestra\Testbench\Dusk\TestCase>
+     */
+    protected static function servingTestClass(): string
+    {
+        $reflection = new ReflectionClass(static::class);
+
+        while (
+            ($reflection->getFileName() === false || str_contains($reflection->getFileName(), "eval()'d code"))
+            && ($parent = $reflection->getParentClass()) !== false
+        ) {
+            $reflection = $parent;
+        }
+
+        /** @var class-string<\Orchestra\Testbench\Dusk\TestCase> */
+        return $reflection->getName();
     }
 
     /**
@@ -116,7 +142,7 @@ trait CanServeSite
         });
 
         static::$server?->stash([
-            'class' => static::class,
+            'class' => static::servingTestClass(),
             'tweakApplication' => \is_string($closure)
                 ? serialize($closure)
                 : serialize(SerializableClosure::unsigned($closure)),
@@ -134,7 +160,7 @@ trait CanServeSite
      */
     public function afterServingApplication(): void
     {
-        static::$server?->stash(['class' => static::class]);
+        static::$server?->stash(['class' => static::servingTestClass()]);
     }
 
     /**
