@@ -110,6 +110,8 @@ trait CanServeSite
      */
     public static function reloadServing(): void
     {
+        trigger_deprecation('orchestra/testbench-dusk', '11.7.0', '`reloadServing()` is deprecated and no longer required using `amp/amp-http-server`');
+
         static::flushDuskServer();
         static::startServing();
     }
