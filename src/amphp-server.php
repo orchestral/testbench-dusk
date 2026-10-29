@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Mime\MimeTypes;
 
-use function Amp\Http\Server\Middleware\stackMiddleware;
 use function Amp\trapSignal;
 use function Orchestra\Sidekick\Filesystem\join_paths;
 
@@ -147,21 +146,7 @@ $logger = new NullLogger;
 $httpServer = SocketHttpServer::createForDirectAccess($logger);
 $httpServer->expose(new InternetAddress($host, max(0, min(65535, $port))));
 
-// Close every connection (like the PHP built-in server does) so browsers never
-// reuse a stale keep-alive socket after the server has been restarted.
-$closeConnection = new class implements Middleware
-{
-    #[\Override]
-    public function handleRequest(AmpRequest $request, RequestHandler $requestHandler): AmpResponse
-    {
-        $response = $requestHandler->handleRequest($request);
-        $response->setHeader('connection', 'close');
-
-        return $response;
-    }
-};
-
-$httpServer->start(stackMiddleware($handler, $closeConnection), new DefaultErrorHandler);
+$httpServer->start($handler, new DefaultErrorHandler);
 
 trapSignal([SIGINT, SIGTERM]);
 
