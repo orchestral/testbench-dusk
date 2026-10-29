@@ -63,7 +63,9 @@ $handler = new ClosureRequestHandler(function (AmpRequest $ampRequest) use ($orc
 
     if ($path !== '/' && $file !== false && is_file($file) && str_starts_with($file, $publicPath.DIRECTORY_SEPARATOR) && pathinfo($file, PATHINFO_EXTENSION) !== 'php') {
         return new AmpResponse(
-            headers: ['content-type' => (new MimeTypes)->getMimeTypes(pathinfo($file, PATHINFO_EXTENSION))[0] ?? 'application/octet-stream'],
+            headers: [
+                'content-type' => (new MimeTypes)->getMimeTypes(pathinfo($file, PATHINFO_EXTENSION))[0] ?? 'application/octet-stream',
+            ],
             body: (string) file_get_contents($file),
         );
     }
@@ -144,6 +146,7 @@ $handler = new ClosureRequestHandler(function (AmpRequest $ampRequest) use ($orc
 });
 
 $logger = new NullLogger;
+$errorHandler = new DefaultErrorHandler;
 $httpServer = SocketHttpServer::createForDirectAccess($logger);
 $httpServer->expose(new InternetAddress($host, max(0, min(65535, $port))));
 
@@ -161,7 +164,8 @@ $closeConnection = new class implements Middleware
     }
 };
 
-$httpServer->start(stackMiddleware($handler, $closeConnection), new DefaultErrorHandler);
+$httpServer->start($handler, $errorHandler);
+// $httpServer->start(stackMiddleware($handler, $closeConnection), $errorHandler);
 
 trapSignal([SIGINT, SIGTERM]);
 
