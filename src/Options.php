@@ -39,6 +39,13 @@ class Options
     public static bool $providesApplicationServer = true;
 
     /**
+     * Serve the application using `amphp/http-server` instead of PHP built-in web server.
+     *
+     * @var bool
+     */
+    public static bool $usesAmphpServer = false;
+
+    /**
      * A list of remote web driver arguments.
      *
      * @var array<int, string>

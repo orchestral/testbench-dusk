@@ -3,6 +3,7 @@
 namespace Orchestra\Testbench\Dusk;
 
 use Orchestra\Testbench\Foundation\Process\RemoteWebServer;
+use ReflectionClass;
 use Symfony\Component\Process\Process;
 
 use function Orchestra\Sidekick\Filesystem\join_paths;
@@ -48,6 +49,43 @@ class DuskServer extends RemoteWebServer
         public readonly int $port = 8001,
         public readonly int $timeout = 6000,
     ) {}
+
+    /**
+     * Resolve application instnace.
+     *
+     * Identify the calling test class based on the content of the stash,
+     * use it to retrieve the built application as specificed in all
+     * the setup methods for the test class.
+     *
+     * @param  string  $name
+     * @param  string  $host
+     * @param  int  $port
+     * @return \Illuminate\Foundation\Application
+     */
+    public static function laravel(
+        string $name = 'laravel',
+        string $host = '127.0.0.1',
+        int $port = 8001,
+    ) {
+        $server = new static($host, $port);
+
+        /** @var class-string<\Orchestra\Testbench\Dusk\TestCase> $originatingTestClass */
+        $originatingTestClass = $server->getStash('class');
+
+        // Abstract base classes (e.g. when using Pest) need a concrete class to be instantiated.
+        if ((new ReflectionClass($originatingTestClass))->isAbstract()) {
+            /** @var class-string<\Orchestra\Testbench\Dusk\TestCase> $concreteTestClass */
+            $concreteTestClass = 'TestbenchDuskServing'.md5($originatingTestClass);
+
+            if (! class_exists($concreteTestClass, false)) {
+                eval(\sprintf('final class %s extends \\%s {}', $concreteTestClass, ltrim($originatingTestClass, '\\')));
+            }
+
+            $originatingTestClass = $concreteTestClass;
+        }
+
+        return (new $originatingTestClass($name))->createServingApplicationForDuskServer($server);
+    }
 
     /**
      * Set Laravel working path.
@@ -150,6 +188,15 @@ class DuskServer extends RemoteWebServer
      */
     protected function prepareCommand(): array
     {
+        if (Options::$usesAmphpServer) {
+            return [
+                php_binary(),
+                join_paths(__DIR__, 'amphp-server.php'),
+                $this->host,
+                (string) $this->port,
+            ];
+        }
+
         return [
             php_binary(),
             '-S',
