@@ -11,7 +11,6 @@ use Amp\Socket\InternetAddress;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 use Orchestra\Testbench\Dusk\DuskServer;
-use Orchestra\Testbench\Dusk\TestCase;
 use Psr\Log\NullLogger;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -34,28 +33,11 @@ define('LARAVEL_START', microtime(true));
 $host = $argv[1] ?? '127.0.0.1';
 $port = (int) ($argv[2] ?? 8001);
 
-$orchestraServer = new DuskServer($host, $port);
+$app = DuskServer::laravel(host: $host, port: $port);
 
-$handler = new ClosureRequestHandler(function (AmpRequest $ampRequest) use ($orchestraServer, $host, $port): AmpResponse {
+$handler = new ClosureRequestHandler(function (AmpRequest $ampRequest) use ($app, $host, $port): AmpResponse {
     $uri = $ampRequest->getUri();
     $path = urldecode($uri->getPath());
-
-    /** @var class-string<TestCase> $originatingTestClass */
-    $originatingTestClass = $orchestraServer->getStash('class');
-
-    // Abstract base classes (e.g. when using Pest) need a concrete class to be instantiated.
-    if ((new ReflectionClass($originatingTestClass))->isAbstract()) {
-        /** @var class-string<TestCase> $concreteTestClass */
-        $concreteTestClass = 'TestbenchDuskServing'.md5($originatingTestClass);
-
-        if (! class_exists($concreteTestClass, false)) {
-            eval(sprintf('final class %s extends \\%s {}', $concreteTestClass, ltrim($originatingTestClass, '\\')));
-        }
-
-        $originatingTestClass = $concreteTestClass;
-    }
-
-    $app = (new $originatingTestClass('laravel'))->createServingApplicationForDuskServer($orchestraServer);
 
     // Emulation of mod_rewrite, serve existing files from the public path.
     $publicPath = realpath(join_paths($app->basePath(), 'public'));

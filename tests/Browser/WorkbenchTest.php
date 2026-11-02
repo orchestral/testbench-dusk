@@ -26,6 +26,7 @@ class WorkbenchTest extends TestCase
         $this->browse(static fn ($browser) => $browser
             ->visit('/')
             ->waitForText('Let\'s get started')
+            ->assertSee('Let\'s get started')
         );
     }
 
