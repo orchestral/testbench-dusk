@@ -12,6 +12,7 @@ use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 use Orchestra\Testbench\Dusk\DuskServer;
 use Psr\Log\NullLogger;
+use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Mime\MimeTypes;
@@ -30,8 +31,10 @@ require is_file(__DIR__.'/../vendor/autoload.php')
 
 define('LARAVEL_START', microtime(true));
 
-$host = $argv[1] ?? '127.0.0.1';
-$port = (int) ($argv[2] ?? 8001);
+$input = new ArgvInput;
+
+$host = $input->hasParameterOption('--host') ? $input->getParameterOption('--host') : '127.0.0.1';
+$port = $input->hasParameterOption('--port') ? (int) $input->getParameterOption('--port') : 8001;
 
 $app = DuskServer::laravel(host: $host, port: $port);
 

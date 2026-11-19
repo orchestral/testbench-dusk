@@ -192,8 +192,8 @@ class DuskServer extends RemoteWebServer
             return [
                 php_binary(),
                 join_paths(__DIR__, 'amphp-server.php'),
-                $this->host,
-                (string) $this->port,
+                sprintf('--host %s', $this->host),
+                sprintf('--port %d', $this->port),
             ];
         }
 
