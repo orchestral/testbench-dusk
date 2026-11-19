@@ -26,27 +26,7 @@ require is_file(__DIR__.'/../vendor/autoload.php')
     ? __DIR__.'/../vendor/autoload.php'
     : __DIR__.'/../../../autoload.php';
 
-// Identify the calling test class based on the content of the stash,
-// use it to retrieve the built application as specificed in all
-// the setup methods for the test class
-$orchestraServer = new DuskServer($_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT']);
-
-/** @var class-string<\Orchestra\Testbench\Dusk\TestCase> $originatingTestClass */
-$originatingTestClass = $orchestraServer->getStash('class');
-
-// Abstract base classes (e.g. when using Pest) need a concrete class to be instantiated.
-if ((new \ReflectionClass($originatingTestClass))->isAbstract()) {
-    /** @var class-string<\Orchestra\Testbench\Dusk\TestCase> $concreteTestClass */
-    $concreteTestClass = 'TestbenchDuskServing'.md5($originatingTestClass);
-
-    if (! class_exists($concreteTestClass, false)) {
-        eval(sprintf('final class %s extends \\%s {}', $concreteTestClass, ltrim($originatingTestClass, '\\')));
-    }
-
-    $originatingTestClass = $concreteTestClass;
-}
-
-$app = (new $originatingTestClass('laravel'))->createServingApplicationForDuskServer($orchestraServer);
+$app = DuskServer::laravel(host: $_SERVER['SERVER_NAME'], port: $_SERVER['SERVER_PORT']);
 
 // Emulation of mod_rewrite, but we use the applications set base path
 if ($uri !== '/' && file_exists(join_paths($app->basePath(), 'public', $uri))) {
