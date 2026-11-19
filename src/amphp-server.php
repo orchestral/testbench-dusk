@@ -146,8 +146,8 @@ $closeConnection = new class implements Middleware
     }
 };
 
-$httpServer->start($handler, $errorHandler);
-// $httpServer->start(stackMiddleware($handler, $closeConnection), $errorHandler);
+// $httpServer->start($handler, $errorHandler);
+$httpServer->start(stackMiddleware($handler, $closeConnection), $errorHandler);
 
 trapSignal([SIGINT, SIGTERM]);
 
